@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  <!--录像机添加删除界面-->
+   
+	<Window Type="TransparentDlg" Name="VTROptDlg" Style="WS_POPUP" >
+		<Property Name="WindowPos" Value="x:0 y:0" />
+		<Property Name="WindowSize" Value="x:490 y:340" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="Image" Value="VTRCfg\OptDlg\background.png" />
+		<Property Name="MoveStatus" Value="true" />
+		<Property Name="WindowCaption" Value="录像机添加删除界面" />	
+		
+    <Window Type="CStatic" Name="StcOptVTR" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		    <Property Name="WindowPos" Value="x:24 y:20" />
+		    <Property Name="WindowSize" Value="x:200 y:14" />
+		    <Property Name="WindowCaption" Value="添加录像机" />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:200 g:200 b:200" />
+		    <Property Name="FontSize" Value="9" />
+		    <Scheme Name="SchVTRAdd">
+		    		<Property Name="WindowCaption" Value="添加录像机" /> 
+		    </Scheme>
+		    <Scheme Name="SchVTRModify">
+		    		<Property Name="WindowCaption" Value="修改录像机" /> 
+		    </Scheme>
+    </Window>
+		
+    
+    
+    <Window Type="CStatic" Name="StcVTRIP" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		    <Property Name="WindowPos" Value="x:65 y:176" />
+		    <Property Name="WindowSize" Value="x:200 y:14" />
+		    <Property Name="WindowCaption" Value="IP地址 : " />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		    <Property Name="FontSize" Value="9" />
+    </Window>
+    <Window Type="CTransparentIpEdit" Name="IPCtrlVTRIP" Style="WS_CHILD|WS_TABSTOP">
+            <Property Name="WindowPos" Value="x:209 y:166" />
+            <Property Name="WindowSize" Value="x:220 y:32" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="Image" Value="VTRCfg\OptDlg\Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:59 g:59 b:59" />
+            <Property Name="FontSize" Value="9" />
+    </Window>
+    
+    
+    <Window Type="CStatic" Name="StcVTRNo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		    <Property Name="WindowPos" Value="x:65 y:136" />
+		    <Property Name="WindowSize" Value="x:200 y:14" />
+		    <Property Name="WindowCaption" Value="编号 : " />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		    <Property Name="FontSize" Value="9" />
+    </Window>
+    <Window Type="CTransparentEdit" Name="EdtVTRNo" Style="WS_CHILD|WS_TABSTOP">
+            <Property Name="WindowPos" Value="x:209 y:125" />
+            <Property Name="WindowSize" Value="x:220 y:32" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="Image" Value="VTRCfg\OptDlg\Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:59 g:59 b:59" />
+            <Property Name="FontSize" Value="9" />
+    </Window>
+    
+ 
+    
+    <Window Type="CStatic" Name="StcVTRName" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		    <Property Name="WindowPos" Value="x:65 y:96" />
+		    <Property Name="WindowSize" Value="x:200 y:14" />
+		    <Property Name="WindowCaption" Value="录像机名称 : " />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		    <Property Name="FontSize" Value="9" />
+    </Window>
+    <Window Type="CTransparentEdit" Name="EdtVTRName" Style="WS_CHILD|WS_TABSTOP">
+            <Property Name="WindowPos" Value="x:209 y:87" />
+            <Property Name="WindowSize" Value="x:220 y:32" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="Image" Value="VTRCfg\OptDlg\Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:59 g:59 b:59" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="LimitLength" Value="15" />
+    </Window>
+    
+    
+    <Window Type="CButton" Name="BtnOk" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+	      <Property Name="WindowPos" Value="x:250 y:292" />
+	      <Property Name="WindowSize" Value="x:89 y:33" />
+	      <Property Name="WindowCaption" Value="" />
+	      <Property Name="Tooltip" Value="确定" />
+	      <Property Name="Image" Value="NetMngCfg\OptDlg\BtnOK" />
+	      <Property Name="WindowVisible" Value="True" />
+	    	<Event Type="WM_BUTTON_CLICK" Value="CVTROptDlgLogic::OnBtnOk" />
+	  </Window>    
+    
+   	<Window Type="CButton" Name="BtnCancel" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+	      <Property Name="WindowPos" Value="x:365 y:292" />
+	      <Property Name="WindowSize" Value="x:89 y:33" />
+	      <Property Name="WindowCaption" Value="" />
+	      <Property Name="Tooltip" Value="取消" />
+	      <Property Name="Image" Value="NetMngCfg\OptDlg\BtnCancel" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Event Type="WM_BUTTON_CLICK" Value="CVTROptDlgLogic::OnBtnCancel" />
+	  </Window>
+	  
+	  <Window Type="CButton" Name="BtnClose" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:430 y:6" />
+      <Property Name="WindowSize" Value="x:44 y:28" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Tooltip" Value="关闭" />
+      <Property Name="Image" Value="Common/btnClose" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CVTROptDlgLogic::OnBtnCancel" />    
+	  </Window>
+    
+		<CallBackFunc Type="CallBackFunc" Value="CVTROptDlgLogic::InitWnd" />
+	</Window>
+</UILayout>

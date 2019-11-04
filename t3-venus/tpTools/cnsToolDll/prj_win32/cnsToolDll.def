@@ -1,0 +1,7 @@
+; cnsToolDll.def : Declares the module parameters for the DLL.
+
+LIBRARY      "cnsToolDll"
+DESCRIPTION  'cnsToolDll Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

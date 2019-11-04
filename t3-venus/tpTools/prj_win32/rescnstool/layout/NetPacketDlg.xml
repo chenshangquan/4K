@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  <!--配置界面-->    
+  
+<Window Type="TransparentDlg" Name="NetPacketDlg" Style="WS_CHILD" ExStyle="">
+		<Property Name="WindowPos" Value="x:122 y:0" />
+		<Property Name="WindowSize" Value="x:742 y:501" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="Image" Value="" />
+		<Property Name="WindowCaption" Value="网口抓包" />
+		<Event Type="WM_CNSTOOL_CAPTUREFAIL" Value="CNetPacketLogic::OnCaptureFail" />
+		<Event Type="WM_CNSTOOL_FTPCAPTUREPROGRESS" Value="CNetPacketLogic::OnExportProgress" />
+		<Event Type="WM_CNSTOOL_CAPTUREMAXSIZE" Value="CNetPacketLogic::OnCaptureMaxSize" />
+    
+    <Window Type="TransButton" Name="BtnOfPacket" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:559 y:25" />
+			<Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="开始抓包" />
+      <Property Name="WindowVisible" Value="true" />
+      <Event Type="WM_BUTTON_CLICK" Value="CNetPacketLogic::OnBtnPacket" />
+      <Property Name="Image" Value="btnToPacket" />
+      <Scheme Name="SchStartPacket">
+        <Property Name="Image" Value="btnToPacket\start" />
+      </Scheme>
+      <Scheme Name="SchEndPacket">
+        <Property Name="Image" Value="btnToPacket\end" />
+      </Scheme>
+    </Window>
+          		   
+    <Window Type="TransStatic" Name="StcPacketInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:35" />
+      <Property Name="WindowSize" Value="x:110 y:14" />
+      <Property Name="WindowCaption" Value="抓包信息：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+        		   
+    <Window Type="TransStatic" Name="StcCaptureTimer" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:160 y:35" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="时间：00:00" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+    
+    <Window Type="TransStatic" Name="StcCaptureFileSize" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:300 y:35" />
+      <Property Name="WindowSize" Value="x:150 y:14" />
+      <Property Name="WindowCaption" Value="文件大小：0M" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+               		   
+    <Window Type="TransStatic" Name="StcStoragePath" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:75" />
+      <Property Name="WindowSize" Value="x:110 y:14" />
+      <Property Name="WindowCaption" Value="存储路径：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+               		   
+    <Window Type="TransStatic" Name="StcStoragepath" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:160 y:75" />
+      <Property Name="WindowSize" Value="x:340 y:14" />
+      <Property Name="WindowCaption" Value="/ramdisk/" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+        		        		   
+    <Window Type="TransStatic" Name="StcFileExportProgress" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:145" />
+      <Property Name="WindowSize" Value="x:110 y:14" />
+      <Property Name="WindowCaption" Value="文件导出进度：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+               		   
+    <Window Type="TransProgress" Name="ProgressExp" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:160 y:147" />
+			<Property Name="WindowSize" Value="x:340 y:9" />	
+			<Property Name="WindowVisible" Value="true" />
+			<Property Name="Image" Value="Progress" />
+				<Scheme Name="SchmCaptureExpClean">
+          <Property Name="ProgressPos" Value="0" />				    	
+				</Scheme>							
+				<Scheme Name="SchmTransferBeg">			
+					<Property Name="ProgressPos" Value="0" />
+			  </Scheme>
+				<Scheme Name="SchmTransferEnd">
+					<Property Name="ProgressPos" Value="100" />
+				</Scheme>		
+		</Window>
+    
+    <Window Type="TransButton" Name="BtnofExport" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:559 y:135" />
+			<Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="导出抓包" />
+      <!--<Property Name="Tooltip" Value="导出抓包" />-->
+      <Property Name="WindowVisible" Value="true" />
+      <Event Type="WM_BUTTON_CLICK" Value="CNetPacketLogic::OnBtnExport" />
+      <Property Name="Image" Value="btnToExportPacket" />
+      <!--<Scheme Name="SchExportPacket">
+        <Property Name="Image" Value="btnToExportPacket\start" />
+      </Scheme> -->
+      <Property Name="WindowEnable" Value="True" />
+			  <Scheme Name="SchmCaptureExpClean">
+				  <Property Name="WindowEnable" Value="True" />    		    	
+			  </Scheme>				      
+			  <Scheme Name="SchmExportbtnBeg">			
+				  <Property Name="WindowEnable" Value="False" />
+			  </Scheme>
+			  <Scheme Name="SchmExportbtnEnd">
+				  <Property Name="WindowEnable" Value="True" />
+			  </Scheme>
+      <!--<Scheme Name="SchEndExportPacket">
+        <Property Name="Image" Value="btnToExportPacket\end" />
+      </Scheme> -->
+    </Window>
+    
+		<CallBackFunc Type="CallBackFunc" Value="CNetPacketLogic::InitWnd" />	
+	</Window>
+</UILayout>

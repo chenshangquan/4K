@@ -1,0 +1,362 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\LibTest.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.chs\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\LibTest.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_LIBTEST_DIALOG DIALOGEX 0, 0, 502, 331
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "LibTest"
+MENU IDR_MENU1
+FONT 9, "宋体"
+BEGIN
+    EDITTEXT        IDC_EDIT_SKIN,141,65,68,12,ES_AUTOHSCROLL | 
+                    ES_WANTRETURN | NOT WS_BORDER,WS_EX_STATICEDGE
+    CONTROL         "Spin1",IDC_SPIN_TEST,"msctls_updown32",UDS_SETBUDDYINT | 
+                    UDS_AUTOBUDDY | UDS_ARROWKEYS,211,66,13,9
+    DEFPUSHBUTTON   "确定",IDOK,452,7,50,14
+    PUSHBUTTON      "取消",IDCANCEL,452,23,50,14
+    PUSHBUTTON      "List",IDC_BUTTON_LIST,9,10,50,14
+    CONTROL         "Slider1",IDC_SLIDER1,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,20,149,122,15
+    LTEXT           "透明的文本",IDC_STATIC_TEXT,9,63,122,24
+    CONTROL         "IPAddress1",IDC_IPADDRESS1,"SysIPAddress32",WS_TABSTOP,
+                    87,186,89,15
+    LTEXT           "太长的需要显示提示的文本",IDC_STATIC_HIDE,158,155,41,16
+    COMBOBOX        IDC_COMBO_SKIN,145,33,83,83,CBS_DROPDOWN | CBS_SORT | 
+                    CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "菜单按钮",IDC_BUTTON_MENU,232,161,50,14
+    PUSHBUTTON      "Button1",IDC_BUTTON1,77,5,50,14
+    COMBOBOX        IDC_COMBO1,95,34,48,54,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "第一行：阿飞的第二行：红红火火红红火火似懂非懂三分",
+                    IDC_STATIC_MULLINE,37,105,77,32
+    CONTROL         "IPAddress2",IDC_IPADDRESS2,"SysIPAddress32",WS_TABSTOP,
+                    197,183,100,15
+    PUSHBUTTON      "MOVE",IDC_BUTTON_MOVEIP,17,184,50,14
+    GROUPBOX        "口Static杭口",IDC_STATIC_GROUP,280,73,128,71
+    LISTBOX         IDC_LIST1,301,207,95,72,LBS_OWNERDRAWFIXED | 
+                    LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    EDITTEXT        IDC_EDIT1,302,13,93,52,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_WANTRETURN | NOT WS_BORDER | WS_VSCROLL,
+                    WS_EX_STATICEDGE
+    PUSHBUTTON      "Button2",IDC_BUTTON2,33,245,226,86
+    CONTROL         "Tab1",IDC_TAB1,"SysTabControl32",0x0,305,287,180,28
+    PUSHBUTTON      "Button3",IDC_BUTTON3,419,104,50,12
+    EDITTEXT        IDC_EDIT2,422,151,40,14,ES_MULTILINE | ES_AUTOHSCROLL
+    PUSHBUTTON      "Button4",IDC_BUTTON4,415,181,50,14
+END
+
+IDD_DIALOG1 DIALOGEX 0, 0, 407, 449
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "ListCtrl"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "List1",IDC_LIST1,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_TABSTOP,65,97,159,
+                    110,WS_EX_STATICEDGE
+    PUSHBUTTON      "标题背景",IDC_HEAD_BK,15,362,50,14
+    PUSHBUTTON      "标题文字",IDC_LIST_TEXT,15,388,50,14
+    PUSHBUTTON      "标题字体",IDC_LIST_FONT,15,428,50,14
+    PUSHBUTTON      "文本背景",IDC_ITEM_BK,81,362,50,14
+    PUSHBUTTON      "文本文字",IDC_ITEM_TEXT,81,388,50,14
+    PUSHBUTTON      "文本字体",IDC_ITEM_FONT,81,428,50,14
+    CONTROL         "高亮显示",IDC_CHECK_HOT,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,355,365,45,10,WS_EX_TRANSPARENT
+    CONTROL         "排序",IDC_CHECK_SORT,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,359,386,31,10
+    CONTROL         "有效",IDC_CHECK_EABLE,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,359,407,31,10
+    PUSHBUTTON      "高亮背景",IDC_HIGHLIGHT_BK,143,362,50,14
+    PUSHBUTTON      "高亮文字",IDC_HIGHLIGHT_TEXT,143,388,50,14
+    PUSHBUTTON      "选中背景",IDC_SELECT_BK,209,362,50,14
+    PUSHBUTTON      "选中文字",IDC_SELECT_TEXT,209,388,50,14
+    CONTROL         "拖拽",IDC_CHECK_DRAG,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,359,426,31,10
+    CONTROL         "ToolTip无效",IDC_RADIO_DISABLE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,149,412,59,10
+    CONTROL         "整行内容",IDC_RADIO_FULLROW,"Button",BS_AUTORADIOBUTTON,
+                    221,412,45,10
+    CONTROL         "不完全显示部分",IDC_RADIO_HIDE,"Button",
+                    BS_AUTORADIOBUTTON,147,428,67,10
+    PUSHBUTTON      "加行",IDC_BUTTON_ADDITEM,301,423,41,14
+    PUSHBUTTON      "滚动按钮",IDC_BUTTON_ARROW,277,364,50,14
+    PUSHBUTTON      "滚动背景",IDC_BUTTON_SCROLLBK,276,386,50,14
+    EDITTEXT        IDC_EDIT1,320,63,71,106,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    NOT WS_BORDER | WS_VSCROLL,WS_EX_STATICEDGE
+    CONTROL         "List2",IDC_LIST2,"SysListView32",LVS_REPORT | WS_BORDER | 
+                    WS_TABSTOP,7,7,174,77
+    PUSHBUTTON      "轮换",IDC_BUTTON_TURN,287,406,50,14
+    PUSHBUTTON      "移动列表",IDC_BUTTON_MOVE,313,308,50,14
+    CONTROL         "",IDC_STATIC1,"Static",SS_WHITEFRAME,251,18,101,45
+    CONTROL         "List3",IDC_LIST3,"SysListView32",LVS_REPORT | WS_BORDER | 
+                    WS_TABSTOP,105,256,120,49
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "LibTest Microsoft 基础类应用程序\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "LibTest\0"
+            VALUE "LegalCopyright", "版权所有 (C) 2004\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "LibTest.EXE\0"
+            VALUE "ProductName", "LibTest 应用程序\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1             BITMAP  DISCARDABLE     "res\\Sky.bmp"
+IDB_BITMAP2             BITMAP  DISCARDABLE     "res\\b1down.bmp"
+IDB_BITMAP3             BITMAP  DISCARDABLE     "res\\b1gray.bmp"
+IDB_BITMAP4             BITMAP  DISCARDABLE     "res\\b1mask.bmp"
+IDB_BITMAP5             BITMAP  DISCARDABLE     "res\\b1norm.bmp"
+IDB_BITMAP6             BITMAP  DISCARDABLE     "res\\划条底纹.bmp"
+IDB_BITMAP7             BITMAP  DISCARDABLE     "res\\滑动MENU1.bmp"
+IDB_B_SPK3              BITMAP  DISCARDABLE     "res\\麦克风3.bmp"
+IDB_B_LB2               BITMAP  DISCARDABLE     "res\\喇叭2.bmp"
+IDB_B_LB3               BITMAP  DISCARDABLE     "res\\喇叭3.bmp"
+IDB_B_SPK1              BITMAP  DISCARDABLE     "res\\麦克风1.bmp"
+IDB_B_SPK2              BITMAP  DISCARDABLE     "res\\麦克风2.bmp"
+IDB_B_LB1               BITMAP  DISCARDABLE     "res\\喇叭1.bmp"
+IDB_B_SPK4              BITMAP  DISCARDABLE     "res\\哑音.bmp"
+IDB_B_LB4               BITMAP  DISCARDABLE     "res\\静音.bmp"
+IDB_B_SPK6              BITMAP  DISCARDABLE     "res\\麦克风3 拷贝.bmp"
+IDB_B_SPK5              BITMAP  DISCARDABLE     "res\\麦克风2 拷贝.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_LIBTEST_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 478
+        BOTTOMMARGIN, 299
+    END
+
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 400
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 441
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU DISCARDABLE 
+BEGIN
+    POPUP "&Menu"
+    BEGIN
+        MENUITEM "菜单1(&O)",                   IDM_MENUBT_ITEM1
+        MENUITEM "菜单2(&T)",                   IDM_MENUBT_ITEM2, GRAYED
+        POPUP "菜单3(&H)"
+        BEGIN
+            MENUITEM "弹出1",                       IDM_MENUBT_POP1
+            MENUITEM "弹出2",                       IDM_MENUITEM_POP2
+        END
+        MENUITEM "菜单4adfadffffff(&F)",        IDM_MENUBT_ITEM4
+        MENUITEM SEPARATOR
+        MENUITEM "菜单5(&I)",                   IDM_MENUBT_ITEM5
+        MENUITEM "失效(&D)",                    IDM_MENUBT_DISABLE, GRAYED
+        MENUITEM "&Checked",                    IDM_MENUBT_ITEM, CHECKED
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_LIBTEST_DIALOG DLGINIT
+BEGIN
+    IDC_COMBO_SKIN, 0x403, 1, 0
+"\000" 
+    IDC_COMBO1, 0x403, 4, 0
+0x3333, 0x0033, 
+    IDC_COMBO1, 0x403, 4, 0
+0x3232, 0x0032, 
+    IDC_COMBO1, 0x403, 4, 0
+0x3131, 0x0031, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_STRING1             "中文"
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_STRING1             "English"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE 4, 2
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\LibTest.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.chs\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

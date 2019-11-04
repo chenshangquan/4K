@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  <!--上传（导入）通用弹出界面  如：授权导入、升级相关界面   界面基本相同  通过方案区分-->
+   
+	<Window Type="TransparentDlg" Name="ImpCommonDlg" Style="WS_POPUP" ><!--WS_EX_TOPMOST|ExStyle="WS_EX_TOOLWINDOW"-->
+		<Property Name="WindowPos" Value="x:0 y:0" />
+		<Property Name="WindowSize" Value="x:490 y:340" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="Image" Value="optbk.png" />
+		<Property Name="WindowCaption" Value="上传（导入）通用弹出界面" />	
+		<Property Name="MoveStatus" Value="false" />
+    <Event Type="WM_UMSTOOL_FTPLOGPROGRESS" Value="CImpCommonDlgLogic::OnUploadProgress" />		
+		
+	    <Window Type="CStatic" Name="StcImpCommonCap" Style="WS_CHILD|WS_CLIPSIBLINGS">
+				    <Property Name="WindowPos" Value="x:24 y:20" />
+				    <Property Name="WindowSize" Value="x:200 y:14" />
+				    <Property Name="WindowCaption" Value="上传通用弹出界面" />
+				    <Property Name="WindowVisible" Value="True" />
+				    <Property Name="FontColor" Value="r:200 g:200 b:200" />
+				    <Property Name="FontSize" Value="9" /> 		   	
+				    <Scheme Name="SchImportAuth">				    	
+							<Property Name="WindowCaption" Value="导入授权" />  	  
+				    </Scheme>			
+				    <Scheme Name="SchUpgradeBoard">				    	
+							<Property Name="WindowCaption" Value="升级单板" />  	  
+				    </Scheme>						    			       
+		    </Window>
+		  
+			  <Window Type="CButton" Name="BtnImpCommonDlgClose" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+		      <Property Name="WindowPos" Value="x:430 y:7" />
+		      <Property Name="WindowSize" Value="x:44 y:28" />
+		      <Property Name="WindowCaption" Value="" />
+		      <Property Name="Tooltip" Value="关闭" />
+		      <Property Name="Image" Value="Common/btnClose" />
+		      <Property Name="WindowVisible" Value="True" />
+		      <Event Type="WM_BUTTON_CLICK" Value="CImpCommonDlgLogic::OnBtnClose" />    
+		      <Scheme Name="SchmImpCommonClean">
+						 	<Property Name="WindowEnable" Value="True" />    		    	
+				  </Scheme>		
+			    <Scheme Name="SchmTransferBeg">
+					 	<Property Name="WindowEnable" Value="False" />          		
+			    </Scheme>	
+			    <Scheme Name="SchmTransferEnd">
+					 	<Property Name="WindowEnable" Value="True" />          		
+			    </Scheme>				      
+			  </Window>	       
+        
+        <Window Type="CStatic" Name="StcImpCommonSaveFolder" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:24 y:79" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="文件目录：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>           
+        
+         <Window Type="CEdit" Name="EdtImpCommonSaveFolder" Style="WS_CHILD|WS_CLIPSIBLINGS|ES_AUTOHSCROLL|WS_TABSTOP">
+		        <Property Name="WindowPos" Value="x:90 y:70" />
+		        <Property Name="WindowSize" Value="x:220 y:32" />
+		        <Property Name="WindowCaption" Value="" />
+		        <Property Name="Image" Value="Edit" />
+		        <Property Name="WindowVisible" Value="True" />
+		        <Property Name="WindowEnable" Value="False" />
+		        <Property Name="LimitLength" Value="260" />
+		        <Property Name="FontSize" Value="9" />   
+ 					  <Event Type="WM_EDIT_CHANGED" Value="CImpCommonDlgLogic::OnFolderEditChange" />    		        
+				    <Scheme Name="SchmImpCommonClean">
+          		<Property Name="WindowCaption" Value="" />       		
+				    </Scheme>			           			        
+        </Window>        
+        
+        
+			  <Window Type="CButton" Name="BtnImpCommonFolderScan" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			      <Property Name="WindowPos" Value="x:315 y:70" />
+			      <Property Name="WindowSize" Value="x:74 y:32" />
+			      <Property Name="WindowCaption" Value="" />
+			      <Property Name="Tooltip" Value="浏览" />
+			      <Property Name="Image" Value="impexpCommonDlg/btnScan" />
+			      <Property Name="WindowVisible" Value="True" />
+			      <Event Type="WM_BUTTON_CLICK" Value="CImpCommonDlgLogic::OnBtnImportScan" />
+			      <Property Name="WindowEnable" Value="True" />					         
+				    <Scheme Name="SchmImpCommonClean">
+						 	<Property Name="WindowEnable" Value="True" />    		    	
+				   	</Scheme>		 	            
+				    <Scheme Name="SchmTransferBeg">
+						 	<Property Name="WindowEnable" Value="False" />    
+				    </Scheme>		
+				    <Scheme Name="SchmTransferEnd">
+						 	<Property Name="WindowEnable" Value="True" />    	
+				    </Scheme>				         
+				</Window>		         
+        
+  			<Window Type="CButton" Name="BtnImpCommonExport" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			      <Property Name="WindowPos" Value="x:394 y:70" />
+			      <Property Name="WindowSize" Value="x:74 y:32" />
+			      <Property Name="WindowCaption" Value="" />
+			      <Property Name="Tooltip" Value="导人" />
+			      <Property Name="Image" Value="impexpCommonDlg/btnImport" />
+			      <Property Name="WindowVisible" Value="True" />
+			      <Event Type="WM_BUTTON_CLICK" Value="CImpCommonDlgLogic::OnBtnExport" />
+			      <Property Name="WindowEnable" Value="True" />
+		        <Scheme Name="SchImportAuth">
+				  		<Property Name="Image" Value="impexpCommonDlg/btnImport" />  	
+			      	<Event Type="WM_BUTTON_CLICK" Value="CImpCommonDlgLogic::OnBtnImportAuthWork" />
+				    </Scheme>
+				    <Scheme Name="SchUpgradeBoard">				    	
+				  		<Property Name="Image" Value="Common/btnUpgrade" />  	
+			      	<Event Type="WM_BUTTON_CLICK" Value="CImpCommonDlgLogic::OnBtnUpgradeBoardWork" />  
+				    </Scheme>					    					      
+					  <Scheme Name="SchmImpCommonClean">
+						 	<Property Name="WindowEnable" Value="True" />    		    	
+				   	</Scheme>		 	            
+				    <Scheme Name="SchmTransferBeg">
+						 	<Property Name="WindowEnable" Value="False" />    
+				    </Scheme>		
+				    <Scheme Name="SchmTransferEnd">
+						 	<Property Name="WindowEnable" Value="True" />    	
+				    </Scheme>				      		      
+				</Window>		      
+        
+        <Window Type="CStatic" Name="StcImpCommonProgress" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:24 y:119" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="导入进度：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>          
+        
+        <Window Type="CTransparentProgress" Name="ProgressImpCommon" Style="WS_CHILD|WS_CLIPSIBLINGS">
+						<Property Name="WindowPos" Value="x:95 y:121" />
+						<Property Name="WindowSize" Value="x:368 y:9" />	
+						<Property Name="WindowVisible" Value="true" />
+						<Property Name="Image" Value="Progress" />
+				    <Scheme Name="SchmImpCommonClean">
+          		<Property Name="ProgressPos" Value="0" />				    	
+				   	</Scheme>		 	            
+				    <Scheme Name="SchmTransferBeg">
+          		<Property Name="ProgressPos" Value="0" />
+				    </Scheme>		
+				    <Scheme Name="SchmTransferEnd">
+          		<Property Name="ProgressPos" Value="100" />
+				    </Scheme>								
+				</Window>  	  
+
+        <!--升级文件列表Dlg-->
+		    <Window Type="TransparentDlg" Name="BoardUpgradeDlg" Style="WS_CHILD" >
+				  <Property Name="WindowPos" Value="x:0 y:157" /> 
+					<Property Name="WindowSize" Value="x:490 y:134" />
+					<Property Name="WindowVisible" Value="true" />
+					<Property Name="Image" Value="impexpCommonDlg/filelistbk.png" />
+					<Property Name="WindowCaption" Value="BoardUpgradeDlg" />
+
+							<Window Type="CStatic" Name="StcStaticNMServerIP" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			            <Property Name="WindowPos" Value="x:24 y:11" />
+			            <Property Name="WindowSize" Value="x:100 y:14" />
+			            <Property Name="WindowCaption" Value="文件名称" />
+			            <Property Name="WindowVisible" Value="True" />
+			            <Property Name="FontColor" Value="r:27 g:100 b:104" />
+			            <Property Name="FontSize" Value="9" />
+			        </Window>
+			        <Window Type="CStatic" Name="StcStaticNMReadCommunity" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			            <Property Name="WindowPos" Value="x:260 y:11" />
+			            <Property Name="WindowSize" Value="x:100 y:14" />
+			            <Property Name="WindowCaption" Value="文件大小" />
+			            <Property Name="WindowVisible" Value="True" />
+			            <Property Name="FontColor" Value="r:27 g:100 b:104" />
+			            <Property Name="FontSize" Value="9" />
+			        </Window>
+
+
+
+							<!--升级文件列表-->
+							<Window Type="TransparentList" Name="LstBoardUpgrade" Style="WS_CHILD|WS_CLIPSIBLINGS">
+								<Property Name="WindowPos" Value="x:3 y:34" />
+								<Property Name="WindowSize" Value="x:484 y:94" />
+								<Property Name="WindowCaption" Value="升级文件列表" />
+								<Property Name="ListImage" Value="" />
+								<Property Name="WindowVisible" Value="True" />
+								<Property Name="Drag" Value="True" />
+					      <Property Name="TransparentListOffset" Value="0" />
+					      <Property Name="TransparentListSelItem" Value="-1" />
+					      <!--<Event Type="WM_LST_UN_SELECT_ITEM" Value="CImpCommonDlgLogic::OnBoardUpgradeLstUnSelClick" />-->
+					      <Scheme Name="SchmImpCommonClean">
+		          		<Property Name="TransparentListSelItem" Value="-1" /> 
+		      			</Scheme>		      			
+						  </Window>
+						  
+		        <Scheme Name="SchImportAuth">
+				  		<Property Name="WindowVisible" Value="False" />  	
+				    </Scheme>
+				    <Scheme Name="SchUpgradeBoard">				    	
+				  		<Property Name="WindowVisible" Value="True" />  	
+				    </Scheme>						   
+	      </Window>  	  
+	  	  
+		<CallBackFunc Type="CallBackFunc" Value="CImpCommonDlgLogic::InitWnd" />
+	</Window>
+</UILayout>

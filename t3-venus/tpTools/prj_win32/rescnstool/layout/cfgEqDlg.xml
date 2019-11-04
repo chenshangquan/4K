@@ -1,0 +1,995 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  <!--配置界面-->
+
+  <Window Type="TransparentDlg" Name="CfgEqDlg" Style="WS_CHILD" ExStyle="">
+    <Property Name="WindowPos" Value="x:122 y:0" />
+    <Property Name="WindowSize" Value="x:728 y:501" />
+    <Property Name="WindowVisible" Value="true" />
+    <Property Name="Image" Value="" />
+    <Property Name="WindowCaption" Value="均衡器配置界面" />
+
+    <Window Type="TransparentDlg" Name="DlgEqualizer1" Style="WS_CHILD" ExStyle="">
+      <Property Name="WindowPos" Value="x:8 y:15" />
+      <Property Name="WindowSize" Value="x:354 y:213" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="Image" Value="EqualizerBkg.png" />
+      <Property Name="WindowCaption" Value="主音频1均衡器界面" />
+
+      <Window Type="TransStatic" Name="StcGroup1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:21 y:13" />
+        <Property Name="WindowSize" Value="x:120 y:14" />
+        <Property Name="WindowCaption" Value="主音频组1" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontColor" Value="r:53 g:70 b:70" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="FontStyle" Value="1" />
+      </Window>
+
+      <Window Type="TransSwitchButton" Name="BtnEq1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:230 y:3" />
+        <Property Name="WindowSize" Value="x:107 y:32" />
+        <Property Name="Image" Value="AudioSwitch" />
+        <Property Name="WindowEnable" Value="True" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="SwitchState" Value="false" />
+        <Event Type="WM_BUTTON_CLICK" Value="CCfgEqLogic::OnBtnSwitchEq1" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc1EqTo12" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:21 y:39" />
+        <Property Name="WindowSize" Value="x:30 y:13" />
+        <Property Name="WindowCaption" Value="12" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc1EqTo6" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:28 y:73" />
+        <Property Name="WindowSize" Value="x:30 y:13" />
+        <Property Name="WindowCaption" Value="6" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc1EqTo0" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:28 y:107" />
+        <Property Name="WindowSize" Value="x:30 y:13" />
+        <Property Name="WindowCaption" Value="0" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc1EqTo-6" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:21 y:141" />
+        <Property Name="WindowSize" Value="x:30 y:13" />
+        <Property Name="WindowCaption" Value="-6" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc1EqTo-12" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:14 y:175" />
+        <Property Name="WindowSize" Value="x:30 y:13" />
+        <Property Name="WindowCaption" Value="-12" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld1Eq100" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:36 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld1Eq100Changed" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq1">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq1">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld1Eq200" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:67 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld1Eq200Changed" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq1">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq1">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld1Eq400" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:98 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld1Eq400Changed" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq1">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq1">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld1Eq600" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:129 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld1Eq600Changed" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq1">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq1">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld1Eq1K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:160 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld1Eq1KChanged" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq1">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq1">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld1Eq3K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:191 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld1Eq3KChanged" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq1">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq1">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld1Eq6K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:222 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld1Eq6KChanged" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq1">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq1">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld1Eq12K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:253 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld1Eq12KChanged" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq1">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq1">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld1Eq14K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:284 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld1Eq14KChanged" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq1">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq1">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld1Eq16K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:315 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld1Eq16KChanged" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq1">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq1">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc1EqTo100" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:32 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="31.5" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc1EqTo200" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:71 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="63" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc1EqTo400" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:99 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="125" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc1EqTo600" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:130 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="250" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc1EqTo1K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:161 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="500" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc1EqTo3K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:195 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="1K" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc1EqTo6K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:225 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="2K" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc1EqTo12K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:256 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="4K" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc1EqTo14K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:287 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="8K" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc1EqTo16K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:316 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="16K" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+    </Window>
+
+    <Window Type="TransparentDlg" Name="DlgEqualizer2" Style="WS_CHILD" ExStyle="">
+      <Property Name="WindowPos" Value="x:363 y:15" />
+      <Property Name="WindowSize" Value="x:354 y:213" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="Image" Value="EqualizerBkg.png" />
+      <Property Name="WindowCaption" Value="主音频2均衡器界面" />
+
+      <Window Type="TransStatic" Name="StcGroup2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:21 y:13" />
+        <Property Name="WindowSize" Value="x:120 y:14" />
+        <Property Name="WindowCaption" Value="主音频组2" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontColor" Value="r:53 g:70 b:70" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="FontStyle" Value="1" />
+      </Window>
+
+      <Window Type="TransSwitchButton" Name="BtnEq2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:230 y:3" />
+        <Property Name="WindowSize" Value="x:107 y:32" />
+        <Property Name="Image" Value="AudioSwitch" />
+        <Property Name="WindowEnable" Value="True" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="SwitchState" Value="false" />
+        <Event Type="WM_BUTTON_CLICK" Value="CCfgEqLogic::OnBtnSwitchEq2" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc2EqTo12" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:21 y:39" />
+        <Property Name="WindowSize" Value="x:30 y:13" />
+        <Property Name="WindowCaption" Value="12" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc2EqTo6" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:28 y:73" />
+        <Property Name="WindowSize" Value="x:30 y:13" />
+        <Property Name="WindowCaption" Value="6" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc2EqTo0" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:28 y:107" />
+        <Property Name="WindowSize" Value="x:30 y:13" />
+        <Property Name="WindowCaption" Value="0" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc2EqTo-6" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:21 y:141" />
+        <Property Name="WindowSize" Value="x:30 y:13" />
+        <Property Name="WindowCaption" Value="-6" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc2EqTo-12" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:14 y:175" />
+        <Property Name="WindowSize" Value="x:30 y:13" />
+        <Property Name="WindowCaption" Value="-12" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld2Eq100" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:36 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld2Eq100Changed" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq2">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq2">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld2Eq200" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:67 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld2Eq200Changed" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq2">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq2">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld2Eq400" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:98 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld2Eq400Changed" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq2">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq2">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld2Eq600" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:129 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld2Eq600Changed" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq2">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq2">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld2Eq1K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:160 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld2Eq1KChanged" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq2">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq2">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld2Eq3K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:191 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld2Eq3KChanged" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq2">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq2">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld2Eq6K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:222 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld2Eq6KChanged" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq2">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq2">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld2Eq12K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:253 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld2Eq12KChanged" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq2">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq2">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld2Eq14K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:284 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld2Eq14KChanged" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq2">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq2">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld2Eq16K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:315 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld2Eq16KChanged" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq2">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq2">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc2EqTo100" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:32 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="31.5" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc2EqTo200" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:71 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="63" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc2EqTo400" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:99 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="125" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc2EqTo600" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:130 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="250" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc2EqTo1K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:161 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="500" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc2EqTo3K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:195 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="1K" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc2EqTo6K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:225 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="2K" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc2EqTo12K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:256 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="4K" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc2EqTo14K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:287 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="8K" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc2EqTo16K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:316 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="16K" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+    </Window>
+
+    <Window Type="TransparentDlg" Name="DlgEqualizer3" Style="WS_CHILD" ExStyle="">
+      <Property Name="WindowPos" Value="x:8 y:235" />
+      <Property Name="WindowSize" Value="x:354 y:213" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="Image" Value="EqualizerBkg.png" />
+      <Property Name="WindowCaption" Value="主音频3均衡器界面" />
+
+      <Window Type="TransStatic" Name="StcGroup3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:21 y:13" />
+        <Property Name="WindowSize" Value="x:120 y:14" />
+        <Property Name="WindowCaption" Value="主音频组3" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontColor" Value="r:53 g:70 b:70" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="FontStyle" Value="1" />
+      </Window>
+
+      <Window Type="TransSwitchButton" Name="BtnEq3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:230 y:3" />
+        <Property Name="WindowSize" Value="x:107 y:32" />
+        <Property Name="Image" Value="AudioSwitch" />
+        <Property Name="WindowEnable" Value="True" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="SwitchState" Value="false" />
+        <Event Type="WM_BUTTON_CLICK" Value="CCfgEqLogic::OnBtnSwitchEq3" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc3EqTo12" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:21 y:39" />
+        <Property Name="WindowSize" Value="x:30 y:13" />
+        <Property Name="WindowCaption" Value="12" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc3EqTo6" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:28 y:73" />
+        <Property Name="WindowSize" Value="x:30 y:13" />
+        <Property Name="WindowCaption" Value="6" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc3EqTo0" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:28 y:107" />
+        <Property Name="WindowSize" Value="x:30 y:13" />
+        <Property Name="WindowCaption" Value="0" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc3EqTo-6" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:21 y:141" />
+        <Property Name="WindowSize" Value="x:30 y:13" />
+        <Property Name="WindowCaption" Value="-6" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc3EqTo-12" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:14 y:175" />
+        <Property Name="WindowSize" Value="x:30 y:13" />
+        <Property Name="WindowCaption" Value="-12" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld3Eq100" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:36 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld3Eq100Changed" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq3">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq3">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld3Eq200" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:67 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld3Eq200Changed" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq3">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq3">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld3Eq400" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:98 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld3Eq400Changed" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq3">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq3">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld3Eq600" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:129 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld3Eq600Changed" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq3">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq3">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld3Eq1K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:160 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld3Eq1KChanged" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq3">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq3">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld3Eq3K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:191 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld3Eq3KChanged" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq3">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq3">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld3Eq6K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:222 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld3Eq6KChanged" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq3">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq3">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld3Eq12K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:253 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld3Eq12KChanged" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq3">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq3">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld3Eq14K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:284 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld3Eq14KChanged" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq3">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq3">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransSliderWnd" Name="Sld3Eq16K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="CSliderCtrlStyle" Value="0" />
+        <Property Name="WindowPos" Value="x:315 y:40" />
+        <Property Name="WindowSize" Value="x:23 y:147" />
+        <Property Name="Image" Value="vertSlider"/>
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="CSliderCtrlRange" Value="min:-12 max:12" />
+        <Event Type="SLIDER_CHANGED" Value="CCfgEqLogic::OnSld3Eq16KChanged" />
+        <Event Type="WM_MOUSEMOVE" Value=""/>
+        <Scheme Name="NoUseEq3">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="UseEq3">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc3EqTo100" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:32 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="31.5" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc3EqTo200" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:71 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="63" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc3EqTo400" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:99 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="125" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc3EqTo600" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:130 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="250" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc3EqTo1K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:161 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="500" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc3EqTo3K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:195 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="1K" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc3EqTo6K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:225 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="2K" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc3EqTo12K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:256 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="4K" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc3EqTo14K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:287 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="8K" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+
+      <Window Type="TransStatic" Name="Stc3EqTo16K" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:316 y:188" />
+        <Property Name="WindowSize" Value="x:50 y:13" />
+        <Property Name="WindowCaption" Value="16K" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+    </Window>
+
+    <Window Type="TransButton" Name="BtnDefault" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:391 y:452" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="恢复默认" />
+      <Property Name="WindowVisible" Value="true" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgEqLogic::OnBtnDefault" />
+      <Property Name="Image" Value="btnDefault" />
+    </Window>
+
+    <Window Type="TransButton" Name="BtnSave" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:491 y:452" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="保存配置" />
+      <Property Name="WindowVisible" Value="true" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgEqLogic::OnBtnSave" />
+      <Property Name="Image" Value="btnSave" />
+    </Window>
+
+    <Window Type="TransButton" Name="BtnCancle" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:591 y:452" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="还原配置" />
+      <Property Name="WindowVisible" Value="true" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgEqLogic::OnBtnCancel" />
+      <Property Name="Image" Value="btnCancleCfg" />
+    </Window>
+
+    <CallBackFunc Type="CallBackFunc" Value="CCfgEqLogic::InitWnd" />
+  </Window>
+</UILayout>

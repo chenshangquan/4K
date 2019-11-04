@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\UIlib.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\BaseWindowWnd.cpp">
+      <Filter>source\窗口相关</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\DUIDialog.cpp">
+      <Filter>source\窗口相关</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ListUIDragWnd.cpp">
+      <Filter>source\窗口相关</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\CommonListUI.cpp">
+      <Filter>source\通用控件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ListUICommonDef.cpp">
+      <Filter>source\通用控件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\UIActiveX.cpp">
+      <Filter>source\通用控件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\UICommonControls.cpp">
+      <Filter>source\通用控件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\UICombo.cpp">
+      <Filter>source\通用控件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\UIContainer.cpp">
+      <Filter>source\通用控件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\UIControl.cpp">
+      <Filter>source\通用控件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\UIRichEdit.cpp">
+      <Filter>source\通用控件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\UIList.cpp">
+      <Filter>source\通用控件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\stb_image.c">
+      <Filter>source\公共接口</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\UIBase.cpp">
+      <Filter>source\公共接口</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\UIDelegate.cpp">
+      <Filter>source\公共接口</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\UIDlgBuilder.cpp">
+      <Filter>source\公共接口</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\UIRender.cpp">
+      <Filter>source\公共接口</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\XUnzip.cpp">
+      <Filter>source\公共接口</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\dlgManager.cpp">
+      <Filter>source\逻辑控制</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\logicManager.cpp">
+      <Filter>source\逻辑控制</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\msgHandler.cpp">
+      <Filter>source\逻辑控制</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\UIManager.cpp">
+      <Filter>source\逻辑控制</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\caseManager.cpp">
+      <Filter>source\逻辑控制</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\PreWnd.cpp">
+      <Filter>source\窗口相关</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\previewAsisst.cpp">
+      <Filter>source\预览接口</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\previewIF.cpp">
+      <Filter>source\预览接口</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\UICommon.cpp">
+      <Filter>source\公共接口</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ControlEx.cpp">
+      <Filter>source\通用控件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\CommonListUIData.cpp">
+      <Filter>source\通用控件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\DuiexlibInterface.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\UIMarkup.cpp">
+      <Filter>source\公共接口</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\UIlib.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\BaseWindowWnd.h">
+      <Filter>include\窗口相关</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\DUIDialog.h">
+      <Filter>include\窗口相关</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ListUIDragWnd.h">
+      <Filter>include\窗口相关</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CommonListUI.h">
+      <Filter>include\通用控件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ControlEx.h">
+      <Filter>include\通用控件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\UICombo.h">
+      <Filter>include\通用控件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\UIContainer.h">
+      <Filter>include\通用控件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\UIControl.h">
+      <Filter>include\通用控件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\UIRichEdit.h">
+      <Filter>include\通用控件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\UIActiveX.h">
+      <Filter>include\通用控件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ListUICommonDef.h">
+      <Filter>include\通用控件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\UICommonControls.h">
+      <Filter>include\通用控件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\UIList.h">
+      <Filter>include\通用控件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\UIBase.h">
+      <Filter>include\公共接口</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\UIDelegate.h">
+      <Filter>include\公共接口</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\UIDlgBuilder.h">
+      <Filter>include\公共接口</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\UIRender.h">
+      <Filter>include\公共接口</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\caseManager.h">
+      <Filter>include\逻辑控制</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\dlgManager.h">
+      <Filter>include\逻辑控制</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\logicManager.h">
+      <Filter>include\逻辑控制</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\msgHandler.h">
+      <Filter>include\逻辑控制</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\UIManager.h">
+      <Filter>include\逻辑控制</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\UICommonDef.h">
+      <Filter>include\公共接口</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\PreWnd.h">
+      <Filter>include\窗口相关</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\previewAsisst.h">
+      <Filter>include\预览接口</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\previewIF.h">
+      <Filter>include\预览接口</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\UICommon.h">
+      <Filter>include\公共接口</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\DuiexlibInterface.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\UIMarkup.h">
+      <Filter>include\公共接口</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{d56c62c3-23d5-4aeb-861e-7ec92b1f383d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{3a19fe8d-2e46-4f25-957a-b094c59c6db0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\公共接口">
+      <UniqueIdentifier>{e1085a21-1f5c-4a2c-b423-23e60dfc94bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\窗口相关">
+      <UniqueIdentifier>{23653c9f-d7f3-4be4-b725-36e5528b2571}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\通用控件">
+      <UniqueIdentifier>{ae65b2ce-d1c3-4a59-a0f8-6ac8342de44f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\逻辑控制">
+      <UniqueIdentifier>{a1b2d931-6dff-46a0-a42b-64cd47b187d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\公共接口">
+      <UniqueIdentifier>{74cc9cd3-47a3-4539-a73c-919a43825541}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\窗口相关">
+      <UniqueIdentifier>{5686d71b-4c2f-42bb-8dd7-7d8ad4ab43c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\通用控件">
+      <UniqueIdentifier>{723580df-3bcd-4242-8e3e-00e82d6e76cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\逻辑控制">
+      <UniqueIdentifier>{3993cb82-feda-4736-a736-94cafb75f12d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\预览接口">
+      <UniqueIdentifier>{326c991a-3ace-4291-b45a-194282672a2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\预览接口">
+      <UniqueIdentifier>{a61a47ba-d114-4a4f-afc5-8dac1523c067}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

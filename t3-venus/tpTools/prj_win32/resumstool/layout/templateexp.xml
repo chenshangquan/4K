@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<UILayout>
+    <!--系统会议模板导入导出界面  Style="WS_CHILD"-->
+    <Window Type="TransparentDlg" Name="TemplateExpDlg" Style="WS_CHILD" ExStyle="">
+        <Property Name="WindowPos" Value="x:0 y:73" />
+        <Property Name="WindowSize" Value="x:864 y:491" />
+        <Property Name="Image" Value="" />
+        <Event Type="WM_UMSTOOL_FTPTEMPLATEPROGRESS" Value="CTemplateExpLogic::OnTransTmpProgress" />    
+        
+        <Window Type="CStatic" Name="StcInfoImp" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:45 y:32" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="导入会议模板" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:53 g:70 b:70" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="FontStyle" Value="1" />          
+        </Window>    
+	
+        <Window Type="CStatic" Name="StcLineTmpImp" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:139 y:38" />
+            <Property Name="WindowSize" Value="x:562 y:1" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="boardline.png" />
+        </Window>       	
+	
+        <Window Type="CStatic" Name="StccFileFolder" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:74 y:85" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="文件目录：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>  	
+	
+        <Window Type="CEdit" Name="EdtImport" Style="WS_CHILD|WS_CLIPSIBLINGS|ES_AUTOHSCROLL|WS_TABSTOP">
+		        <Property Name="WindowPos" Value="x:150 y:72" />
+            <Property Name="WindowSize" Value="x:425 y:42" />
+		        <Property Name="WindowCaption" Value="" />
+		        <Property Name="Image" Value="Edit" />       
+		        <Property Name="WindowVisible" Value="True" />
+		        <Property Name="WindowEnable" Value="False" />
+		        <Property Name="LimitLength" Value="260" />
+		        <Property Name="FontSize" Value="9" />
+ 					  <Event Type="WM_EDIT_CHANGED" Value="CTemplateExpLogic::OnImpFolderEditChange" />   
+					  <Scheme Name="SchmTemplateImpClean">
+          		<Property Name="WindowCaption" Value="" />   		    	
+				   	</Scheme>		 					  		                
+        </Window>      	
+	
+			  <Window Type="CButton" Name="BtnImportScan" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			      <Property Name="WindowPos" Value="x:585 y:71" />
+			      <Property Name="WindowSize" Value="x:90 y:42" />
+			      <Property Name="WindowCaption" Value="" />
+			      <Property Name="Tooltip" Value="浏览" />
+			      <Property Name="Image" Value="Common/btnScan" />
+			      <Property Name="WindowVisible" Value="True" />
+			      <Event Type="WM_BUTTON_CLICK" Value="CTemplateExpLogic::OnBtnImportTmpScan" />
+			      <Property Name="WindowEnable" Value="True" />
+					  <Scheme Name="SchmTemplateImpClean">
+						 	<Property Name="WindowEnable" Value="True" />    		    	
+				   	</Scheme>					      
+						<Scheme Name="SchmTransferBeg">			
+						 	<Property Name="WindowEnable" Value="False" />
+						</Scheme>
+						<Scheme Name="SchmTransferEnd">
+						 	<Property Name="WindowEnable" Value="True" />
+						</Scheme>
+          <Scheme Name="SchmTransmit">
+            <Property Name="WindowEnable" Value="False" />
+          </Scheme>
+          <Scheme Name="SchmNormal">
+            <Property Name="WindowEnable" Value="True" />
+          </Scheme>
+				</Window>		         
+        
+  			<Window Type="CButton" Name="BtnImportTmp" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			      <Property Name="WindowPos" Value="x:685 y:71" />
+			      <Property Name="WindowSize" Value="x:90 y:42" />
+			      <Property Name="WindowCaption" Value="" />
+			      <Property Name="Tooltip" Value="导入" />
+			      <Property Name="Image" Value="Common/btnImport" />
+			      <Property Name="WindowVisible" Value="True" />
+			      <Event Type="WM_BUTTON_CLICK" Value="CTemplateExpLogic::OnBtnImportTmp" />
+			      <Property Name="WindowEnable" Value="True" />
+					  <Scheme Name="SchmTemplateImpClean">
+						 	<Property Name="WindowEnable" Value="True" />    		    	
+				   	</Scheme>					      
+						<Scheme Name="SchmTransferBeg">			
+						 	<Property Name="WindowEnable" Value="False" />
+						</Scheme>
+						<Scheme Name="SchmTransferEnd">
+						 	<Property Name="WindowEnable" Value="True" />
+						</Scheme>
+          <Scheme Name="SchmTransmit">
+            <Property Name="WindowEnable" Value="False" />
+          </Scheme>
+          <Scheme Name="SchmNormal">
+            <Property Name="WindowEnable" Value="True" />
+          </Scheme>
+				</Window>		      
+
+        <Window Type="CStatic" Name="StcStaticImpProgress" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:74 y:144" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="导入进度：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>       
+
+        <Window Type="CTransparentProgress" Name="ProgressImp" Style="WS_CHILD|WS_CLIPSIBLINGS">
+						<Property Name="WindowPos" Value="x:155 y:145" />
+						<Property Name="WindowSize" Value="x:415 y:9" />	
+						<Property Name="WindowVisible" Value="true" />
+						<Property Name="Image" Value="Progress" />
+				    <Scheme Name="SchmTemplateImpClean">
+          		<Property Name="ProgressPos" Value="0" />				    	
+				   	</Scheme>							
+						<Scheme Name="SchmTransferBeg">			
+						 	<Property Name="ProgressPos" Value="0" />
+						</Scheme>
+						<Scheme Name="SchmTransferEnd">
+							<Property Name="ProgressPos" Value="100" />
+						</Scheme>		
+				</Window>
+								  
+    		<Window Type="CStatic" Name="StaticExp" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:45 y:251" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="导出会议模板" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:53 g:70 b:70" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="FontStyle" Value="1" />           
+        </Window>        
+        
+        <Window Type="CStatic" Name="StcLineTmpExp" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:139 y:257" />
+            <Property Name="WindowSize" Value="x:562 y:1" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="boardline.png" />
+        </Window>       
+        
+        <Window Type="CStatic" Name="StcFileExpFolder" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:74 y:305" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="文件目录：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>           
+	
+        <Window Type="CEdit" Name="EdtExport" Style="WS_CHILD|WS_CLIPSIBLINGS|ES_AUTOHSCROLL|WS_TABSTOP">
+		        <Property Name="WindowPos" Value="x:150 y:286" />
+            <Property Name="WindowSize" Value="x:425 y:42" />
+		        <Property Name="WindowCaption" Value="" />
+		        <Property Name="Image" Value="Edit" />	        
+		        <Property Name="WindowVisible" Value="True" />
+		        <Property Name="WindowEnable" Value="False" />
+		        <Property Name="LimitLength" Value="260" />
+		        <Property Name="FontSize" Value="9" />
+ 					  <Event Type="WM_EDIT_CHANGED" Value="CTemplateExpLogic::OnExpFolderEditChange" /> 		
+					  <Scheme Name="SchmTemplateExpClean">
+          		<Property Name="WindowCaption" Value="" />  		    	
+				   	</Scheme>	 					          	        
+        </Window>    
+        
+			  <Window Type="CButton" Name="BtnExportScan" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			      <Property Name="WindowPos" Value="x:585 y:287" />
+			      <Property Name="WindowSize" Value="x:90 y:42" />
+			      <Property Name="WindowCaption" Value="" />
+			      <Property Name="Tooltip" Value="浏览" />
+			      <Property Name="Image" Value="Common/btnScan" />
+			      <Property Name="WindowVisible" Value="True" />
+			      <Event Type="WM_BUTTON_CLICK" Value="CTemplateExpLogic::OnBtnExportTmpScan" />
+			      <Property Name="WindowEnable" Value="True" />
+					  <Scheme Name="SchmTemplateExpClean">
+						 	<Property Name="WindowEnable" Value="True" />    		    	
+				   	</Scheme>				      
+						<Scheme Name="SchmTransferBeg">			
+						 	<Property Name="WindowEnable" Value="False" />
+						</Scheme>
+						<Scheme Name="SchmTransferEnd">
+						 	<Property Name="WindowEnable" Value="True" />
+						</Scheme>
+          <Scheme Name="SchmTransmit">
+            <Property Name="WindowEnable" Value="False" />
+          </Scheme>
+          <Scheme Name="SchmNormal">
+            <Property Name="WindowEnable" Value="True" />
+          </Scheme>
+				</Window>		         
+        
+  			<Window Type="CButton" Name="BtnExportTmp" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			      <Property Name="WindowPos" Value="x:685 y:287" />
+			      <Property Name="WindowSize" Value="x:90 y:42" />
+			      <Property Name="WindowCaption" Value="" />
+			      <Property Name="Tooltip" Value="导出" />
+			      <Property Name="Image" Value="Common/btnExport" />
+			      <Property Name="WindowVisible" Value="True" />
+			      <Event Type="WM_BUTTON_CLICK" Value="CTemplateExpLogic::OnBtnExportTmp" />
+			      <Property Name="WindowEnable" Value="True" />
+					  <Scheme Name="SchmTemplateExpClean">
+						 	<Property Name="WindowEnable" Value="True" />    		    	
+				   	</Scheme>				      
+						<Scheme Name="SchmTransferBeg">			
+						 	<Property Name="WindowEnable" Value="False" />
+						</Scheme>
+						<Scheme Name="SchmTransferEnd">
+						 	<Property Name="WindowEnable" Value="True" />
+						</Scheme>
+          <Scheme Name="SchmTransmit">
+            <Property Name="WindowEnable" Value="False" />
+          </Scheme>
+          <Scheme Name="SchmNormal">
+            <Property Name="WindowEnable" Value="True" />
+          </Scheme>
+				</Window>		      
+        
+        <Window Type="CStatic" Name="StcExpProgress" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:74 y:364" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="导出进度：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>          
+        
+        <Window Type="CTransparentProgress" Name="ProgressExp" Style="WS_CHILD|WS_CLIPSIBLINGS">
+						<Property Name="WindowPos" Value="x:155 y:365" />
+						<Property Name="WindowSize" Value="x:415 y:9" />	
+						<Property Name="WindowVisible" Value="true" />
+						<Property Name="Image" Value="Progress" />
+				    <Scheme Name="SchmTemplateExpClean">
+          		<Property Name="ProgressPos" Value="0" />				    	
+				   	</Scheme>								
+						<Scheme Name="SchmTransferBeg">			
+						 	<Property Name="ProgressPos" Value="0" />
+						</Scheme>
+						<Scheme Name="SchmTransferEnd">
+							<Property Name="ProgressPos" Value="100" />
+						</Scheme>				
+				</Window>   
+			  
+				<Window Type="CButton" Name="BtnExportFolder" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			      <Property Name="WindowPos" Value="x:586 y:345" />
+			      <Property Name="WindowSize" Value="x:190 y:42" />
+			      <Property Name="WindowCaption" Value="" />
+			      <Property Name="Tooltip" Value="导出文件夹" />
+			      <Property Name="Image" Value="Common/btnOpenFolder" />
+			      <Property Name="WindowVisible" Value="True" />
+			      <Event Type="WM_BUTTON_CLICK" Value="CTemplateExpLogic::OnBtnExportFolder" />
+			      <Property Name="WindowEnable" Value="True" />
+						<Scheme Name="SchmTransferBeg">			
+						 	<Property Name="WindowEnable" Value="False" />
+						</Scheme>
+						<Scheme Name="SchmTransferEnd">
+						 	<Property Name="WindowEnable" Value="True" />
+						</Scheme>
+          <Scheme Name="SchmTransmit">
+            <Property Name="WindowEnable" Value="False" />
+          </Scheme>
+          <Scheme Name="SchmNormal">
+            <Property Name="WindowEnable" Value="True" />
+          </Scheme>
+        </Window>		 	       
+			  
+        <CallBackFunc Type="CallBackFunc" Value="CTemplateExpLogic::InitWnd" />
+        <Property Name="WindowVisible" Value="True" />
+    </Window>
+</UILayout>

@@ -1,0 +1,1451 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  <!--配置界面-->
+   
+	<Window Type="TransparentDlg" Name="CfgAudioPortDlg" Style="WS_CHILD" ExStyle="">
+		<Property Name="WindowPos" Value="x:122 y:0" />
+		<Property Name="WindowSize" Value="x:728 y:501" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="Image" Value="" />
+		<Property Name="WindowCaption" Value="音频接口配置界面" />
+		 
+		<Window Type="TransStatic" Name="StGroup1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:27 y:16" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="主音频组1" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontStyle" Value="1" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+    </Window>
+        
+    <Window Type="TransCheckButton" Name="AudioPort1" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX|WS_GROUP">
+      <Property Name="WindowPos" Value="x:27 y:38" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="checkbutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnSelAudio1" />         
+    </Window>
+
+		<Window Type="TransStatic" Name="COMMON1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:49 y:41" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="卡侬麦克风1：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+		<Window Type="TransStatic" Name="Gain1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:142 y:41" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="增益：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+   
+    <Window Type="TransSliderWnd" Name="SliderGain1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:182 y:35" />   
+      <Property Name="WindowSize" Value="x:82 y:2" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:1 max:100" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAudioPortLogic::OnSliderGain1Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="NoSelAudio1">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio1">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+      
+		<Window Type="TransEdit" Name="GainEdit1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:266 y:32" />
+      <Property Name="WindowSize" Value="x:60 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="3" />
+      <Event Type="WM_EDIT_CHANGED_NOFOCUS" Value="CCfgAudioPortLogic::OnEditGain1Changed"/>
+      <Scheme Name="NoSelAudio1">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio1">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+		<Window Type="TransStatic" Name="SimplexPower1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:329 y:41" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="幻象供电：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+      
+  	<Window Type="TransSwitchButton" Name="BtnSimPower1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			  <Property Name="WindowPos" Value="x:390 y:32" />
+			  <Property Name="WindowSize" Value="x:107 y:32" />
+			  <Property Name="Image" Value="AudioSwitch" />
+			  <Property Name="WindowEnable" Value="True" />
+			  <Property Name="WindowVisible" Value="True" />
+			  <Property Name="SwitchState" Value="false" />
+			  <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnBtnSwitchSimPower1" />
+			  <Scheme Name="NoSelAudio1">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="SelAudio1">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+		</Window>
+
+		<Window Type="TransStatic" Name="AudioBNA1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:506 y:41" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="背景噪声：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+   
+    <Window Type="TransSliderWnd" Name="SliderBNA1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:572 y:35" />   
+      <Property Name="WindowSize" Value="x:82 y:2" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:0 max:3" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAudioPortLogic::OnSliderBNA1Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="NoSelAudio1">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio1">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme> 
+    </Window>
+      
+		<Window Type="TransEdit" Name="BNAEdit1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:656 y:32" />
+      <Property Name="WindowSize" Value="x:54 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="2" />
+      <Event Type="WM_EDIT_CHANGED_NOFOCUS" Value="CCfgAudioPortLogic::OnEditBNA1Changed"/>
+      <Scheme Name="NoSelAudio1">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio1">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+              		           		                 
+    <Window Type="TransCheckButton" Name="AudioPort2" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX">
+      <Property Name="WindowPos" Value="x:27 y:70" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="checkbutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnSelAudio2" /> 
+    </Window>
+		 
+		<Window Type="TransStatic" Name="COMMON2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:49 y:73" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="卡侬麦克风2：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+		<Window Type="TransStatic" Name="Gain2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:142 y:73" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="增益：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+   
+    <Window Type="TransSliderWnd" Name="SliderGain2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:182 y:67" />   
+      <Property Name="WindowSize" Value="x:82 y:2" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:1 max:100" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAudioPortLogic::OnSliderGain2Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="NoSelAudio2">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio2">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>      
+    </Window>
+      
+		<Window Type="TransEdit" Name="GainEdit2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:266 y:64" />
+      <Property Name="WindowSize" Value="x:60 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="3" />
+      <Event Type="WM_EDIT_CHANGED_NOFOCUS" Value="CCfgAudioPortLogic::OnEditGain2Changed"/>
+      <Scheme Name="NoSelAudio2">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio2">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+		<Window Type="TransStatic" Name="SimplexPower2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:329 y:73" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="幻象供电：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+      
+  	<Window Type="TransSwitchButton" Name="BtnSimPower2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			  <Property Name="WindowPos" Value="x:390 y:64" />
+			  <Property Name="WindowSize" Value="x:107 y:32" />
+			  <Property Name="Image" Value="AudioSwitch" />
+			  <Property Name="WindowEnable" Value="True" />
+			  <Property Name="WindowVisible" Value="True" />
+			  <Property Name="SwitchState" Value="false" />
+			  <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnBtnSwitchSimPower2" />
+			  <Scheme Name="NoSelAudio2">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="SelAudio2">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+		</Window>
+
+		<Window Type="TransStatic" Name="AudioBNA2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:506 y:73" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="背景噪声：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+   
+    <Window Type="TransSliderWnd" Name="SliderBNA2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:572 y:67" />   
+      <Property Name="WindowSize" Value="x:82 y:2" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:0 max:3" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAudioPortLogic::OnSliderBNA2Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="NoSelAudio2">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio2">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>      
+    </Window>
+      
+		<Window Type="TransEdit" Name="BNAEdit2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:656 y:64" />
+      <Property Name="WindowSize" Value="x:54 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="2" />
+      <Event Type="WM_EDIT_CHANGED_NOFOCUS" Value="CCfgAudioPortLogic::OnEditBNA2Changed"/>
+      <Scheme Name="NoSelAudio2">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio2">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+                       	               
+    <Window Type="TransCheckButton" Name="AudioPort3" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX">
+      <Property Name="WindowPos" Value="x:27 y:102" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="checkbutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnSelAudio3" /> 
+    </Window>
+		 
+		<Window Type="TransStatic" Name="COMMON3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:49 y:105" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="卡侬麦克风3：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+		<Window Type="TransStatic" Name="Gain3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:142 y:105" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="增益：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+   
+    <Window Type="TransSliderWnd" Name="SliderGain3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:182 y:99" />   
+      <Property Name="WindowSize" Value="x:82 y:2" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:1 max:100" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAudioPortLogic::OnSliderGain3Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="NoSelAudio3">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio3">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>      
+    </Window>
+      
+		<Window Type="TransEdit" Name="GainEdit3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:266 y:96" />
+      <Property Name="WindowSize" Value="x:60 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="3" />
+      <Event Type="WM_EDIT_CHANGED_NOFOCUS" Value="CCfgAudioPortLogic::OnEditGain3Changed"/>
+      <Scheme Name="NoSelAudio3">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio3">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+		<Window Type="TransStatic" Name="SimplexPower3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:329 y:105" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="幻象供电：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+      
+  	<Window Type="TransSwitchButton" Name="BtnSimPower3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			  <Property Name="WindowPos" Value="x:390 y:96" />
+			  <Property Name="WindowSize" Value="x:107 y:32" />
+			  <Property Name="Image" Value="AudioSwitch" />
+			  <Property Name="WindowEnable" Value="True" />
+			  <Property Name="WindowVisible" Value="True" />
+			  <Property Name="SwitchState" Value="false" />
+			  <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnBtnSwitchSimPower3" />
+			  <Scheme Name="NoSelAudio3">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="SelAudio3">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+		</Window>
+
+		<Window Type="TransStatic" Name="AudioBNA3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:506 y:105" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="背景噪声：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+   
+    <Window Type="TransSliderWnd" Name="SliderBNA3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:572 y:99" />   
+      <Property Name="WindowSize" Value="x:82 y:2" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:0 max:3" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAudioPortLogic::OnSliderBNA3Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="NoSelAudio3">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio3">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>      
+    </Window>
+      
+		<Window Type="TransEdit" Name="BNAEdit3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:656 y:96" />
+      <Property Name="WindowSize" Value="x:54 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="2" />
+      <Event Type="WM_EDIT_CHANGED_NOFOCUS" Value="CCfgAudioPortLogic::OnEditBNA3Changed"/>
+      <Scheme Name="NoSelAudio3">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio3">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+                     	          		               
+		<Window Type="TransStatic" Name="StGroup2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:27 y:133" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="主音频组2" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontStyle" Value="1" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+    </Window>
+            
+    <Window Type="TransCheckButton" Name="AudioPort4" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX|WS_GROUP">
+      <Property Name="WindowPos" Value="x:27 y:155" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="checkbutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnSelAudio4" /> 
+    </Window>
+		 
+		<Window Type="TransStatic" Name="COMMON4" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:49 y:158" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="卡侬麦克风4：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+		<Window Type="TransStatic" Name="Gain4" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:142 y:158" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="增益：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+   
+    <Window Type="TransSliderWnd" Name="SliderGain4" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:182 y:152" />   
+      <Property Name="WindowSize" Value="x:82 y:2" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:1 max:100" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAudioPortLogic::OnSliderGain4Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="NoSelAudio4">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio4">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>      
+    </Window>
+      
+		<Window Type="TransEdit" Name="GainEdit4" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:266 y:149" />
+      <Property Name="WindowSize" Value="x:60 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="3" />
+      <Event Type="WM_EDIT_CHANGED_NOFOCUS" Value="CCfgAudioPortLogic::OnEditGain4Changed"/>
+      <Scheme Name="NoSelAudio4">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio4">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+		<Window Type="TransStatic" Name="SimplexPower4" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:329 y:158" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="幻象供电：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+      
+  	<Window Type="TransSwitchButton" Name="BtnSimPower4" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			  <Property Name="WindowPos" Value="x:390 y:149" />
+			  <Property Name="WindowSize" Value="x:107 y:32" />
+			  <Property Name="Image" Value="AudioSwitch" />
+			  <Property Name="WindowEnable" Value="True" />
+			  <Property Name="WindowVisible" Value="True" />
+			  <Property Name="SwitchState" Value="false" />
+			  <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnBtnSwitchSimPower4" />
+			  <Scheme Name="NoSelAudio4">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="SelAudio4">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+		</Window>
+
+		<Window Type="TransStatic" Name="AudioBNA4" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:506 y:158" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="背景噪声：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+   
+    <Window Type="TransSliderWnd" Name="SliderBNA4" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:572 y:152" />   
+      <Property Name="WindowSize" Value="x:82 y:2" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="CSliderCtrlRange" Value="min:0 max:3" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAudioPortLogic::OnSliderBNA4Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="NoSelAudio4">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio4">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>      
+    </Window>
+      
+		<Window Type="TransEdit" Name="BNAEdit4" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:656 y:149" />
+      <Property Name="WindowSize" Value="x:54 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="2" />
+      <Event Type="WM_EDIT_CHANGED_NOFOCUS" Value="CCfgAudioPortLogic::OnEditBNA4Changed"/>
+      <Scheme Name="NoSelAudio4">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio4">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+              		           	                 
+    <Window Type="TransCheckButton" Name="AudioPort5" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX">
+      <Property Name="WindowPos" Value="x:27 y:187" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="checkbutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnSelAudio5" /> 
+    </Window>
+		 
+		<Window Type="TransStatic" Name="COMMON5" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:49 y:190" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="卡侬麦克风5：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+		<Window Type="TransStatic" Name="Gain5" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:142 y:190" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="增益：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+   
+    <Window Type="TransSliderWnd" Name="SliderGain5" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:182 y:184" />   
+      <Property Name="WindowSize" Value="x:82 y:2" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="CSliderCtrlRange" Value="min:1 max:100" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAudioPortLogic::OnSliderGain5Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="NoSelAudio5">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio5">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>      
+    </Window>
+      
+		<Window Type="TransEdit" Name="GainEdit5" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:266 y:181" />
+      <Property Name="WindowSize" Value="x:60 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="3" />
+      <Event Type="WM_EDIT_CHANGED_NOFOCUS" Value="CCfgAudioPortLogic::OnEditGain5Changed"/>
+      <Scheme Name="NoSelAudio5">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio5">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+		<Window Type="TransStatic" Name="SimplexPower5" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:329 y:190" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="幻象供电：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+      
+  	<Window Type="TransSwitchButton" Name="BtnSimPower5" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			  <Property Name="WindowPos" Value="x:390 y:181" />
+			  <Property Name="WindowSize" Value="x:107 y:32" />
+			  <Property Name="Image" Value="AudioSwitch" />
+			  <Property Name="WindowEnable" Value="True" />
+			  <Property Name="WindowVisible" Value="True" />
+			  <Property Name="SwitchState" Value="false" />
+			  <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnBtnSwitchSimPower5" />
+			  <Scheme Name="NoSelAudio5">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="SelAudio5">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+		</Window>
+
+		<Window Type="TransStatic" Name="AudioBNA5" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:506 y:190" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="背景噪声：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+   
+    <Window Type="TransSliderWnd" Name="SliderBNA5" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:572 y:184" />   
+      <Property Name="WindowSize" Value="x:82 y:2" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:0 max:3" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAudioPortLogic::OnSliderBNA5Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="NoSelAudio5">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio5">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>      
+    </Window>
+      
+		<Window Type="TransEdit" Name="BNAEdit5" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:656 y:181" />
+      <Property Name="WindowSize" Value="x:54 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="2" />
+      <Event Type="WM_EDIT_CHANGED_NOFOCUS" Value="CCfgAudioPortLogic::OnEditBNA5Changed"/>
+      <Scheme Name="NoSelAudio5">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio5">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+              		           	                    
+    <Window Type="TransCheckButton" Name="AudioPort6" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX">
+      <Property Name="WindowPos" Value="x:27 y:219" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="checkbutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnSelAudio6" /> 
+    </Window>
+		 
+		<Window Type="TransStatic" Name="COMMON6" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:49 y:222" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="卡侬麦克风6：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+		<Window Type="TransStatic" Name="Gain6" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:142 y:222" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="增益：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+   
+    <Window Type="TransSliderWnd" Name="SliderGain6" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:182 y:216" />   
+      <Property Name="WindowSize" Value="x:82 y:2" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:1 max:100" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAudioPortLogic::OnSliderGain6Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="NoSelAudio6">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio6">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>      
+    </Window>
+      
+		<Window Type="TransEdit" Name="GainEdit6" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:266 y:213" />
+      <Property Name="WindowSize" Value="x:60 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="3" />
+      <Event Type="WM_EDIT_CHANGED_NOFOCUS" Value="CCfgAudioPortLogic::OnEditGain6Changed"/>
+      <Scheme Name="NoSelAudio6">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio6">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+		<Window Type="TransStatic" Name="SimplexPower6" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:329 y:222" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="幻象供电：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+      
+  	<Window Type="TransSwitchButton" Name="BtnSimPower6" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			  <Property Name="WindowPos" Value="x:390 y:213" />
+			  <Property Name="WindowSize" Value="x:107 y:32" />
+			  <Property Name="Image" Value="AudioSwitch" />
+			  <Property Name="WindowEnable" Value="True" />
+			  <Property Name="WindowVisible" Value="True" />
+			  <Property Name="SwitchState" Value="false" />
+			  <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnBtnSwitchSimPower6" />
+			  <Scheme Name="NoSelAudio6">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="SelAudio6">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+		</Window>
+
+		<Window Type="TransStatic" Name="AudioBNA6" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:506 y:222" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="背景噪声：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+   
+    <Window Type="TransSliderWnd" Name="SliderBNA6" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:572 y:216" />   
+      <Property Name="WindowSize" Value="x:82 y:2" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:0 max:3" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAudioPortLogic::OnSliderBNA6Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="NoSelAudio6">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio6">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>      
+    </Window>
+      
+		<Window Type="TransEdit" Name="BNAEdit6" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:656 y:213" />
+      <Property Name="WindowSize" Value="x:54 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="2" />
+      <Event Type="WM_EDIT_CHANGED_NOFOCUS" Value="CCfgAudioPortLogic::OnEditBNA6Changed"/>
+      <Scheme Name="NoSelAudio6">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio6">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+              		           	         
+		<Window Type="TransStatic" Name="StGroup3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:27 y:247" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="主音频组3" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontStyle" Value="1" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+    </Window>
+            
+    <Window Type="TransCheckButton" Name="AudioPort7" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX|WS_GROUP">
+      <Property Name="WindowPos" Value="x:27 y:269" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="checkbutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnSelAudio7" /> 
+    </Window>
+		 
+		<Window Type="TransStatic" Name="COMMON7" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:49 y:272" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="卡侬麦克风7：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+		<Window Type="TransStatic" Name="Gain7" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:142 y:272" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="增益：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+   
+    <Window Type="TransSliderWnd" Name="SliderGain7" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:182 y:266" />   
+      <Property Name="WindowSize" Value="x:82 y:2" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:1 max:100" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAudioPortLogic::OnSliderGain7Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="NoSelAudio7">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio7">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>      
+    </Window>
+      
+		<Window Type="TransEdit" Name="GainEdit7" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:266 y:263" />
+      <Property Name="WindowSize" Value="x:60 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="3" />
+      <Event Type="WM_EDIT_CHANGED_NOFOCUS" Value="CCfgAudioPortLogic::OnEditGain7Changed"/>
+      <Scheme Name="NoSelAudio7">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio7">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+		<Window Type="TransStatic" Name="SimplexPower7" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:329 y:272" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="幻象供电：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+      
+  	<Window Type="TransSwitchButton" Name="BtnSimPower7" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			  <Property Name="WindowPos" Value="x:390 y:263" />
+			  <Property Name="WindowSize" Value="x:107 y:32" />
+			  <Property Name="Image" Value="AudioSwitch" />
+			  <Property Name="WindowEnable" Value="True" />
+			  <Property Name="WindowVisible" Value="True" />
+			  <Property Name="SwitchState" Value="false" />
+			  <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnBtnSwitchSimPower7" />
+			  <Scheme Name="NoSelAudio7">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="SelAudio7">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+		</Window>
+
+		<Window Type="TransStatic" Name="AudioBNA7" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:506 y:272" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="背景噪声：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+   
+    <Window Type="TransSliderWnd" Name="SliderBNA7" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:572 y:266" />   
+      <Property Name="WindowSize" Value="x:82 y:2" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:0 max:3" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAudioPortLogic::OnSliderBNA7Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="NoSelAudio7">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio7">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>      
+    </Window>
+      
+		<Window Type="TransEdit" Name="BNAEdit7" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:656 y:263" />
+      <Property Name="WindowSize" Value="x:54 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="2" />
+      <Event Type="WM_EDIT_CHANGED_NOFOCUS" Value="CCfgAudioPortLogic::OnEditBNA7Changed"/>
+      <Scheme Name="NoSelAudio7">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio7">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+              		           	                            
+    <Window Type="TransCheckButton" Name="AudioPort8" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX">
+      <Property Name="WindowPos" Value="x:27 y:301" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="checkbutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnSelAudio8" /> 
+    </Window>
+		 
+		<Window Type="TransStatic" Name="COMMON8" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:49 y:304" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="卡侬麦克风8：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+		<Window Type="TransStatic" Name="Gain8" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:142 y:304" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="增益：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+   
+    <Window Type="TransSliderWnd" Name="SliderGain8" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:182 y:298" />   
+      <Property Name="WindowSize" Value="x:82 y:2" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:1 max:100" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAudioPortLogic::OnSliderGain8Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="NoSelAudio8">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio8">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>      
+    </Window>
+      
+		<Window Type="TransEdit" Name="GainEdit8" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:266 y:295" />
+      <Property Name="WindowSize" Value="x:60 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="3" />
+      <Event Type="WM_EDIT_CHANGED_NOFOCUS" Value="CCfgAudioPortLogic::OnEditGain8Changed"/>
+      <Scheme Name="NoSelAudio8">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio8">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+		<Window Type="TransStatic" Name="SimplexPower8" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:329 y:304" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="幻象供电：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+      
+  	<Window Type="TransSwitchButton" Name="BtnSimPower8" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			  <Property Name="WindowPos" Value="x:390 y:295" />
+			  <Property Name="WindowSize" Value="x:107 y:32" />
+			  <Property Name="Image" Value="AudioSwitch" />
+			  <Property Name="WindowEnable" Value="True" />
+			  <Property Name="WindowVisible" Value="True" />
+			  <Property Name="SwitchState" Value="false" />
+			  <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnBtnSwitchSimPower8" />
+			  <Scheme Name="NoSelAudio8">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="SelAudio8">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+		</Window>
+
+		<Window Type="TransStatic" Name="AudioBNA8" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:506 y:304" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="背景噪声：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+   
+    <Window Type="TransSliderWnd" Name="SliderBNA8" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:572 y:298" />   
+      <Property Name="WindowSize" Value="x:82 y:2" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:0 max:3" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAudioPortLogic::OnSliderBNA8Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="NoSelAudio8">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio8">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>      
+    </Window>
+      
+		<Window Type="TransEdit" Name="BNAEdit8" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:656 y:295" />
+      <Property Name="WindowSize" Value="x:54 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="2" />
+      <Event Type="WM_EDIT_CHANGED_NOFOCUS" Value="CCfgAudioPortLogic::OnEditBNA8Changed"/>
+      <Scheme Name="NoSelAudio8">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio8">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+              		           	                    
+    <Window Type="TransCheckButton" Name="AudioPort9" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX">
+      <Property Name="WindowPos" Value="x:27 y:333" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="checkbutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnSelAudio9" /> 
+    </Window>
+		 
+		<Window Type="TransStatic" Name="COMMON9" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:49 y:336" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="卡侬麦克风9：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+		<Window Type="TransStatic" Name="Gain9" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:142 y:336" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="增益：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+   
+    <Window Type="TransSliderWnd" Name="SliderGain9" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:182 y:330" />   
+      <Property Name="WindowSize" Value="x:82 y:2" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:1 max:100" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAudioPortLogic::OnSliderGain9Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="NoSelAudio9">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio9">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>      
+    </Window>
+      
+		<Window Type="TransEdit" Name="GainEdit9" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:266 y:327" />
+      <Property Name="WindowSize" Value="x:60 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="3" />
+      <Event Type="WM_EDIT_CHANGED_NOFOCUS" Value="CCfgAudioPortLogic::OnEditGain9Changed"/>
+      <Scheme Name="NoSelAudio9">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio9">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+		<Window Type="TransStatic" Name="SimplexPower9" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:329 y:336" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="幻象供电：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+      
+  	<Window Type="TransSwitchButton" Name="BtnSimPower9" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			  <Property Name="WindowPos" Value="x:390 y:327" />
+			  <Property Name="WindowSize" Value="x:107 y:32" />
+			  <Property Name="Image" Value="AudioSwitch" />
+			  <Property Name="WindowEnable" Value="True" />
+			  <Property Name="WindowVisible" Value="True" />
+			  <Property Name="SwitchState" Value="false" />
+			  <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnBtnSwitchSimPower9" />
+			  <Scheme Name="NoSelAudio9">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="SelAudio9">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+		</Window>
+
+		<Window Type="TransStatic" Name="AudioBNA9" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:506 y:336" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="背景噪声：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+   
+    <Window Type="TransSliderWnd" Name="SliderBNA9" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:572 y:330" />   
+      <Property Name="WindowSize" Value="x:82 y:2" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:0 max:3" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAudioPortLogic::OnSliderBNA9Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="NoSelAudio9">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio9">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>      
+    </Window>
+      
+		<Window Type="TransEdit" Name="BNAEdit9" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:656 y:327" />
+      <Property Name="WindowSize" Value="x:54 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="2" />
+      <Event Type="WM_EDIT_CHANGED_NOFOCUS" Value="CCfgAudioPortLogic::OnEditBNA9Changed"/>
+      <Scheme Name="NoSelAudio9">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio9">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+              		           	       
+		<Window Type="TransStatic" Name="StGroup10" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:27 y:361" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="卡侬麦克风10" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontStyle" Value="1" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+    </Window>
+              
+    <Window Type="TransCheckButton" Name="AudioGroup2" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+      <Property Name="WindowPos" Value="x:163 y:383" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnSelAudio10" />         
+    </Window>
+		 
+		<Window Type="TransStatic" Name="Group2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:193 y:386" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="主音频组2" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+                   
+    <Window Type="TransCheckButton" Name="AudioGroup3" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+      <Property Name="WindowPos" Value="x:299 y:383" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnSelAudio10" />    
+    </Window>
+		 
+		<Window Type="TransStatic" Name="Group3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:329 y:386" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="主音频组3" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+                         
+    <Window Type="TransCheckButton" Name="NoAudioGroup" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+      <Property Name="WindowPos" Value="x:435 y:383" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" /> 
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnNoSelAudio10" />   
+    </Window>
+		 
+		<Window Type="TransStatic" Name="NoGroup" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:465 y:386" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="无编组" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+                           
+    <Window Type="TransCheckButton" Name="AudioGroup1" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON|WS_GROUP">
+      <Property Name="WindowPos" Value="x:27 y:383" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnSelAudio10" />         
+    </Window>
+		 
+	<Window Type="TransStatic" Name="Group1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:57 y:386" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="主音频组1" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+	<Window Type="TransCheckButton" Name="AudioPort10" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX">
+      <Property Name="WindowPos" Value="x:27 y:415" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="checkbutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnSelAudioPort10" /> 
+    </Window>
+		 
+		<Window Type="TransStatic" Name="COMMON10" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:49 y:418" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="卡侬麦克风10：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+	<Window Type="TransStatic" Name="Gain10" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:142 y:418" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="增益：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+   
+    <Window Type="TransSliderWnd" Name="SliderGain10" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:182 y:412" />   
+      <Property Name="WindowSize" Value="x:82 y:2" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:1 max:100" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAudioPortLogic::OnSliderGain10Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="NoSelAudio10">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio10">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>         
+    </Window>
+      
+		<Window Type="TransEdit" Name="GainEdit10" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:266 y:409" />
+      <Property Name="WindowSize" Value="x:60 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="2" />
+      <Event Type="WM_EDIT_CHANGED_NOFOCUS" Value="CCfgAudioPortLogic::OnEditGain10Changed"/>
+      <Scheme Name="NoSelAudio10">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio10">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>        
+    </Window>
+
+		<Window Type="TransStatic" Name="SimplexPower10" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:329 y:418" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="幻象供电：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+      
+  	<Window Type="TransSwitchButton" Name="BtnSimPower10" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			  <Property Name="WindowPos" Value="x:390 y:409" />
+			  <Property Name="WindowSize" Value="x:107 y:32" />
+			  <Property Name="Image" Value="AudioSwitch" />
+			  <Property Name="WindowEnable" Value="True" />
+			  <Property Name="WindowVisible" Value="True" />
+			  <Property Name="SwitchState" Value="false" />
+			  <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnBtnSwitchSimPower10" />
+			  <Scheme Name="NoSelAudio10">
+           <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="SelAudio10">
+            <Property Name="WindowEnable" Value="true" />
+        </Scheme>        
+		</Window>
+
+		<Window Type="TransStatic" Name="AudioBNA10" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:506 y:418" />
+      <Property Name="WindowSize" Value="x:95 y:14" />
+      <Property Name="WindowCaption" Value="背景噪声：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+   
+    <Window Type="TransSliderWnd" Name="SliderBNA10" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:572 y:412" />   
+      <Property Name="WindowSize" Value="x:82 y:2" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:0 max:3" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAudioPortLogic::OnSliderBNA10Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="NoSelAudio10">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio10">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>         
+    </Window>
+      
+		<Window Type="TransEdit" Name="BNAEdit10" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:656 y:409" />
+      <Property Name="WindowSize" Value="x:54 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="2" />
+      <Event Type="WM_EDIT_CHANGED_NOFOCUS" Value="CCfgAudioPortLogic::OnEditBNA10Changed"/>
+      <Scheme Name="NoSelAudio10">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SelAudio10">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+	
+	<Window Type="TransCheckButton" Name="NoDesktopAudioGroup" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+      <Property Name="WindowPos" Value="x:27 y:449" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnSelNoDesktopAudio" />         
+    </Window>
+		 
+	<Window Type="TransStatic" Name="Group5" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:57 y:452" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="非桌面麦克风" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+         						            		              		       	        	                      
+  	<Window Type="TransButton" Name="BtnDefault" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:391 y:452" />
+			<Property Name="WindowSize" Value="x:86 y:38" />
+			<Property Name="WindowCaption" Value="恢复默认" />
+			<Property Name="WindowVisible" Value="true" />
+			<Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnBtnDefault" />
+			<Property Name="Image" Value="btnDefault" />
+		</Window>
+         		              		       	        	                       
+  	<Window Type="TransButton" Name="BtnSave" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:491 y:452" />
+			<Property Name="WindowSize" Value="x:86 y:38" />
+			<Property Name="WindowCaption" Value="保存配置" />
+			<Property Name="WindowVisible" Value="true" />
+			<Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnBtnSave" />
+			<Property Name="Image" Value="btnSave" />
+		</Window>
+
+		<Window Type="TransButton" Name="BtnCancle" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:591 y:452" />
+			<Property Name="WindowSize" Value="x:86 y:38" />
+			<Property Name="WindowCaption" Value="还原配置" />
+			<Property Name="WindowVisible" Value="true" />
+			<Event Type="WM_BUTTON_CLICK" Value="CCfgAudioPortLogic::OnBtnCancel" />
+			<Property Name="Image" Value="btnCancleCfg" />
+		</Window>
+ 
+		<CallBackFunc Type="CallBackFunc" Value="CCfgAudioPortLogic::InitWnd" />
+	</Window>
+</UILayout>

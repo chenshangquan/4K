@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<UILayout>
+    <!--消息提示界面  Style="WS_CHILD"-->
+    <Window Type="TransparentDlg" Name="WaringDlg" Style="WS_CHILD" ExStyle="">
+        <Property Name="WindowPos" Value="x:20 y:583" />
+        <Property Name="WindowSize" Value="x:455 y:22" />
+        <Property Name="Image" Value="" />
+        
+    <Window Type="TransButton" Name="BtnWarningPre" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+	      <Property Name="WindowPos" Value="x:0 y:0" />
+	      <Property Name="WindowSize" Value="x:18 y:18" />
+	      <Property Name="WindowCaption" Value="" />
+	      <Property Name="Image" Value="btnWarningPre" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Event Type="WM_BUTTON_CLICK" Value="CWarningLogic::OnBtnWarningPre" />
+	      <Property Name="WindowEnable" Value="false" />
+	      <Scheme Name="SchmClean">
+            <Property Name="Image" Value="btnWarningPre" /> 
+            <Property Name="WindowEnable" Value="False" />
+        </Scheme>
+	      <Scheme Name="SchmPreShine">
+            <Property Name="Image" Value="btnWarningPreShine" /> 
+        </Scheme>
+        <Scheme Name="SchmNoPre">
+            <Property Name="WindowEnable" Value="False" /> 
+        </Scheme>
+        <Scheme Name="SchmHasPre">
+            <Property Name="WindowEnable" Value="True" /> 
+        </Scheme>
+	  </Window>
+	  
+	  <Window Type="TransButton" Name="BtnWarningNext" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+	      <Property Name="WindowPos" Value="x:21 y:0" />
+	      <Property Name="WindowSize" Value="x:18 y:18" />
+	      <Property Name="WindowCaption" Value="" />
+	      <Property Name="Image" Value="btnWarningNext" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Event Type="WM_BUTTON_CLICK" Value="CWarningLogic::OnBtnWarningNext" />
+	      <Property Name="WindowEnable" Value="false" />
+	      <Scheme Name="SchmClean">
+            <Property Name="Image" Value="btnWarningNext" /> 
+            <Property Name="WindowEnable" Value="False" />
+        </Scheme>
+        <Scheme Name="SchmNextUnShine">
+            <Property Name="Image" Value="btnWarningNext" /> 
+        </Scheme>
+        <Scheme Name="SchmNextShine">
+            <Property Name="Image" Value="btnWarningNextShine" /> 
+        </Scheme>
+        <Scheme Name="SchmNoNext">
+            <Property Name="WindowEnable" Value="False" /> 
+        </Scheme>
+        <Scheme Name="SchmHasNext">
+            <Property Name="WindowEnable" Value="True" /> 
+        </Scheme>
+	  </Window>
+
+    <Window Type="TransStatic" Name="StcWarning" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:49 y:2" />
+        <Property Name="WindowSize" Value="x:420 y:16" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="FontColor" Value="r:255 g:255 b:255" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="0" />
+        <Scheme Name="SchmClean">
+            <Property Name="WindowCaption" Value="" /> 
+        </Scheme>
+    </Window>			 
+			  
+        <CallBackFunc Type="CallBackFunc" Value="CWarningLogic::InitWnd" />
+        <Property Name="WindowVisible" Value="True" />
+    </Window>
+</UILayout>

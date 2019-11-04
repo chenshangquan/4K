@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  
+  <!--中控新风界面-->
+  <Window Type="TransparentDlg" Name="CentCfgAirConditionDlg" Style="WS_CHILD" ExStyle="">
+    <Property Name="WindowPos" Value="x:122 y:0" />
+    <Property Name="WindowSize" Value="x:728 y:501" />
+    <Property Name="WindowVisible" Value="true" />
+    <Property Name="Image" Value="" />
+    <Property Name="WindowCaption" Value="中控空调配置界面" />
+
+
+    <Window Type="TransStatic" Name="StcXinFengInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:31" />
+      <Property Name="WindowSize" Value="x:115 y:14" />
+      <Property Name="WindowCaption" Value="空调新风系统 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransSwitchButton" Name="AirConditionButton" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:131 y:21" />
+      <Property Name="WindowSize" Value="x:107 y:32" />
+      <Property Name="Image" Value="ExistSwitch" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="SwitchState" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCentCfgAirCondition::OnSwitchAirCondition" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcACNumCfg" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:383 y:31" />
+      <Property Name="WindowSize" Value="x:115 y:14" />
+      <Property Name="WindowCaption" Value="空调数目配置 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+      <Scheme Name="SchmACExist">
+        <Property Name="WindowVisible" Value="True" />
+      </Scheme>
+      <Scheme Name="SchmACNotExist">
+        <Property Name="WindowVisible" Value="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransComboBox" Name="ComboboxACNum" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:523 y:21" />
+      <Property Name="WindowSize" Value="x:173 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="IsIPStyle" Value="False" />
+      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+      <Property Name="Image" Value="ComboboxCommon" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontColor" Value="r:59 g:59 b:59" />
+      <Property Name="EditEdgeHeight" Value="6" />
+      <Property Name="DropListHeight" Value="212" />
+      <Property Name="ComboShowIcon" Value="False" />
+      <Property Name="ReadOnly" Value="True" />
+      <Event Type="WM_CLICK_COMBOLIST" Value="CCentCfgAirCondition::OnACNumCfg" />
+
+      <!--<Event Type="WM_EDIT_CHANGED" Value="CCRenameOptDlg::OnRenameIDChange" />-->
+      <Scheme Name="SchmACExist">
+        <Property Name="WindowVisible" Value="True" />
+      </Scheme>
+      <Scheme Name="SchmACNotExist">
+        <Property Name="WindowVisible" Value="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransButton" Name="BtnSave" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:491 y:452" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="保存配置" />
+      <Property Name="WindowVisible" Value="true" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCentCfgAirCondition::OnBtnSave" />
+      <Property Name="Image" Value="btnSave" />
+    </Window>
+
+    <Window Type="TransButton" Name="BtnCancle" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:591 y:452" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="还原配置" />
+      <Property Name="WindowVisible" Value="true" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCentCfgAirCondition::OnBtnCancel" />
+      <Property Name="Image" Value="btnCancleCfg" />
+    </Window>
+    
+		<CallBackFunc Type="CallBackFunc" Value="CCentCfgAirCondition::InitWnd" />
+	</Window>
+
+  <!--中控窗帘界面-->
+
+  <Window Type="TransparentDlg" Name="CentCfgCurtainDlg" Style="WS_CHILD" ExStyle="">
+    <Property Name="WindowPos" Value="x:122 y:0" />
+    <Property Name="WindowSize" Value="x:728 y:501" />
+    <Property Name="WindowVisible" Value="true" />
+    <Property Name="Image" Value="" />
+    <Property Name="WindowCaption" Value="中控窗帘配置界面" />
+    <Property Name="FontColor" Value="r:15 g:79 b:81" />
+
+    <!--line1-->
+    <Window Type="TransStatic" Name="StcCurtainCfg" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:31" />
+      <Property Name="WindowSize" Value="x:115 y:14" />
+      <Property Name="WindowCaption" Value="窗帘配置 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransSwitchButton" Name="CurtainSwitch" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:131 y:21" />
+      <Property Name="WindowSize" Value="x:107 y:32" />
+      <Property Name="Image" Value="ExistSwitch" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="SwitchState" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCentCfgCurtainDlg::OnBtnSwitchCurtain" />
+      <Scheme Name="SchmCurExist">
+        <Property Name="SwitchState" Value="True" />
+      </Scheme>
+      <Scheme Name="SchmCurNotExist">
+        <Property Name="SwitchState" Value="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcCurtainNumCfg" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:383 y:31" />
+      <Property Name="WindowSize" Value="x:115 y:14" />
+      <Property Name="WindowCaption" Value="窗帘数目配置 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+      <Scheme Name="SchmCurExist">
+        <Property Name="WindowVisible" Value="True" />
+      </Scheme>
+      <Scheme Name="SchmCurNotExist">
+        <Property Name="WindowVisible" Value="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransComboBox" Name="ComboboxCurNum" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:523 y:21" />
+      <Property Name="WindowSize" Value="x:173 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="IsIPStyle" Value="False" />
+      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+      <Property Name="Image" Value="ComboboxCommon" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontColor" Value="r:59 g:59 b:59" />
+      <Property Name="EditEdgeHeight" Value="6" />
+      <Property Name="DropListHeight" Value="212" />
+      <Property Name="ComboShowIcon" Value="False" />
+      <Property Name="ReadOnly" Value="True" />
+      <Event Type="WM_CLICK_COMBOLIST" Value="CCentCfgCurtainDlg::OnCurNumCfg" />
+
+      <!--<Event Type="WM_EDIT_CHANGED" Value="CCRenameOptDlg::OnRenameIDChange" />-->
+      <Scheme Name="SchmCurExist">
+        <Property Name="WindowVisible" Value="True" />
+      </Scheme>
+      <Scheme Name="SchmCurNotExist">
+        <Property Name="WindowVisible" Value="False" />
+      </Scheme>
+    </Window>
+    
+    <!--窗帘配置界面-->
+    <Window Type="TransparentDlg" Name="CurtainLstDlg" Style="WS_CHILD" >
+      <Property Name="WindowPos" Value="x:42 y:71" />
+      <Property Name="WindowSize" Value="x:653 y:291" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="Image" Value="itemToCurtainbg.png" />
+      <Property Name="WindowCaption" Value="CurtainLstDlg" />
+
+      <Window Type="TransStatic" Name="StcCurtainID" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:3 y:14" />
+        <Property Name="WindowSize" Value="x:160 y:14" />
+        <Property Name="WindowCaption" Value="窗帘编号" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="1" />
+      </Window>
+      <Window Type="TransStatic" Name="StcCurtainName" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:164 y:14" />
+        <Property Name="WindowSize" Value="x:486 y:14" />
+        <Property Name="WindowCaption" Value="窗帘名称" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="1" />
+      </Window>
+
+      <Window Type="TransList" Name="CurtainList" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:0 y:41" />
+        <Property Name="WindowSize" Value="x:652 y:244" />
+        <Property Name="WindowCaption" Value="窗帘列表" />
+        <Property Name="ListImage" Value="" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="WindowEnable" Value="true" />
+        <Property Name="Drag" Value="false" />
+        <Property Name="TransparentListOffset" Value="0" />
+        <Property Name="TransparentListSelItem" Value="-1" />
+        <Event Type="WM_LST_UN_SELECT_ITEM" Value="CCentCfgCurtainDlg::OnClickCurLstBlack" />
+        <Scheme Name="SchmCurDefault">
+          <Property Name="TransparentListSelItem" Value="-1" />
+        </Scheme>
+      </Window>
+      <Scheme Name="SchmCurExist">
+        <Property Name="WindowVisible" Value="True" />
+      </Scheme>
+      <Scheme Name="SchmCurNotExist">
+        <Property Name="WindowVisible" Value="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransButton" Name="RenameBtn" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:610 y:442" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Image" Value="itemToRenameBtn" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCentCfgCurtainDlg::OnBtnOptRenameDlg" />
+      <Scheme Name="SchmCurExist">
+        <Property Name="WindowVisible" Value="True" />
+      </Scheme>
+      <Scheme Name="SchmCurNotExist">
+        <Property Name="WindowVisible" Value="False" />
+      </Scheme>
+      <Scheme Name="SchmEnable">
+        <Property Name="WindowEnable" Value="False" />
+      </Scheme>
+      <Scheme Name="SchmAvaliable">
+        <Property Name="WindowEnable" Value="True" />
+      </Scheme>
+    </Window>
+    
+    <CallBackFunc Type="CallBackFunc" Value="CCentCfgCurtainDlg::InitWnd" />
+  </Window>
+
+  <!--中控双流配置界面-->
+ <Window Type="TransparentDlg" Name="CentCfgDuoVideo" Style="WS_CHILD" ExStyle="">
+   <Property Name="WindowPos" Value="x:122 y:0" />
+   <Property Name="WindowSize" Value="x:728 y:501" />
+   <Property Name="WindowVisible" Value="true" />
+   <Property Name="Image" Value="" />
+   <Property Name="WindowCaption" Value="中控双流配置界面" />
+
+
+   <Window Type="TransStatic" Name="StcTitle" Style="WS_CHILD|WS_CLIPSIBLINGS">
+     <Property Name="WindowPos" Value="x:37 y:31" />
+     <Property Name="WindowSize" Value="x:115 y:14" />
+     <Property Name="WindowCaption" Value="双流屏 ：" />
+     <Property Name="WindowVisible" Value="True" />
+     <Property Name="FontSize" Value="9" />
+     <Property Name="Alignment" Value="0" />
+   </Window>
+
+   <Window Type="TransSwitchButton" Name="DuoVideoSwitchButton" Style="WS_CHILD|WS_CLIPSIBLINGS">
+     <Property Name="WindowPos" Value="x:131 y:21" />
+     <Property Name="WindowSize" Value="x:107 y:32" />
+     <Property Name="Image" Value="ExistSwitch" />
+     <Property Name="WindowEnable" Value="True" />
+     <Property Name="WindowVisible" Value="True" />
+     <Property Name="SwitchState" Value="True" />
+     <Event Type="WM_BUTTON_CLICK" Value="CCentCfgDuoVideo::OnBtnDuoVideo" />
+   </Window>
+
+   <CallBackFunc Type="CallBackFunc" Value="CCentCfgDuoVideo::InitWnd" />
+ </Window>
+</UILayout>
+

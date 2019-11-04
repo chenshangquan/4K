@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Window>
+	<Container name = "scrollviewcontainer" width="900" height="1280" inset="0,0,0,0" bkimage="file='' source='0,0,900,1280' dest='0,0,900,1280'">
+		<ScollImageUI name="scrollviewscreen" isgesture = "true" float="true" normalimage="src/dramimage.jpg" pos="0,0,1920,1280" />
+	</Container>
+</Window>

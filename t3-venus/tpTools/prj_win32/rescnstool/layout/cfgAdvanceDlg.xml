@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  <!--配置界面-->
+
+  <Window Type="TransparentDlg" Name="CfgAdvanceDlg" Style="WS_CHILD" ExStyle="">
+    <Property Name="WindowPos" Value="x:122 y:0" />
+    <Property Name="WindowSize" Value="x:728 y:501" />
+    <Property Name="WindowVisible" Value="true" />
+    <Property Name="Image" Value="" />
+    <Property Name="WindowCaption" Value="高级配置界面" />
+
+    <Window Type="TransStatic" Name="StcLossPacket" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:31" />
+      <Property Name="WindowSize" Value="x:150 y:14" />
+      <Property Name="WindowCaption" Value="丢包重传：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransSwitchButton" Name="BtnLossPacket" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:534 y:16" />
+      <Property Name="WindowSize" Value="x:107 y:42" />
+      <Property Name="Image" Value="switchbutton" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="SwitchState" Value="false" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgAdvanceDlg::OnSwitchLossPacket" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcConf" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:73" />
+      <Property Name="WindowSize" Value="x:110 y:14" />
+      <Property Name="WindowCaption" Value="丢包重传配置：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+      <Scheme Name="SchmClose">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNormal">
+        <Property Name="WindowVisible" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransComboBox" Name="ComboboxLevel" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:216 y:58" />
+      <Property Name="WindowSize" Value="x:425 y:42" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="IsIPStyle" Value="False" />
+      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+      <Property Name="Image" Value="ComboboxSer" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="EditEdgeHeight" Value="6" />
+      <Property Name="DropListHeight" Value="212" />
+      <Property Name="ComboShowIcon" Value="False" />
+      <Property Name="ReadOnly" Value="True" />
+      <Event Type="WM_CLICK_COMBOLIST" Value="CCfgAdvanceDlg::OnLossPacketLevel" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchmClose">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNormal">
+        <Property Name="WindowVisible" Value="true" />
+      </Scheme>
+    </Window>
+	
+	<Window Type="TransStatic" Name="StcSelRoute" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:115" />
+      <Property Name="WindowSize" Value="x:110 y:14" />
+      <Property Name="WindowCaption" Value="路由配置" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+	  <Property Name="FontStyle" Value="1" />
+    </Window>
+	
+	<Window Type="TransStatic" Name="StcLineRouteCfg" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:129 y:121" />
+      <Property Name="WindowSize" Value="x:568 y:1" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="centline.png" />
+    </Window>
+	
+	<Window Type="TransStatic" Name="StcRouteCfg" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:158" />
+      <Property Name="WindowSize" Value="x:110 y:14" />
+      <Property Name="WindowCaption" Value="路由配置：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+	
+	<!--<Window Type="TransComboBox" Name="ComboboxRouteCfg" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:216 y:143" />
+      <Property Name="WindowSize" Value="x:425 y:42" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="IsIPStyle" Value="False" />
+      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+      <Property Name="Image" Value="ComboboxSer" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="EditEdgeHeight" Value="6" />
+      <Property Name="DropListHeight" Value="212" />
+      <Property Name="ComboShowIcon" Value="False" />
+      <Property Name="ReadOnly" Value="True" />
+      <Event Type="WM_CLICK_COMBOLIST" Value="CCfgAdvanceDlg::OnRouteCfgChange" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <!--<Scheme Name="SchmClose">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNormal">
+        <Property Name="WindowVisible" Value="true" />
+      </Scheme>
+    </Window>-->
+	
+	<Window Type="TransparentDlg" Name="RouteCfgDlg" Style="WS_CHILD" >
+      <Property Name="WindowPos" Value="x:92 y:201" />
+      <Property Name="WindowSize" Value="x:551 y:220" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="Image" Value="CfgRouteInfo/RouteCfgbkg.png" />
+      <Property Name="WindowCaption" Value="RouteCfgDlg" />
+	  
+	  <Window Type="TransStatic" Name="stcNumIndex" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:3 y:17" />
+        <Property Name="WindowSize" Value="x:50 y:14" />
+        <Property Name="WindowCaption" Value="序号" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="1" />
+      </Window>
+	  
+	  <Window Type="TransStatic" Name="stcSubnet" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:45 y:17" />
+        <Property Name="WindowSize" Value="x:135 y:14" />
+        <Property Name="WindowCaption" Value="子网" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="1" />
+      </Window>
+	  
+	  <Window Type="TransStatic" Name="stcMask" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:180 y:17" />
+        <Property Name="WindowSize" Value="x:135 y:14" />
+        <Property Name="WindowCaption" Value="掩码" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="1" />
+      </Window>
+	  
+	  <Window Type="TransStatic" Name="stcGateway" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:315 y:17" />
+        <Property Name="WindowSize" Value="x:135 y:14" />
+        <Property Name="WindowCaption" Value="网关" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="1" />
+      </Window>
+	  
+	  <Window Type="TransStatic" Name="stcPrimary" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:450 y:17" />
+        <Property Name="WindowSize" Value="x:66 y:14" />
+        <Property Name="WindowCaption" Value="优先级" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="1" />
+      </Window>
+	  
+	  <Window Type="TransList" Name="RouteCfgList" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:3 y:36" />
+        <Property Name="WindowSize" Value="x:520 y:144" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="ListImage" Value="CfgRouteInfo/LstRouteStyle/" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="Drag" Value="true" />
+        <Property Name="TransparentListOffset" Value="0" />
+        <Property Name="TransparentListSelItem" Value="-1" />
+        <!--<Property Name="SelColor" Value="r:255 g:255 b:255" />-->
+        <Event Type="WM_LST_UN_SELECT_ITEM" Value="CCfgAdvanceDlg::OnClickRouteCfgLstBlack" />
+        <Scheme Name="SchVideoSourceListDefault">
+          <Property Name="TransparentListSelItem" Value="-1" />
+        </Scheme>
+       </Window> 
+
+	 <Window Type="TransButton" Name="BtnAdd" Style="WS_CHILD|WS_CLIPSIBLINGS">
+       <Property Name="WindowPos" Value="x:330 y:182" />
+       <Property Name="WindowSize" Value="x:87 y:31" />
+       <Property Name="WindowCaption" Value="添加" />
+	   <Property Name="WindowEnable" Value="true" />
+       <Property Name="WindowVisible" Value="true" />
+       <Event Type="WM_BUTTON_CLICK" Value="CCfgAdvanceDlg::OnBtnAdd" />
+       <Property Name="Image" Value="CfgRouteInfo/btnAdd" />
+	   <Scheme Name="SchmRouteMngCtrlReset">
+          	<Property Name="WindowEnable" Value="true" /> 
+       </Scheme>
+	   <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+     </Window>
+	 
+	 <Window Type="TransButton" Name="BtnDelete" Style="WS_CHILD|WS_CLIPSIBLINGS">
+       <Property Name="WindowPos" Value="x:432 y:182" />
+       <Property Name="WindowSize" Value="x:87 y:31" />
+       <Property Name="WindowCaption" Value="删除" />
+       <Property Name="WindowVisible" Value="true" />
+	   <Property Name="WindowEnable" Value="false" />
+       <Event Type="WM_BUTTON_CLICK" Value="CCfgAdvanceDlg::OnBtnDel" />
+       <Property Name="Image" Value="CfgRouteInfo/btnDelete" />
+	   <Scheme Name="SchmRouteMngCtrlReset">
+          	<Property Name="WindowEnable" Value="false" /> 
+       </Scheme>
+	   <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+     </Window>
+		
+	</Window>
+
+    <Window Type="TransButton" Name="BtnSave" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:491 y:452" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="保存配置" />
+      <Property Name="WindowVisible" Value="true" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgAdvanceDlg::OnBtnSave" />
+      <Property Name="Image" Value="btnSave" />
+    </Window>
+
+    <Window Type="TransButton" Name="BtnCancle" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:591 y:452" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="还原配置" />
+      <Property Name="WindowVisible" Value="true" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgAdvanceDlg::OnBtnCancel" />
+      <Property Name="Image" Value="btnCancleCfg" />
+    </Window>
+    
+    <CallBackFunc Type="CallBackFunc" Value="CCfgAdvanceDlg::InitWnd" />
+  </Window>
+</UILayout>

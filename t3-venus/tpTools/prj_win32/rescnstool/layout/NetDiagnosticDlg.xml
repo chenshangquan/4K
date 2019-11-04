@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  <!--配置界面-->    
+  
+<Window Type="TransparentDlg" Name="NetDiagnosticDlg" Style="WS_CHILD" ExStyle="">
+		<Property Name="WindowPos" Value="x:122 y:0" />
+		<Property Name="WindowSize" Value="x:742 y:501" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="Image" Value="" />
+		<Property Name="WindowCaption" Value="网络诊断" />
+    
+    <Window Type="TransButton" Name="BtnOfStatistic" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:559 y:25" />
+      <Property Name="WindowSize" Value="x:87 y:31" />
+      <Property Name="WindowCaption" Value="开始统计" />
+      <Property Name="WindowVisible" Value="true" />
+      <Event Type="WM_BUTTON_CLICK" Value="CNetDiagnosticLogic::OnBtnStatistic" />
+      <Property Name="Image" Value="btnToStatictic" />
+      <Scheme Name="SchStartStatistics">
+        <Property Name="Image" Value="btnToStatictic\start" />
+      </Scheme>
+      <Scheme Name="SchEndOfStatistics">
+        <Property Name="Image" Value="btnToStatictic\end" />
+      </Scheme>
+    </Window>
+	
+	<Window Type="TransButton" Name="BtnRefresh" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:559 y:70" />
+		<Property Name="WindowSize" Value="x:86 y:38" />
+		<Property Name="WindowCaption" Value="刷新" />			    
+		<Property Name="Image" Value="btnRefresh" />
+		<Property Name="WindowVisible" Value="true" />
+		<Event Type="WM_BUTTON_CLICK" Value="CNetDiagnosticLogic::OnBtnRefresh" />
+	</Window>
+          		   
+    <Window Type="TransStatic" Name="StcLostPacketInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:35" />
+      <Property Name="WindowSize" Value="x:110 y:14" />
+      <Property Name="WindowCaption" Value="丢包率：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+        		   
+    <Window Type="TransStatic" Name="StcLostPacket" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:160 y:35" />
+      <Property Name="WindowSize" Value="x:220 y:14" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+               		   
+    <Window Type="TransStatic" Name="StcUpstreamInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:75" />
+      <Property Name="WindowSize" Value="x:110 y:14" />
+      <Property Name="WindowCaption" Value="上行网络速率：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+               		   
+    <Window Type="TransStatic" Name="StcUpstream" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:160 y:75" />
+      <Property Name="WindowSize" Value="x:220 y:14" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+        		        		   
+    <Window Type="TransStatic" Name="StcDownstreamInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:115" />
+      <Property Name="WindowSize" Value="x:110 y:14" />
+      <Property Name="WindowCaption" Value="下行网络速率：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+               		   
+    <Window Type="TransStatic" Name="StcDownstream" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:160 y:115" />
+      <Property Name="WindowSize" Value="x:220 y:14" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+    
+		<CallBackFunc Type="CallBackFunc" Value="CNetDiagnosticLogic::InitWnd" />	
+	</Window>
+</UILayout>

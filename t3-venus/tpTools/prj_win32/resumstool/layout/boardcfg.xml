@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<UILayout>
+  <!--单板配置界面  Style="WS_CHILD"-->
+  <Window Type="TransparentDlg" Name="BoardCfgDlg" Style="WS_CHILD" ExStyle="">
+    <Property Name="WindowPos" Value="x:128 y:0" />
+    <Property Name="WindowSize" Value="x:736 y:541" />
+    <Property Name="Image" Value="" />
+
+    <Window Type="CStatic" Name="StcStaticBoardList" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:34 y:32" />
+      <Property Name="WindowSize" Value="x:200 y:14" />
+      <Property Name="WindowCaption" Value="单板列表" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontStyle" Value="1" />
+    </Window>
+
+    <Window Type="CStatic" Name="LineBoard" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:139 y:38" />
+      <Property Name="WindowSize" Value="x:562 y:1" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="boardline.png" />
+    </Window>
+
+    <Window Type="TransparentList" Name="LstFloorMenu" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:46 y:57" />
+      <Property Name="WindowSize" Value="x:388 y:30" />
+      <Property Name="WindowCaption" Value="层列表" />
+      <Property Name="ListImage" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Drag" Value="false" />
+      <Property Name="TransparentListOffset" Value="0" />
+      <Property Name="TransparentListSelItem" Value="0" />
+      <Property Name="TransparentListOver" Value="true" />
+      <Scheme Name="SchmFloorMenuListDefault">
+        <Property Name="TransparentListSelItem" Value="0" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransparentList" Name="LstBoardZeroFloor" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:86" />
+      <Property Name="WindowSize" Value="x:658 y:168" />
+      <!--<Property Name="ListImage" Value="listBkg" />-->
+      <Property Name="Image" Value="boardlistbk.png" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Drag" Value="false" />
+      <Property Name="TransparentListOffset" Value="0" />
+      <Property Name="TransparentListSelItem" Value="-1" />
+      <Property Name="TransparentListOver" Value="true" />
+      <Event Type="WM_LST_UN_SELECT_ITEM" Value="CBoardCfgLogic::OnClickBoardLstBlack" />
+      <Scheme Name="SchmBoardListDataClean">
+        <Property Name="TransparentListOffset" Value="0" />
+        <Property Name="TransparentListSelItem" Value="-1" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransparentList" Name="LstBoardFirstFloor" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:86" />
+      <Property Name="WindowSize" Value="x:658 y:168" />
+      <!--<Property Name="ListImage" Value="listBkg" />-->
+      <Property Name="Image" Value="boardlistbk.png" />
+      <Property Name="WindowVisible" Value="False" />
+      <Property Name="Drag" Value="false" />
+      <Property Name="TransparentListOffset" Value="0" />
+      <Property Name="TransparentListSelItem" Value="-1" />
+      <Property Name="TransparentListOver" Value="true" />
+      <Event Type="WM_LST_UN_SELECT_ITEM" Value="CBoardCfgLogic::OnClickBoardLstBlack" />
+      <Scheme Name="SchmBoardListDataClean">
+        <Property Name="TransparentListOffset" Value="0" />
+        <Property Name="TransparentListSelItem" Value="-1" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransparentList" Name="LstBoardSecondFloor" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:86" />
+      <Property Name="WindowSize" Value="x:658 y:168" />
+      <!--<Property Name="ListImage" Value="listBkg" />-->
+      <Property Name="Image" Value="boardlistbk.png" />
+      <Property Name="WindowVisible" Value="False" />
+      <Property Name="Drag" Value="false" />
+      <Property Name="TransparentListOffset" Value="0" />
+      <Property Name="TransparentListSelItem" Value="-1" />
+      <Property Name="TransparentListOver" Value="true" />
+      <Event Type="WM_LST_UN_SELECT_ITEM" Value="CBoardCfgLogic::OnClickBoardLstBlack" />
+      <Scheme Name="SchmBoardListDataClean">
+        <Property Name="TransparentListOffset" Value="0" />
+        <Property Name="TransparentListSelItem" Value="-1" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransparentList" Name="LstBoardThirdFloor" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:86" />
+      <Property Name="WindowSize" Value="x:658 y:168" />
+      <!--<Property Name="ListImage" Value="listBkg" />-->
+      <Property Name="Image" Value="boardlistbk.png" />
+      <Property Name="WindowVisible" Value="False" />
+      <Property Name="Drag" Value="false" />
+      <Property Name="TransparentListOffset" Value="0" />
+      <Property Name="TransparentListSelItem" Value="-1" />
+      <Property Name="TransparentListOver" Value="true" />
+      <Event Type="WM_LST_UN_SELECT_ITEM" Value="CBoardCfgLogic::OnClickBoardLstBlack" />
+      <Scheme Name="SchmBoardListDataClean">
+        <Property Name="TransparentListOffset" Value="0" />
+        <Property Name="TransparentListSelItem" Value="-1" />
+      </Scheme>
+    </Window>
+
+
+    <Window Type="CButton" Name="BtnBoardDel" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:591 y:265" />
+      <Property Name="WindowSize" Value="x:87 y:31" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Tooltip" Value="BtnBoardDel" />
+      <Property Name="Image" Value="btnBoardDel" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CBoardCfgLogic::OnBtnBoardDel" />
+      <Property Name="WindowEnable" Value="False" />
+      <Scheme Name="SchmEnable">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmAble">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="CButton" Name="BtnBoardModify" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:491 y:265" />
+      <Property Name="WindowSize" Value="x:87 y:31" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Tooltip" Value="BtnBoardModify" />
+      <Property Name="Image" Value="btnBoardModify" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CBoardCfgLogic::OnBtnBoardModify" />
+      <Property Name="WindowEnable" Value="False" />
+      <Scheme Name="SchmEnable">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmAble">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="CButton" Name="BtnBoardAdd" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:391 y:265" />
+      <Property Name="WindowSize" Value="x:87 y:31" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Tooltip" Value="btnBoardAdd" />
+      <Property Name="Image" Value="btnBoardAdd" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CBoardCfgLogic::OnBtnBoardAdd" />
+      <Property Name="WindowEnable" Value="False" />
+      <Scheme Name="SchmEnable">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmAble">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="CButton" Name="BtnBoardReboot" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:291 y:265" />
+      <Property Name="WindowSize" Value="x:87 y:31" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Tooltip" Value="BtnBoardReboot" />
+      <Property Name="Image" Value="btnBoardReboot" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CBoardCfgLogic::OnBtnBoardReboot" />
+      <Property Name="WindowEnable" Value="False" />
+      <Scheme Name="SchmEnable">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmAble">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="CButton" Name="BtnBoardUpgrade" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:191 y:265" />
+      <Property Name="WindowSize" Value="x:87 y:31" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Tooltip" Value="BtnBoardUpgrade" />
+      <Property Name="Image" Value="btnBoardUpgrade" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CBoardCfgLogic::OnBtnBoardUpgrade" />
+      <Property Name="WindowEnable" Value="False" />
+      <Scheme Name="SchmEnable">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmAble">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="CStatic" Name="StcStaticBoardModeList" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:38 y:334" />
+      <Property Name="WindowSize" Value="x:200 y:14" />
+      <Property Name="WindowCaption" Value="单板模块信息" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontStyle" Value="1" />
+    </Window>
+
+    <Window Type="CStatic" Name="LineBoardMode" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:184 y:340" />
+      <Property Name="WindowSize" Value="x:491 y:1" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="boardmodeline.png" />
+    </Window>
+
+    <Window Type="CStatic" Name="StcStaticBoardModeName" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:38 y:388" />
+      <Property Name="WindowSize" Value="x:200 y:14" />
+      <Property Name="WindowCaption" Value="模块名称：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Scheme Name="SchmMPU2Ecard">
+        <Property Name="WindowCaption" Value="模块：" />
+        <Property Name="WindowPos" Value="x:38 y:361" />
+      </Scheme>
+      <Scheme Name="SchmCommon">
+        <Property Name="WindowCaption" Value="模块名称：" />
+        <Property Name="WindowPos" Value="x:38 y:388" />
+      </Scheme>
+    </Window>
+
+    <Window Type="CEdit" Name="EdtBoardModeName" Style="WS_CHILD|WS_CLIPSIBLINGS|ES_AUTOHSCROLL|WS_TABSTOP">
+      <Property Name="WindowPos" Value="x:126 y:379" />
+      <Property Name="WindowSize" Value="x:220 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Image" Value="Edit" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="LimitLength" Value="15" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FrontLen" Value="14" />
+      <Event Type="WM_EDIT_CHANGED" Value="CBoardCfgLogic::OnBoardMdlEditChange" />
+      <Scheme Name="SchmEnable">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmAble">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchmMPU2Ecard">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmCommon">
+        <Property Name="WindowVisible" Value="True" />
+      </Scheme>
+    </Window>
+
+    <Window Type="CStatic" Name="StcStaticBoardModeType" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:369 y:388" />
+      <Property Name="WindowSize" Value="x:200 y:14" />
+      <Property Name="WindowCaption" Value="模块类别：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Scheme Name="SchmMPU2Ecard">
+        <Property Name="WindowCaption" Value="模式选择：" />
+        <Property Name="WindowPos" Value="x:369 y:361" />
+      </Scheme>
+      <Scheme Name="SchmCommon">
+        <Property Name="WindowCaption" Value="模块类别：" />
+        <Property Name="WindowPos" Value="x:369 y:388" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransparentComboBox" Name="ComboboxModeType" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:457 y:379" />
+      <Property Name="WindowSize" Value="x:220 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="IsIPStyle" Value="False" />
+      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+      <Property Name="Image" Value="ComboboxCommon" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="EditEdgeHeight" Value="5" />
+      <Property Name="DropListHeight" Value="212" />
+      <Property Name="ComboShowIcon" Value="False" />
+      <Property Name="ReadOnly" Value="True" />
+      <Event Type="WM_CLICK_COMBOLIST" Value="CBoardCfgLogic::OnBoardMdlEditChange" />
+      <Scheme Name="SchmEnable">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmAble">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchmMPU2Ecard">
+        <Property Name="WindowPos" Value="x:126 y:352" />
+      </Scheme>
+      <Scheme Name="SchmCommon">
+        <Property Name="WindowPos" Value="x:457 y:379" />
+      </Scheme>
+    </Window>
+	
+	<Window Type="CStatic" Name="StcStaticFtp" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:38 y:428" />
+      <Property Name="WindowSize" Value="x:200 y:14" />
+      <Property Name="WindowCaption" Value="FTP服务：" />
+      <Property Name="WindowVisible" Value="false" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Scheme Name="SchmShowFtpTelnet">
+        <Property Name="WindowVisible" Value="True" />
+      </Scheme>
+	  <Scheme Name="SchmHideFtpTelnet">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+    </Window>
+	
+	<Window Type="CTransparentSwitchButton" Name="BtnFtpSwitch" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:126 y:415" />
+      <Property Name="WindowSize" Value="x:107 y:42" />
+      <Property Name="Image" Value="UmsCfg\SwitchButton" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="WindowVisible" Value="false" />
+      <Property Name="SwitchState" Value="false" />
+      <Event Type="WM_BUTTON_CLICK" Value="CBoardCfgLogic::OnBtnFtpSwitchClick" />
+      <Scheme Name="SchmShowFtpTelnet">
+        <Property Name="WindowVisible" Value="True" />
+      </Scheme>
+	  <Scheme Name="SchmHideFtpTelnet">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+	</Window>
+	
+	<Window Type="CStatic" Name="StcStaticTelnet" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:369 y:428" />
+      <Property Name="WindowSize" Value="x:200 y:14" />
+      <Property Name="WindowCaption" Value="Telnet服务：" />
+      <Property Name="WindowVisible" Value="false" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Scheme Name="SchmShowFtpTelnet">
+        <Property Name="WindowVisible" Value="True" />
+      </Scheme>
+	  <Scheme Name="SchmHideFtpTelnet">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+    </Window>
+	
+	<Window Type="CTransparentSwitchButton" Name="BtnTelnetSwitch" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:457 y:415" />
+      <Property Name="WindowSize" Value="x:107 y:42" />
+      <Property Name="Image" Value="UmsCfg\SwitchButton" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="WindowVisible" Value="false" />
+      <Property Name="SwitchState" Value="false" />
+      <Event Type="WM_BUTTON_CLICK" Value="CBoardCfgLogic::OnBtnTelnetSwitchClick" />
+      <Scheme Name="SchmShowFtpTelnet">
+        <Property Name="WindowVisible" Value="True" />
+      </Scheme>
+	  <Scheme Name="SchmHideFtpTelnet">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+	</Window>
+
+    <Window Type="TransparentComboBox" Name="ComboboxModule" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:457 y:352" />
+      <Property Name="WindowSize" Value="x:220 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="IsIPStyle" Value="False" />
+      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+      <Property Name="Image" Value="ComboboxCommon" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="EditEdgeHeight" Value="5" />
+      <Property Name="DropListHeight" Value="212" />
+      <Property Name="ComboShowIcon" Value="False" />
+      <Property Name="ReadOnly" Value="True" />
+      <Event Type="WM_CLICK_COMBOLIST" Value="CBoardCfgLogic::OnBoardModle" />
+      <Scheme Name="SchmMPU2Ecard">
+        <Property Name="WindowVisible" Value="True" />
+      </Scheme>
+      <Scheme Name="SchmCommon">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmEnable">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+    </Window>
+
+    <Window Type="CStatic" Name="StcStaticAudioMixName1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:38 y:368" />
+      <Property Name="WindowSize" Value="x:200 y:14" />
+      <Property Name="WindowCaption" Value="混音器1别名：" />
+      <Property Name="WindowVisible" Value="False" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Scheme Name="SchmMPU2Ecard">
+        <Property Name="WindowCaption" Value="模块名称：" />
+        <Property Name="WindowPos" Value="x:38 y:397" />
+      </Scheme>
+      <Scheme Name="SchmCommon">
+        <Property Name="WindowCaption" Value="混音器1别名：" />
+        <Property Name="WindowPos" Value="x:38 y:368" />
+      </Scheme>
+    </Window>
+
+    <Window Type="CEdit" Name="EdtAudioMixName1" Style="WS_CHILD|WS_CLIPSIBLINGS|ES_AUTOHSCROLL|WS_TABSTOP">
+      <Property Name="WindowPos" Value="x:126 y:359" />
+      <Property Name="WindowSize" Value="x:220 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Image" Value="Edit" />
+      <Property Name="WindowVisible" Value="False" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="LimitLength" Value="15" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FrontLen" Value="14" />
+      <Event Type="WM_EDIT_CHANGED" Value="CBoardCfgLogic::OnBoardAudioMixNameEditChange" />
+      <Scheme Name="SchmEnable">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmAble">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchmMPU2Ecard">
+        <Property Name="WindowPos" Value="x:126 y:388" />
+      </Scheme>
+      <Scheme Name="SchmCommon">
+        <Property Name="WindowPos" Value="x:126 y:359" />
+      </Scheme>
+    </Window>
+
+    <Window Type="CStatic" Name="StcStaticAudioMixNum1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:369 y:368" />
+      <Property Name="WindowSize" Value="x:200 y:14" />
+      <Property Name="WindowCaption" Value="混音器1最大混音路数：" />
+      <Property Name="WindowVisible" Value="False" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Scheme Name="SchmMPU2Ecard">
+        <Property Name="WindowCaption" Value="类别：" />
+        <Property Name="WindowPos" Value="x:369 y:397" />
+        <Property Name="WindowVisible" Value="True" />
+      </Scheme>
+      <Scheme Name="SchmCommon">
+        <Property Name="WindowCaption" Value="混音器1最大混音路数：" />
+        <Property Name="WindowPos" Value="x:369 y:368" />
+        <Property Name="WindowVisible" Value="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="CEdit" Name="EdtAudioMixNum1" Style="WS_CHILD|WS_CLIPSIBLINGS|ES_AUTOHSCROLL|WS_TABSTOP">
+      <Property Name="WindowPos" Value="x:497 y:359" />
+      <Property Name="WindowSize" Value="x:180 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Image" Value="Edit" />
+      <Property Name="WindowVisible" Value="False" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="LimitLength" Value="2" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FrontLen" Value="14" />
+      <Event Type="WM_EDIT_CHANGED" Value="CBoardCfgLogic::OnBoardAudioMixNum1EditChange" />
+      <Scheme Name="SchmEnable">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmAble">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchmMPU2Ecard">
+        <Property Name="WindowPos" Value="x:457 y:388" />
+        <Property Name="WindowSize" Value="x:220 y:32" />
+        <Property Name="LimitLength" Value="20" />
+        <Property Name="WindowVisible" Value="True" />
+      </Scheme>
+      <Scheme Name="SchmCommon">
+        <Property Name="WindowPos" Value="x:497 y:359" />
+        <Property Name="WindowSize" Value="x:180 y:32" />
+        <Property Name="LimitLength" Value="2" />
+      </Scheme>
+    </Window>
+
+    <Window Type="CStatic" Name="StcStaticAudioMixName2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:38 y:408" />
+      <Property Name="WindowSize" Value="x:200 y:14" />
+      <Property Name="WindowCaption" Value="混音器2别名：" />
+      <Property Name="WindowVisible" Value="False" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Scheme Name="SchmMPU2Ecard">
+        <Property Name="WindowCaption" Value="模块名称：" />
+        <Property Name="WindowPos" Value="x:38 y:433" />
+      </Scheme>
+      <Scheme Name="SchmCommon">
+        <Property Name="WindowCaption" Value="混音器2别名：" />
+        <Property Name="WindowPos" Value="x:38 y:408" />
+      </Scheme>
+      <Scheme Name="SchmBasic">
+        <Property Name="WindowVisible" Value="True" />
+      </Scheme>
+      <Scheme Name="SchmNormal">
+        <Property Name="WindowVisible" Value="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="CEdit" Name="EdtAudioMixName2" Style="WS_CHILD|WS_CLIPSIBLINGS|ES_AUTOHSCROLL|WS_TABSTOP">
+      <Property Name="WindowPos" Value="x:126 y:399" />
+      <Property Name="WindowSize" Value="x:220 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Image" Value="Edit" />
+      <Property Name="WindowVisible" Value="False" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="LimitLength" Value="15" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FrontLen" Value="14" />
+      <Event Type="WM_EDIT_CHANGED" Value="CBoardCfgLogic::OnBoardAudioMixNameEditChange" />
+      <Scheme Name="SchmEnable">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmAble">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchmMPU2Ecard">
+        <Property Name="WindowPos" Value="x:126 y:424" />
+      </Scheme>
+      <Scheme Name="SchmCommon">
+        <Property Name="WindowPos" Value="x:126 y:399" />
+      </Scheme>
+      <Scheme Name="SchmBasic">
+        <Property Name="WindowVisible" Value="True" />
+        <!--<Property Name="WindowCaption" Value="" />-->
+      </Scheme>
+      <Scheme Name="SchmNormal">
+        <Property Name="WindowVisible" Value="False" />
+        <!--<Property Name="WindowCaption" Value="" />-->
+      </Scheme>
+    </Window>
+    
+    <Window Type="CStatic" Name="StcStaticAudioMixNum2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:369 y:408" />
+      <Property Name="WindowSize" Value="x:200 y:14" />
+      <Property Name="WindowCaption" Value="混音器2最大混音路数：" />
+      <Property Name="WindowVisible" Value="False" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Scheme Name="SchmMPU2Ecard">
+        <Property Name="WindowCaption" Value="类别：" />
+        <Property Name="WindowPos" Value="x:369 y:433" />
+      </Scheme>
+      <Scheme Name="SchmCommon">
+        <Property Name="WindowCaption" Value="混音器2最大混音路数：" />
+        <Property Name="WindowPos" Value="x:369 y:408" />
+      </Scheme>
+      <Scheme Name="SchmBasic">
+        <Property Name="WindowVisible" Value="True" />
+      </Scheme>
+      <Scheme Name="SchmNormal">
+        <Property Name="WindowVisible" Value="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="CEdit" Name="EdtAudioMixNum2" Style="WS_CHILD|WS_CLIPSIBLINGS|ES_AUTOHSCROLL|WS_TABSTOP">
+      <Property Name="WindowPos" Value="x:497 y:399" />
+      <Property Name="WindowSize" Value="x:180 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Image" Value="Edit" />
+      <Property Name="WindowVisible" Value="False" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="LimitLength" Value="2" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FrontLen" Value="14" />
+      <Event Type="WM_EDIT_CHANGED" Value="CBoardCfgLogic::OnBoardAudioMixNum2EditChange" />
+      <Scheme Name="SchmEnable">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmAble">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchmMPU2Ecard">
+        <Property Name="WindowPos" Value="x:457 y:424" />
+        <Property Name="WindowSize" Value="x:220 y:32" />
+        <Property Name="LimitLength" Value="20" />
+      </Scheme>
+      <Scheme Name="SchmCommon">
+        <Property Name="WindowPos" Value="x:497 y:399" />
+        <Property Name="WindowSize" Value="x:180 y:32" />
+        <Property Name="LimitLength" Value="2" />
+      </Scheme>
+      <Scheme Name="SchmBasic">
+        <Property Name="WindowVisible" Value="True" />
+      </Scheme>
+      <Scheme Name="SchmNormal">
+        <Property Name="WindowVisible" Value="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="CButton" Name="BtnBoardModeDel" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:591 y:460" />
+      <Property Name="WindowSize" Value="x:87 y:31" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Tooltip" Value="BtnBoardModeDel" />
+      <Property Name="Image" Value="Common/btnClean" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CBoardCfgLogic::OnBtnBoardModeDel" />
+      <Property Name="WindowEnable" Value="False" />
+      <Scheme Name="SchmEnable">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmAble">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="CButton" Name="BtnBoardModeSave" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:491 y:460" />
+      <Property Name="WindowSize" Value="x:87 y:31" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Tooltip" Value="BtnBoardModeModify" />
+      <Property Name="Image" Value="Common/btnSave" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CBoardCfgLogic::BoardModeModifyReq" />
+      <Property Name="WindowEnable" Value="False" />
+      <Scheme Name="SchmEnable">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmAble">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <CallBackFunc Type="CallBackFunc" Value="CBoardCfgLogic::InitWnd" />
+    <Property Name="WindowVisible" Value="True" />
+  </Window>
+</UILayout>

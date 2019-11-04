@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window>
+  <ListContainerElement>
+    <VerticalLayout>
+    
+      <VerticalLayout height="32">
+        <HorizontalLayout>
+            <VerticalLayout name="ctWall" width="50">
+            	<HorizontalLayout>
+            	    <Control width="8" />
+            	    <Button name="btnCheck" width="32" height="32" normalimage="file='btnCommon/btnFile/Normal.png' mask='0xffffffff'"  hotimage="file='btnCommon/btnFile/Sel.png' mask='0xffffffff'" focusedimage="file='btnCommon/btnFile/Sel.png' corner='2,2,2,2' mask='0xffffffff'" pushedimage="file='btnCommon/btnFile/Sel.png' corner='2,2,2,2'" />
+            	</HorizontalLayout>
+            </VerticalLayout>
+            <VerticalLayout >
+                <HorizontalLayout>
+              	    <Label name="lbFileName" width="120" textcolor="#FFFF22DD"/>
+              	    <Label name="lbFilePath" textcolor="#FF2CF922"/>
+            	</HorizontalLayout>
+            </VerticalLayout>
+        </HorizontalLayout>
+      </VerticalLayout>
+      
+      <VerticalLayout name="paneListItemHide" height="18" visible="false">
+          <HorizontalLayout width="72" padding="40, 0, 0, 0">
+          	<Button name="btnfilechild" bkimage="file='friend_circle.png' mask='0xffffffff'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file='friend_circle.png' mask='0xffffffff'" hotimage="file='allbtn_over.png' corner='2,2,2,2' mask='0xffffffff'" pushedimage="file='allbtn_down.png' corner='2,2,2,2'  mask='0xffffffff'" />
+          	<Button bkimage="file='mail.png' mask='0xffffffff'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file='mail.png' mask='0xffffffff'" hotimage="file='allbtn_over.png' corner='2,2,2,2' mask='0xffffffff'" pushedimage="file='allbtn_down.png' corner='2,2,2,2'  mask='0xffffffff'" />
+          	<Button bkimage="file='MainPanelServiceBarExt_XiaoYou.png' mask='0xffffffff'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file='MainPanelServiceBarExt_XiaoYou.png' mask='0xffffffff'" hotimage="file='allbtn_over.png' mask='0xffffffff'" pushedimage="file='allbtn_down.png' mask='0xffffffff'" />
+          	<Button bkimage="file='soso.png' mask='0xffffffff'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file='soso.png' mask='0xffffffff'" hotimage="file='allbtn_over.png' corner='2,2,2,2' mask='0xffffffff'" pushedimage="file='allbtn_down.png' corner='2,2,2,2'  mask='0xffffffff'" />
+           </HorizontalLayout>
+      </VerticalLayout >
+      
+    </VerticalLayout>
+  </ListContainerElement>
+</Window>

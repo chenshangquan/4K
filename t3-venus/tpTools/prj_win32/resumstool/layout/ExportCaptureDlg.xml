@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  <!--导出抓包界面-->
+   
+	<Window Type="TransparentDlg" Name="ExportCaptureDlg" Style="WS_POPUP" ><!--WS_EX_TOPMOST|ExStyle="WS_EX_TOOLWINDOW"-->
+		<Property Name="WindowPos" Value="x:0 y:0" />
+		<Property Name="WindowSize" Value="x:490 y:340" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="Image" Value="optbk.png" />
+		<Property Name="WindowCaption" Value="导出" />	
+		<Property Name="MoveStatus" Value="true" />
+		<Event Type="WM_UMSTOOL_FTPCAPTUREPROGRESS" Value="CExpCaptureDlgLogic::OnExportProgress" />
+		
+		<Window Type="CStatic" Name="StcExpCaptureCaption" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:15 y:20" />
+			<Property Name="WindowSize" Value="x:200 y:14" />
+			<Property Name="WindowCaption" Value="导出" />
+			<Property Name="WindowVisible" Value="True" />
+			<Property Name="FontColor" Value="r:200 g:200 b:200" />
+			<Property Name="FontSize" Value="9" />				    		   		    
+		</Window>
+		
+		
+	  <Window Type="CButton" Name="BtnExportCaptureClose" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+		  <Property Name="WindowPos" Value="x:430 y:7" />
+		  <Property Name="WindowSize" Value="x:44 y:28" />
+		  <Property Name="WindowCaption" Value="" />
+		  <Property Name="Tooltip" Value="关闭" />
+		  <Property Name="Image" Value="Common/btnClose" />
+		  <Property Name="WindowVisible" Value="True" />
+		  <Event Type="WM_BUTTON_CLICK" Value="CExpCaptureDlgLogic::OnBtnClose" />
+		  <Scheme Name="SchmTransferBeg">
+			  <Property Name="WindowEnable" Value="False" />          		
+		  </Scheme>	
+		  <Scheme Name="SchmTransferEnd">
+			  <Property Name="WindowEnable" Value="True" />          		
+		  </Scheme>
+      <Scheme Name="SchmTransferError">
+        <Property Name="WindowEnable" Value="True" />
+      </Scheme>			      
+	  </Window>	 
+		
+    <Window Type="CStatic" Name="StcFilePathInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:24 y:79" />
+		  <Property Name="WindowSize" Value="x:100 y:14" />
+		  <Property Name="WindowCaption" Value="文件目录：" />
+		  <Property Name="WindowVisible" Value="True" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+    </Window>
+    
+    <Window Type="CEdit" Name="EdtFilePathInfo" Style="WS_CHILD|WS_TABSTOP|ES_AUTOHSCROLL">
+		  <Property Name="WindowPos" Value="x:95 y:70" />
+		  <Property Name="WindowSize" Value="x:285 y:32" />
+		  <Property Name="WindowCaption" Value="" />
+		  <Property Name="Image" Value="Edit" />
+		  <Property Name="WindowVisible" Value="True" />
+		  <Property Name="WindowEnable" Value="False" />
+		  <Property Name="FontSize" Value="9" />
+    </Window>
+    
+    <Window Type="CButton" Name="BtnScan" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+	    <Property Name="WindowPos" Value="x:395 y:70" />
+	    <Property Name="WindowSize" Value="x:74 y:32" />
+	    <Property Name="WindowCaption" Value="" />
+	    <Property Name="Tooltip" Value="浏览" />
+	    <Property Name="Image" Value="BtnScan" />
+	    <Property Name="WindowVisible" Value="True" />
+	    <Event Type="WM_BUTTON_CLICK" Value="CExpCaptureDlgLogic::OnBtnScan" />
+	    <Property Name="WindowEnable" Value="True" />	
+	  </Window>
+    	
+    <Window Type="CStatic" Name="StcExportProgress" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:24 y:119" />
+		  <Property Name="WindowSize" Value="x:100 y:14" />
+		  <Property Name="WindowCaption" Value="导出进度：" />
+		  <Property Name="WindowVisible" Value="True" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+    </Window>
+    
+    <Window Type="CTransparentProgress" Name="ProgressExport" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:100 y:122" />
+		  <Property Name="WindowSize" Value="x:275 y:9" />	
+		  <Property Name="WindowVisible" Value="true" />
+		  <Property Name="Image" Value="Progress" />
+		    <Scheme Name="SchmExpCaptureClean">
+          <Property Name="ProgressPos" Value="0" />				    	
+		    </Scheme>							
+		    <Scheme Name="SchmTransferBeg">			
+			    <Property Name="ProgressPos" Value="0" />
+		    </Scheme>
+		    <Scheme Name="SchmTransferEnd">
+			    <Property Name="ProgressPos" Value="100" />
+		    </Scheme>		
+		</Window>
+		
+		<Window Type="CButton" Name="BtnExport" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+	    <Property Name="WindowPos" Value="x:395 y:109" />
+	    <Property Name="WindowSize" Value="x:74 y:32" />
+	    <Property Name="WindowCaption" Value="" />
+	    <Property Name="Tooltip" Value="导出" />
+	    <Property Name="Image" Value="BtnExport" />
+	    <Property Name="WindowVisible" Value="True" />
+	    <Event Type="WM_BUTTON_CLICK" Value="CExpCaptureDlgLogic::OnBtnExport" />
+	    <Property Name="WindowEnable" Value="True" />	
+	    <Scheme Name="SchmExpCaptureClean">
+				<Property Name="WindowEnable" Value="True" />    		    	
+			</Scheme>		 	            
+			<Scheme Name="SchmTransferBeg">
+				<Property Name="WindowEnable" Value="False" />    
+		  </Scheme>		
+			<Scheme Name="SchmTransferEnd">
+				<Property Name="WindowEnable" Value="True" />    	
+			</Scheme>
+      <Scheme Name="SchmTransferError">
+        <Property Name="WindowEnable" Value="True" />
+      </Scheme>
+	  </Window>
+	  
+	  <Window Type="CTransparentCheckButton" Name="BtnCheck" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX|WS_GROUP">
+	  	<Property Name="WindowPos" Value="x:24 y:300" />
+	    <Property Name="WindowSize" Value="x:20 y:20" />
+	    <Property Name="WindowCaption" Value="" />
+	    <Property Name="WindowVisible" Value="True" />
+		  <Property Name="WindowEnable" Value="true" />
+		  <Property Name="Image" Value="Checkbtn" />
+		  <Event Type="WM_BUTTON_CLICK" Value="CExpCaptureDlgLogic::OnCheckBtnClick" />
+	  </Window>	
+	  
+	  <Window Type="CStatic" Name="StcBackLight" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:48 y:303" />
+		  <Property Name="WindowSize" Value="x:200 y:14" />
+		  <Property Name="WindowCaption" Value="导出结束后删除抓包文件" />
+		  <Property Name="WindowVisible" Value="true" />
+		  <Property Name="FontColor" Value="r:200 g:200 b:200" />
+		  <Property Name="FontSize" Value="9" />
+		</Window>
+    
+		<CallBackFunc Type="CallBackFunc" Value="CExpCaptureDlgLogic::InitWnd" />
+	</Window>
+</UILayout>

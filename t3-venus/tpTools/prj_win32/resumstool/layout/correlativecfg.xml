@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<UILayout>
+    <!--相关配置界面  Style="WS_CHILD"-->
+    <Window Type="TransparentDlg" Name="CorrelativeCfgDlg" Style="WS_CHILD">
+        <Property Name="WindowPos" Value="x:0 y:74" />
+        <Property Name="WindowSize" Value="x:864 y:491" />
+        <Property Name="Image" Value="" />
+	  	  
+	  	  <!--左侧功能栏界面-->
+		    <Window Type="TransparentDlg" Name="CfgMenuDlg" Style="WS_CHILD" >
+				  <Property Name="WindowPos" Value="x:6 y:0" /> 
+					<Property Name="WindowSize" Value="x:122 y:501" />
+					<Property Name="WindowVisible" Value="true" />
+					<Property Name="Image" Value="configpageleftbg.png" />
+					<Property Name="WindowCaption" Value="UmstoolCfgMenuDlg" /> 
+				 
+					<!--左侧功能列表-->
+					<Window Type="TransparentList" Name="LstCfgFuncMenu" Style="WS_CHILD|WS_CLIPSIBLINGS">
+						<Property Name="WindowPos" Value="x:1 y:16" />
+						<Property Name="WindowSize" Value="x:122 y:418" />
+						<Property Name="WindowCaption" Value="配置列表" />
+						<Property Name="ListImage" Value="" />
+						<Property Name="WindowVisible" Value="true" />
+						<Property Name="Drag" Value="false" />
+			      <Property Name="TransparentListOffset" Value="0" />
+			      <Property Name="TransparentListSelItem" Value="0" /> 
+			      <Property Name="TransparentListOver" Value="true" />  
+			      <Scheme Name="SchmConfMenuListDefault">
+          		<Property Name="TransparentListSelItem" Value="0" /> 
+      			</Scheme>
+				  </Window> 
+	      </Window>  
+	  	  
+        <CallBackFunc Type="CallBackFunc" Value="CCorrelativeCfgLogic::InitWnd" />
+        <Property Name="WindowVisible" Value="True" />
+    </Window>
+</UILayout>

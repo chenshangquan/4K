@@ -1,0 +1,23 @@
+// IScript.cpp: implementation of the IScript class.
+//
+//////////////////////////////////////////////////////////////////////
+#include "stdafx.h"
+#include "System.h"
+#include "IScript.h"
+//////////////////////////////////////////////////////////////////////
+// Construction/Destruction
+//////////////////////////////////////////////////////////////////////
+namespace AutoUIFactory
+{
+template<> IScript* Singleton<IScript>::ms_pSingleton  = 0;
+
+IScript::IScript()
+{
+
+}
+
+IScript::~IScript()
+{
+
+}
+} // namespace AutoUIFactory end

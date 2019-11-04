@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<UILayout>
+    <!--1+1备份配置界面  Style="WS_CHILD"-->
+    <Window Type="TransparentDlg" Name="BackupCfgDlg" Style="WS_CHILD" ExStyle="">
+        <Property Name="WindowPos" Value="x:128 y:0" />
+        <Property Name="WindowSize" Value="x:736 y:541" />
+        <Property Name="Image" Value="" />
+        
+        <!--1+1备份配置标题界面-->
+	      <Window Type="TransparentDlg" Name="BackupCfgTipDlg" Style="WS_CHILD" >
+				  <Property Name="WindowPos" Value="x:0 y:0" /> 
+					<Property Name="WindowSize" Value="x:728 y:108" />
+					<Property Name="WindowVisible" Value="true" />
+					<Property Name="MoveStatus" Value="false" />
+					<Property Name="BkStretch" Value="true" />					
+					<Property Name="Image" Value="BackupCfg/tipBackground.png" />
+					<Property Name="WindowCaption" Value="BackupCfgTipDlg" />
+					
+              <Window Type="CStatic" Name="StcBackup" Style="WS_CHILD|WS_CLIPSIBLINGS">
+                  <Property Name="WindowPos" Value="x:38 y:45" />
+									<Property Name="WindowSize" Value="x:100 y:14" />
+									<Property Name="WindowCaption" Value="1+1备份" />
+									<Property Name="WindowVisible" Value="True" />
+									<Property Name="FontColor" Value="r:53 g:70 b:70" />
+									<Property Name="FontSize" Value="9" />
+									<Property Name="FontStyle" Value="1" />   
+							</Window>
+							
+							<Window Type="CTransparentSwitchButton" Name="BtnBackupSwitch" Style="WS_CHILD|WS_CLIPSIBLINGS">
+                  <Property Name="WindowPos" Value="x:535 y:30" />
+                  <Property Name="WindowSize" Value="x:107 y:42" />
+                  <Property Name="Image" Value="UmsCfg\SwitchButton" />
+                  <Property Name="WindowEnable" Value="true" />
+                  <Property Name="WindowVisible" Value="True" />
+                  <Property Name="SwitchState" Value="true" />
+                  <Event Type="WM_BUTTON_CLICK" Value="CBackupCfgLogic::OnBtnSwitchBackupClick" />
+                  <Scheme Name="SchmDef">
+                      <Property Name="SwitchState" Value="false" />
+                  </Scheme>
+      <!--            <Scheme Name="SchmNormal">
+                      <Property Name="WindowEnable" Value="false" />
+                  </Scheme>
+                  <Scheme Name="SchmEdit">
+                      <Property Name="WindowEnable" Value="true" />
+                  </Scheme>    -->
+             </Window>
+						        				 
+	      </Window>  	
+	          
+        <Window Type="CTransparentCheckButton" Name="RadioAsHost" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+          <Property Name="WindowPos" Value="x:38 y:152" />
+          <Property Name="WindowSize" Value="x:20 y:20" />
+          <Property Name="WindowCaption" Value="" />
+          <Property Name="WindowVisible" Value="true" />
+          <Property Name="WindowEnable" Value="true" />   
+          <Property Name="Image" Value="BackupCfg\radiobutton" />
+          <Event Type="WM_BUTTON_CLICK" Value="CBackupCfgLogic::OnBtnRadioIsAsHost" />         
+        </Window>  
+        
+        <Window Type="CTransparentCheckButton" Name="RadioAsBackup" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+          <Property Name="WindowPos" Value="x:221 y:152" />
+          <Property Name="WindowSize" Value="x:20 y:20" />
+          <Property Name="WindowCaption" Value="" />
+          <Property Name="WindowVisible" Value="true" />
+          <Property Name="WindowEnable" Value="true" />
+          <Property Name="Image" Value="BackupCfg\radiobutton" />
+          <Event Type="WM_BUTTON_CLICK" Value="CBackupCfgLogic::OnBtnRadioIsAsBackup" />         
+        </Window>    
+	      
+	      <Window Type="CStatic" Name="StcAsHost" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:77 y:155" />
+            <Property Name="WindowSize" Value="x:100 y:14" />
+						<Property Name="WindowCaption" Value="做为主用机" />
+						<Property Name="WindowVisible" Value="True" />
+						<Property Name="FontColor" Value="r:15 g:79 b:81" />
+						<Property Name="FontSize" Value="9" /> 
+				</Window>
+				
+			  <Window Type="CStatic" Name="StcAsBackup" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:260 y:155" />
+            <Property Name="WindowSize" Value="x:100 y:14" />
+						<Property Name="WindowCaption" Value="做为备用机" />
+						<Property Name="WindowVisible" Value="True" />
+						<Property Name="FontColor" Value="r:15 g:79 b:81" />
+						<Property Name="FontSize" Value="9" />
+				</Window>
+				
+        <!--做为主用机对话框-->
+	      <Window Type="TransparentDlg" Name="AsHostDlg" Style="WS_CHILD" >
+				  <Property Name="WindowPos" Value="x:77 y:203" /> 
+					<Property Name="WindowSize" Value="x:565 y:42" />
+					<Property Name="WindowVisible" Value="true" />
+					<Property Name="MoveStatus" Value="false" />
+					<Property Name="BkStretch" Value="true" />					
+					<Property Name="Image" Value="" />
+					<Property Name="WindowCaption" Value="AsHostDlg" />
+					
+              <Window Type="CStatic" Name="StcBackupIp" Style="WS_CHILD|WS_CLIPSIBLINGS">
+                  <Property Name="WindowPos" Value="x:0 y:16" />
+									<Property Name="WindowSize" Value="x:140 y:14" />
+									<Property Name="WindowCaption" Value="备用机IP地址：" />
+									<Property Name="WindowVisible" Value="True" />
+									<Property Name="FontColor" Value="r:15 g:79 b:81" />
+									<Property Name="FontSize" Value="9" />
+							</Window>
+							
+              <Window Type="CTransparentIpEdit" Name="IPBackupIP" Style="WS_CHILD|WS_TABSTOP">
+                  <Property Name="WindowPos" Value="x:140 y:0" />
+                  <Property Name="WindowSize" Value="x:425 y:42" />
+                  <Property Name="WindowCaption" Value="" />
+                  <Property Name="Image" Value="UmsCfg/Edit" />
+                  <Property Name="WindowVisible" Value="true" />
+                  <Property Name="FontColor" Value="r:59 g:59 b:59" />
+                  <Property Name="FontSize" Value="9" />
+                  <Event Type="WM_EDIT_CHANGED" Value="CBackupCfgLogic::OnChangedIPCtrlBackupIP" />
+              </Window>
+	        				 
+	      </Window>  
+				
+        <!--做为备用机对话框-->
+	      <Window Type="TransparentDlg" Name="AsBackupDlg" Style="WS_CHILD" >
+				  <Property Name="WindowPos" Value="x:34 y:191" /> 
+					<Property Name="WindowSize" Value="x:646 y:189" />
+					<Property Name="WindowVisible" Value="true" />
+					<Property Name="MoveStatus" Value="false" />
+					<Property Name="BkStretch" Value="true" />					
+					<Property Name="Image" Value="BackupCfg/AsBackupBackground.png" />
+					<Property Name="WindowCaption" Value="AsBackupDlg" />
+					
+              <Window Type="CStatic" Name="StcTipTime" Style="WS_CHILD|WS_CLIPSIBLINGS">
+                  <Property Name="WindowPos" Value="x:43 y:27" />
+									<Property Name="WindowSize" Value="x:180 y:14" />
+									<Property Name="WindowCaption" Value="断链检测间隔时间（秒）：" />
+									<Property Name="WindowVisible" Value="True" />
+									<Property Name="FontColor" Value="r:15 g:79 b:81" />
+									<Property Name="FontSize" Value="9" />
+							</Window>
+							
+              <Window Type="CStatic" Name="StcTipCount" Style="WS_CHILD|WS_CLIPSIBLINGS">
+                  <Property Name="WindowPos" Value="x:43 y:78" />
+									<Property Name="WindowSize" Value="x:180 y:14" />
+									<Property Name="WindowCaption" Value="断链检测次数：" />
+									<Property Name="WindowVisible" Value="True" />
+									<Property Name="FontColor" Value="r:15 g:79 b:81" />
+									<Property Name="FontSize" Value="9" />
+							</Window>
+							
+              <Window Type="CStatic" Name="StcTipDataBack" Style="WS_CHILD|WS_CLIPSIBLINGS">
+                  <Property Name="WindowPos" Value="x:43 y:129" />
+									<Property Name="WindowSize" Value="x:180 y:14" />
+									<Property Name="WindowCaption" Value="支持自动数据回滚：" />
+									<Property Name="WindowVisible" Value="True" />
+									<Property Name="FontColor" Value="r:15 g:79 b:81" />
+									<Property Name="FontSize" Value="9" />
+							</Window>
+							
+              <Window Type="CTransparentCheckButton" Name="RadioTime1" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+                <Property Name="WindowPos" Value="x:242 y:23" />
+                <Property Name="WindowSize" Value="x:20 y:20" />
+                <Property Name="WindowCaption" Value="" />
+                <Property Name="WindowVisible" Value="true" />
+                <Property Name="WindowEnable" Value="true" />
+                <Property Name="Image" Value="BackupCfg\radiobutton" />
+                <Event Type="WM_BUTTON_CLICK" Value="CBackupCfgLogic::OnBtnRadioTime" />         
+              </Window>    
+              
+              <Window Type="CTransparentCheckButton" Name="RadioTime2" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+                <Property Name="WindowPos" Value="x:382 y:23" />
+                <Property Name="WindowSize" Value="x:20 y:20" />
+                <Property Name="WindowCaption" Value="" />
+                <Property Name="WindowVisible" Value="true" />
+                <Property Name="WindowEnable" Value="true" />
+                <Property Name="Image" Value="BackupCfg\radiobutton" />
+                <Event Type="WM_BUTTON_CLICK" Value="CBackupCfgLogic::OnBtnRadioTime" />         
+              </Window>             
+              
+              <Window Type="CTransparentCheckButton" Name="RadioTime3" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+                <Property Name="WindowPos" Value="x:522 y:23" />
+                <Property Name="WindowSize" Value="x:20 y:20" />
+                <Property Name="WindowCaption" Value="" />
+                <Property Name="WindowVisible" Value="true" />
+                <Property Name="WindowEnable" Value="true" />
+                <Property Name="Image" Value="BackupCfg\radiobutton" />
+                <Event Type="WM_BUTTON_CLICK" Value="CBackupCfgLogic::OnBtnRadioTime" />         
+              </Window>    
+             
+              <Window Type="CStatic" Name="StcTime1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+                  <Property Name="WindowPos" Value="x:272 y:27" />
+									<Property Name="WindowSize" Value="x:180 y:14" />
+									<Property Name="WindowCaption" Value="1" />
+									<Property Name="WindowVisible" Value="True" />
+									<Property Name="FontColor" Value="r:15 g:79 b:81" />
+									<Property Name="FontSize" Value="9" />
+							</Window>
+							
+              <Window Type="CStatic" Name="StcTime2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+                  <Property Name="WindowPos" Value="x:412 y:27" />
+									<Property Name="WindowSize" Value="x:180 y:14" />
+									<Property Name="WindowCaption" Value="2" />
+									<Property Name="WindowVisible" Value="True" />
+									<Property Name="FontColor" Value="r:15 g:79 b:81" />
+									<Property Name="FontSize" Value="9" />
+							</Window>
+							
+              <Window Type="CStatic" Name="StcTime3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+                  <Property Name="WindowPos" Value="x:552 y:27" />
+									<Property Name="WindowSize" Value="x:180 y:14" />
+									<Property Name="WindowCaption" Value="3" />
+									<Property Name="WindowVisible" Value="True" />
+									<Property Name="FontColor" Value="r:15 g:79 b:81" />
+									<Property Name="FontSize" Value="9" />
+							</Window>
+
+              <Window Type="CTransparentCheckButton" Name="RadioCount1" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+                <Property Name="WindowPos" Value="x:242 y:73" />
+                <Property Name="WindowSize" Value="x:20 y:20" />
+                <Property Name="WindowCaption" Value="" />
+                <Property Name="WindowVisible" Value="true" />
+                <Property Name="WindowEnable" Value="true" />
+                <Property Name="Image" Value="BackupCfg\radiobutton" />
+                <Event Type="WM_BUTTON_CLICK" Value="CBackupCfgLogic::OnBtnRadioCount" />         
+              </Window>    
+              
+              <Window Type="CTransparentCheckButton" Name="RadioCount2" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+                <Property Name="WindowPos" Value="x:382 y:73" />
+                <Property Name="WindowSize" Value="x:20 y:20" />
+                <Property Name="WindowCaption" Value="" />
+                <Property Name="WindowVisible" Value="true" />
+                <Property Name="WindowEnable" Value="true" />
+                <Property Name="Image" Value="BackupCfg\radiobutton" />
+                <Event Type="WM_BUTTON_CLICK" Value="CBackupCfgLogic::OnBtnRadioCount" />         
+              </Window>    
+
+              <Window Type="CTransparentCheckButton" Name="RadioCount3" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+                <Property Name="WindowPos" Value="x:522 y:73" />
+                <Property Name="WindowSize" Value="x:20 y:20" />
+                <Property Name="WindowCaption" Value="" />
+                <Property Name="WindowVisible" Value="true" />
+                <Property Name="WindowEnable" Value="true" />
+                <Property Name="Image" Value="BackupCfg\radiobutton" />
+                <Event Type="WM_BUTTON_CLICK" Value="CBackupCfgLogic::OnBtnRadioCount" />         
+              </Window>               
+							
+              <Window Type="CStatic" Name="StcCount1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+                  <Property Name="WindowPos" Value="x:272 y:77" />
+									<Property Name="WindowSize" Value="x:180 y:14" />
+									<Property Name="WindowCaption" Value="1" />
+									<Property Name="WindowVisible" Value="True" />
+									<Property Name="FontColor" Value="r:15 g:79 b:81" />
+									<Property Name="FontSize" Value="9" />
+							</Window>
+							
+              <Window Type="CStatic" Name="StcCount2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+                  <Property Name="WindowPos" Value="x:412 y:77" />
+									<Property Name="WindowSize" Value="x:180 y:14" />
+									<Property Name="WindowCaption" Value="2" />
+									<Property Name="WindowVisible" Value="True" />
+									<Property Name="FontColor" Value="r:15 g:79 b:81" />
+									<Property Name="FontSize" Value="9" />
+							</Window>
+							
+              <Window Type="CStatic" Name="StcCount3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+                  <Property Name="WindowPos" Value="x:552 y:77" />
+									<Property Name="WindowSize" Value="x:180 y:14" />
+									<Property Name="WindowCaption" Value="3" />
+									<Property Name="WindowVisible" Value="True" />
+									<Property Name="FontColor" Value="r:15 g:79 b:81" />
+									<Property Name="FontSize" Value="9" />
+							</Window>
+							
+							<Window Type="CTransparentSwitchButton" Name="BtnDataBackSwitch" Style="WS_CHILD|WS_CLIPSIBLINGS">
+                  <Property Name="WindowPos" Value="x:501 y:112" />
+                  <Property Name="WindowSize" Value="x:107 y:42" />
+                  <Property Name="Image" Value="UmsCfg\SwitchButton" />
+                  <Property Name="WindowEnable" Value="true" />
+                  <Property Name="WindowVisible" Value="True" />
+                  <Property Name="SwitchState" Value="true" />
+                  <Event Type="WM_BUTTON_CLICK" Value="CBackupCfgLogic::BtnDataBackSwitch" />
+                  <Scheme Name="SchmDef">
+                      <Property Name="SwitchState" Value="false" />
+                  </Scheme>
+         <!--         <Scheme Name="SchmNormal">
+                      <Property Name="WindowEnable" Value="false" />
+                  </Scheme>
+                  <Scheme Name="SchmEdit">
+                      <Property Name="WindowEnable" Value="true" />
+                  </Scheme>          -->
+             </Window>  
+						        				 
+	      </Window>  	
+	      
+	      <Window Type="CButton" Name="BtnSave" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:492 y:452" />
+            <Property Name="WindowSize" Value="x:86 y:38" />
+            <Property Name="WindowCaption" Value="保存配置" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="Image" Value="UmsCfg\BtnSave" />
+            <Event Type="WM_BUTTON_CLICK" Value="CBackupCfgLogic::OnBtnSaveClick" />
+            <Scheme Name="SchmEnable">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>
+            <Scheme Name="SchmAble">
+                <Property Name="WindowEnable" Value="true" />
+            </Scheme>
+        </Window>
+        
+        <Window Type="CButton" Name="BtnReduction" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:592 y:452" />
+            <Property Name="WindowSize" Value="x:86 y:38" />
+            <Property Name="WindowCaption" Value="还原配置" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="Image" Value="UmsCfg\BtnReduction" />
+            <Event Type="WM_BUTTON_CLICK" Value="CBackupCfgLogic::OnBtnReductionClick" />
+            <Scheme Name="SchmEnable">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>
+            <Scheme Name="SchmAble">
+                <Property Name="WindowEnable" Value="true" />
+            </Scheme>
+        </Window>
+        
+        <CallBackFunc Type="CallBackFunc" Value="CBackupCfgLogic::InitWnd" />
+        <Property Name="WindowVisible" Value="True" />
+    </Window>
+</UILayout>

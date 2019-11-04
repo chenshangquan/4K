@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  <!--音视频设置界面-->
+   
+	<Window Type="TransparentDlg" Name="CfgDemonStrationDlg" Style="WS_CHILD" ExStyle="">
+		<Property Name="WindowPos" Value="x:122 y:0" />
+		<Property Name="WindowSize" Value="x:728 y:501" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="Image" Value="" />
+    <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="WindowCaption" Value="演示源设置界面" />
+    
+    <Window Type="TransStatic" Name="StcConference" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:31" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="演示视频源列表" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontStyle" Value="1" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+    
+    <Window Type="TransStatic" Name="StcLine1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:173 y:37" />
+      <Property Name="WindowSize" Value="x:548 y:1" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="line.png" />
+    </Window>
+
+    <!--视频源列表-->
+    <Window Type="TransparentDlg" Name="DemonStrationDlg" Style="WS_CHILD" >
+      <Property Name="WindowPos" Value="x:38 y:54" />
+      <Property Name="WindowSize" Value="x:653 y:251" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="Image" Value="itemToDemoSource.png" />
+      <Property Name="WindowCaption" Value="DemoSourceDlg" />
+
+      <Window Type="TransStatic" Name="DemonStration" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:3 y:17" />
+        <Property Name="WindowSize" Value="x:161 y:14" />
+        <Property Name="WindowCaption" Value="演示视频源" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="1" />
+      </Window>
+      <Window Type="TransStatic" Name="StcDisplaySource" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:164 y:17" />
+        <Property Name="WindowSize" Value="x:331 y:14" />
+        <Property Name="WindowCaption" Value="显示视频源名称" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="1" />
+      </Window>
+      <Window Type="TransStatic" Name="StcStatus" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:495 y:17" />
+        <Property Name="WindowSize" Value="x:156 y:14" />
+        <Property Name="WindowCaption" Value="状态" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="1" />
+      </Window>
+
+      <Window Type="TransList" Name="DemoSourceList" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:0 y:41" />
+        <Property Name="WindowSize" Value="x:652 y:204" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="ListImage" Value="" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="Drag" Value="false" />
+        <Property Name="TransparentListOffset" Value="0" />
+        <Property Name="TransparentListSelItem" Value="-1" />
+        <!--<Property Name="SelColor" Value="r:255 g:255 b:255" />-->
+        <Event Type="WM_LST_UN_SELECT_ITEM" Value="CCfgDemonStrationDlg::OnClickDisplayLstBlack" />
+        <Scheme Name="SchVideoSourceListDefault">
+          <Property Name="TransparentListSelItem" Value="-1" />
+        </Scheme>
+      </Window>
+    </Window>
+    
+    <!--line 1-->
+    <Window Type="TransStatic" Name="StcIdle1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:336" />
+      <Property Name="WindowSize" Value="x:120 y:14" />
+      <Property Name="WindowCaption" Value="空闲时演示显示 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+      <Scheme Name="SchModelNonT300E_4K">
+        <Property Name="WindowVisible" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelT300E_4K">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransSwitchButton" Name="BtnIdleSwitch" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:136 y:326" />
+      <Property Name="WindowSize" Value="x:107 y:32" />
+      <Property Name="Image" Value="AudioSwitch" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="SwitchState" Value="false" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgDemonStrationDlg::OnBtnIdleSwitch" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelNonT300E_4K">
+        <Property Name="WindowVisible" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelT300E_4K">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransCheckButton" Name="CheckBtnOfLeft1" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX|WS_GROUP">
+      <Property Name="WindowPos" Value="x:278 y:333" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="checkbutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgDemonStrationDlg::OnSelLeft1" />
+      <Scheme Name="NoDemonstration1">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="Demonstration1">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelNonT300E_4K">
+        <Property Name="WindowVisible" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelT300E_4K">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcOfLeftScreen1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:312 y:336" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="左屏幕" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+      <Scheme Name="SchModelNonT300E_4K">
+        <Property Name="WindowVisible" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelT300E_4K">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+    </Window>
+    
+    <Window Type="TransCheckButton" Name="CheckBtnOfMid1" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX|WS_GROUP">
+      <Property Name="WindowPos" Value="x:386 y:333" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="checkbutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgDemonStrationDlg::OnSelMid1" />
+      <Scheme Name="NoDemonstration1">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="Demonstration1">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelNonT300E_4K">
+        <Property Name="WindowVisible" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelT300E_4K">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcOfMidScreen1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:420 y:336" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="中间屏幕" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+      <Scheme Name="SchModelNonT300E_4K">
+        <Property Name="WindowVisible" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelT300E_4K">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+    </Window>
+    
+    <Window Type="TransCheckButton" Name="CheckBtnOfRight1" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX|WS_GROUP">
+      <Property Name="WindowPos" Value="x:494 y:333" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="checkbutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgDemonStrationDlg::OnSelRight1" />
+      <Scheme Name="NoDemonstration1">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="Demonstration1">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelNonT300E_4K">
+        <Property Name="WindowVisible" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelT300E_4K">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcOfRightScreen1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:528 y:336" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="右屏幕" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+      <Scheme Name="SchModelNonT300E_4K">
+        <Property Name="WindowVisible" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelT300E_4K">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+    </Window>
+
+    <!--line 2-->
+    <Window Type="TransStatic" Name="StcConfDisplay" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:380" />
+      <Property Name="WindowSize" Value="x:120 y:14" />
+      <Property Name="WindowCaption" Value="会议时演示显示 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+      <Scheme Name="SchModelNonT300E_4K">
+        <Property Name="WindowVisible" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelT300E_4K">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransSwitchButton" Name="BtnConfSwitch" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:136 y:370" />
+      <Property Name="WindowSize" Value="x:107 y:32" />
+      <Property Name="Image" Value="AudioSwitch" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="SwitchState" Value="false" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgDemonStrationDlg::OnBtnConfSwitch" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelNonT300E_4K">
+        <Property Name="WindowVisible" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelT300E_4K">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransCheckButton" Name="CheckBtnOfLeft2" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX|WS_GROUP">
+      <Property Name="WindowPos" Value="x:278 y:377" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="checkbutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgDemonStrationDlg::OnSelLeft2" />
+      <Scheme Name="NoDemonstration2">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="Demonstration2">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelNonT300E_4K">
+        <Property Name="WindowVisible" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelT300E_4K">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcOfLeftScreen2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:312 y:380" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="左屏幕" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+      <Scheme Name="SchModelNonT300E_4K">
+        <Property Name="WindowVisible" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelT300E_4K">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransCheckButton" Name="CheckBtnOfMid2" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX|WS_GROUP">
+      <Property Name="WindowPos" Value="x:386 y:377" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="checkbutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgDemonStrationDlg::OnSelMid2" />
+      <Scheme Name="NoDemonstration2">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="Demonstration2">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelNonT300E_4K">
+        <Property Name="WindowVisible" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelT300E_4K">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcOfMidScreen2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:420 y:380" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="中间屏幕" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+      <Scheme Name="SchModelNonT300E_4K">
+        <Property Name="WindowVisible" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelT300E_4K">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransCheckButton" Name="CheckBtnOfRight2" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX|WS_GROUP">
+      <Property Name="WindowPos" Value="x:494 y:377" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="checkbutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgDemonStrationDlg::OnSelRight2" />
+      <Scheme Name="NoDemonstration2">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="Demonstration2">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelNonT300E_4K">
+        <Property Name="WindowVisible" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelT300E_4K">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcOfRightScreen2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:528 y:380" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="右屏幕" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+      <Scheme Name="SchModelNonT300E_4K">
+        <Property Name="WindowVisible" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelT300E_4K">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+    </Window>
+    
+    <!--line 3-->
+    <Window Type="TransButton" Name="BtnDefault" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:391 y:452" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Tooltip" Value="" />
+      <Property Name="Image" Value="btnDefault" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgDemonStrationDlg::OnBtnDefault" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelNonT300E_4K">
+        <Property Name="WindowVisible" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelT300E_4K">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransButton" Name="SetDefaultBtn" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:491 y:452" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Tooltip" Value="" />
+      <Property Name="Image" Value="btnSetDefault" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgDemonStrationDlg::OnBtnSetDefault" />
+    </Window>
+
+    <Window Type="TransButton" Name="RenameBtn" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:591 y:452" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Tooltip" Value="" />
+      <Property Name="Image" Value="itemToRenameBtn" />
+      <Property Name="WindowEnable" Value="false" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgDemonStrationDlg::OnBtnOptRenameDlg" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+    
+		<CallBackFunc Type="CallBackFunc" Value="CCfgDemonStrationDlg::InitWnd" />
+	</Window>
+</UILayout>

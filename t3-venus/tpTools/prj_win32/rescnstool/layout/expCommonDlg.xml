@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  <!--下载（导出）通用弹出界面  如：导出配置、下载日志界面  界面基本相同通过方案区分(移植umstool适用于cnstool)-->
+   
+	<Window Type="TransparentDlg" Name="ExpCommonDlg" Style="WS_POPUP" ><!--WS_EX_TOPMOST|ExStyle="WS_EX_TOOLWINDOW"-->
+		<Property Name="WindowPos" Value="x:0 y:0" />
+		<Property Name="WindowSize" Value="x:490 y:340" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="Image" Value="optbk.png" />
+		<Property Name="WindowCaption" Value="下载（导出）通用弹出界面" />	
+    <Property Name="MoveStatus" Value="false" />
+    <Event Type="WM_CNSTOOL_FTPLOGPROGRESS" Value="CExpCommonDlgLogic::OnDownloadProgress" />
+        		
+		    <Window Type="TransStatic" Name="StcExpCommonCap" Style="WS_CHILD|WS_CLIPSIBLINGS">
+				    <Property Name="WindowPos" Value="x:24 y:20" />
+				    <Property Name="WindowSize" Value="x:200 y:14" />
+				    <Property Name="WindowCaption" Value="下载通用弹出界面" />
+				    <Property Name="WindowVisible" Value="True" />
+				    <Property Name="FontColor" Value="r:200 g:200 b:200" />
+				    <Property Name="FontSize" Value="9" />
+					  <Scheme Name="SchLogDownload">			 
+							<Property Name="WindowCaption" Value="下载日志" />  	   
+				   	</Scheme>	  		
+				    <Scheme Name="SchExportConfig">			    	
+							<Property Name="WindowCaption" Value="导出配置" />  	  
+				    </Scheme>	
+				    <Scheme Name="SchExportCameraCfg">			    	
+							<Property Name="WindowCaption" Value="导出摄像机配置" />  	  
+				    </Scheme>					    		   		    
+		    </Window>
+		  
+			  <Window Type="TransButton" Name="BtnExpCommonDlgClose" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+		      <Property Name="WindowPos" Value="x:430 y:5" />
+		      <Property Name="WindowSize" Value="x:44 y:28" />
+		      <Property Name="WindowCaption" Value="" />
+		      <Property Name="Tooltip" Value="关闭" />
+		      <Property Name="Image" Value="Common/btnClose" />
+		      <Property Name="WindowVisible" Value="True" />
+		      <Event Type="WM_BUTTON_CLICK" Value="CExpCommonDlgLogic::OnBtnClose" />  
+			    <Scheme Name="SchmTransferBeg">
+					 	<Property Name="WindowEnable" Value="False" />          		
+			    </Scheme>	
+			    <Scheme Name="SchmTransferEnd">
+					 	<Property Name="WindowEnable" Value="True" />          		
+			    </Scheme>		
+			    <Scheme Name="SchmTransferBreak">
+					 	<Property Name="WindowEnable" Value="True" />          		
+			    </Scheme>		        
+			  </Window>	       
+        
+        <Window Type="TransStatic" Name="StcExpCommonSaveFolder" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:24 y:79" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="储存目录：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>           
+        
+         <Window Type="TransEdit" Name="EdtExpCommonSaveFolder" Style="WS_CHILD|WS_CLIPSIBLINGS|ES_AUTOHSCROLL|WS_TABSTOP">
+		        <Property Name="WindowPos" Value="x:90 y:70" />
+		        <Property Name="WindowSize" Value="x:220 y:32" />
+		        <Property Name="WindowCaption" Value="" />
+		        <Property Name="Image" Value="Edit" />
+		        <Property Name="WindowVisible" Value="True" />
+		        <Property Name="WindowEnable" Value="False" />
+		        <Property Name="LimitLength" Value="260" />
+		        <Property Name="FontSize" Value="9" />
+ 					  <Event Type="WM_EDIT_CHANGED" Value="CExpCommonDlgLogic::OnFolderEditChange" />    		        
+				    <Scheme Name="SchmExpCommonClean">
+          		<Property Name="WindowCaption" Value="" />       		
+				    </Scheme>			           				    			        
+        </Window>        
+        
+			  <Window Type="TransButton" Name="BtnExpCommonFolderScan" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			      <Property Name="WindowPos" Value="x:315 y:70" />
+			      <Property Name="WindowSize" Value="x:74 y:32" />
+			      <Property Name="WindowCaption" Value="" />
+			      <Property Name="Tooltip" Value="浏览" />
+			      <Property Name="Image" Value="impexpCommonDlg/btnScan" />
+			      <Property Name="WindowVisible" Value="True" />
+			      <Event Type="WM_BUTTON_CLICK" Value="CExpCommonDlgLogic::OnBtnExportScan" />
+			      <Property Name="WindowEnable" Value="True" />	
+				    <Scheme Name="SchmExpCommonClean">
+						 	<Property Name="WindowEnable" Value="True" />    		    	
+				   	</Scheme>		 	            
+				    <Scheme Name="SchmTransferBeg">
+						 	<Property Name="WindowEnable" Value="False" />    
+				    </Scheme>		
+				    <Scheme Name="SchmTransferEnd">
+						 	<Property Name="WindowEnable" Value="True" />    	
+				    </Scheme>	
+				    <Scheme Name="SchmTransferBreak">
+              <Property Name="WindowEnable" Value="True" />          		
+			      </Scheme>			      		      
+				</Window>		         
+        
+  			<Window Type="TransButton" Name="BtnExpCommonExport" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			      <Property Name="WindowPos" Value="x:394 y:70" />
+			      <Property Name="WindowSize" Value="x:74 y:32" />
+			      <Property Name="WindowCaption" Value="" />
+			      <Property Name="Tooltip" Value="导出" />
+			      <Property Name="Image" Value="impexpCommonDlg/btnExport" />
+			      <Property Name="WindowVisible" Value="True" />
+			      <Property Name="WindowEnable" Value="True" />				      
+				    <Scheme Name="SchLogDownload">
+				  		<Property Name="Image" Value="impexpCommonDlg/btnDownload" />  	
+			      	<Event Type="WM_BUTTON_CLICK" Value="CExpCommonDlgLogic::OnBtnDownloadLogWork" />
+				    </Scheme>			      
+				    <Scheme Name="SchExportConfig">
+				  		<Property Name="Image" Value="impexpCommonDlg/btnExport" />  					    	
+			      	<Event Type="WM_BUTTON_CLICK" Value="CExpCommonDlgLogic::OnBtnExportConfigWork" />
+				    </Scheme>
+				    <Scheme Name="SchExportCameraCfg">
+				  		<Property Name="Image" Value="impexpCommonDlg/btnExport" />  					    	
+			      	<Event Type="WM_BUTTON_CLICK" Value="CExpCommonDlgLogic::OnBtnExportCameraCfg" />
+				    </Scheme>				    				    
+					  <Scheme Name="SchmExpCommonClean">
+						 	<Property Name="WindowEnable" Value="True" />    		    	
+				   	</Scheme>		 	            
+				    <Scheme Name="SchmTransferBeg">
+						 	<Property Name="WindowEnable" Value="False" />    
+				    </Scheme>		
+				    <Scheme Name="SchmTransferEnd">
+						 	<Property Name="WindowEnable" Value="True" />    	
+				    </Scheme>	
+				    <Scheme Name="SchmTransferBreak">
+					 	  <Property Name="WindowEnable" Value="True" />          		
+			      </Scheme>			    		      
+				</Window>		      
+        
+        <Window Type="TransStatic" Name="StcExpCommonExpProgress" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:24 y:119" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="下载进度：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />	            
+        </Window>          
+        
+        <Window Type="TransProgress" Name="ProgressExpCommon" Style="WS_CHILD|WS_CLIPSIBLINGS">
+						<Property Name="WindowPos" Value="x:95 y:121" />
+						<Property Name="WindowSize" Value="x:211 y:9" />	
+						<Property Name="WindowVisible" Value="true" />
+						<Property Name="Image" Value="Progress" />
+            <Property Name="ProgressPos" Value="0" />
+				    <Scheme Name="SchmExpCommonClean">
+          		<Property Name="ProgressPos" Value="0" />				    	
+				   	</Scheme>		 	            
+				    <Scheme Name="SchmTransferBeg">
+          		<Property Name="ProgressPos" Value="0" />
+				    </Scheme>		
+				    <Scheme Name="SchmTransferEnd">
+          		<Property Name="ProgressPos" Value="100" />
+				    </Scheme>						    					
+				</Window>   
+			  
+				<Window Type="TransButton" Name="BtnExpCommonOpenFolder" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			      <Property Name="WindowPos" Value="x:315 y:110" />
+			      <Property Name="WindowSize" Value="x:153 y:32" />
+			      <Property Name="WindowCaption" Value="" />
+			      <Property Name="Tooltip" Value="打开所在文件夹" />
+			      <Property Name="Image" Value="impexpCommonDlg/btnOpenFolder" />
+			      <Property Name="WindowVisible" Value="True" />
+			      <Event Type="WM_BUTTON_CLICK" Value="CExpCommonDlgLogic::OnBtnOpenFolder" />
+			      <Property Name="WindowEnable" Value="True" />										      
+				</Window>		 	         
+	  
+
+		<CallBackFunc Type="CallBackFunc" Value="CExpCommonDlgLogic::InitWnd" />
+	</Window>
+</UILayout>

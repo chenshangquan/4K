@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<UILayout>
+    <!--系统地址簿导入导出界面  Style="WS_CHILD"-->
+    <Window Type="TransparentDlg" Name="AddrbookExpDlg" Style="WS_CHILD" ExStyle="">
+        <Property Name="WindowPos" Value="x:0 y:73" />
+        <Property Name="WindowSize" Value="x:864 y:501" />
+        <Property Name="Image" Value="" />
+        <Event Type="WM_CNSTOOL_FTPADDRBOOKPROGRESS" Value="CAddrbookExpLogic::OnTransAddrbookProgress" />    
+        
+        <Window Type="TransStatic" Name="StcInfoImp" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:45 y:32" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="导入地址簿" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:53 g:70 b:70" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="FontStyle" Value="1" />
+        </Window>    
+	
+        <Window Type="TransStatic" Name="StcLineAddrbookImp" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:139 y:38" />
+            <Property Name="WindowSize" Value="x:650 y:1" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="addrline.png" />
+        </Window>       	
+	
+        <Window Type="TransStatic" Name="StccFileFolder" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:74 y:85" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="文件目录：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>  	
+	
+        <Window Type="TransEdit" Name="EdtImport" Style="WS_CHILD|WS_CLIPSIBLINGS|ES_AUTOHSCROLL|WS_TABSTOP">
+		        <Property Name="WindowPos" Value="x:150 y:72" />
+            <Property Name="WindowSize" Value="x:425 y:42" />
+		        <Property Name="WindowCaption" Value="" />
+		        <Property Name="Image" Value="Edit" />       
+		        <Property Name="WindowVisible" Value="True" />
+		        <Property Name="WindowEnable" Value="False" />
+		        <Property Name="LimitLength" Value="260" />
+		        <Property Name="FontSize" Value="9" />
+ 					  <Event Type="WM_EDIT_CHANGED" Value="CAddrbookExpLogic::OnImpFolderEditChange" />   
+					  <Scheme Name="SchmAddrbookImpClean">
+          		<Property Name="WindowCaption" Value="" />	
+				   	</Scheme>		 					  		        	        
+        </Window>      	
+	
+			  <Window Type="TransButton" Name="BtnImportScan" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			      <Property Name="WindowPos" Value="x:585 y:72" />
+			      <Property Name="WindowSize" Value="x:90 y:42" />
+			      <Property Name="WindowCaption" Value="" />
+			      <Property Name="Tooltip" Value="浏览" />
+			      <Property Name="Image" Value="btnScan" />
+			      <Property Name="WindowVisible" Value="True" />
+			      <Event Type="WM_BUTTON_CLICK" Value="CAddrbookExpLogic::OnBtnImportAddrbookScan" />
+			      <Property Name="WindowEnable" Value="True" />
+					  <Scheme Name="SchmAddrbookImpClean">
+						 	<Property Name="WindowEnable" Value="True" />    		    	
+				   	</Scheme>					      
+						<Scheme Name="SchmTransferBeg">			
+						 	<Property Name="WindowEnable" Value="False" />
+						</Scheme>
+						<Scheme Name="SchmTransferEnd">
+						 	<Property Name="WindowEnable" Value="True" />
+						</Scheme>					      
+				</Window>		         
+        
+  			<Window Type="TransButton" Name="BtnImportAddrbook" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			      <Property Name="WindowPos" Value="x:685 y:72" />
+			      <Property Name="WindowSize" Value="x:90 y:42" />
+			      <Property Name="WindowCaption" Value="" />
+			      <Property Name="Tooltip" Value="导入" />
+			      <Property Name="Image" Value="btnImport" />
+			      <Property Name="WindowVisible" Value="True" />
+			      <Event Type="WM_BUTTON_CLICK" Value="CAddrbookExpLogic::OnBtnImportAddrbook" />
+			      <Property Name="WindowEnable" Value="True" />
+					  <Scheme Name="SchmAddrbookImpClean">
+						 	<Property Name="WindowEnable" Value="True" />    		    	
+				   	</Scheme>					      
+						<Scheme Name="SchmTransferBeg">			
+						 	<Property Name="WindowEnable" Value="False" />
+						</Scheme>
+						<Scheme Name="SchmTransferEnd">
+						 	<Property Name="WindowEnable" Value="True" />
+						</Scheme>					      
+				</Window>		      
+
+        <Window Type="TransStatic" Name="StTransStaticImpProgress" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:74 y:142" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="导入进度：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>       
+
+        <Window Type="TransProgress" Name="ProgressImp" Style="WS_CHILD|WS_CLIPSIBLINGS">
+						<Property Name="WindowPos" Value="x:153 y:145" />
+						<Property Name="WindowSize" Value="x:418 y:9" />	
+						<Property Name="WindowVisible" Value="true" />
+						<Property Name="Image" Value="Progress" />
+				    <Scheme Name="SchmAddrbookImpClean">
+          		<Property Name="ProgressPos" Value="0" />				    	
+				   	</Scheme>							
+						<Scheme Name="SchmTransferBeg">			
+						 	<Property Name="ProgressPos" Value="0" />
+						</Scheme>
+						<Scheme Name="SchmTransferEnd">
+							<Property Name="ProgressPos" Value="100" />
+						</Scheme>		
+				</Window>
+								  
+    		<Window Type="TransStatic" Name="StaticExp" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:45 y:246" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="导出地址簿" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:53 g:70 b:70" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="FontStyle" Value="1" />
+        </Window>        
+        
+        <Window Type="TransStatic" Name="StcLineAddrbookExp" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:139 y:252" />
+            <Property Name="WindowSize" Value="x:650 y:1" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="addrline.png" />
+        </Window>       
+        
+        <Window Type="TransStatic" Name="StcFileExpFolder" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:74 y:299" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="文件目录：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>           
+	
+        <Window Type="TransEdit" Name="EdtExport" Style="WS_CHILD|WS_CLIPSIBLINGS|ES_AUTOHSCROLL|WS_TABSTOP">
+		        <Property Name="WindowPos" Value="x:150 y:286" />
+            <Property Name="WindowSize" Value="x:425 y:42" />
+		        <Property Name="WindowCaption" Value="" />
+		        <Property Name="Image" Value="Edit" />	        
+		        <Property Name="WindowVisible" Value="True" />
+		        <Property Name="WindowEnable" Value="False" />
+		        <Property Name="LimitLength" Value="260" />
+		        <Property Name="FontSize" Value="9" />
+ 					  <Event Type="WM_EDIT_CHANGED" Value="CAddrbookExpLogic::OnExpFolderEditChange" /> 		
+					  <Scheme Name="SchmAddrbookExpClean">
+          		<Property Name="WindowCaption" Value="" /> 	
+				   	</Scheme>	 					                  
+        </Window>    
+        
+			  <Window Type="TransButton" Name="BtnExportScan" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			      <Property Name="WindowPos" Value="x:585 y:286" />
+			      <Property Name="WindowSize" Value="x:90 y:42" />
+			      <Property Name="WindowCaption" Value="" />
+			      <Property Name="Tooltip" Value="浏览" />
+			      <Property Name="Image" Value="btnScan" />
+			      <Property Name="WindowVisible" Value="True" />
+			      <Event Type="WM_BUTTON_CLICK" Value="CAddrbookExpLogic::OnBtnExportAddrbookScan" />
+			      <Property Name="WindowEnable" Value="True" />
+					  <Scheme Name="SchmAddrbookExpClean">
+						 	<Property Name="WindowEnable" Value="True" />    		    	
+				   	</Scheme>				      
+						<Scheme Name="SchmTransferBeg">			
+						 	<Property Name="WindowEnable" Value="False" />
+						</Scheme>
+						<Scheme Name="SchmTransferEnd">
+						 	<Property Name="WindowEnable" Value="True" />
+						</Scheme>					      
+				</Window>		         
+        
+  			<Window Type="TransButton" Name="BtnExportAddrbook" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			      <Property Name="WindowPos" Value="x:685 y:286" />
+			      <Property Name="WindowSize" Value="x:90 y:42" />
+			      <Property Name="WindowCaption" Value="" />
+			      <Property Name="Tooltip" Value="导出" />
+			      <Property Name="Image" Value="btnExport" />
+			      <Property Name="WindowVisible" Value="True" />
+			      <Event Type="WM_BUTTON_CLICK" Value="CAddrbookExpLogic::OnBtnExportAddrbook" />
+			      <Property Name="WindowEnable" Value="True" />
+					  <Scheme Name="SchmAddrbookExpClean">
+						 	<Property Name="WindowEnable" Value="True" />    		    	
+				   	</Scheme>				      
+						<Scheme Name="SchmTransferBeg">			
+						 	<Property Name="WindowEnable" Value="False" />
+						</Scheme>
+						<Scheme Name="SchmTransferEnd">
+						 	<Property Name="WindowEnable" Value="True" />
+						</Scheme>					      
+				</Window>		      
+        
+        <Window Type="TransStatic" Name="StcExpProgress" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:74 y:356" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="导出进度：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>          
+        
+        <Window Type="TransProgress" Name="ProgressExp" Style="WS_CHILD|WS_CLIPSIBLINGS">
+						<Property Name="WindowPos" Value="x:153 y:359" />
+						<Property Name="WindowSize" Value="x:418 y:9" />	
+						<Property Name="WindowVisible" Value="true" />
+						<Property Name="Image" Value="Progress" />
+				    <Scheme Name="SchmAddrbookExpClean">
+          		<Property Name="ProgressPos" Value="0" />				    	
+				   	</Scheme>								
+						<Scheme Name="SchmTransferBeg">			
+						 	<Property Name="ProgressPos" Value="0" />
+						</Scheme>
+						<Scheme Name="SchmTransferEnd">
+							<Property Name="ProgressPos" Value="100" />
+						</Scheme>				
+				</Window>   
+			  
+				<Window Type="TransButton" Name="BtnExportFolder" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			      <Property Name="WindowPos" Value="x:585 y:344" />
+			      <Property Name="WindowSize" Value="x:190 y:42" />
+			      <Property Name="WindowCaption" Value="" />
+			      <Property Name="Tooltip" Value="导出文件夹" />
+			      <Property Name="Image" Value="btnOpenFolder" />
+			      <Property Name="WindowVisible" Value="True" />
+			      <Event Type="WM_BUTTON_CLICK" Value="CAddrbookExpLogic::OnBtnExportFolder" />
+			      <Property Name="WindowEnable" Value="True" />
+						<Scheme Name="SchmTransferBeg">			
+						 	<Property Name="WindowEnable" Value="False" />
+						</Scheme>
+						<Scheme Name="SchmTransferEnd">
+						 	<Property Name="WindowEnable" Value="True" />
+						</Scheme>											      
+				</Window>		 	       
+			  
+        <CallBackFunc Type="CallBackFunc" Value="CAddrbookExpLogic::InitWnd" />
+        <Property Name="WindowVisible" Value="True" />
+    </Window>
+</UILayout>

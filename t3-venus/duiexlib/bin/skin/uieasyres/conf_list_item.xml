@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window>
+
+  <ListContainerElement width="10">
+     <VerticalLayout width="10" height="32">
+            <HorizontalLayout>
+              <Label name="lbConfID" width="60" textcolor="#FFFF22DD"/>
+              <Label name="lbConfName" textcolor="#FF2CF922"/>
+			  <VerticalLayout>
+					<Control height="5"  />	
+					<Progress name="progConfProg" width="150" height="8" fgimage = "progress_fore.png" value = "0" textcolor="#FF2CF922"/>
+			  </VerticalLayout>
+			  <Control width="5"  />	
+              <Button name="btnListCheck" width="20" height="20" normalimage="file='btnCommon/btnCheck/Normal.png' mask='0xffffffff'" hotimage="file='btnCommon/btnCheck/Sel.png' mask='0xffffffff'" focusedimage="file='btnCommon/btnCheck/Sel.png' corner='2,2,2,2' mask='0xffffffff'" pushedimage="file='btnCommon/btnCheck/Sel.png' corner='2,2,2,2'" />
+            </HorizontalLayout>
+     </VerticalLayout>
+  </ListContainerElement>
+  
+</Window>

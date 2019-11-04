@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<UILayout>
+    <!--电视墙配置界面  Style="WS_CHILD"-->
+    <Window Type="TransparentDlg" Name="TvwBoardCfgDlg" Style="WS_CHILD" ExStyle="">
+        <Property Name="WindowPos" Value="x:128 y:0" />
+        <Property Name="WindowSize" Value="x:736 y:541" />
+        <Property Name="Image" Value="" />
+
+        <Window Type="CStatic" Name="StcStaticTvwBoardList" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:34 y:32" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="单板列表" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:53 g:70 b:70" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="FontStyle" Value="1" />         
+        </Window>
+
+        <Window Type="CStatic" Name="LineTvwBoard" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:139 y:38" />
+            <Property Name="WindowSize" Value="x:562 y:1" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="boardline.png" />
+        </Window>
+        	  
+				<Window Type="TransparentList" Name="LstTvwFloorMenu" Style="WS_CHILD|WS_CLIPSIBLINGS">
+					<Property Name="WindowPos" Value="x:46 y:57" />
+					<Property Name="WindowSize" Value="x:656 y:31" /> <!--388-->
+					<Property Name="WindowCaption" Value="电视墙单板层列表" />
+					<Property Name="ListImage" Value="" />
+					<Property Name="WindowVisible" Value="True" />
+					<Property Name="Drag" Value="false" />
+		      <Property Name="TransparentListOffset" Value="0" />
+		      <Property Name="TransparentListSelItem" Value="0" /> 
+		      <Property Name="TransparentListOver" Value="true" />  
+		      <Scheme Name="SchmTvwFloorMenuListDefault">
+		          <Property Name="TransparentListSelItem" Value="0" /> 
+		      </Scheme>
+				</Window>
+
+		    <Window Type="TransparentList" Name="LstTvwBoardFloor" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		      <Property Name="WindowPos" Value="x:37 y:87" />
+		      <Property Name="WindowSize" Value="x:656 y:95" />
+		      <!--<Property Name="ListImage" Value="listBkg" />-->
+		      <Property Name="Image" Value="tvwboardlistbk.png" />
+		      <Property Name="WindowVisible" Value="True" />
+		      <Property Name="Drag" Value="false" />
+		      <Property Name="TransparentListOffset" Value="0" />
+		      <Property Name="TransparentListSelItem" Value="-1" />
+		      <Property Name="TransparentListOver" Value="true" /> 
+		      <Event Type="WM_LST_UN_SELECT_ITEM" Value="CTvwBoardCfgLogic::OnClickTvwBoardLstBlack" /> 
+		      <Scheme Name="SchmTvwBoardListDataClean">
+		      		<Property Name="TransparentListOffset" Value="0" />
+		      		<Property Name="TransparentListSelItem" Value="-1" />
+		      </Scheme>		      
+		    </Window>
+		    
+			  <Window Type="CButton" Name="BtnTvwBoardDel" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+				      <Property Name="WindowPos" Value="x:591 y:192" />
+				      <Property Name="WindowSize" Value="x:87 y:31" />
+				      <Property Name="WindowCaption" Value="" />
+				      <Property Name="Tooltip" Value="BtnBoardDel" />
+				      <Property Name="Image" Value="btnBoardDel" />
+				      <Property Name="WindowVisible" Value="True" />
+				      <Event Type="WM_BUTTON_CLICK" Value="CTvwBoardCfgLogic::OnBtnTvwBoardDel" />
+				      <Property Name="WindowEnable" Value="False" />
+				</Window>		 
+				
+			  <Window Type="CButton" Name="BtnTvwBoardModify" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+				      <Property Name="WindowPos" Value="x:491 y:192" />
+				      <Property Name="WindowSize" Value="x:87 y:31" />
+				      <Property Name="WindowCaption" Value="" />
+				      <Property Name="Tooltip" Value="BtnBoardModify" />
+				      <Property Name="Image" Value="btnBoardModify" />
+				      <Property Name="WindowVisible" Value="True" />
+				      <Event Type="WM_BUTTON_CLICK" Value="CTvwBoardCfgLogic::OnBtnTvwBoardModify" />
+				      <Property Name="WindowEnable" Value="False" />
+				</Window>			
+				
+				 <Window Type="CButton" Name="BtnTvwBoardAdd" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+				      <Property Name="WindowPos" Value="x:391 y:192" />
+				      <Property Name="WindowSize" Value="x:87 y:31" />
+				      <Property Name="WindowCaption" Value="" />
+				      <Property Name="Tooltip" Value="btnBoardAdd" />
+				      <Property Name="Image" Value="btnBoardAdd" />
+				      <Property Name="WindowVisible" Value="True" />
+				      <Event Type="WM_BUTTON_CLICK" Value="CTvwBoardCfgLogic::OnBtnTvwBoardAdd" />
+				      <Property Name="WindowEnable" Value="False" />
+				</Window>		
+					   
+		    <Window Type="CButton" Name="BtnTvwBoardReboot" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+				      <Property Name="WindowPos" Value="x:291 y:192" />
+				      <Property Name="WindowSize" Value="x:87 y:31" />
+				      <Property Name="WindowCaption" Value="" />
+				      <Property Name="Tooltip" Value="BtnBoardReboot" />
+				      <Property Name="Image" Value="btnBoardReboot" />
+				      <Property Name="WindowVisible" Value="True" />
+				      <Event Type="WM_BUTTON_CLICK" Value="CTvwBoardCfgLogic::OnBtnTvwBoardReboot" />
+				      <Property Name="WindowEnable" Value="False" />
+				</Window>		
+				
+ 				<Window Type="CButton" Name="BtnTvwBoardUpgrade" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+				      <Property Name="WindowPos" Value="x:191 y:192" />
+				      <Property Name="WindowSize" Value="x:87 y:31" />
+				      <Property Name="WindowCaption" Value="" />
+				      <Property Name="Tooltip" Value="BtnBoardUpgrade" />
+				      <Property Name="Image" Value="btnBoardUpgrade" />
+				      <Property Name="WindowVisible" Value="True" />
+				      <Event Type="WM_BUTTON_CLICK" Value="CTvwBoardCfgLogic::OnBtnTvwBoardUpgrade" />
+				      <Property Name="WindowEnable" Value="False" />
+				</Window>		
+				
+				<Window Type="CStatic" Name="StcStaticTvwBoardModeList" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:38 y:261" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="单板模块信息" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:53 g:70 b:70" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="FontStyle" Value="1" />      
+        </Window>				
+        
+        <Window Type="CStatic" Name="LineTvwBoardMode" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:127 y:267" />
+            <Property Name="WindowSize" Value="x:548 y:1" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="tvwCfgDlg/tvwboardfivetextline.png" />
+        </Window>
+				
+					<Window Type="CStatic" Name="StcStaticTvwBoardModeName" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:38 y:294" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="模块名称：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>	      
+        
+        <Window Type="CEdit" Name="EdtTvwBoardModeName" Style="WS_CHILD|WS_CLIPSIBLINGS|ES_AUTOHSCROLL|WS_TABSTOP">
+		        <Property Name="WindowPos" Value="x:126 y:285" />
+		        <Property Name="WindowSize" Value="x:220 y:32" />
+		        <Property Name="WindowCaption" Value="" />
+		        <Property Name="Image" Value="Edit" />
+		        <Property Name="WindowVisible" Value="True" />
+		        <Property Name="WindowEnable" Value="True" />
+		        <Property Name="LimitLength" Value="12" />
+		        <Property Name="FontSize" Value="9" />
+	 					<Event Type="WM_EDIT_CHANGED" Value="CTvwBoardCfgLogic::OnTvwBoardMdlEditInputNTFSTwoChange" /> 		        
+        </Window> 
+        
+				<Window Type="CStatic" Name="StcStaticTvwBoardModeType" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:372 y:294" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="模块类别：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>	
+        
+				<Window Type="CStatic" Name="StcStaticTvwBoardModeTypeShow" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:463 y:294" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>	
+        
+			<Window Type="CStatic" Name="StcStaticTvwBoardInputPortOne" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:38 y:326" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="输出接口1：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>	      
+        
+        <Window Type="TransparentComboBox" Name="StcComboxTvwBoardInputPortOne" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:126 y:317" />
+            <Property Name="WindowSize" Value="x:220 y:32" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="IsIPStyle" Value="False" />
+            <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+            <Property Name="Image" Value="ComboboxCommon" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="EditEdgeHeight" Value="5" />
+            <Property Name="DropListHeight" Value="212" />
+            <Property Name="ComboShowIcon" Value="False" />
+            <Property Name="ReadOnly" Value="True" />
+	 					<!--<Event Type="WM_EDIT_CHANGED" Value="CTvwBoardCfgLogic::OnTvwBoardMdlEditInputPortOneChange" />-->
+	 					<Event Type="WM_CLICK_COMBOLIST" Value="CTvwBoardCfgLogic::OnTvwBoardMdlEditInputPortOneClick" /> 		 	            
+        </Window>  
+        
+				<Window Type="CStatic" Name="StcStaticTvwBoardInputPortTwo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:372 y:326" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="输出接口2：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>	
+        
+        <Window Type="TransparentComboBox" Name="StcComboxTvwBoardInputPortTwo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:460 y:317" />
+            <Property Name="WindowSize" Value="x:220 y:32" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="IsIPStyle" Value="False" />
+            <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+            <Property Name="Image" Value="ComboboxCommon" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="EditEdgeHeight" Value="5" />
+            <Property Name="DropListHeight" Value="212" />
+            <Property Name="ComboShowIcon" Value="False" />
+            <Property Name="ReadOnly" Value="True" />
+	 					<!--<Event Type="WM_CLICK_COMBOLIST" Value="CTvwBoardCfgLogic::OnTvwBoardMdlEditInputPortTwoChange" />--> 	 
+ 					  <Event Type="WM_CLICK_COMBOLIST" Value="CTvwBoardCfgLogic::OnTvwBoardMdlEditInputPortTwoClick" /> 			 					           
+        </Window>        
+        
+			<Window Type="CStatic" Name="StcStaticTvwBoardInputPortOneNTSC" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:38 y:358" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="接口1输出制式：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />       
+        </Window>	      
+        
+        <Window Type="TransparentComboBox" Name="StcComboxTvwBoardInputPortOneNTSC" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:126 y:349" />
+            <Property Name="WindowSize" Value="x:220 y:32" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="IsIPStyle" Value="False" />
+            <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+            <Property Name="Image" Value="ComboboxCommon" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="EditEdgeHeight" Value="5" />
+            <Property Name="DropListHeight" Value="212" />
+            <Property Name="ComboShowIcon" Value="False" />
+            <Property Name="ReadOnly" Value="True" />
+	 					<Event Type="WM_CLICK_COMBOLIST" Value="CTvwBoardCfgLogic::OnTvwBoardMdlEditInputNTFSOneChange" /> 	            
+        </Window>  
+        
+				<Window Type="CStatic" Name="StcStaticTvwBoardInputPortTwoNTSC" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:372 y:358" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="接口2输出制式：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>	
+        
+        <Window Type="TransparentComboBox" Name="StcComboxTvwBoardInputPortTwoNTSC" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:460 y:349" />
+            <Property Name="WindowSize" Value="x:220 y:32" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="IsIPStyle" Value="False" />
+            <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+            <Property Name="Image" Value="ComboboxCommon" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="EditEdgeHeight" Value="5" />
+            <Property Name="DropListHeight" Value="212" />
+            <Property Name="ComboShowIcon" Value="False" />
+            <Property Name="ReadOnly" Value="True" />
+	 					<Event Type="WM_CLICK_COMBOLIST" Value="CTvwBoardCfgLogic::OnTvwBoardMdlEditInputNTFSTwoChange" /> 	            
+        </Window>   
+        
+				<Window Type="CStatic" Name="StcStaticTvwBoardInputPortOnePer" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:38 y:390" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="接口1输出比例：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>	      
+        
+        <Window Type="TransparentComboBox" Name="StcComboxTvwBoardInputPortOnePer" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:126 y:381" />
+            <Property Name="WindowSize" Value="x:220 y:32" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="IsIPStyle" Value="False" />
+            <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+            <Property Name="Image" Value="ComboboxCommon" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="EditEdgeHeight" Value="5" />
+            <Property Name="DropListHeight" Value="212" />
+            <Property Name="ComboShowIcon" Value="False" />
+            <Property Name="ReadOnly" Value="True" />
+	 					<Event Type="WM_CLICK_COMBOLIST" Value="CTvwBoardCfgLogic::OnTvwBoardMdlEditInputNTFSTwoChange" /> 	            
+        </Window>  
+        
+				<Window Type="CStatic" Name="StcStaticTvwBoardInputPortTwoPer" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:372 y:390" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="接口2输出比例：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>	
+        
+        <Window Type="TransparentComboBox" Name="StcComboxTvwBoardInputPortTwoPer" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:460 y:381" />
+            <Property Name="WindowSize" Value="x:220 y:32" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="IsIPStyle" Value="False" />
+            <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+            <Property Name="Image" Value="ComboboxCommon" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="EditEdgeHeight" Value="5" />
+            <Property Name="DropListHeight" Value="212" />
+            <Property Name="ComboShowIcon" Value="False" />
+            <Property Name="ReadOnly" Value="True" />
+	 					<Event Type="WM_CLICK_COMBOLIST" Value="CTvwBoardCfgLogic::OnTvwBoardMdlEditInputNTFSTwoChange" /> 	            
+        </Window>   
+        
+	<Window Type="CStatic" Name="StcStaticTvwBoardInputPortOnePerPloy" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:38 y:422" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="比例调整策略：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>	      
+        
+        <Window Type="TransparentComboBox" Name="StcComboxTvwBoardInputPortOnePerPloy" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:126 y:413" />
+            <Property Name="WindowSize" Value="x:220 y:32" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="IsIPStyle" Value="False" />
+            <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+            <Property Name="Image" Value="ComboboxCommon" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="EditEdgeHeight" Value="5" />
+            <Property Name="DropListHeight" Value="212" />
+            <Property Name="ComboShowIcon" Value="False" />
+            <Property Name="ReadOnly" Value="True" />
+	 					<Event Type="WM_CLICK_COMBOLIST" Value="CTvwBoardCfgLogic::OnTvwBoardMdlEditInputNTFSTwoChange" /> 	            
+        </Window>  
+        
+				<Window Type="CStatic" Name="StcStaticTvwBoardInputPortTwoPerPloy" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:372 y:422" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="比例调整策略：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>	
+        
+        <Window Type="TransparentComboBox" Name="StcComboxTvwBoardInputPortTwoPerPloy" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:460 y:413" />
+            <Property Name="WindowSize" Value="x:220 y:32" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="IsIPStyle" Value="False" />
+            <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+            <Property Name="Image" Value="ComboboxCommon" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="EditEdgeHeight" Value="5" />
+            <Property Name="DropListHeight" Value="212" />
+            <Property Name="ComboShowIcon" Value="False" />
+            <Property Name="ReadOnly" Value="True" />
+	 					<Event Type="WM_CLICK_COMBOLIST" Value="CTvwBoardCfgLogic::OnTvwBoardMdlEditInputNTFSTwoChange" /> 	            
+        </Window>   
+          
+                        
+			  <Window Type="CButton" Name="BtnTvwBoardModeDel" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+				      <Property Name="WindowPos" Value="x:591 y:460" />
+				      <Property Name="WindowSize" Value="x:87 y:31" />
+				      <Property Name="WindowCaption" Value="" />
+				      <Property Name="Tooltip" Value="BtnTvwBoardModeDel" />
+				      <Property Name="Image" Value="Common/btnClean" />
+				      <Property Name="WindowVisible" Value="True" />
+				      <Event Type="WM_BUTTON_CLICK" Value="CTvwBoardCfgLogic::OnBtnTvwBoardModeDel" />
+				      <Property Name="WindowEnable" Value="False" />
+				</Window>		 
+				
+			  <Window Type="CButton" Name="BtnTvwBoardModeSave" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+				      <Property Name="WindowPos" Value="x:491 y:460" />
+				      <Property Name="WindowSize" Value="x:87 y:31" />
+				      <Property Name="WindowCaption" Value="" />
+				      <Property Name="Tooltip" Value="BtnTvwBoardModeModify" />
+				      <Property Name="Image" Value="Common/btnSave" />
+				      <Property Name="WindowVisible" Value="True" />
+				      <Event Type="WM_BUTTON_CLICK" Value="CTvwBoardCfgLogic::OnBtnTvwBoardModeSave" />
+				      <Property Name="WindowEnable" Value="False" />
+				</Window>			
+				                			    		  
+        <CallBackFunc Type="CallBackFunc" Value="CTvwBoardCfgLogic::InitWnd" />
+        <Property Name="WindowVisible" Value="True" />
+    </Window>
+</UILayout>

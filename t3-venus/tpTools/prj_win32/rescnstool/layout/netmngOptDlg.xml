@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  <!--网管添加删除界面-->
+   
+	<Window Type="TransparentDlg" Name="NetMngOptDlg" Style="WS_POPUP" ><!--WS_EX_TOPMOST|ExStyle="WS_EX_TOOLWINDOW"-->
+		<Property Name="WindowPos" Value="x:0 y:0" />
+		<Property Name="WindowSize" Value="x:490 y:340" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="Image" Value="CfgNetMng\OptDlg\background.png" />
+		<Property Name="WindowCaption" Value="网管添加删除界面" />	
+		<Property Name="MoveStatus" Value="true" />
+		
+    <Window Type="TransStatic" Name="StcOptNetMng" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		    <Property Name="WindowPos" Value="x:24 y:20" />
+		    <Property Name="WindowSize" Value="x:200 y:14" />
+		    <Property Name="WindowCaption" Value="添加网管服务器" />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:200 g:200 b:200" />
+		    <Property Name="FontSize" Value="9" />
+		    <Scheme Name="SchNetMngAdd">
+		    		<Property Name="WindowCaption" Value="添加网管服务器" /> 
+		    </Scheme>
+		    <Scheme Name="SchNetMngModify">
+		    		<Property Name="WindowCaption" Value="修改网管服务器" /> 
+		    </Scheme>
+    </Window>
+		
+    <Window Type="TransStatic" Name="StcNMServerIP" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		    <Property Name="WindowPos" Value="x:65 y:79" />
+		    <Property Name="WindowSize" Value="x:200 y:14" />
+		    <Property Name="WindowCaption" Value="网管服务器地址：" />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		    <Property Name="FontSize" Value="9" />
+    </Window>
+    <Window Type="TransIPEdit" Name="IPCtrlNMServerIP" Style="WS_CHILD|WS_TABSTOP">
+            <Property Name="WindowPos" Value="x:209 y:70" />
+            <Property Name="WindowSize" Value="x:220 y:32" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="Image" Value="CfgNetMng\OptDlg\Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:59 g:59 b:59" />
+            <Property Name="FontSize" Value="9" />
+            <Scheme Name="SchNetMngAddDefValue">
+		    		<Property Name="WindowCaption" Value="" /> 
+            </Scheme>
+    </Window>
+    
+    <Window Type="TransStatic" Name="StcNMReadCommunity" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		    <Property Name="WindowPos" Value="x:65 y:119" />
+		    <Property Name="WindowSize" Value="x:200 y:14" />
+		    <Property Name="WindowCaption" Value="读共同体名：" />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		    <Property Name="FontSize" Value="9" />
+    </Window>
+    <Window Type="TransEdit" Name="EdtNMReadCommunity" Style="WS_CHILD|WS_TABSTOP|ES_AUTOHSCROLL">
+            <Property Name="WindowPos" Value="x:209 y:110" />
+            <Property Name="WindowSize" Value="x:220 y:32" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="Image" Value="CfgNetMng\OptDlg\Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:59 g:59 b:59" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="LimitLength" Value="31" />
+            <Scheme Name="SchNetMngAddDefValue">
+		    		<Property Name="WindowCaption" Value="public" /> 
+            </Scheme>
+    </Window>
+    
+    <Window Type="TransStatic" Name="StcNMWriteCommunity" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		    <Property Name="WindowPos" Value="x:65 y:159" />
+		    <Property Name="WindowSize" Value="x:200 y:14" />
+		    <Property Name="WindowCaption" Value="写共同体名：" />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		    <Property Name="FontSize" Value="9" />
+    </Window>
+    <Window Type="TransEdit" Name="EdtNMWriteCommunity" Style="WS_CHILD|WS_TABSTOP|ES_AUTOHSCROLL">
+            <Property Name="WindowPos" Value="x:209 y:150" />
+            <Property Name="WindowSize" Value="x:220 y:32" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="Image" Value="CfgNetMng\OptDlg\Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:59 g:59 b:59" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="LimitLength" Value="31" />
+            <Scheme Name="SchNetMngAddDefValue">
+		    		<Property Name="WindowCaption" Value="kdv123" /> 
+            </Scheme>
+    </Window>
+    
+    <Window Type="TransStatic" Name="StcNMGetSetPort" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		    <Property Name="WindowPos" Value="x:65 y:199" />
+		    <Property Name="WindowSize" Value="x:200 y:14" />
+		    <Property Name="WindowCaption" Value="读写端口：" />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		    <Property Name="FontSize" Value="9" />
+    </Window>
+    <Window Type="TransEdit" Name="EdtNMGetSetPort" Style="WS_CHILD|WS_TABSTOP|ES_NUMBER">
+            <Property Name="WindowPos" Value="x:209 y:190" />
+            <Property Name="WindowSize" Value="x:220 y:32" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="Image" Value="CfgNetMng\OptDlg\Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:59 g:59 b:59" />
+            <Property Name="FontSize" Value="9" />
+            <Scheme Name="SchNetMngAddDefValue">
+		    		<Property Name="WindowCaption" Value="161" /> 
+            </Scheme>
+    </Window>
+    
+    <Window Type="TransStatic" Name="StcNMTrapPort" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		    <Property Name="WindowPos" Value="x:65 y:239" />
+		    <Property Name="WindowSize" Value="x:200 y:14" />
+		    <Property Name="WindowCaption" Value="发警告端口：" />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		    <Property Name="FontSize" Value="9" />
+    </Window>
+    <Window Type="TransEdit" Name="EdtNMTrapPort" Style="WS_CHILD|WS_TABSTOP|ES_NUMBER">
+            <Property Name="WindowPos" Value="x:209 y:230" />
+            <Property Name="WindowSize" Value="x:220 y:32" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="Image" Value="CfgNetMng\OptDlg\Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:59 g:59 b:59" />
+            <Property Name="FontSize" Value="9" />
+            <Scheme Name="SchNetMngAddDefValue">
+		    		<Property Name="WindowCaption" Value="162" /> 
+            </Scheme>
+    </Window>
+    
+    <!-- 隐藏EdtNMServerNO控件 -->
+    <Window Type="TransEdit" Name="EdtNMServerNO" Style="WS_CHILD|WS_TABSTOP">
+            <Property Name="WindowPos" Value="x:209 y:292" />
+            <Property Name="WindowSize" Value="x:30 y:32" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="Image" Value="CfgNetMng\OptDlg\Edit" />
+            <Property Name="WindowVisible" Value="false" />
+            <Property Name="FontColor" Value="r:59 g:59 b:59" />
+            <Property Name="FontSize" Value="9" />
+    </Window>
+    
+    <Window Type="TransButton" Name="BtnNetMngOk" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+	      <Property Name="WindowPos" Value="x:250 y:292" />
+	      <Property Name="WindowSize" Value="x:89 y:33" />
+	      <Property Name="WindowCaption" Value="" />
+	      <Property Name="Tooltip" Value="确定" />
+	      <Property Name="Image" Value="CfgNetMng\OptDlg\BtnOK" />
+	      <Property Name="WindowVisible" Value="True" />
+	    	<Event Type="WM_BUTTON_CLICK" Value="CNetMngOptDlgLogic::OnBtnOptNetMngOk" />
+	  </Window>
+
+   	<Window Type="TransButton" Name="BtnBoardCancel" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+	      <Property Name="WindowPos" Value="x:365 y:292" />
+	      <Property Name="WindowSize" Value="x:89 y:33" />
+	      <Property Name="WindowCaption" Value="" />
+	      <Property Name="Tooltip" Value="取消" />
+	      <Property Name="Image" Value="CfgNetMng\OptDlg\BtnCancel" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Event Type="WM_BUTTON_CLICK" Value="CNetMngOptDlgLogic::OnBtnOptNetMngCancel" />
+	  </Window>
+	  
+	  <Window Type="TransButton" Name="BtnMsgboxClose" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:430 y:5" />
+      <Property Name="WindowSize" Value="x:44 y:28" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Tooltip" Value="关闭" />
+      <Property Name="Image" Value="Common/btnClose" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CNetMngOptDlgLogic::OnBtnOptNetMngCancel" />
+	  </Window> 
+    
+		<CallBackFunc Type="CallBackFunc" Value="CNetMngOptDlgLogic::InitWnd" />
+	</Window>
+</UILayout>

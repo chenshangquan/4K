@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="gb379"?>
+<UILayout>
+  <!--中控环境灯光界面-->
+   
+	<Window Type="TransparentDlg" Name="CentCfgLightDlg" Style="WS_CHILD" ExStyle="">
+		<Property Name="WindowPos" Value="x:122 y:0" />
+		<Property Name="WindowSize" Value="x:728 y:501" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="Image" Value="" />
+		<Property Name="WindowCaption" Value="中控环境灯光界面" />
+			  
+    <!--灯光状态列表
+    <Window Type="TransList" Name="StcTPbg" Style="WS_CHILD|WS_CLIPSIBLINGS">             
+        <Property Name="WindowPos" Value="x:37 y:31" />
+        <Property Name="WindowSize" Value="x:276 y:346" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="Image" Value="background.png" />
+    </Window>-->
+				 
+    <Window Type="TransStatic" Name="StcLight1Info" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:37 y:31" />
+        <Property Name="WindowSize" Value="x:350 y:14" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="0" />
+    </Window>
+         
+    <Window Type="TransStatic" Name="StcLight2Info" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:37 y:73" />
+        <Property Name="WindowSize" Value="x:350 y:14" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="0" />
+    </Window>
+         
+    <Window Type="TransStatic" Name="StcLight3Info" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:37 y:115" />
+        <Property Name="WindowSize" Value="x:350 y:14" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="0" />
+    </Window>
+         
+    <Window Type="TransStatic" Name="StcLight4Info" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:37 y:157" />
+        <Property Name="WindowSize" Value="x:350 y:14" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="0" />
+    </Window>
+       
+    <Window Type="TransStatic" Name="StcLight5Info" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:37 y:199" />
+        <Property Name="WindowSize" Value="x:350 y:14" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="0" />
+    </Window>
+	   	         
+    <Window Type="TransStatic" Name="StcLight6Info" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:37 y:241" />
+        <Property Name="WindowSize" Value="x:350 y:14" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="0" />
+    </Window>
+	   	       
+    <Window Type="TransStatic" Name="StcLight7Info" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:37 y:283" />
+        <Property Name="WindowSize" Value="x:350 y:14" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="0" />
+    </Window>
+	   	       
+    <Window Type="TransStatic" Name="StcLight8Info" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:37 y:325" />
+        <Property Name="WindowSize" Value="x:350 y:14" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="0" />
+    </Window>
+	   	    
+		<CallBackFunc Type="CallBackFunc" Value="::InitWnd" />
+	</Window>
+</UILayout>

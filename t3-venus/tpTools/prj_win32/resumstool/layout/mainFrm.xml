@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  <!--umstool主界面-->
+  <Window Type="TransparentDlg" Name="TPMainDlg" Style="WS_POPUP|WS_MINIMIZEBOX|WS_MAXIMIZEBOX" ExStyle="WS_EX_APPWINDOW">
+    <Property Name="WindowPos" Value="x:0 y:0" />
+    <Property Name="WindowSize" Value="x:864 y:614" />
+    <Property Name="WindowVisible" Value="True" />
+    <Property Name="Image" Value="mainFrameBkg.png" />
+    <Property Name="WindowCaption" Value="网呈维护工具" />
+    <Property Name="MoveStatus" Value="true" />
+    <Event Type="WM_UMSTOOL_FTPLOGPROGRESS" Value="CMainFrameLogic::OnDownloadLogProgress" />
+
+		<Window Type="CStatic" Name="StcServer" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:139 y:12" />
+			<Property Name="WindowSize" Value="x:30 y:25" />
+			<Property Name="WindowCaption" Value="UMS" />
+			<Property Name="WindowVisible" Value="true" /> 
+			<Property Name="FontSize" Value="9" /> 
+			<Property Name="Alignment" Value="0" />
+			<Property Name="FontColor" Value="r:200 g:200 b:200" />
+			
+		</Window>
+		
+		<Window Type="CStatic" Name="StcUmsIP" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:175 y:12" />
+			<Property Name="WindowSize" Value="x:100 y:25" />
+			<Property Name="WindowCaption" Value="" />
+			<Property Name="WindowVisible" Value="true" /> 
+			<Property Name="FontSize" Value="9" /> 
+			<Property Name="Alignment" Value="0" />
+			<Property Name="FontColor" Value="r:200 g:200 b:200" />
+		</Window>
+
+		<Window Type="TransparentList" Name="LstFuncMenu" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:15 y:42" />
+			<Property Name="WindowSize" Value="x:410 y:31" />
+			<Property Name="WindowCaption" Value="功能列表" />
+			<Property Name="ListImage" Value="" />
+			<Property Name="WindowVisible" Value="True" />
+			<Property Name="Drag" Value="false" />
+      <Property Name="TransparentListOffset" Value="0" />
+      <Property Name="TransparentListSelItem" Value="0" /> 
+      <Property Name="TransparentListOver" Value="true" />    
+      <Scheme Name="SchmMenuListDefault">
+          <Property Name="TransparentListSelItem" Value="0" /> 
+      </Scheme>
+		</Window>
+
+	 <Window Type="CButton" Name="BtnDownloadLog" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+	      <Property Name="WindowPos" Value="x:707 y:47" />
+	      <Property Name="WindowSize" Value="x:63 y:24" />
+	      <Property Name="WindowCaption" Value="" />
+	      <Property Name="Tooltip" Value="下载日志" />
+	      <Property Name="Image" Value="btnDowloadLog" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Event Type="WM_BUTTON_CLICK" Value="CMainFrameLogic::OnBtnDownloadLog" />
+	      <Property Name="WindowEnable" Value="True" />
+	  </Window>
+	  
+	 <Window Type="CButton" Name="BtnRebootUms" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+	      <Property Name="WindowPos" Value="x:774 y:47" />
+	      <Property Name="WindowSize" Value="x:77 y:24" />
+	      <Property Name="WindowCaption" Value="" />
+	      <Property Name="Tooltip" Value="重启服务器" />
+	      <Property Name="Image" Value="btnResetSrv" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Event Type="WM_BUTTON_CLICK" Value="CMainFrameLogic::OnBtnRebootUms" />
+	      <Property Name="WindowEnable" Value="True" />
+	  </Window>
+
+ <Window Type="CButton" Name="BtnLogoff" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+	      <Property Name="WindowPos" Value="x:726 y:8" />
+	      <Property Name="WindowSize" Value="x:39 y:28" />
+	      <Property Name="WindowCaption" Value="" />
+	      <Property Name="Tooltip" Value="注销" />
+	      <Property Name="Image" Value="btnLogoff" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Event Type="WM_BUTTON_CLICK" Value="CMainFrameLogic::OnBtnLogoff" />
+	      <Property Name="WindowEnable" Value="True" />
+	  </Window>
+	  
+	   <Window Type="CButton" Name="BtnMinimize" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+	      <Property Name="WindowPos" Value="x:765 y:8" />
+	      <Property Name="WindowSize" Value="x:38 y:28" />
+	      <Property Name="WindowCaption" Value="" />
+	      <Property Name="Tooltip" Value="最小化" />
+	      <Property Name="Image" Value="btnMinimize" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Event Type="WM_BUTTON_CLICK" Value="CMainFrameLogic::OnBtnMinimize" />
+	      <Property Name="WindowEnable" Value="True" />
+	  </Window>
+	  
+	   <Window Type="CButton" Name="BtnClose" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+	      <Property Name="WindowPos" Value="x:803 y:8" />
+	      <Property Name="WindowSize" Value="x:44 y:28" />
+	      <Property Name="WindowCaption" Value="" />
+	      <Property Name="Tooltip" Value="关闭" />
+	      <Property Name="Image" Value="btnClose" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Event Type="WM_BUTTON_CLICK" Value="CMainFrameLogic::OnBtnClose" />
+	      <Property Name="WindowEnable" Value="True" />
+	  </Window>
+
+    <Window Type="CStatic" Name="" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:561 y:586" />
+      <Property Name="WindowSize" Value="x:64 y:10" />
+      <Property Name="Image" Value="" />
+      <Property Name="WindowVisible" Value="false" />
+    </Window>
+    
+     <Window Type="CStatic" Name="StcCopyRight" Style="WS_CHILD|WS_CLIPSIBLINGS">
+          <Property Name="WindowPos" Value="x:512 y:583" />
+          <Property Name="WindowSize" Value="x:336 y:16" />
+          <Property Name="WindowCaption" Value="" />
+          <Property Name="WindowVisible" Value="True" />
+          <Property Name="FontColor" Value="r:141 g:141 b:141" />
+          <Property Name="FontSize" Value="9" />
+          <Property Name="Alignment" Value="2" />
+      </Window>
+
+    <CallBackFunc Type="CallBackFunc" Value="CMainFrameLogic::InitWnd" />
+  </Window>
+</UILayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="gb2312"?>
+<System>
+	
+	<!--基本配置项-->
+  <SystemInfo Name="ImagePath" Value="resmoontool\\src\\" />
+  <SystemInfo Name="DefaultFont" Value="宋体.font" /> 
+  <SystemInfo Name="DefaultResolution" Value="x:800 y:600" />  
+  <SystemInfo Name="IsSelAdpResolution" Value="false" />
+  <!--是否自适应分辨率,若xml中无该项配置，则默认为true-->
+  <SystemInfo Name="LayoutPath" Value="resmoontool\\layout\\" /> 
+  <SystemInfo Name="ItemInfo" Value="resmoontool\\layout\\itemInfo.xml" />  
+  <SystemInfo Name="EditInfo" Value=""  FontName="宋体" FontSize="12" FontColor="r:59 g:59 b:59" FocusColor="r:59 g:59 b:59" DisableColor="r:153 g:153 b:153" />
+  
+  <SystemInfo Name="StaticInfo" Value=""  FontName="宋体" FontSize="12" FontColor="r:15 g:79 b:81" />
+   <!---->
+  <!--所有窗口父子关系及layout文件映射配置
+  Note:无父窗口的，Parent=""；若直属父窗口是child类型，则需要使用/来标示，如Parent="TPDlg/LoginDlg"
+  -->
+
+  <WindowInfo Name="MainFrame" Value="mainFrame.xml" Parent="" />
+  <WindowInfo Name="CameraDlg" Value="CameraCtrlDlg.xml" Parent="MainFrame" />
+  <WindowInfo Name="SysCfgDlg" Value="SysCfgDlg.xml" Parent="MainFrame" />
+  <WindowInfo Name="WaringDlg" Value="warning.xml" Parent="MainFrame" />
+  <WindowInfo Name="OrderListDlg" Value="OrderListDlg.xml" Parent="MainFrame" />
+  <WindowInfo Name="OrderPosInfoDlg" Value="OrderPosInfoDlg.xml" Parent="" />
+  <WindowInfo Name="MsgboxDlg" Value="msgboxDlg.xml" Parent="" />
+  <WindowInfo Name="ExpCommonDlg" Value="expCommonDlg.xml" Parent="" />
+  <WindowInfo Name="ImpCommonDlg" Value="impCommonDlg.xml" Parent="" />
+  <WindowInfo Name="MoonAdjustDlg" Value="MoonAdjustDlg.xml" Parent="MainFrame" />
+   
+   <!-- 窗口类型映射   	-->
+  <WindowType SrcType="TransWnd" TagType="CTransparentBaseWnd" />
+  <WindowType SrcType="Wnd" TagType="CBaseWnd" /> 
+  
+  <!-- dlg类型映射   	-->
+  <WindowType SrcType="TransparentDlg" TagType="CTransparentDlg" />
+  
+   
+  
+  <!-- 常用控件类型映射   	-->
+  <WindowType SrcType="TransButton" TagType="CTransparentBtn" /> 
+  <WindowType SrcType="TransStatic" TagType="CTransparentStatic" />
+  <WindowType SrcType="TransIPCtrl" TagType="CTransparentIPAddrCtrl" />
+  <WindowType SrcType="TransEdit"   TagType="CTransparentEdit" />
+  <WindowType SrcType="TransList"   TagType="CTransparentList" />
+  <WindowType SrcType="TransparentViewList" TagType="CTransparentViewList" /> 
+  <WindowType SrcType="TransSlider" TagType="CTransparentSliderWnd" />   
+  <WindowType SrcType="TransIPEdit" TagType="CTransparentIpEdit" /> 
+  <WindowType SrcType="TransComboBox" TagType="CTransparentComboBox" />  
+  <WindowType SrcType="TransSliderWnd" TagType="CTransparentSliderWnd" />  
+  <WindowType SrcType="TransCheckButton" TagType="CTransparentCheckButton" />  
+  <WindowType SrcType="TransSwitchButton" TagType="CTransparentSwitchButton" />  
+  <WindowType SrcType="TransProgress" TagType="CTransparentProgress" />   
+  
+</System>

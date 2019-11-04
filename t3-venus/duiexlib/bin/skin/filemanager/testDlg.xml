@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window pos="1000,300" size="200,300"   logic="mainFrame">
+	<VerticalLayout>  
+	  <HorizontalLayout height="100"  bkcolor="#FFDCDCDC">  
+	   <Button name="backBtn2" tooltip="返回2" text="childBack2" textcolor="#0000FFFF"  font="2"  width="72" height="37" normalimage="res/btn_back/back.png" pushedimage="res/btn_back/back_down.png" /> 
+	  </HorizontalLayout>
+	  
+	   
+	  <HorizontalLayout height="100"  bkcolor="#AADCDCDC">  
+	   <Button name="backBtn3" tooltip="返回3" text="childBack3" textcolor="#0000FFFF"  font="2"  width="72" height="37" normalimage="res/btn_back/back.png" pushedimage="res/btn_back/back_down.png" /> 
+	  </HorizontalLayout> 
+  
+  </VerticalLayout>
+</Window>
+   
+ 

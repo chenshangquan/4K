@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<UILayout>
+	<!--UMS诊断界面  Style="WS_CHILD"-->
+	<Window Type="TransparentDlg" Name="UmsDiagDlg" Style="WS_CHILD">
+		 <Property Name="WindowPos" Value="x:0 y:74" />
+     <Property Name="WindowSize" Value="x:864 y:491" />
+     <Property Name="Image" Value="" />
+     <Event Type="WM_UMSTOOL_CAPTUREFAIL" Value="CUmsDiagLogic::OnCaptureFail" />
+     <Event Type="WM_UMSTOOL_CAPTURECONTINUE" Value="CUmsDiagLogic::OnCaptureContinue" />
+     <Event Type="WM_UMSTOOL_CAPTUREMAXSIZE" Value="CUmsDiagLogic::OnCaptureMaxSize" />
+     <Event Type="WM_UMSTOOL_FTPUPLOADCAPTUREDUMP" Value="CUmsDiagLogic::OnUploadCaptureDump" />
+      
+     <Window Type="CStatic" Name="StcStoragePath" Style="WS_CHILD|WS_CLIPSIBLINGS">
+     	<Property Name="WindowPos" Value="x:55 y:32" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="存储路径：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontStyle" Value="0" />
+      <Property Name="Alignment" Value="0" /> <!-- 对齐方式: 0左对齐 2右对齐 1居中对齐 默认为0 --> 
+   	 </Window>
+   	 
+   	 <Window Type="CStatic" Name="StcStoragePathInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:145 y:32" />
+      <Property Name="WindowSize" Value="x:340 y:14" />
+      <Property Name="WindowCaption" Value="/ramdisk/" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+     </Window>
+   
+		 <Window Type="TransparentDlg" Name="Capturebkgdlg" Style="WS_CHILD" >
+  	    <Property Name="WindowPos" Value="x:37 y:63" /> 
+		    <Property Name="WindowSize" Value="x:790 y:261" />
+			  <Property Name="WindowVisible" Value="true" />
+			  <Property Name="Image" Value="Capturebg.png" />
+			  <Property Name="WindowCaption" Value="" />
+			  
+      <Window Type="CStatic" Name="StcBoardcardName" Style="WS_CHILD|WS_CLIPSIBLINGS">
+    	  <Property Name="WindowPos" Value="x:8 y:6" />
+    	  <Property Name="WindowSize" Value="x:125 y:35" />
+    	  <Property Name="WindowCaption" Value="板卡名称" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="FontStyle" Value="0" />
+        <Property Name="Alignment" Value="1" />
+      </Window>
+    
+      <Window Type="CStatic" Name="StcBoardcardIP" Style="WS_CHILD|WS_CLIPSIBLINGS">
+    	  <Property Name="WindowPos" Value="x:145 y:6" />
+    	  <Property Name="WindowSize" Value="x:150 y:35" />
+    	  <Property Name="WindowCaption" Value="IP" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="FontStyle" Value="0" />
+        <Property Name="Alignment" Value="1" />
+      </Window>
+    
+      <Window Type="CStatic" Name="StcNetInterface" Style="WS_CHILD|WS_CLIPSIBLINGS">
+    	  <Property Name="WindowPos" Value="x:304 y:6" />
+    	  <Property Name="WindowSize" Value="x:105 y:35" />
+    	  <Property Name="WindowCaption" Value="网口" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="FontStyle" Value="0" />
+        <Property Name="Alignment" Value="1" />
+      </Window>
+    
+	    <Window Type="CStatic" Name="StcTimer" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	    	<Property Name="WindowPos" Value="x:403 y:6" />
+	    	<Property Name="WindowSize" Value="x:90 y:35" />
+	    	<Property Name="WindowCaption" Value="时间" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="FontStyle" Value="0" />
+	      <Property Name="Alignment" Value="1" />
+	    </Window>
+	    
+	    <Window Type="CStatic" Name="StcFileSize" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	    	<Property Name="WindowPos" Value="x:478 y:6" />
+	    	<Property Name="WindowSize" Value="x:90 y:35" />
+	    	<Property Name="WindowCaption" Value="文件大小" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="FontStyle" Value="0" />
+	      <Property Name="Alignment" Value="1" />
+	    </Window>
+	    
+	    <Window Type="CStatic" Name="StcCapture" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	    	<Property Name="WindowPos" Value="x:558 y:6" />
+	    	<Property Name="WindowSize" Value="x:121 y:35" />
+	    	<Property Name="WindowCaption" Value="抓包" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="FontStyle" Value="0" />
+	      <Property Name="Alignment" Value="1" />
+	    </Window>
+	    
+	    <Window Type="CStatic" Name="StcExportPack" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	    	<Property Name="WindowPos" Value="x:669 y:6" />
+	    	<Property Name="WindowSize" Value="x:121 y:35" />
+	    	<Property Name="WindowCaption" Value="导出" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="FontStyle" Value="0" />
+	      <Property Name="Alignment" Value="1" />
+	    </Window>
+	    <!--   板卡名称选择列 -->
+	    <Window Type="TransparentComboBox" Name="ComboboxBoardcardSelRow0" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:13 y:52" />
+	      <Property Name="WindowSize" Value="x:115 y:30" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="IsIPStyle" Value="False" />
+	      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+	      <Property Name="Image" Value="ComboboxCommon" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="EditEdgeHeight" Value="5" />
+	      <Property Name="DropListHeight" Value="212" />
+	      <Property Name="ComboShowIcon" Value="False" />
+	      <Property Name="ReadOnly" Value="True" />
+	<!--      <Event Type="WM_COMBOX_ONCHAR" Value="CUmsDiagLogic::OnBoardRowEditOnChar" />
+		 	  <Event Type="WM_EDIT_CHANGED" Value="CUmsDiagLogic::OnBoardRowRowEditChange" /> 	-->
+		 	  <Event Type="WM_CLICK_COMBOLIST" Value="CUmsDiagLogic::OnBoardNameRowZeroClick" /> 
+		 	  <Event Type="UI_EDITDELETE_CLICK" Value="CUmsDiagLogic::OnBoardNameRowZeroIconClick" />			             
+	    </Window>
+	    
+	    <Window Type="TransparentComboBox" Name="ComboboxBoardcardSelRow1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:13 y:94" />
+	      <Property Name="WindowSize" Value="x:115 y:30" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="IsIPStyle" Value="False" />
+	      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+	      <Property Name="Image" Value="ComboboxCommon" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="EditEdgeHeight" Value="5" />
+	      <Property Name="DropListHeight" Value="212" />
+	      <Property Name="ComboShowIcon" Value="False" />
+	      <Property Name="ReadOnly" Value="True" />	
+		 	  <Event Type="WM_CLICK_COMBOLIST" Value="CUmsDiagLogic::OnBoardNameRowFirstClick" />
+		 	  <Event Type="UI_EDITDELETE_CLICK" Value="CUmsDiagLogic::OnBoardNameRowFirstIconClick" /> 			             
+	    </Window>
+	    
+	    <Window Type="TransparentComboBox" Name="ComboboxBoardcardSelRow2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:13 y:136" />
+	      <Property Name="WindowSize" Value="x:115 y:30" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="IsIPStyle" Value="False" />
+	      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+	      <Property Name="Image" Value="ComboboxCommon" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="EditEdgeHeight" Value="5" />
+	      <Property Name="DropListHeight" Value="212" />
+	      <Property Name="ComboShowIcon" Value="False" />
+	      <Property Name="ReadOnly" Value="True" />
+		 	  <Event Type="WM_CLICK_COMBOLIST" Value="CUmsDiagLogic::OnBoardNameRowSecondClick" />
+		 	  <Event Type="UI_EDITDELETE_CLICK" Value="CUmsDiagLogic::OnBoardNameRowSecondIconClick" /> 			             
+	    </Window>
+	    
+	    <Window Type="TransparentComboBox" Name="ComboboxBoardcardSelRow3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:13 y:178" />
+	      <Property Name="WindowSize" Value="x:115 y:30" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="IsIPStyle" Value="False" />
+	      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+	      <Property Name="Image" Value="ComboboxCommon" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="EditEdgeHeight" Value="5" />
+	      <Property Name="DropListHeight" Value="212" />
+	      <Property Name="ComboShowIcon" Value="False" />
+	      <Property Name="ReadOnly" Value="True" />
+		 	  <Event Type="WM_CLICK_COMBOLIST" Value="CUmsDiagLogic::OnBoardNameRowThirdClick" />
+		 	  <Event Type="UI_EDITDELETE_CLICK" Value="CUmsDiagLogic::OnBoardNameRowThirdIconClick" /> 			             
+	    </Window>
+	    
+	    <Window Type="TransparentComboBox" Name="ComboboxBoardcardSelRow4" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:13 y:220" />
+	      <Property Name="WindowSize" Value="x:115 y:30" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="IsIPStyle" Value="False" />
+	      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+	      <Property Name="Image" Value="ComboboxCommon" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="EditEdgeHeight" Value="5" />
+	      <Property Name="DropListHeight" Value="212" />
+	      <Property Name="ComboShowIcon" Value="False" />
+	      <Property Name="ReadOnly" Value="True" />
+		 	  <Event Type="WM_CLICK_COMBOLIST" Value="CUmsDiagLogic::OnBoardNameRowFourClick" />
+		 	  <Event Type="UI_EDITDELETE_CLICK" Value="CUmsDiagLogic::OnBoardNameRowFourIconClick" /> 			             
+	    </Window>
+    
+	    <!--   IP选择列  -->
+	    <Window Type="TransparentComboBox" Name="ComboboxBoardIPSelRow0" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:149 y:52" />
+	      <Property Name="WindowSize" Value="x:140 y:30" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="IsIPStyle" Value="True" />
+	      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+	      <Property Name="Image" Value="ComboboxCommon" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="EditEdgeHeight" Value="5" />
+	      <Property Name="DropListHeight" Value="212" />
+	      <Property Name="ComboShowIcon" Value="False" />
+	      <Property Name="ReadOnly" Value="True" />
+		 	  <Event Type="WM_CLICK_COMBOLIST" Value="CUmsDiagLogic::OnBoardIPRowZeroClick" />
+		 	  <Event Type="UI_EDITDELETE_CLICK" Value="CUmsDiagLogic::OnBoardIPRowZeroIconClick" />	 			             
+	    </Window>
+	    
+	    <Window Type="TransparentComboBox" Name="ComboboxBoardIPSelRow1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:149 y:94" />
+	      <Property Name="WindowSize" Value="x:140 y:30" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="IsIPStyle" Value="True" />
+	      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+	      <Property Name="Image" Value="ComboboxCommon" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="EditEdgeHeight" Value="5" />
+	      <Property Name="DropListHeight" Value="212" />
+	      <Property Name="ComboShowIcon" Value="False" />
+	      <Property Name="ReadOnly" Value="True" />
+		 	  <Event Type="WM_CLICK_COMBOLIST" Value="CUmsDiagLogic::OnBoardIPRowFirstClick" />
+		 	  <Event Type="UI_EDITDELETE_CLICK" Value="CUmsDiagLogic::OnBoardIPRowFirstIconClick" /> 			             
+	    </Window>
+	    
+	    <Window Type="TransparentComboBox" Name="ComboboxBoardIPSelRow2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:149 y:136" />
+	      <Property Name="WindowSize" Value="x:140 y:30" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="IsIPStyle" Value="True" />
+	      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+	      <Property Name="Image" Value="ComboboxCommon" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="EditEdgeHeight" Value="5" />
+	      <Property Name="DropListHeight" Value="212" />
+	      <Property Name="ComboShowIcon" Value="False" />
+	      <Property Name="ReadOnly" Value="True" />
+		 	  <Event Type="WM_CLICK_COMBOLIST" Value="CUmsDiagLogic::OnBoardIPRowSecondClick" />
+		 	  <Event Type="UI_EDITDELETE_CLICK" Value="CUmsDiagLogic::OnBoardIPRowSecondIconClick" /> 			             
+	    </Window>
+	    
+	    <Window Type="TransparentComboBox" Name="ComboboxBoardIPSelRow3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:149 y:178" />
+	      <Property Name="WindowSize" Value="x:140 y:30" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="IsIPStyle" Value="True" />
+	      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+	      <Property Name="Image" Value="ComboboxCommon" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="EditEdgeHeight" Value="5" />
+	      <Property Name="DropListHeight" Value="212" />
+	      <Property Name="ComboShowIcon" Value="False" />
+	      <Property Name="ReadOnly" Value="True" />
+		 	  <Event Type="WM_CLICK_COMBOLIST" Value="CUmsDiagLogic::OnBoardIPRowThirdClick" />
+		 	  <Event Type="UI_EDITDELETE_CLICK" Value="CUmsDiagLogic::OnBoardIPRowThirdIconClick" /> 			             
+	    </Window>
+	    
+	     <Window Type="TransparentComboBox" Name="ComboboxBoardIPSelRow4" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:149 y:220" />
+	      <Property Name="WindowSize" Value="x:140 y:30" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="IsIPStyle" Value="True" />
+	      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+	      <Property Name="Image" Value="ComboboxCommon" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="EditEdgeHeight" Value="5" />
+	      <Property Name="DropListHeight" Value="212" />
+	      <Property Name="ComboShowIcon" Value="False" />
+	      <Property Name="ReadOnly" Value="True" />
+		 	  <Event Type="WM_CLICK_COMBOLIST" Value="CUmsDiagLogic::OnBoardIPRowFourClick" />
+		 	  <Event Type="UI_EDITDELETE_CLICK" Value="CUmsDiagLogic::OnBoardIPRowFourIconClick" /> 			             
+	    </Window>
+	    
+	    <!-- 网口选择列 -->
+	    <Window Type="TransparentComboBox" Name="ComboboxNetInterfaceSelRow0" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:310 y:52" />
+	      <Property Name="WindowSize" Value="x:91 y:30" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="IsIPStyle" Value="False" />
+	      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+	      <Property Name="Image" Value="ComboboxCommon" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="EditEdgeHeight" Value="5" />
+	      <Property Name="DropListHeight" Value="212" />
+	      <Property Name="ComboShowIcon" Value="False" />
+	      <Property Name="ReadOnly" Value="True" />
+		  <Event Type="WM_CLICK_COMBOLIST" Value="CUmsDiagLogic::OnNetInterfaceRowZeroClick" /> 			             
+	    </Window>
+	    
+	    <Window Type="TransparentComboBox" Name="ComboboxNetInterfaceSelRow1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:310 y:94" />
+	      <Property Name="WindowSize" Value="x:91 y:30" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="IsIPStyle" Value="False" />
+	      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+	      <Property Name="Image" Value="ComboboxCommon" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="EditEdgeHeight" Value="5" />
+	      <Property Name="DropListHeight" Value="212" />
+	      <Property Name="ComboShowIcon" Value="False" />
+	      <Property Name="ReadOnly" Value="True" />
+		 	  <Event Type="WM_CLICK_COMBOLIST" Value="CUmsDiagLogic::OnNetInterfaceRowFirstClick" /> 			             
+	    </Window>
+	    
+	    <Window Type="TransparentComboBox" Name="ComboboxNetInterfaceSelRow2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:310 y:136" />
+	      <Property Name="WindowSize" Value="x:91 y:30" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="IsIPStyle" Value="False" />
+	      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+	      <Property Name="Image" Value="ComboboxCommon" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="EditEdgeHeight" Value="5" />
+	      <Property Name="DropListHeight" Value="212" />
+	      <Property Name="ComboShowIcon" Value="False" />
+	      <Property Name="ReadOnly" Value="True" />	
+		 	  <Event Type="WM_CLICK_COMBOLIST" Value="CUmsDiagLogic::OnNetInterfaceRowSecondClick" /> 			             
+	    </Window>
+	    
+	    <Window Type="TransparentComboBox" Name="ComboboxNetInterfaceSelRow3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:310 y:178" />
+	      <Property Name="WindowSize" Value="x:91 y:30" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="IsIPStyle" Value="False" />
+	      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+	      <Property Name="Image" Value="ComboboxCommon" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="EditEdgeHeight" Value="5" />
+	      <Property Name="DropListHeight" Value="212" />
+	      <Property Name="ComboShowIcon" Value="False" />
+	      <Property Name="ReadOnly" Value="True" />
+		 	  <Event Type="WM_CLICK_COMBOLIST" Value="CUmsDiagLogic::OnNetInterfaceRowThirdClick" /> 			             
+	    </Window>
+    
+	    <Window Type="TransparentComboBox" Name="ComboboxNetInterfaceSelRow4" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:310 y:220" />
+	      <Property Name="WindowSize" Value="x:91 y:30" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="IsIPStyle" Value="False" />
+	      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+	      <Property Name="Image" Value="ComboboxCommon" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="EditEdgeHeight" Value="5" />
+	      <Property Name="DropListHeight" Value="212" />
+	      <Property Name="ComboShowIcon" Value="False" />
+	      <Property Name="ReadOnly" Value="True" />
+		 	  <Event Type="WM_CLICK_COMBOLIST" Value="CUmsDiagLogic::OnNetInterfaceRowFourClick" /> 			             
+	    </Window>
+	    
+	    <!-- 抓包时间列  -->
+	    <Window Type="CStatic" Name="StcCaptureTimeRow0" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	    	<Property Name="WindowPos" Value="x:407 y:52" />
+	    	<Property Name="WindowSize" Value="x:80 y:30" />
+	    	<Property Name="WindowCaption" Value="00:00" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="FontStyle" Value="0" />
+	      <Property Name="Alignment" Value="1" />
+	    </Window>
+	    
+	    <Window Type="CStatic" Name="StcCaptureTimeRow1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	    	<Property Name="WindowPos" Value="x:407 y:94" />
+	    	<Property Name="WindowSize" Value="x:80 y:30" />
+	    	<Property Name="WindowCaption" Value="00:00" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="FontStyle" Value="0" />
+	      <Property Name="Alignment" Value="1" />
+	    </Window>
+	    
+	    <Window Type="CStatic" Name="StcCaptureTimeRow2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	    	<Property Name="WindowPos" Value="x:407 y:136" />
+	    	<Property Name="WindowSize" Value="x:80 y:30" />
+	    	<Property Name="WindowCaption" Value="00:00" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="FontStyle" Value="0" />
+	      <Property Name="Alignment" Value="1" />
+	    </Window>
+	    
+	    <Window Type="CStatic" Name="StcCaptureTimeRow3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	    	<Property Name="WindowPos" Value="x:407 y:178" />
+	    	<Property Name="WindowSize" Value="x:80 y:30" />
+	    	<Property Name="WindowCaption" Value="00:00" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="FontStyle" Value="0" />
+	      <Property Name="Alignment" Value="1" />
+	    </Window>
+	    
+	    <Window Type="CStatic" Name="StcCaptureTimeRow4" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	    	<Property Name="WindowPos" Value="x:407 y:220" />
+	    	<Property Name="WindowSize" Value="x:80 y:30" />
+	    	<Property Name="WindowCaption" Value="00:00" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="FontStyle" Value="0" />
+	      <Property Name="Alignment" Value="1" />
+	    </Window>
+	    
+	    <!--   抓包文件大小列    --> 
+	    <Window Type="CStatic" Name="StcFileSizeRow0" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	    	<Property Name="WindowPos" Value="x:480 y:52" />
+	    	<Property Name="WindowSize" Value="x:80 y:30" />
+	    	<Property Name="WindowCaption" Value="0M" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="FontStyle" Value="0" />
+	      <Property Name="Alignment" Value="1" />
+	    </Window>
+    
+	    <Window Type="CStatic" Name="StcFileSizeRow1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	    	<Property Name="WindowPos" Value="x:480 y:94" />
+	    	<Property Name="WindowSize" Value="x:80 y:30" />
+	    	<Property Name="WindowCaption" Value="0M" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="FontStyle" Value="0" />
+	      <Property Name="Alignment" Value="1" />
+	    </Window>
+	    
+	    <Window Type="CStatic" Name="StcFileSizeRow2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	    	<Property Name="WindowPos" Value="x:480 y:136" />
+	    	<Property Name="WindowSize" Value="x:80 y:30" />
+	    	<Property Name="WindowCaption" Value="0M" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="FontStyle" Value="0" />
+	      <Property Name="Alignment" Value="1" />
+	    </Window>
+	    
+	    <Window Type="CStatic" Name="StcFileSizeRow3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	    	<Property Name="WindowPos" Value="x:480 y:178" />
+	    	<Property Name="WindowSize" Value="x:80 y:30" />
+	    	<Property Name="WindowCaption" Value="0M" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="FontStyle" Value="0" />
+	      <Property Name="Alignment" Value="1" />
+	    </Window>
+	    
+	    <Window Type="CStatic" Name="StcFileSizeRow4" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	    	<Property Name="WindowPos" Value="x:480 y:220" />
+	    	<Property Name="WindowSize" Value="x:80 y:30" />
+	    	<Property Name="WindowCaption" Value="0M" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+	      <Property Name="FontSize" Value="9" />
+	      <Property Name="FontStyle" Value="0" />
+	      <Property Name="Alignment" Value="1" />
+	    </Window>
+	    
+	    <!--  开始抓包列  -->
+	    <Window Type="CButton" Name="BtnStartCaptureRow0" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+				<Property Name="WindowPos" Value="x:573 y:52" />
+				<Property Name="WindowSize" Value="x:87 y:28" />
+				<Property Name="WindowCaption" Value="" />
+				<Property Name="WindowVisible" Value="True" />
+			  <Event Type="WM_BUTTON_CLICK" Value="CUmsDiagLogic::OnBtnStartCaptureRowZero" />
+			  <Property Name="Image" Value="BtnToCapture" />
+	      <Scheme Name="SchStartCapture0">
+	        <Property Name="Image" Value="BtnToCapture\start" />
+	      </Scheme>
+	      <Scheme Name="SchEndCapture0">
+	        <Property Name="Image" Value="BtnToCapture\end" />
+	      </Scheme>
+			</Window>	
+			
+			<Window Type="CButton" Name="BtnStartCaptureRow1" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+				<Property Name="WindowPos" Value="x:573 y:94" />
+				<Property Name="WindowSize" Value="x:87 y:28" />
+				<Property Name="WindowCaption" Value="" />
+				<Property Name="WindowVisible" Value="True" />
+			  <Event Type="WM_BUTTON_CLICK" Value="CUmsDiagLogic::OnBtnStartCaptureRowFirst" />
+			  <Property Name="Image" Value="BtnToCapture" />
+	      <Scheme Name="SchStartCapture1">
+	        <Property Name="Image" Value="BtnToCapture\start" />
+	      </Scheme>
+	      <Scheme Name="SchEndCapture1">
+	        <Property Name="Image" Value="BtnToCapture\end" />
+	      </Scheme>
+			</Window>
+	    
+	    <Window Type="CButton" Name="BtnStartCaptureRow2" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+				<Property Name="WindowPos" Value="x:573 y:136" />
+				<Property Name="WindowSize" Value="x:87 y:28" />
+				<Property Name="WindowCaption" Value="" />
+				<Property Name="WindowVisible" Value="True" />
+			  <Event Type="WM_BUTTON_CLICK" Value="CUmsDiagLogic::OnBtnStartCaptureRowSecond" />
+			  <Property Name="Image" Value="BtnToCapture" />
+	      <Scheme Name="SchStartCapture2">
+	        <Property Name="Image" Value="BtnToCapture\start" />
+	      </Scheme>
+	      <Scheme Name="SchEndCapture2">
+	        <Property Name="Image" Value="BtnToCapture\end" />
+	      </Scheme>
+			</Window>
+			
+			<Window Type="CButton" Name="BtnStartCaptureRow3" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+				<Property Name="WindowPos" Value="x:573 y:178" />
+				<Property Name="WindowSize" Value="x:87 y:28" />
+				<Property Name="WindowCaption" Value="" />
+				<Property Name="WindowVisible" Value="True" />
+			  <Event Type="WM_BUTTON_CLICK" Value="CUmsDiagLogic::OnBtnStartCaptureRowThird" />
+			  <Property Name="Image" Value="BtnToCapture" />
+	      <Scheme Name="SchStartCapture3">
+	        <Property Name="Image" Value="BtnToCapture\start" />
+	      </Scheme>
+	      <Scheme Name="SchEndCapture3">
+	        <Property Name="Image" Value="BtnToCapture\end" />
+	      </Scheme>
+			</Window>
+	    
+	    <Window Type="CButton" Name="BtnStartCaptureRow4" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+				<Property Name="WindowPos" Value="x:573 y:220" />
+				<Property Name="WindowSize" Value="x:87 y:28" />
+				<Property Name="WindowCaption" Value="" />
+				<Property Name="WindowVisible" Value="True" />
+			  <Event Type="WM_BUTTON_CLICK" Value="CUmsDiagLogic::OnBtnStartCaptureRowFour" />
+			  <Property Name="Image" Value="BtnToCapture" />
+	      <Scheme Name="SchStartCapture4">
+	        <Property Name="Image" Value="BtnToCapture\start" />
+	      </Scheme>
+	      <Scheme Name="SchEndCapture4">
+	        <Property Name="Image" Value="BtnToCapture\end" />
+	      </Scheme>
+			</Window>
+			
+			<!--   导出抓包列   -->
+			<Window Type="CButton" Name="BtnExportCaptureRow0" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+				<Property Name="WindowPos" Value="x:687 y:52" />
+				<Property Name="WindowSize" Value="x:87 y:28" />
+				<Property Name="WindowCaption" Value="" />
+				<Property Name="Tooltip" Value="ExportCapture" />
+				<Property Name="Image" Value="BtnExportCapture" />
+				<Property Name="WindowVisible" Value="True" />
+			  <Event Type="WM_BUTTON_CLICK" Value="CUmsDiagLogic::OnBtnExportCaptureRowZero" />
+			  <Property Name="WindowEnable" Value="True" />
+				<Scheme Name="SchmCaptureExpClean">
+					<Property Name="WindowEnable" Value="True" />    		    	
+				</Scheme>				      
+				<Scheme Name="SchmExportbtnBeg">			
+					<Property Name="WindowEnable" Value="False" />
+				</Scheme>
+				<Scheme Name="SchmExportbtnEnd">
+					<Property Name="WindowEnable" Value="True" />
+				</Scheme>
+			</Window>
+			
+			<Window Type="CButton" Name="BtnExportCaptureRow1" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+				<Property Name="WindowPos" Value="x:687 y:94" />
+				<Property Name="WindowSize" Value="x:87 y:28" />
+				<Property Name="WindowCaption" Value="" />
+				<Property Name="Tooltip" Value="ExportCapture" />
+				<Property Name="Image" Value="BtnExportCapture" />
+				<Property Name="WindowVisible" Value="True" />
+			  <Event Type="WM_BUTTON_CLICK" Value="CUmsDiagLogic::OnBtnExportCaptureRowFirst" />
+			  <Property Name="WindowEnable" Value="True" />
+				<Scheme Name="SchmCaptureExpClean">
+					<Property Name="WindowEnable" Value="True" />    		    	
+				</Scheme>				      
+				<Scheme Name="SchmExportbtnBeg">			
+					<Property Name="WindowEnable" Value="False" />
+				</Scheme>
+				<Scheme Name="SchmExportbtnEnd">
+					<Property Name="WindowEnable" Value="True" />
+				</Scheme>
+			</Window>
+	    
+	    <Window Type="CButton" Name="BtnExportCaptureRow2" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+				<Property Name="WindowPos" Value="x:687 y:136" />
+				<Property Name="WindowSize" Value="x:87 y:28" />
+				<Property Name="WindowCaption" Value="" />
+				<Property Name="Tooltip" Value="ExportCapture" />
+				<Property Name="Image" Value="BtnExportCapture" />
+				<Property Name="WindowVisible" Value="True" />
+			  <Event Type="WM_BUTTON_CLICK" Value="CUmsDiagLogic::OnBtnExportCaptureRowSecond" />
+			  <Property Name="WindowEnable" Value="True" />
+				<Scheme Name="SchmCaptureExpClean">
+					<Property Name="WindowEnable" Value="True" />    		    	
+				</Scheme>				      
+				<Scheme Name="SchmExportbtnBeg">			
+					<Property Name="WindowEnable" Value="False" />
+				</Scheme>
+				<Scheme Name="SchmExportbtnEnd">
+					<Property Name="WindowEnable" Value="True" />
+				</Scheme>
+			</Window>
+			
+			<Window Type="CButton" Name="BtnExportCaptureRow3" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+				<Property Name="WindowPos" Value="x:687 y:178" />
+				<Property Name="WindowSize" Value="x:87 y:28" />
+				<Property Name="WindowCaption" Value="" />
+				<Property Name="Tooltip" Value="ExportCapture" />
+				<Property Name="Image" Value="BtnExportCapture" />
+				<Property Name="WindowVisible" Value="True" />
+			  <Event Type="WM_BUTTON_CLICK" Value="CUmsDiagLogic::OnBtnExportCaptureRowThird" />
+			  <Property Name="WindowEnable" Value="True" />
+				<Scheme Name="SchmCaptureExpClean">
+					<Property Name="WindowEnable" Value="True" />    		    	
+				</Scheme>				      
+				<Scheme Name="SchmExportbtnBeg">			
+					<Property Name="WindowEnable" Value="False" />
+				</Scheme>
+				<Scheme Name="SchmExportbtnEnd">
+					<Property Name="WindowEnable" Value="True" />
+				</Scheme>
+			</Window>
+			
+			<Window Type="CButton" Name="BtnExportCaptureRow4" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+				<Property Name="WindowPos" Value="x:687 y:220" />
+				<Property Name="WindowSize" Value="x:87 y:28" />
+				<Property Name="WindowCaption" Value="" />
+				<Property Name="Tooltip" Value="ExportCapture" />
+				<Property Name="Image" Value="BtnExportCapture" />
+				<Property Name="WindowVisible" Value="True" />
+			  <Event Type="WM_BUTTON_CLICK" Value="CUmsDiagLogic::OnBtnExportCaptureRowFour" />
+			  <Property Name="WindowEnable" Value="True" />
+				<Scheme Name="SchmCaptureExpClean">
+					<Property Name="WindowEnable" Value="True" />    		    	
+				</Scheme>				      
+				<Scheme Name="SchmExportbtnBeg">			
+					<Property Name="WindowEnable" Value="False" />
+				</Scheme>
+				<Scheme Name="SchmExportbtnEnd">
+					<Property Name="WindowEnable" Value="True" />
+				</Scheme>
+			</Window>	  
+		</Window>		
+    
+    <CallBackFunc Type="CallBackFunc" Value="CUmsDiagLogic::InitWnd" />
+    <Property Name="WindowVisible" Value="True" />
+	</Window>
+</UILayout>

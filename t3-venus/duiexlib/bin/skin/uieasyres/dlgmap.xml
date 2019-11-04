@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <Dialog Name="UIFrame" Style="WS_POPUP" ExStyle="" OutHide="false" Parent="" Layout="ui.xml"/>
+ <Dialog Name="poptestdlg" Style="WS_POPUP" ExStyle="" OutHide="true" Parent="UIFrame" Layout="poptestdlg.xml"/>
+  

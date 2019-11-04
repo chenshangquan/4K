@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  <!--开始统计和结束统计界面-->
+   
+	<Window Type="TransparentDlg" Name="StatisticOptDlg" Style="WS_POPUP" ><!--WS_EX_TOPMOST|ExStyle="WS_EX_TOOLWINDOW"-->
+    <Property Name="WindowPos" Value="x:0 y:0" />
+    <Property Name="WindowSize" Value="x:490 y:340" />
+    <Property Name="WindowVisible" Value="true" />
+    <Property Name="Image" Value="optbk.png" />
+    <Property Name="WindowCaption" Value="统计窗口" />
+    <Property Name="MoveStatus" Value="true" />
+
+    <Window Type="TransStatic" Name="StcStatistics" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:24 y:20" />
+      <Property Name="WindowSize" Value="x:200 y:14" />
+      <Property Name="WindowCaption" Value="开始统计" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:200 g:200 b:200" />
+      <Property Name="FontSize" Value="9" />
+      <Scheme Name="SchStartStatistics">
+        <Property Name="WindowCaption" Value="开始统计" />
+      </Scheme>
+      <Scheme Name="SchEndOfStatistics">
+        <Property Name="WindowCaption" Value="结束统计" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransButton" Name="BtnMsgboxClose" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:430 y:5" />
+      <Property Name="WindowSize" Value="x:44 y:28" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Tooltip" Value="关闭" />
+      <Property Name="Image" Value="Common/btnClose" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="RecordOptDlg::OnBtnClose" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcStoreDirectory" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:23 y:80" />
+      <Property Name="WindowSize" Value="x:70 y:14" />
+      <Property Name="WindowCaption" Value="储存目录：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransEdit" Name="EditOfStoreDirectory" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:90 y:70" />
+      <Property Name="WindowSize" Value="x:299 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Image" Value="Edit" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="WindowEnable" Value="False" />
+      <Property Name="LimitLength" Value="260" />
+      <Property Name="FontColor" Value="r:59 g:59 b:59" />
+      <Property Name="FontSize" Value="9" />
+      <Scheme Name="SchStartStatistics">
+        <Property Name="WindowSize" Value="x:299 y:32" />
+      </Scheme>
+      <Scheme Name="SchEndOfStatistics">
+        <Property Name="WindowSize" Value="x:220 y:32" />
+      </Scheme>
+      <Scheme Name="SchClean">
+        <Property Name="WindowCaption" Value="" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransButton" Name="BtnFolderOperat" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:394 y:70" />
+      <Property Name="WindowSize" Value="x:74 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Tooltip" Value="" />
+      <Property Name="Image" Value="impexpCommonDlg/btnScan" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="RecordOptDlg::OnBtnScan" />
+      <Property Name="WindowEnable" Value="True" />
+      <Scheme Name="SchStartStatistics">
+        <Property Name="WindowPos" Value="x:394 y:70" />
+        <Property Name="WindowSize" Value="x:74 y:32" />
+        <Property Name="Image" Value="impexpCommonDlg/btnScan" />
+        <Event Type="WM_BUTTON_CLICK" Value="RecordOptDlg::OnBtnScan" />
+      </Scheme>
+      <Scheme Name="SchEndOfStatistics">
+        <Property Name="WindowPos" Value="x:315 y:70" />
+        <Property Name="WindowSize" Value="x:153 y:32" />
+        <Property Name="Image" Value="impexpCommonDlg/btnOpenFolder" />
+        <Event Type="WM_BUTTON_CLICK" Value="RecordOptDlg::OnOpenFolder" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcFileName" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:23 y:119" />
+      <Property Name="WindowSize" Value="x:74 y:14" />
+      <Property Name="WindowCaption" Value="文件名称：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Scheme Name="SchStartStatistics">
+        <Property Name="WindowVisible" Value="True" />
+      </Scheme>
+      <Scheme Name="SchEndOfStatistics">
+        <Property Name="WindowVisible" Value="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransEdit" Name="EditOfFileName" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:90 y:110" />
+      <Property Name="WindowSize" Value="x:299 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Image" Value="Edit" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="LimitLength" Value="260" />
+      <Property Name="FontColor" Value="r:59 g:59 b:59" />
+      <Property Name="FontSize" Value="9" />
+      <Scheme Name="SchStartStatistics">
+        <Property Name="WindowVisible" Value="True" />
+      </Scheme>
+      <Scheme Name="SchEndOfStatistics">
+        <Property Name="WindowVisible" Value="False" />
+      </Scheme>
+      <Scheme Name="SchClean">
+        <Property Name="WindowCaption" Value="" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransButton" Name="BtnFileNameSave" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:394 y:110" />
+      <Property Name="WindowSize" Value="x:74 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Tooltip" Value="" />
+      <Property Name="Image" Value="btnFileSave" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="RecordOptDlg::OnBtnSave" />
+      <Property Name="WindowEnable" Value="True" />
+      <Scheme Name="SchStartStatistics">
+        <Property Name="WindowVisible" Value="True" />
+      </Scheme>
+      <Scheme Name="SchEndOfStatistics">
+        <Property Name="WindowVisible" Value="False" />
+      </Scheme>
+    </Window>
+	  
+		<CallBackFunc Type="CallBackFunc" Value="RecordOptDlg::InitWnd" />
+	</Window>
+</UILayout>

@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="gb379"?>
+<UILayout>
+  <!--配置界面-->
+   
+    <Window Type="TransparentDlg" Name="CfgServerDlg" Style="WS_CHILD" ExStyle="">
+      <Property Name="WindowPos" Value="x:122 y:0" />
+      <Property Name="WindowSize" Value="x:728 y:501" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="Image" Value="" />
+      <Property Name="WindowCaption" Value="服务器配置界面" />
+
+    <!-- 通用服务器配置界面 -->
+	<Window Type="TransparentDlg" Name="CfgServerNorDlg" Style="WS_CHILD" ExStyle="">
+      <Property Name="WindowPos" Value="x:0 y:0" />
+      <Property Name="WindowSize" Value="x:728 y:450" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="Image" Value="" />
+      <Property Name="WindowCaption" Value="通用服务器配置界面" />
+      <Scheme Name="SchModelT300E_4K">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+      <Scheme Name="SchModelNonT300E_4K">
+        <Property Name="WindowVisible" Value="true" />
+      </Scheme>
+
+	<Window Type="TransStatic" Name="StcSipName" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:26" />
+      <Property Name="WindowSize" Value="x:150 y:14" />
+      <Property Name="WindowCaption" Value="网呈注册服务器地址：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+      
+	<Window Type="TransIPEdit" Name="SIPCtrlAddress" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
+      <Property Name="WindowPos" Value="x:216 y:11" />
+      <Property Name="WindowSize" Value="x:425 y:42" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="Edit" />
+      <Property Name="FontSize" Value="9" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgServerLogic::OnChangedSIp" />
+      <Scheme Name="SchmConf">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+	
+	<Window Type="TransStatic" Name="StcGK" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:68" />
+      <Property Name="WindowSize" Value="x:110 y:14" />
+      <Property Name="WindowCaption" Value="GK服务：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>    
+      
+  	<Window Type="TransSwitchButton" Name="BtnGKSwitch" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			  <Property Name="WindowPos" Value="x:534 y:53" />
+			  <Property Name="WindowSize" Value="x:107 y:32" />
+			  <Property Name="Image" Value="AudioSwitch" />
+			  <Property Name="WindowEnable" Value="true" />
+			  <Property Name="WindowVisible" Value="True" />
+			  <Property Name="SwitchState" Value="false" />
+			  <Event Type="WM_BUTTON_CLICK" Value="CCfgServerLogic::OnBtnSwitchGK" />
+			  <Scheme Name="SchmConf">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="SchmNoConf">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+	</Window> 
+	
+	<Window Type="TransStatic" Name="StcDataTimeSync" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:419" />
+      <Property Name="WindowSize" Value="x:150 y:14" />
+      <Property Name="WindowCaption" Value="时间同步服务器：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+      
+	<Window Type="TransIPEdit" Name="IPCtrlDataTimeSync" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
+      <Property Name="WindowPos" Value="x:216 y:404" />
+      <Property Name="WindowSize" Value="x:425 y:42" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="Edit" />
+      <Property Name="FontSize" Value="9" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgServerLogic::OnChangedDataTimeSyncIP" />
+      <Scheme Name="SchmConf">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+	
+	<Window Type="TransStatic" Name="StcIDQuantumEncryption" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:377" />
+      <Property Name="WindowSize" Value="x:150 y:14" />
+      <Property Name="WindowCaption" Value="量子加密ID：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+      
+	<Window Type="TransEdit" Name="IPCtrlIDQuantumEncry" Style="WS_CHILD|WS_CLIPSIBLINGS|ES_NUMBER|WS_TABSTOP">
+      <Property Name="WindowPos" Value="x:216 y:362" />
+      <Property Name="WindowSize" Value="x:425 y:42" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="Edit" />
+	  <Property Name="LimitLength" Value="10" /> 
+      <Property Name="FontSize" Value="9" />
+	  
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgServerLogic::OnChangedQuantumEncryID" />
+      <Scheme Name="SchmConf">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+	
+	<Window Type="TransStatic" Name="StcDataQuantumEncryption" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:340" />
+      <Property Name="WindowSize" Value="x:150 y:14" />
+      <Property Name="WindowCaption" Value="量子加密服务器地址：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+      
+	<Window Type="TransIPEdit" Name="IPCtrlDataQuantumEncry" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
+      <Property Name="WindowPos" Value="x:216 y:325" />
+      <Property Name="WindowSize" Value="x:425 y:42" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="Edit" />
+      <Property Name="FontSize" Value="9" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgServerLogic::OnChangedDataQuantumEncryIP" />
+      <Scheme Name="SchmConf">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+	
+	<Window Type="TransStatic" Name="StcQuantumEncry" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:304" />
+      <Property Name="WindowSize" Value="x:110 y:14" />
+      <Property Name="WindowCaption" Value="量子加密服务器：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>    
+      
+  	<Window Type="TransSwitchButton" Name="BtnQuantumEncrySwitch" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			  <Property Name="WindowPos" Value="x:534 y:295" />
+			  <Property Name="WindowSize" Value="x:107 y:32" />
+			  <Property Name="Image" Value="AudioSwitch" />
+			  <Property Name="WindowEnable" Value="true" />
+			  <Property Name="WindowVisible" Value="True" />
+			  <Property Name="SwitchState" Value="false" />
+			  <Event Type="WM_BUTTON_CLICK" Value="CCfgServerLogic::OnBtnSwitchQuantumEncry" />
+			  <Scheme Name="SchmConf">
+          <Property Name="WindowEnable" Value="false" />
+        </Scheme>
+        <Scheme Name="SchmNoConf">
+          <Property Name="WindowEnable" Value="true" />
+        </Scheme>
+	</Window> 
+	
+	<Window Type="TransStatic" Name="StcDataMatrix" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:268" />
+      <Property Name="WindowSize" Value="x:150 y:14" />
+      <Property Name="WindowCaption" Value="矩阵服务器地址：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+      
+	<Window Type="TransIPEdit" Name="IPCtrlDataMatrix" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
+      <Property Name="WindowPos" Value="x:216 y:253" />
+      <Property Name="WindowSize" Value="x:425 y:42" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="Edit" />
+      <Property Name="FontSize" Value="9" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgServerLogic::OnChangedDataMatrix" />
+      <Scheme Name="SchmConf">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+	
+	<Window Type="TransStatic" Name="StcDataConfSerIP" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:226" />
+      <Property Name="WindowSize" Value="x:150 y:14" />
+      <Property Name="WindowCaption" Value="数据会议服务器地址：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+      
+	<Window Type="TransIPEdit" Name="IPCtrlDataConfSer" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
+      <Property Name="WindowPos" Value="x:216 y:211" />
+      <Property Name="WindowSize" Value="x:425 y:42" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="Edit" />
+      <Property Name="FontSize" Value="9" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgServerLogic::OnChangedDataConfSerIP" />
+      <Scheme Name="SchmConf">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+	
+	<Window Type="TransStatic" Name="StSIpAddress" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:184" />
+      <Property Name="WindowSize" Value="x:150 y:14" />
+      <Property Name="WindowCaption" Value="升级服务器地址：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+      
+    <Window Type="TransIPEdit" Name="IPCtrlUpAddress" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
+      <Property Name="WindowPos" Value="x:216 y:169" />
+      <Property Name="WindowSize" Value="x:425 y:42" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="Edit" />
+      <Property Name="FontSize" Value="9" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgServerLogic::OnChangedUpSerIp" />
+      <Scheme Name="SchmConf">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+	
+	<Window Type="TransStatic" Name="StcCallServer" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:142" />
+      <Property Name="WindowSize" Value="x:110 y:14" />
+      <Property Name="WindowCaption" Value="呼叫服务器地址：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+  
+    <Window Type="TransIPEdit" Name="IPCtrlCallServer" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
+      <Property Name="WindowPos" Value="x:216 y:127" />
+      <Property Name="WindowSize" Value="x:425 y:42" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="Edit" />
+      <Property Name="FontSize" Value="9" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgServerLogic::OnChangedCallSerIp" />
+      <Scheme Name="SchmConf">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+	
+	<Window Type="TransStatic" Name="ExGKAddr" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:100" />
+      <Property Name="WindowSize" Value="x:180 y:14" />
+      <Property Name="WindowCaption" Value="GK服务器地址：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransIPEdit" Name="IPCtrlGKIp" Style="WS_CHILD|WS_TABSTOP"> 
+       <Property Name="WindowPos" Value="x:216 y:85" /> 
+       <Property Name="WindowSize" Value="x:425 y:42" />
+       <Property Name="WindowCaption" Value="" />
+       <Property Name="WindowVisible" Value="true" />
+       <Property Name="WindowEnable" Value="false" />
+       <Property Name="Image" Value="Edit" />
+       <Property Name="FontSize" Value="9" />
+       <Event Type="WM_EDIT_CHANGED" Value="CCfgServerLogic::OnChangedGKIp" />
+       <Scheme Name="SchmEdit">
+          <Property Name="WindowEnable" Value="true" /> 
+       </Scheme>
+       <Scheme Name="SchmNormal">
+          <Property Name="WindowEnable" Value="false" />
+       </Scheme>
+    </Window>
+
+    </Window>  <!-- 通用服务器配置界面 -->
+
+    <!-- T300E-4K服务器配置界面 -->
+    <Window Type="TransparentDlg" Name="CfgServer4KDlg" Style="WS_CHILD" ExStyle="">
+      <Property Name="WindowPos" Value="x:0 y:0" />
+      <Property Name="WindowSize" Value="x:728 y:450" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="Image" Value="" />
+      <Property Name="WindowCaption" Value="T300E-4K服务器配置界面" />
+      <Scheme Name="SchModelT300E_4K">
+          <Property Name="WindowVisible" Value="true" />
+      </Scheme>
+      <Scheme Name="SchModelNonT300E_4K">
+          <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+
+    <Window Type="TransStatic" Name="StcSipName" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:34" />
+      <Property Name="WindowSize" Value="x:150 y:14" />
+      <Property Name="WindowCaption" Value="网呈注册服务器地址：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+      
+    <Window Type="TransIPEdit" Name="SIPCtrlAddress" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
+      <Property Name="WindowPos" Value="x:216 y:19" />
+      <Property Name="WindowSize" Value="x:425 y:42" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="Edit" />
+      <Property Name="FontSize" Value="9" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgServerLogic::OnChangedSIp" />
+      <Scheme Name="SchmConf">
+          <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+          <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcGK" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:76" />
+      <Property Name="WindowSize" Value="x:110 y:14" />
+      <Property Name="WindowCaption" Value="GK服务：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>    
+      
+    <Window Type="TransSwitchButton" Name="BtnGKSwitch" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:534 y:61" />
+      <Property Name="WindowSize" Value="x:107 y:32" />
+      <Property Name="Image" Value="AudioSwitch" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="SwitchState" Value="false" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgServerLogic::OnBtnSwitchGK" />
+      <Scheme Name="SchmConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window> 
+
+    <Window Type="TransStatic" Name="ExGKAddr" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:108" />
+      <Property Name="WindowSize" Value="x:180 y:14" />
+      <Property Name="WindowCaption" Value="GK服务器地址：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransIPEdit" Name="IPCtrlGKIp" Style="WS_CHILD|WS_TABSTOP"> 
+       <Property Name="WindowPos" Value="x:216 y:93" /> 
+       <Property Name="WindowSize" Value="x:425 y:42" />
+       <Property Name="WindowCaption" Value="" />
+       <Property Name="WindowVisible" Value="true" />
+       <Property Name="WindowEnable" Value="false" />
+       <Property Name="Image" Value="Edit" />
+       <Property Name="FontSize" Value="9" />
+       <Event Type="WM_EDIT_CHANGED" Value="CCfgServerLogic::OnChangedGKIp" />
+       <Scheme Name="SchmEdit">
+          <Property Name="WindowEnable" Value="true" /> 
+       </Scheme>
+       <Scheme Name="SchmNormal">
+          <Property Name="WindowEnable" Value="false" />
+       </Scheme>
+   </Window>
+
+    <!-- 登陆云服务 -->
+    <Window Type="TransStatic" Name="StcCloud" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:150" />
+      <Property Name="WindowSize" Value="x:110 y:14" />
+      <Property Name="WindowCaption" Value="登录云服务：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransSwitchButton" Name="BtnCloudSwitch" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:534 y:135" />
+      <Property Name="WindowSize" Value="x:107 y:32" />
+      <Property Name="Image" Value="AudioSwitch" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="SwitchState" Value="false" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgServerLogic::OnBtnSwitchCloud" />
+      <Scheme Name="SchmConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="ExCloudUser" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:182" />
+      <Property Name="WindowSize" Value="x:180 y:14" />
+      <Property Name="WindowCaption" Value="号码：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransEdit" Name="IPCtrlCloudUser" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP"> 
+       <Property Name="WindowPos" Value="x:216 y:167" /> 
+       <Property Name="WindowSize" Value="x:425 y:42" />
+       <Property Name="WindowCaption" Value="" />
+       <Property Name="WindowVisible" Value="true" />
+       <Property Name="WindowEnable" Value="false" />
+       <Property Name="Image" Value="Edit" />
+       <Property Name="FontSize" Value="9" />
+       <Property Name="LimitLength" Value="16" />
+       <Event Type="WM_EDIT_CHANGED" Value="CCfgServerLogic::OnChangedCloudUser" />
+       <Scheme Name="SchmEdit">
+          <Property Name="WindowEnable" Value="true" /> 
+       </Scheme>
+       <Scheme Name="SchmNormal">
+          <Property Name="WindowEnable" Value="false" />
+       </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="ExCloudPW" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:224" />
+      <Property Name="WindowSize" Value="x:180 y:14" />
+      <Property Name="WindowCaption" Value="密码：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransEdit" Name="IPCtrlCloudPW" Style="WS_CHILD|WS_TABSTOP|ES_PASSWORD"> 
+       <Property Name="WindowPos" Value="x:216 y:209" /> 
+       <Property Name="WindowSize" Value="x:425 y:42" />
+       <Property Name="WindowCaption" Value="" />
+       <Property Name="WindowVisible" Value="true" />
+       <Property Name="WindowEnable" Value="false" />
+       <Property Name="Image" Value="Edit" />
+       <Property Name="FontSize" Value="9" />
+       <Property Name="LimitLength" Value="32" />
+       <Event Type="WM_EDIT_CHANGED" Value="CCfgServerLogic::OnChangedCloudPW" />
+       <Scheme Name="SchmEdit">
+          <Property Name="WindowEnable" Value="true" /> 
+       </Scheme>
+       <Scheme Name="SchmNormal">
+          <Property Name="WindowEnable" Value="false" />
+       </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="ExCloudAddr" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:266" />
+      <Property Name="WindowSize" Value="x:180 y:14" />
+      <Property Name="WindowCaption" Value="服务器IP/域名：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransEdit" Name="IPCtrlCloudIp" Style="WS_CHILD|WS_TABSTOP"> 
+       <Property Name="WindowPos" Value="x:216 y:251" /> 
+       <Property Name="WindowSize" Value="x:425 y:42" />
+       <Property Name="WindowCaption" Value="" />
+       <Property Name="WindowVisible" Value="true" />
+       <Property Name="WindowEnable" Value="false" />
+       <Property Name="Image" Value="Edit" />
+       <Property Name="FontSize" Value="9" />
+       <Property Name="LimitLength" Value="32" />
+       <Event Type="WM_EDIT_CHANGED" Value="CCfgServerLogic::OnChangedCloudIp" />
+       <Scheme Name="SchmEdit">
+          <Property Name="WindowEnable" Value="true" /> 
+       </Scheme>
+       <Scheme Name="SchmNormal">
+          <Property Name="WindowEnable" Value="false" />
+       </Scheme>
+    </Window>
+
+    </Window>  <!-- End T300E-4K服务器配置界面 -->
+
+		<Window Type="TransButton" Name="BtnSave" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:491 y:452" />
+			<Property Name="WindowSize" Value="x:86 y:38" />
+			<Property Name="WindowCaption" Value="保存配置" />
+			<Property Name="WindowVisible" Value="true" />
+			<Event Type="WM_BUTTON_CLICK" Value="CCfgServerLogic::OnBtnSave" />
+			<Property Name="Image" Value="btnSave" />
+		</Window>
+		
+		<Window Type="TransButton" Name="BtnCancle" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:591 y:452" />
+			<Property Name="WindowSize" Value="x:86 y:38" />
+			<Property Name="WindowCaption" Value="还原配置" />
+			<Property Name="WindowVisible" Value="true" />
+			<Event Type="WM_BUTTON_CLICK" Value="CCfgServerLogic::OnBtnCancel" />
+			<Property Name="Image" Value="btnCancleCfg" />
+		</Window>
+
+		<CallBackFunc Type="CallBackFunc" Value="CCfgServerLogic::InitWnd" />
+	</Window>
+</UILayout>

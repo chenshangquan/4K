@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<UILayout>
+    <!--系统信息界面  Style="WS_CHILD"-->
+    <Window Type="TransparentDlg" Name="DiagTestFrame" Style="WS_POPUP" ExStyle="">
+        <Property Name="WindowPos" Value="x:0 y:0" />
+        <Property Name="WindowSize" Value="x:490 y:574" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="Image" Value="DiagBackground.png" />
+        <Property Name="WindowCaption" Value="诊断测试背景" />
+        <Property Name="MoveStatus" Value="true" />
+     
+        <CallBackFunc Type="CallBackFunc" Value="CDiagTestFrameLogic::InitWnd" />
+    </Window>
+</UILayout>

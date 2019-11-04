@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  <!--诊断界面-->
+   
+	<Window Type="TransparentDlg" Name="CentCtrlInfoDlg" Style="WS_CHILD" ExStyle="">
+		<Property Name="WindowPos" Value="x:0 y:73" />
+		<Property Name="WindowSize" Value="x:864 y:501" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="Image" Value="" />
+		<Property Name="WindowCaption" Value="中控界面" />
+	   
+    <Window Type="TransStatic" Name="StcCentInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:45 y:32" />
+      <Property Name="WindowSize" Value="x:120 y:14" />
+      <Property Name="WindowCaption" Value="中控信息" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontStyle" Value="1" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />  
+      <Property Name="Alignment" Value="0" />
+    </Window>
+                    
+    <Window Type="TransStatic" Name="StcLine" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:139 y:38" />
+        <Property Name="WindowSize" Value="x:211 y:1" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="Image" Value="line.png" />
+    </Window>
+        
+    <Window Type="TransStatic" Name="StcAirInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:73 y:56" />
+        <Property Name="WindowSize" Value="x:350 y:14" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="0" />
+    </Window>
+         
+    <Window Type="TransStatic" Name="StcXinFengInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:73 y:78" />
+        <Property Name="WindowSize" Value="x:350 y:14" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="0" />
+    </Window>
+          
+    <Window Type="TransStatic" Name="StcDisPlay1Info" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:73 y:122" />
+        <Property Name="WindowSize" Value="x:350 y:14" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="0" />
+    </Window>
+         
+    <Window Type="TransStatic" Name="StcDisPlay2Info" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:73 y:144" />
+        <Property Name="WindowSize" Value="x:350 y:14" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="0" />
+    </Window>
+         
+    <Window Type="TransStatic" Name="StcDisPlay3Info" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:73 y:166" />
+        <Property Name="WindowSize" Value="x:350 y:14" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="0" />
+    </Window>
+         
+    <Window Type="TransStatic" Name="StcCamera1Info" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:73 y:210" />
+        <Property Name="WindowSize" Value="x:350 y:14" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="0" />
+    </Window>
+         
+    <Window Type="TransStatic" Name="StcCamera2Info" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:73 y:232" />
+        <Property Name="WindowSize" Value="x:350 y:14" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="0" />
+    </Window>
+         
+    <Window Type="TransStatic" Name="StcCamera3Info" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:73 y:254" />
+        <Property Name="WindowSize" Value="x:350 y:14" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="0" />
+    </Window>
+         
+    <Window Type="TransStatic" Name="StcDocCameraInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:73 y:298" />
+        <Property Name="WindowSize" Value="x:350 y:14" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="0" />
+    </Window>
+	   
+    <Window Type="TransStatic" Name="StcLightInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:471 y:32" />
+      <Property Name="WindowSize" Value="x:120 y:14" />
+      <Property Name="WindowCaption" Value="灯光状态" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontStyle" Value="1" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />  
+      <Property Name="Alignment" Value="0" />
+    </Window>
+                    
+    <Window Type="TransStatic" Name="StcLLine" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:564 y:38" />
+        <Property Name="WindowSize" Value="x:211 y:1" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="Image" Value="line.png" />
+    </Window>
+  
+    <!--灯光状态列表-->
+    <Window Type="TransList" Name="StcTPbg" Style="WS_CHILD|WS_CLIPSIBLINGS">             
+        <Property Name="WindowPos" Value="x:496 y:54" />
+        <Property Name="WindowSize" Value="x:276 y:346" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="Image" Value="background.png" />
+    </Window>
+                      
+		<CallBackFunc Type="CallBackFunc" Value="CCentCtrlLogic::InitWnd" />
+	</Window>
+</UILayout>

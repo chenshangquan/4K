@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<UILayout>
+    <!--网管配置界面  Style="WS_CHILD"-->
+    <Window Type="TransparentDlg" Name="NetMngCfgDlg" Style="WS_CHILD" ExStyle="">
+        <Property Name="WindowPos" Value="x:128 y:0" />
+        <Property Name="WindowSize" Value="x:736 y:541" />
+        <Property Name="Image" Value="" />
+        
+        <Window Type="CStatic" Name="StcStaticNMServerLst" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:38 y:32" />
+            <Property Name="WindowSize" Value="x:100 y:14" />
+            <Property Name="WindowCaption" Value="网管服务器列表" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:53 g:70 b:70" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="FontStyle" Value="1" />          
+        </Window>
+        <Window Type="CStatic" Name="StcStaticLine" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:174 y:38" />
+            <Property Name="WindowSize" Value="x:519 y:1" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="NetMngCfg/line.png" />
+        </Window>
+        
+        <!--网管服务器列表界面-->
+		    <Window Type="TransparentDlg" Name="NetMngLstDlg" Style="WS_CHILD" >
+				  <Property Name="WindowPos" Value="x:38 y:67" /> 
+					<Property Name="WindowSize" Value="x:655 y:178" />
+					<Property Name="WindowVisible" Value="true" />
+					<Property Name="Image" Value="NetMngCfg/background.png" />
+					<Property Name="WindowCaption" Value="NetMngLstDlg" />
+					
+				<Window Type="CStatic" Name="StcStaticNMServerIP" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:28 y:18" />
+            <Property Name="WindowSize" Value="x:100 y:14" />
+            <Property Name="WindowCaption" Value="网管服务器地址" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:27 g:100 b:104" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+        <Window Type="CStatic" Name="StcStaticNMReadCommunity" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:171 y:18" />
+            <Property Name="WindowSize" Value="x:100 y:14" />
+            <Property Name="WindowCaption" Value="读共同体名" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:27 g:100 b:104" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+        <Window Type="CStatic" Name="StcStaticNMWriteCommunity" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:300 y:18" />
+            <Property Name="WindowSize" Value="x:100 y:14" />
+            <Property Name="WindowCaption" Value="写共同体名" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:27 g:100 b:104" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+        <Window Type="CStatic" Name="StcStaticNMGetSetPort" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:435 y:18" />
+            <Property Name="WindowSize" Value="x:100 y:14" />
+            <Property Name="WindowCaption" Value="读写端口" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:27 g:100 b:104" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+        <Window Type="CStatic" Name="StcStaticNMTrapPort" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:558 y:18" />
+            <Property Name="WindowSize" Value="x:100 y:14" />
+            <Property Name="WindowCaption" Value="发警告端口" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:27 g:100 b:104" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+        
+					<!--网管服务器列表-->
+				<Window Type="TransparentList" Name="ListNetMng" Style="WS_CHILD|WS_CLIPSIBLINGS">
+						<Property Name="WindowPos" Value="x:3 y:47" />
+						<Property Name="WindowSize" Value="x:649 y:126" />
+						<Property Name="WindowCaption" Value="网管服务器列表" />
+						<Property Name="ListImage" Value="" />
+						<Property Name="WindowVisible" Value="true" />
+						<Property Name="Drag" Value="false" />
+			      <Property Name="TransparentListOffset" Value="0" />
+			      <Property Name="TransparentListSelItem" Value="2" />
+			      <Event Type="WM_LST_UN_SELECT_ITEM" Value="CNetMngCfgLogic::OnClickNetMngLstBlack" />
+			      <Scheme Name="SchmNetMngListDefault">
+          		<Property Name="TransparentListSelItem" Value="-1" /> 
+      			</Scheme>
+      			<Scheme Name="SchmNetMngCtrlReset">
+          		<Property Name="TransparentListSelItem" Value="-1" /> 
+      			</Scheme>
+				  </Window> 
+	      </Window>  
+        
+        <Window Type="CButton" Name="BtnAdd" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:391 y:275" />
+            <Property Name="WindowSize" Value="x:87 y:31" />
+            <Property Name="WindowCaption" Value="增加" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="WindowEnable" Value="true" />
+            <Property Name="Image" Value="NetMngCfg/BtnAdd" />
+            <Event Type="WM_BUTTON_CLICK" Value="CNetMngCfgLogic::OnClickBtnAdd" />
+            <Scheme Name="SchmNetMngCtrlReset">
+          		<Property Name="WindowEnable" Value="true" /> 
+      			</Scheme>
+        </Window>
+        <Window Type="CButton" Name="BtnModify" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:491 y:275" />
+            <Property Name="WindowSize" Value="x:87 y:31" />
+            <Property Name="WindowCaption" Value="修改" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="WindowEnable" Value="false" />
+            <Property Name="Image" Value="NetMngCfg/BtnModify" />
+            <Event Type="WM_BUTTON_CLICK" Value="CNetMngCfgLogic::OnClickBtnModify" />
+            <Scheme Name="SchmNetMngCtrlReset">
+          		<Property Name="WindowEnable" Value="false" /> 
+      			</Scheme>
+        </Window>
+        <Window Type="CButton" Name="BtnDelete" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:591 y:275" />
+            <Property Name="WindowSize" Value="x:87 y:31" />
+            <Property Name="WindowCaption" Value="删除" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="WindowEnable" Value="false" />
+            <Property Name="Image" Value="NetMngCfg/BtnDelete" />
+            <Event Type="WM_BUTTON_CLICK" Value="CNetMngCfgLogic::OnClickBtnDelete" />
+            <Scheme Name="SchmNetMngCtrlReset">
+          		<Property Name="WindowEnable" Value="false" /> 
+      			</Scheme>
+        </Window>
+        
+        <CallBackFunc Type="CallBackFunc" Value="CNetMngCfgLogic::InitWnd" />
+        <Property Name="WindowVisible" Value="True" />
+    </Window>
+</UILayout>

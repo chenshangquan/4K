@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+	<Window Type="TransparentDlg" Name="SetContrastAreaDlg" Style="WS_POPUP" >
+	  <Property Name="WindowPos" Value="x:0 y:0" />
+	  <Property Name="WindowSize" Value="x:1034 y:608" />
+	  <Property Name="WindowVisible" Value="True" />
+	  <Property Name="Image" Value="paramsetbkg.png" />
+	  <Property Name="MoveStatus" Value="true" />
+	  <Property Name="WindowCaption" Value="设置对比区域" />	
+	  
+	   <Window Type="TransStatic" Name="StcSetContrastAreaCap" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:15 y:15" />
+			<Property Name="WindowSize" Value="x:200 y:14" />
+			<Property Name="WindowCaption" Value="设置对比区域" />
+			<Property Name="WindowVisible" Value="True" />
+			<Property Name="FontColor" Value="r:200 g:200 b:200" />
+			<Property Name="FontSize" Value="9" />
+	   </Window>
+		
+	   <Window Type="TransButton" Name="BtnSetContrastAreaDlgClose" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+		<Property Name="WindowPos" Value="x:974 y:7" />
+		<Property Name="WindowSize" Value="x:44 y:28" />
+		<Property Name="WindowCaption" Value="" />
+		<Property Name="Tooltip" Value="关闭" />
+		<Property Name="Image" Value="Common/btnClose" />
+		<Property Name="WindowVisible" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CSetContrastAreaLogic::OnBtnClose" />
+	  </Window>
+	  
+	  <Window Type="TransparentDlg" Name="SnapShotDlg" Style="WS_CHILD" ExStyle="">
+		<Property Name="WindowPos" Value="x:31 y:135" />
+		<Property Name="WindowSize" Value="x:970 y:184" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="Image" Value="SetContrastAreaDlg\snapshotbkg.png" />
+		<Property Name="WindowCaption" Value="快照界面" />
+
+      <Window Type="TransStatic" Name="ImageSnapshot1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:1 y:1" />
+        <Property Name="WindowSize" Value="x:322 y:184" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Scheme Name ="SchmClearSnap" >
+          <Property Name ="Image" Value ="" />
+        </Scheme>
+      </Window>
+	  
+	  <Window Type="TransDragButton" Name="BtnRectA" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+		<Property Name="WindowPos" Value="x:294 y:12" />
+		<Property Name="WindowSize" Value="x:16 y:16" />
+		<Property Name="WindowCaption" Value="" />
+		<Property Name="Tooltip" Value="" />
+		<Property Name="Image" Value="SetContrastAreaDlg\RectA" />
+		<Property Name="WindowVisible" Value="True" />
+		<Event Type="UI_BE_DRAG_END" Value="CSetContrastAreaLogic::OnEndDragBtn" />
+	  </Window>
+
+      <Window Type="TransStatic" Name="ImageSnapshot2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:323 y:1" />
+        <Property Name="WindowSize" Value="x:322 y:184" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Scheme Name ="SchmClearSnap" >
+          <Property Name ="Image" Value ="" />
+        </Scheme>
+      </Window>
+	  
+	  <Window Type="TransDragButton" Name="BtnRectB" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+		<Property Name="WindowPos" Value="x:337 y:12" />
+		<Property Name="WindowSize" Value="x:16 y:16" />
+		<Property Name="WindowCaption" Value="" />
+		<Property Name="Tooltip" Value="" />
+		<Property Name="Image" Value="SetContrastAreaDlg\RectB" />
+		<Property Name="WindowVisible" Value="True" />
+		<Event Type="UI_BE_DRAG_END" Value="CSetContrastAreaLogic::OnEndDragBtn" />
+	  </Window>
+	  
+	  <Window Type="TransDragButton" Name="BtnRectC" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+		<Property Name="WindowPos" Value="x:616 y:12" />
+		<Property Name="WindowSize" Value="x:16 y:16" />
+		<Property Name="WindowCaption" Value="" />
+		<Property Name="Tooltip" Value="" />
+		<Property Name="Image" Value="SetContrastAreaDlg\RectC" />
+		<Property Name="WindowVisible" Value="True" />
+		<Event Type="UI_BE_DRAG_END" Value="CSetContrastAreaLogic::OnEndDragBtn" />
+	  </Window>
+
+      <Window Type="TransStatic" Name="ImageSnapshot3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:645 y:1" />
+        <Property Name="WindowSize" Value="x:324 y:184" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Scheme Name ="SchmClearSnap" >
+          <Property Name ="Image" Value ="" />
+        </Scheme>
+      </Window>
+	  
+    <Window Type="TransDragButton" Name="BtnRectD" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+		<Property Name="WindowPos" Value="x:661 y:12" />
+		<Property Name="WindowSize" Value="x:16 y:16" />
+		<Property Name="WindowCaption" Value="" />
+		<Property Name="Tooltip" Value="" />
+		<Property Name="Image" Value="SetContrastAreaDlg\RectD" />
+		<Property Name="WindowVisible" Value="True" />
+		<Event Type="UI_BE_DRAG_END" Value="CSetContrastAreaLogic::OnEndDragBtn" />
+	  </Window>
+    </Window>
+	
+	<Window Type="TransStatic" Name="StcLineTraCor" Style="WS_CHILD|WS_CLIPSIBLINGS" >
+		<Property Name="WindowPos" Value="x:40 y:350" />
+		<Property Name="WindowSize" Value="x:3 y:15" />
+		<Property Name="WindowCaption" Value="" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="Camera\line.png" />
+    </Window>
+	
+	<Window Type="TransStatic" Name="StcTrapezoidalCorrection" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:46 y:351" />
+      <Property Name="WindowSize" Value="x:200 y:14" />
+      <Property Name="WindowCaption" Value="设置对比区域" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+	  <Property Name="FontStyle" Value="1" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+    </Window>
+	
+	  <Window Type="TransStatic" Name="StcARectArea" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:50 y:385" />
+        <Property Name="WindowSize" Value="x:100 y:14" />
+        <Property Name="WindowCaption" Value="矩形区： A  长" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+	  
+	  <Window Type="TransEdit" Name="AAreaWidthEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+        <Property Name="WindowPos" Value="x:138 y:377" />
+        <Property Name="WindowSize" Value="x:64 y:28" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="WindowCaption" Value="10" />
+        <Property Name="Image" Value="Camera\Edit" />
+        <Property Name="WindowEnable" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+        <Property Name="LimitLength" Value="4" />
+        <Event Type="WM_EDIT_ONCHAR" Value="CSetContrastAreaLogic::OnAAreaWidthEditChange" />
+        <Event Type="WM_KILL_FOCUS" Value="CSetContrastAreaLogic::OnAAreaWidthEditKillFocus" />
+      </Window>
+	
+	  <Window Type="TransStatic" Name="StcAWpix" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:200 y:385" />
+        <Property Name="WindowSize" Value="x:25 y:14" />
+        <Property Name="WindowCaption" Value="PX" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+	  
+	  <Window Type="TransStatic" Name="StcARectWid" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:235 y:385" />
+        <Property Name="WindowSize" Value="x:30 y:14" />
+        <Property Name="WindowCaption" Value="宽" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+	  
+	  <Window Type="TransEdit" Name="AAreaHeightEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+        <Property Name="WindowPos" Value="x:250 y:377" />
+        <Property Name="WindowSize" Value="x:64 y:28" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="WindowCaption" Value="10" />
+        <Property Name="Image" Value="Camera\Edit" />
+        <Property Name="WindowEnable" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+        <!-- <Property Name="LimitLength" Value="4" /> -->
+        <Event Type="WM_EDIT_ONCHAR" Value="CSetContrastAreaLogic::OnAAreaHeightEditChange" />
+        <Event Type="WM_KILL_FOCUS" Value="CSetContrastAreaLogic::OnAAreaHeightEditKillFocus" />
+      </Window>
+	  
+	  <Window Type="TransStatic" Name="StcAHpix" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:312 y:385" />
+        <Property Name="WindowSize" Value="x:25 y:14" />
+        <Property Name="WindowCaption" Value="PX" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+	  
+	  <Window Type="TransStatic" Name="StcBRectArea" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:380 y:385" />
+        <Property Name="WindowSize" Value="x:100 y:14" />
+        <Property Name="WindowCaption" Value="矩形区： B  长" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+	  
+	  <Window Type="TransEdit" Name="BAreaWidthEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+        <Property Name="WindowPos" Value="x:468 y:377" />
+        <Property Name="WindowSize" Value="x:64 y:28" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="WindowCaption" Value="10" />
+        <Property Name="Image" Value="Camera\Edit" />
+        <Property Name="WindowEnable" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+        <!-- <Property Name="LimitLength" Value="4" /> -->
+        <Event Type="WM_EDIT_ONCHAR" Value="CSetContrastAreaLogic::OnBAreaWidthEditChange" />
+        <Event Type="WM_KILL_FOCUS" Value="CSetContrastAreaLogic::OnBAreaWidthEditKillFocus" />
+      </Window>
+	
+	  <Window Type="TransStatic" Name="StcBWpix" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:530 y:385" />
+        <Property Name="WindowSize" Value="x:25 y:14" />
+        <Property Name="WindowCaption" Value="PX" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+	  
+	  <Window Type="TransStatic" Name="StcBRectWid" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:565 y:385" />
+        <Property Name="WindowSize" Value="x:30 y:14" />
+        <Property Name="WindowCaption" Value="宽" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+	  
+	  <Window Type="TransEdit" Name="BAreaHeightEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+        <Property Name="WindowPos" Value="x:580 y:377" />
+        <Property Name="WindowSize" Value="x:64 y:28" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="WindowCaption" Value="10" />
+        <Property Name="Image" Value="Camera\Edit" />
+        <Property Name="WindowEnable" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+        <!-- <Property Name="LimitLength" Value="4" /> -->
+        <Event Type="WM_EDIT_ONCHAR" Value="CSetContrastAreaLogic::OnBAreaHeightEditChange" />
+        <Event Type="WM_KILL_FOCUS" Value="CSetContrastAreaLogic::OnBAreaHeightEditKillFocus" />
+      </Window>
+	  
+	  <Window Type="TransStatic" Name="StcBHpix" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:642 y:385" />
+        <Property Name="WindowSize" Value="x:25 y:14" />
+        <Property Name="WindowCaption" Value="PX" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+	  
+	  <Window Type="TransStatic" Name="StcCRectArea" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:435 y:428" />
+        <Property Name="WindowSize" Value="x:100 y:14" />
+        <Property Name="WindowCaption" Value="C  长" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+	  
+	  <Window Type="TransEdit" Name="CAreaWidthEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+        <Property Name="WindowPos" Value="x:468 y:420" />
+        <Property Name="WindowSize" Value="x:64 y:28" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="WindowCaption" Value="10" />
+        <Property Name="Image" Value="Camera\Edit" />
+        <Property Name="WindowEnable" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+        <!-- <Property Name="LimitLength" Value="4" /> -->
+        <Event Type="WM_EDIT_ONCHAR" Value="CSetContrastAreaLogic::OnCAreaWidthEditChange" />
+        <Event Type="WM_KILL_FOCUS" Value="CSetContrastAreaLogic::OnCAreaWidthEditKillFocus" />
+      </Window>
+	
+	  <Window Type="TransStatic" Name="StcCWpix" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:530 y:428" />
+        <Property Name="WindowSize" Value="x:25 y:14" />
+        <Property Name="WindowCaption" Value="PX" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+	  
+	  <Window Type="TransStatic" Name="StcCRectWid" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:565 y:428" />
+        <Property Name="WindowSize" Value="x:30 y:14" />
+        <Property Name="WindowCaption" Value="宽" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+	  
+	  <Window Type="TransEdit" Name="CAreaHeightEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+        <Property Name="WindowPos" Value="x:580 y:420" />
+        <Property Name="WindowSize" Value="x:64 y:28" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="WindowCaption" Value="10" />
+        <Property Name="Image" Value="Camera\Edit" />
+        <Property Name="WindowEnable" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+        <!-- <Property Name="LimitLength" Value="4" /> -->
+        <Event Type="WM_EDIT_ONCHAR" Value="CSetContrastAreaLogic::OnCAreaHeightEditChange" />
+        <Event Type="WM_KILL_FOCUS" Value="CSetContrastAreaLogic::OnCAreaHeightEditKillFocus" />
+      </Window>
+	  
+	  <Window Type="TransStatic" Name="StcCHpix" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:642 y:428" />
+        <Property Name="WindowSize" Value="x:25 y:14" />
+        <Property Name="WindowCaption" Value="PX" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+	  
+	  <Window Type="TransStatic" Name="StcDRectArea" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:710 y:385" />
+        <Property Name="WindowSize" Value="x:100 y:14" />
+        <Property Name="WindowCaption" Value="矩形区： D  长" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+	  
+	  <Window Type="TransEdit" Name="DAreaWidthEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+        <Property Name="WindowPos" Value="x:798 y:377" />
+        <Property Name="WindowSize" Value="x:64 y:28" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="WindowCaption" Value="10" />
+        <Property Name="Image" Value="Camera\Edit" />
+        <Property Name="WindowEnable" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+        <!-- <Property Name="LimitLength" Value="4" /> -->
+        <Event Type="WM_EDIT_ONCHAR" Value="CSetContrastAreaLogic::OnDAreaWidthEditChange" />
+        <Event Type="WM_KILL_FOCUS" Value="CSetContrastAreaLogic::OnDAreaWidthEditKillFocus" />
+      </Window>
+	
+	  <Window Type="TransStatic" Name="StcDWpix" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:860 y:385" />
+        <Property Name="WindowSize" Value="x:25 y:14" />
+        <Property Name="WindowCaption" Value="PX" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+	  
+	  <Window Type="TransStatic" Name="StcDRectWid" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:895 y:385" />
+        <Property Name="WindowSize" Value="x:30 y:14" />
+        <Property Name="WindowCaption" Value="宽" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+	  
+	  <Window Type="TransEdit" Name="DAreaHeightEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+        <Property Name="WindowPos" Value="x:910 y:377" />
+        <Property Name="WindowSize" Value="x:64 y:28" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="WindowCaption" Value="10" />
+        <Property Name="Image" Value="Camera\Edit" />
+        <Property Name="WindowEnable" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+        <!-- <Property Name="LimitLength" Value="4" /> -->
+        <Event Type="WM_EDIT_ONCHAR" Value="CSetContrastAreaLogic::OnDAreaHeightEditChange" />
+        <Event Type="WM_KILL_FOCUS" Value="CSetContrastAreaLogic::OnDAreaHeightEditKillFocus" />
+      </Window>
+	  
+	  <Window Type="TransStatic" Name="StcDHpix" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:972 y:385" />
+        <Property Name="WindowSize" Value="x:25 y:14" />
+        <Property Name="WindowCaption" Value="PX" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+      </Window>
+	  
+	  <Window Type="TransStatic" Name="StcLineShowRect" Style="WS_CHILD|WS_CLIPSIBLINGS" >
+		<Property Name="WindowPos" Value="x:40 y:480" />
+		<Property Name="WindowSize" Value="x:3 y:15" />
+		<Property Name="WindowCaption" Value="" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="Camera\line.png" />
+    `</Window>
+	  
+	  <Window Type="TransStatic" Name="StcShowRectArea" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:46 y:481" />
+		<Property Name="WindowSize" Value="x:100 y:14" />
+		<Property Name="WindowCaption" Value="显示矩形" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="0" />
+		<Property Name="FontStyle" Value="1" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+	  </Window>
+	
+	  <Window Type="TransSwitchButton" Name="ShowRectSwitchBtn" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:121 y:471" />
+		<Property Name="WindowSize" Value="x:107 y:32" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="Camera\SwitchBtn" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name ="SwitchSate" Value="false" />
+		<Event Type="WM_BUTTON_CLICK" Value="CSetContrastAreaLogic::OnShowRectSwitchBtnChange" />
+	  </Window>
+	  
+	  <Window Type="TransButton" Name="BtnStartCalc" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:477 y:532" />
+		<Property Name="WindowSize" Value="x:80 y:25" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="SetContrastAreaDlg\btnStartCalc" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CSetContrastAreaLogic::OnStartCalcBtnClick" />
+		<Scheme Name="EnableScheme">
+        <Property Name="WindowEnable" Value="True" />
+      </Scheme>
+      <Scheme Name ="DisableScheme">
+        <Property Name="WindowEnable" Value="False" />
+      </Scheme> 
+	</Window>
+	
+	  <CallBackFunc Type="CallBackFunc" Value="CSetContrastAreaLogic::InitWnd" />    
+    </Window>
+</UILayout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="gb2312"?>
+<System>
+  <SystemInfo Name="ImagePath" Value="resumstool\\src\\" />
+  <SystemInfo Name="DefaultFont" Value="宋体.font" />
+  <SystemInfo Name="EditInfo" Value=""  FontName="宋体" FontSize="9" FontColor="r:59 g:59 b:59" FocusColor="r:59 g:59 b:59" DisableColor="r:153 g:153 b:153" />
+  <SystemInfo Name="StaticInfo" Value=""  FontName="宋体" FontSize="9" FontColor="r:15 g:79 b:81" /> 
+  <SystemInfo Name="IsSelAdpResolution" Value="false" />
+  <SystemInfo Name="DefaultResolution" Value="x:1366 y:768" />  
+  <SystemInfo Name="LayoutPath" Value="resumstool\\layout\\" /> 
+  <SystemInfo Name="ItemInfo" Value="resumstool\\layout\\ItemInfo.xml" /> 
+  <WindowInfo Name="TPMainDlg" Value="mainFrm.xml" Parent="" />
+  <WindowInfo Name="SysInfoDlg" Value="sysInfo.xml" Parent="TPMainDlg" />
+  <WindowInfo Name="CorrelativeCfgDlg" Value="correlativecfg.xml" Parent="TPMainDlg" />
+  <WindowInfo Name="AddrbookExpDlg" Value="addrbookexp.xml" Parent="TPMainDlg" />
+  <WindowInfo Name="TemplateExpDlg" Value="templateexp.xml" Parent="TPMainDlg" />
+  <WindowInfo Name="UmsDiagDlg" Value="UmsDiag.xml" Parent="TPMainDlg" />
+  <WindowInfo Name="BoardCfgDlg" Value="boardcfg.xml" Parent="TPMainDlg/CorrelativeCfgDlg" />
+  <WindowInfo Name="CfgMenuDlg" Value="correlativecfg.xml" Parent="TPMainDlg/CorrelativeCfgDlg" />
+  <WindowInfo Name="UmsCfgDlg" Value="umscfg.xml" Parent="TPMainDlg/CorrelativeCfgDlg" />
+  <WindowInfo Name="TvwBoardCfgDlg" Value="tvwboardcfg.xml" Parent="TPMainDlg/CorrelativeCfgDlg" />
+  <WindowInfo Name="NetMngCfgDlg" Value="netmngcfg.xml" Parent="TPMainDlg/CorrelativeCfgDlg" />
+  <WindowInfo Name="BackupCfgDlg" Value="backupcfg.xml" Parent="TPMainDlg/CorrelativeCfgDlg" />
+  <WindowInfo Name="TvwStyleCfgDlg" Value="tvwstylecfg.xml" Parent="TPMainDlg/CorrelativeCfgDlg" />
+  <WindowInfo Name="VTRCfgDlg" Value="vtrcfg.xml" Parent="TPMainDlg/CorrelativeCfgDlg" />
+  <WindowInfo Name="WarningDlg" Value="Warning.xml" Parent="TPMainDlg" />
+  
+  
+  <WindowInfo Name="BoardOptDlg" Value="boardOptDlg.xml" Parent="" />  
+  <WindowInfo Name="MsgboxDlg" Value="msgboxDlg.xml" Parent="" />  
+  <WindowInfo Name="NetMngOptDlg" Value="netmngOptDlg.xml" Parent="" />  
+  <WindowInfo Name="TvwStyleOptDlg" Value="tvwStyleOptDlg.xml" Parent="" />  
+  <WindowInfo Name="ImpCommonDlg" Value="impCommonDlg.xml" Parent="" />    
+  <WindowInfo Name="ExpCommonDlg" Value="expCommonDlg.xml" Parent="" />
+  <WindowInfo Name="ExportCaptureDlg" Value="ExportCaptureDlg.xml" Parent="" />  
+  <WindowInfo Name="VTROptDlg" Value="vtrOptDlg.xml" Parent="" />  
+  
+    
+  <WindowType SrcType="TransparentDlg" TagType="CTransparentDlg" />
+  <WindowType SrcType="TransparentBaseWnd" TagType="CTransparentBaseWnd" />
+  <WindowType SrcType="TransparentComboBox" TagType="CTransparentComboBox" />
+  <WindowType SrcType="Wnd" TagType="CBaseWnd" />
+   
+  <WindowType SrcType="CButton" TagType="CTransparentBtn" />
+  <WindowType SrcType="CEdit" TagType="CTransparentEdit" />
+  <WindowType SrcType="TransparentList" TagType="CTransparentList" />
+  <WindowType SrcType="TransparentViewList" TagType="CTransparentViewList" />  
+  <WindowType SrcType="CSkinEdit" TagType="CTransparentEdit" />
+  <WindowType SrcType="CStaticEx" TagType="CTransparentStatic" />
+  <WindowType SrcType="CStatic" TagType="CTransparentStatic" />
+  <WindowType SrcType="StaticEx" TagType="CStaticEx" />
+  <WindowType SrcType="Static" TagType="CStatic" />
+  <WindowType SrcType="CSkinSlider" TagType="CTransparentSliderWnd" />  <!--CTransparentSliderCtrl-->
+  
+</System>

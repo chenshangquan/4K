@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<UILayout>
+    <!--系统信息界面  Style="WS_CHILD"-->
+    <Window Type="TransparentDlg" Name="DiagTestOutDlg" Style="WS_CHILD" ExStyle="">
+        <Property Name="WindowPos" Value="x:0 y:0" />
+        <Property Name="WindowSize" Value="x:490 y:574" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="Image" Value="" />
+        <Property Name="WindowCaption" Value="输出接口界面" />
+        
+        <Window Type="TransStatic" Name="StcInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:24 y:20" />
+            <Property Name="WindowSize" Value="x:100 y:14" />
+            <Property Name="WindowCaption" Value="接口测试" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:200 g:200 b:200" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="0" />
+        </Window>
+        
+        <Window Type="TransStatic" Name="StcOutPortInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:24 y:66" />
+            <Property Name="WindowSize" Value="x:100 y:14" />
+            <Property Name="WindowCaption" Value="输出接口" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:53 g:70 b:70" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="FontStyle" Value="1" />
+            <Property Name="Alignment" Value="0" />
+        </Window>
+                        
+        <Window Type="TransStatic" Name="StcLine" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:113 y:72" />
+            <Property Name="WindowSize" Value="x:353 y:1" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="DTestline.png" />
+        </Window>
+            
+        <Window Type="TransStatic" Name="StcDisPlay1Info" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:24 y:97" />
+            <Property Name="WindowSize" Value="x:100 y:14" />
+            <Property Name="WindowCaption" Value="显示器1：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="0" />
+        </Window>
+            
+        <Window Type="TransStatic" Name="StcDisPlay1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:96 y:97" />
+            <Property Name="WindowSize" Value="x:300 y:14" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="0" />
+            <Scheme Name="SchmSignal">
+                <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            </Scheme>
+            <Scheme Name="SchmNoSignal">
+                <Property Name="FontColor" Value="r:224 g:34 b:34" />
+            </Scheme> 
+        </Window>
+ 
+        <Window Type="TransCheckButton" Name="CheckDisPlay1" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX">
+            <Property Name="WindowPos" Value="x:392 y:94" />
+            <Property Name="WindowSize" Value="x:20 y:20" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="WindowEnable" Value="true" />
+            <Property Name="Image" Value="checkbutton" />
+        </Window>
+                         
+        <Window Type="TransStatic" Name="StcCheckDisPlay1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:420 y:97" />
+            <Property Name="WindowSize" Value="x:100 y:14" />
+            <Property Name="WindowCaption" Value="图像" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="0" />
+        </Window>
+                              
+        <Window Type="TransStatic" Name="StcDisPlay2Info" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:24 y:128" />
+            <Property Name="WindowSize" Value="x:100 y:14" />
+            <Property Name="WindowCaption" Value="显示器2：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="0" />
+        </Window>
+            
+        <Window Type="TransStatic" Name="StcDisPlay2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:96 y:128" />
+            <Property Name="WindowSize" Value="x:300 y:14" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="0" />
+            <Scheme Name="SchmSignal">
+                <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            </Scheme>
+            <Scheme Name="SchmNoSignal">
+                <Property Name="FontColor" Value="r:224 g:34 b:34" />
+            </Scheme> 
+        </Window>
+    
+        <Window Type="TransCheckButton" Name="CheckDisPlay2" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX">
+            <Property Name="WindowPos" Value="x:392 y:125" />
+            <Property Name="WindowSize" Value="x:20 y:20" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="WindowEnable" Value="true" />
+            <Property Name="Image" Value="checkbutton" />
+        </Window>
+                         
+        <Window Type="TransStatic" Name="StcCheckDisPlay2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:420 y:128" />
+            <Property Name="WindowSize" Value="x:100 y:14" />
+            <Property Name="WindowCaption" Value="图像" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="0" />
+        </Window>
+                                         
+        <Window Type="TransStatic" Name="StcDisPlay3Info" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:24 y:159" />
+            <Property Name="WindowSize" Value="x:100 y:14" />
+            <Property Name="WindowCaption" Value="显示器3：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="0" />
+        </Window>
+            
+        <Window Type="TransStatic" Name="StcDisPlay3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:96 y:159" />
+            <Property Name="WindowSize" Value="x:300 y:14" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="0" />
+            <Scheme Name="SchmSignal">
+                <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            </Scheme>
+            <Scheme Name="SchmNoSignal">
+                <Property Name="FontColor" Value="r:224 g:34 b:34" />
+            </Scheme> 
+        </Window>
+       
+        <Window Type="TransCheckButton" Name="CheckDisPlay3" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX">
+            <Property Name="WindowPos" Value="x:392 y:156" />
+            <Property Name="WindowSize" Value="x:20 y:20" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="WindowEnable" Value="true" />
+            <Property Name="Image" Value="checkbutton" />
+        </Window>
+                         
+        <Window Type="TransStatic" Name="StcCheckDisPlay3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:420 y:159" />
+            <Property Name="WindowSize" Value="x:100 y:14" />
+            <Property Name="WindowCaption" Value="图像" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="0" />
+        </Window>
+                                     
+        <Window Type="TransStatic" Name="StcVoiceBox1Info" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:24 y:190" />
+            <Property Name="WindowSize" Value="x:100 y:14" />
+            <Property Name="WindowCaption" Value="主音箱1：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="0" />
+        </Window>
+            
+        <Window Type="TransStatic" Name="StcVoiceBox1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:96 y:190" />
+            <Property Name="WindowSize" Value="x:300 y:14" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="0" />
+            <Scheme Name="SchmSignal">
+                <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            </Scheme>
+            <Scheme Name="SchmNoSignal">
+                <Property Name="FontColor" Value="r:224 g:34 b:34" />
+            </Scheme> 
+        </Window>
+      
+        <Window Type="TransCheckButton" Name="CheckVoiceBox1" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX">
+            <Property Name="WindowPos" Value="x:392 y:187" />
+            <Property Name="WindowSize" Value="x:20 y:20" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="WindowEnable" Value="true" />
+            <Property Name="Image" Value="checkbutton" />
+        </Window>
+                         
+        <Window Type="TransStatic" Name="StcCheckVoiceBox1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:420 y:190" />
+            <Property Name="WindowSize" Value="x:100 y:14" />
+            <Property Name="WindowCaption" Value="声音" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="0" />
+        </Window>
+                                           
+        <Window Type="TransStatic" Name="StcVoiceBox2Info" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:24 y:221" />
+            <Property Name="WindowSize" Value="x:100 y:14" />
+            <Property Name="WindowCaption" Value="主音箱2：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="0" />
+        </Window>
+            
+        <Window Type="TransStatic" Name="StcVoiceBox2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:96 y:221" />
+            <Property Name="WindowSize" Value="x:300 y:14" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="0" />  
+            <Scheme Name="SchmSignal">
+                <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            </Scheme>
+            <Scheme Name="SchmNoSignal">
+                <Property Name="FontColor" Value="r:224 g:34 b:34" />
+            </Scheme>          
+       </Window>
+       
+        <Window Type="TransCheckButton" Name="CheckVoiceBox2" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX">
+            <Property Name="WindowPos" Value="x:392 y:218" />
+            <Property Name="WindowSize" Value="x:20 y:20" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="WindowEnable" Value="true" />
+            <Property Name="Image" Value="checkbutton" />
+        </Window>
+                         
+        <Window Type="TransStatic" Name="StcCheckVoiceBox2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:420 y:221" />
+            <Property Name="WindowSize" Value="x:100 y:14" />
+            <Property Name="WindowCaption" Value="声音" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="0" />
+        </Window>
+                                   
+        <Window Type="TransStatic" Name="StcVoiceBox3Info" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:24 y:252" />
+            <Property Name="WindowSize" Value="x:100 y:14" />
+            <Property Name="WindowCaption" Value="主音箱3：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="0" />
+        </Window>
+            
+        <Window Type="TransStatic" Name="StcVoiceBox3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:96 y:252" />
+            <Property Name="WindowSize" Value="x:300 y:14" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="0" />
+            <Scheme Name="SchmSignal">
+                <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            </Scheme>
+            <Scheme Name="SchmNoSignal">
+                <Property Name="FontColor" Value="r:224 g:34 b:34" />
+            </Scheme>          
+        </Window>
+        
+        <Window Type="TransCheckButton" Name="CheckVoiceBox3" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX">
+            <Property Name="WindowPos" Value="x:392 y:249" />
+            <Property Name="WindowSize" Value="x:20 y:20" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="WindowEnable" Value="true" />
+            <Property Name="Image" Value="checkbutton" />
+        </Window>
+                         
+        <Window Type="TransStatic" Name="StcCheckVoiceBox3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:420 y:252" />
+            <Property Name="WindowSize" Value="x:100 y:14" />
+            <Property Name="WindowCaption" Value="声音" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="0" />
+        </Window>
+                                        
+        <Window Type="TransStatic" Name="StcShowScreenInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:24 y:283" />
+            <Property Name="WindowSize" Value="x:180 y:14" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="0" />
+        </Window>
+            
+        <Window Type="TransStatic" Name="StcShowScreen" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:96 y:283" />
+            <Property Name="WindowSize" Value="x:260 y:14" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="0" />  
+            <Scheme Name="SchmSignal">
+                <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            </Scheme>
+            <Scheme Name="SchmNoSignal">
+                <Property Name="FontColor" Value="r:224 g:34 b:34" />
+            </Scheme>     
+         </Window>      
+       
+        <Window Type="TransCheckButton" Name="CheckShowScreen" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX">
+          <Property Name="WindowPos" Value="x:392 y:280" />
+          <Property Name="WindowSize" Value="x:20 y:20" />
+          <Property Name="WindowCaption" Value="" />
+          <Property Name="WindowVisible" Value="true" />
+          <Property Name="WindowEnable" Value="true" />
+          <Property Name="Image" Value="checkbutton" />
+        </Window>
+                         
+        <Window Type="TransStatic" Name="StcCheckShowScreen" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:420 y:283" />
+            <Property Name="WindowSize" Value="x:100 y:14" />
+            <Property Name="WindowCaption" Value="图像" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="0" />
+        </Window>
+                      
+			  <Window Type="TransButton" Name="BtnPrePage" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			      <Property Name="WindowPos" Value="x:135 y:526" />
+			      <Property Name="WindowSize" Value="x:89 y:33" />
+			      <Property Name="WindowCaption" Value="上一页" />			    
+			      <Property Name="Image" Value="btnPrePage" />
+			      <Property Name="WindowVisible" Value="true" />		      
+			      <Event Type="WM_BUTTON_CLICK" Value="CDiagTestInfoLogic::OnPrePage" />
+			  </Window>
+		  
+			  <Window Type="TransButton" Name="BtnNextPage" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			      <Property Name="WindowPos" Value="x:250 y:526" />
+			      <Property Name="WindowSize" Value="x:89 y:33" />
+			      <Property Name="WindowCaption" Value="下一页" />			    
+			      <Property Name="Image" Value="btnNextPage" />
+			      <Property Name="WindowVisible" Value="true" />
+			      <Property Name="WindowEnable" Value="false" />
+			      <Event Type="WM_BUTTON_CLICK" Value="CDiagTestInfoLogic::OnNextPage" />
+			  </Window>
+		  
+			  <Window Type="TransButton" Name="BtnExRePort" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			      <Property Name="WindowPos" Value="x:365 y:526" />
+			      <Property Name="WindowSize" Value="x:89 y:33" />
+			      <Property Name="WindowCaption" Value="导出报告" />			    
+			      <Property Name="Image" Value="btnExRePort" />
+			      <Property Name="WindowVisible" Value="true" />
+			      <Event Type="WM_BUTTON_CLICK" Value="CDiagTestInfoLogic::OnExRePort" />
+			  </Window>
+      
+       <Window Type="TransButton" Name="BtnDTestClose" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:430 y:5" />
+        <Property Name="WindowSize" Value="x:44 y:28" />
+        <Property Name="WindowCaption" Value="关闭页面" />
+        <Property Name="WindowVisible" Value="true" />
+        <Event Type="WM_BUTTON_CLICK" Value="CDiagTestInfoLogic::OnCloseDiagTest" />
+        <Property Name="Image" Value="btnDTestClose" />
+      </Window>
+                
+        <CallBackFunc Type="CallBackFunc" Value="" />
+    </Window>
+</UILayout>

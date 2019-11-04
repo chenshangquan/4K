@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  <!--图像参数配置界面-->
+   
+	<Window Type="TransparentDlg" Name="CfgAdjustImageDlg" Style="WS_CHILD" ExStyle="">
+		<Property Name="WindowPos" Value="x:122 y:0" />
+		<Property Name="WindowSize" Value="x:728 y:501" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="Image" Value="" />
+    <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="WindowCaption" Value="图像参数配置界面" />
+  
+    <!--line 1-->
+    <Window Type="TransStatic" Name="StcImage1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:31" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="第1路图像 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontStyle" Value="1" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+    
+    <Window Type="TransStatic" Name="StcLine1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:151 y:36" />
+      <Property Name="WindowSize" Value="x:548 y:1" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="line.png" />
+    </Window>
+    
+    <Window Type="TransStatic" Name="StcOfSaturation1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:55" />
+      <Property Name="WindowSize" Value="x:120 y:14" />
+      <Property Name="WindowCaption" Value="饱和度 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransSliderWnd" Name="SliderOfSaturation1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:105 y:53" />
+      <Property Name="WindowSize" Value="x:195 y:20" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:1 max:31" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAdjustImageDlg::OnSliderSaturation1Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransEdit" Name="EditOfSaturation1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:308 y:46" />
+      <Property Name="WindowSize" Value="x:54 y:32" />
+      <Property Name="WindowCaption" Value="1" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="3" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgAdjustImageDlg::OnEditSaturation1Changed"/>
+      <Event Type="WM_KILL_FOCUS" Value="CCfgAdjustImageDlg::OnEditSaturation1KillFocus" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+    
+    <Window Type="TransStatic" Name="StcBrightness1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:374 y:55" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="亮度 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransSliderWnd" Name="SliderOfBrightness1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:438 y:53" />
+      <Property Name="WindowSize" Value="x:195 y:20" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:1 max:31" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAdjustImageDlg::OnSliderBrightness1Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransEdit" Name="EditOfBrightness1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:641 y:46" />
+      <Property Name="WindowSize" Value="x:54 y:32" />
+      <Property Name="WindowCaption" Value="1" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="3" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgAdjustImageDlg::OnEditBrightness1Changed"/>
+      <Event Type="WM_KILL_FOCUS" Value="CCfgAdjustImageDlg::OnEditBrightness1KillFocus" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcContrast1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:87" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="对比度 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransSliderWnd" Name="SliderOfContrast1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:105 y:85" />
+      <Property Name="WindowSize" Value="x:195 y:20" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:1 max:31" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAdjustImageDlg::OnSliderContrast1Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransEdit" Name="EditOfContrast1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:308 y:78" />
+      <Property Name="WindowSize" Value="x:54 y:32" />
+      <Property Name="WindowCaption" Value="1" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="3" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgAdjustImageDlg::OnEditContrast1Changed"/>
+      <Event Type="WM_KILL_FOCUS" Value="CCfgAdjustImageDlg::OnEditContrast1KillFocus" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+    
+    <!--line 2-->
+    <Window Type="TransStatic" Name="StcImage2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:121" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="第2路图像 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontStyle" Value="1" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcLine2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:151 y:126" />
+      <Property Name="WindowSize" Value="x:548 y:1" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="line.png" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcOfSaturation2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:145" />
+      <Property Name="WindowSize" Value="x:120 y:14" />
+      <Property Name="WindowCaption" Value="饱和度 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransSliderWnd" Name="SliderOfSaturation2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:105 y:143" />
+      <Property Name="WindowSize" Value="x:195 y:20" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:1 max:31" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAdjustImageDlg::OnSliderSaturation2Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransEdit" Name="EditOfSaturation2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:308 y:136" />
+      <Property Name="WindowSize" Value="x:54 y:32" />
+      <Property Name="WindowCaption" Value="1" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="3" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgAdjustImageDlg::OnEditSaturation2Changed"/>
+      <Event Type="WM_KILL_FOCUS" Value="CCfgAdjustImageDlg::OnEditSaturation2KillFocus" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+    
+    <Window Type="TransStatic" Name="StcBrightness2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:374 y:145" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="亮度 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransSliderWnd" Name="SliderOfBrightness2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:438 y:143" />
+      <Property Name="WindowSize" Value="x:195 y:20" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:1 max:31" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAdjustImageDlg::OnSliderBrightness2Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransEdit" Name="EditOfBrightness2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:641 y:136" />
+      <Property Name="WindowSize" Value="x:54 y:32" />
+      <Property Name="WindowCaption" Value="1" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="3" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgAdjustImageDlg::OnEditBrightness2Changed"/>
+      <Event Type="WM_KILL_FOCUS" Value="CCfgAdjustImageDlg::OnEditBrightness2KillFocus" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcContrast2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:177" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="对比度 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransSliderWnd" Name="SliderOfContrast2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:105 y:175" />
+      <Property Name="WindowSize" Value="x:195 y:20" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:1 max:31" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAdjustImageDlg::OnSliderContrast2Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransEdit" Name="EditOfContrast2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:308 y:168" />
+      <Property Name="WindowSize" Value="x:54 y:32" />
+      <Property Name="WindowCaption" Value="1" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="3" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgAdjustImageDlg::OnEditContrast2Changed"/>
+      <Event Type="WM_KILL_FOCUS" Value="CCfgAdjustImageDlg::OnEditContrast2KillFocus" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <!--line 3-->
+    <Window Type="TransStatic" Name="StcImage3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:211" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="第3路图像 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontStyle" Value="1" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcLine3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:151 y:216" />
+      <Property Name="WindowSize" Value="x:548 y:1" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="line.png" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcOfSaturation3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:235" />
+      <Property Name="WindowSize" Value="x:120 y:14" />
+      <Property Name="WindowCaption" Value="饱和度 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransSliderWnd" Name="SliderOfSaturation3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:105 y:233" />
+      <Property Name="WindowSize" Value="x:195 y:20" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:1 max:31" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAdjustImageDlg::OnSliderSaturation3Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransEdit" Name="EditOfSaturation3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:308 y:226" />
+      <Property Name="WindowSize" Value="x:54 y:32" />
+      <Property Name="WindowCaption" Value="1" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="3" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgAdjustImageDlg::OnEditSaturation3Changed"/>
+      <Event Type="WM_KILL_FOCUS" Value="CCfgAdjustImageDlg::OnEditSaturation3KillFocus" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+    
+    <Window Type="TransStatic" Name="StcBrightness3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:374 y:235" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="亮度 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransSliderWnd" Name="SliderOfBrightness3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:438 y:233" />
+      <Property Name="WindowSize" Value="x:195 y:20" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:1 max:31" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAdjustImageDlg::OnSliderBrightness3Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransEdit" Name="EditOfBrightness3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:641 y:226" />
+      <Property Name="WindowSize" Value="x:54 y:32" />
+      <Property Name="WindowCaption" Value="1" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="3" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgAdjustImageDlg::OnEditBrightness3Changed"/>
+      <Event Type="WM_KILL_FOCUS" Value="CCfgAdjustImageDlg::OnEditBrightness3KillFocus" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcContrast3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:267" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="对比度 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransSliderWnd" Name="SliderOfContrast3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:105 y:265" />
+      <Property Name="WindowSize" Value="x:195 y:20" />
+      <Property Name="Image" Value="slider"/>
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="CSliderCtrlRange" Value="min:1 max:31" />
+      <Property Name="CSliderCtrlStyle" Value="1" />
+      <Event Type="SLIDER_CHANGED" Value="CCfgAdjustImageDlg::OnSliderContrast3Changed" />
+      <Event Type="WM_MOUSEMOVE" Value=""/>
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransEdit" Name="EditOfContrast3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:308 y:258" />
+      <Property Name="WindowSize" Value="x:54 y:32" />
+      <Property Name="WindowCaption" Value="1" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="AudioEdit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="3" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgAdjustImageDlg::OnEditContrast3Changed"/>
+      <Event Type="WM_KILL_FOCUS" Value="CCfgAdjustImageDlg::OnEditContrast3KillFocus" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransButton" Name="BtnDefault" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:391 y:452" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="恢复默认" />
+      <Property Name="Image" Value="btnDefault" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgAdjustImageDlg::OnBtnDefault" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransButton" Name="BtnSave" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:491 y:452" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="保存配置" />
+      <Property Name="Image" Value="btnSave" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgAdjustImageDlg::OnBtnSave" />
+    </Window>
+
+    <Window Type="TransButton" Name="BtnCancle" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:591 y:452" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="还原配置" />
+      <Property Name="Image" Value="btnCancleCfg" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgAdjustImageDlg::OnBtnCancel" />
+    </Window>
+    
+		<CallBackFunc Type="CallBackFunc" Value="CCfgAdjustImageDlg::InitWnd" />
+	</Window>
+</UILayout>

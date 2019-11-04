@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <Dialog Name="mainframe" Style="WS_POPUP" ExStyle="" OutHide="false" Layout="main_frame.xml"/>
+ <Dialog Name="testDlg" Style="WS_POPUP" ExStyle="" OutHide="true" Layout="testDlg.xml"/>
+  

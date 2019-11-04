@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<UILayout>
+  <Window Type="TransparentDlg" Name="SysCfgDlg" Style="WS_CHILD" ExStyle="">
+    <Property Name="WindowPos" Value="x:0 y:73" />
+    <Property Name="WindowSize" Value="x:864 y:501" />
+    <Property Name="WindowVisible" Value="true" />
+    <Property Name="Image" Value="" />
+    <Property Name="WindowCaption" Value="系统设置界面" />
+    <Scheme Name="SchmShow">
+      <Property Name="WindowVisible" Value="true" />
+    </Scheme>
+    <Scheme Name="SchmHide">
+      <Property Name="WindowVisible" Value="false" />
+    </Scheme>
+
+    <Window Type="TransStatic" Name="StcVerInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:46 y:32" />
+      <Property Name="WindowSize" Value="x:64 y:14" />
+      <Property Name="WindowCaption" Value="版本信息" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontStyle" Value="1" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcLine" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:173 y:38" />
+      <Property Name="WindowSize" Value="x:501 y:1" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="mixline.png" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcHardWare" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:73 y:57" />
+      <Property Name="WindowSize" Value="x:96 y:14" />
+      <Property Name="WindowCaption" Value="CAM 硬件版本：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcHardWareInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:158 y:57" />
+      <Property Name="WindowSize" Value="x:76 y:14" />
+      <Property Name="WindowCaption" Value="V1.0" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcSoftWare" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:73 y:80" />
+      <Property Name="WindowSize" Value="x:96 y:14" />
+      <Property Name="WindowCaption" Value="CAM 软件版本：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcSoftWareInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:158 y:80" />
+      <!--除了版本号，还需显示时间-->
+      <Property Name="WindowSize" Value="x:126 y:14" />
+      <Property Name="WindowCaption" Value="V1.1.1.0.0" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcMoveMentAdjust" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:46 y:124" />
+      <Property Name="WindowSize" Value="x:90 y:14" />
+      <Property Name="WindowCaption" Value="机芯调节信息" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontStyle" Value="1" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcAdjustLine" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:173 y:130" />
+      <Property Name="WindowSize" Value="x:501 y:1" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="mixline.png" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcPortStyle" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:73 y:167" />
+      <Property Name="WindowSize" Value="x:76 y:14" />
+      <Property Name="WindowCaption" Value="接口类型：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransCheckButton" Name="StyleGroup2" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+		  <Property Name="WindowPos" Value="x:280 y:164" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CSysCfgDlgLogic::OnDVISelClick" />
+    </Window>
+
+    <Window Type="TransStatic" Name="SGroup2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:310 y:167" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="DVI" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransCheckButton" Name="StyleGroup1" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON|WS_GROUP">
+		  <Property Name="WindowPos" Value="x:170 y:164" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CSysCfgDlgLogic::OnHDMISelClick" />
+    </Window>
+
+    <Window Type="TransStatic" Name="SGroup1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:200 y:167" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="HDMI" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcOutputStyle" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:73 y:210" />
+      <Property Name="WindowSize" Value="x:76 y:14" />
+      <Property Name="WindowCaption" Value="输出制式：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransComboBox" Name="CombOutputStyle" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:166 y:201" />
+      <Property Name="WindowSize" Value="x:170 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="IsIPStyle" Value="False" />
+      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+      <Property Name="Image" Value="ComboboxCommon" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="EditEdgeHeight" Value="6" />
+      <Property Name="DropListHeight" Value="212" />
+      <Property Name="ComboShowIcon" Value="False" />
+      <Property Name="ReadOnly" Value="True" />
+      <Property Name="ComboEditFrontLen" Value="14" />
+      <Property Name="ComboEditBackLen" Value="5" />
+      <Event Type="WM_CLICK_COMBOLIST" Value="CSysCfgDlgLogic::OnCombOutputStyleClick" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcImageAdjust" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:73 y:253" />
+      <Property Name="WindowSize" Value="x:76 y:14" />
+      <Property Name="WindowCaption" Value="图像调节：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransCheckButton" Name="AdjustGroup2" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+		  <Property Name="WindowPos" Value="x:280 y:250" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CSysCfgDlgLogic::OnTurnClick" />
+    </Window>
+
+    <Window Type="TransStatic" Name="AGroup2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:310 y:253" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="垂直翻转" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransCheckButton" Name="AdjustGroup1" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON|WS_GROUP">
+		  <Property Name="WindowPos" Value="x:170 y:250" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CSysCfgDlgLogic::OnNoTurnClick" />
+    </Window>
+
+    <Window Type="TransStatic" Name="AGroup1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:200 y:253" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="不翻转" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <!--<Window Type="TransStatic" Name="StcBaudRate" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:73 y:258" />
+      <Property Name="WindowSize" Value="x:120 y:14" />
+      <Property Name="WindowCaption" Value="LVDS串口波特率：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransComboBox" Name="CombBaudRate" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:171 y:249" />
+      <Property Name="WindowSize" Value="x:170 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="IsIPStyle" Value="False" />
+      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+      <Property Name="Image" Value="ComboboxCommon" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="EditEdgeHeight" Value="6" />
+      <Property Name="DropListHeight" Value="120" />                          --><!--当列表项超过5个时，不能将height设置成超过120，防止偏移量不对--><!--
+      <Property Name="ComboShowIcon" Value="False" />
+      <Property Name="ReadOnly" Value="True" />
+      <Property Name="ComboEditFrontLen" Value="14" />
+      <Property Name="ComboEditBackLen" Value="5" />
+      <Event Type="WM_CLICK_COMBOLIST" Value="CSysCfgDlgLogic::OnCombBaudRateClick" />
+    </Window>-->
+
+    <Window Type="TransStatic" Name="StcIPInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:46 y:297" />
+      <Property Name="WindowSize" Value="x:76 y:14" />
+      <Property Name="WindowCaption" Value="IP信息" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontStyle" Value="1" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcIPCfgLine" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:173 y:303" />
+      <Property Name="WindowSize" Value="x:501 y:1" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="mixline.png" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcIPAddress" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:73 y:322" />
+      <Property Name="WindowSize" Value="x:76 y:14" />
+      <Property Name="WindowCaption" Value="IP地址：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransIPEdit" Name="StcIPAddrEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
+		  <Property Name="WindowPos" Value="x:166 y:311" />
+      <Property Name="WindowSize" Value="x:170 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="Camera\Edit" />
+      <Property Name="FontColor" Value="r:59 g:59 b:59" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="31" />
+      <Event Type="WM_EDIT_CHANGED" Value="CSysCfgDlgLogic::OnIPAddrChanged" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcSubMask" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:73 y:365" />
+      <Property Name="WindowSize" Value="x:76 y:14" />
+      <Property Name="WindowCaption" Value="子网掩码：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransIPEdit" Name="StcSubMaskEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
+		  <Property Name="WindowPos" Value="x:166 y:353" />
+      <Property Name="WindowSize" Value="x:170 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="Camera\Edit" />
+      <Property Name="FontColor" Value="r:59 g:59 b:59" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="31" />
+      <Event Type="WM_EDIT_CHANGED" Value="CSysCfgDlgLogic::OnSubMaskChanged" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcGateway" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:73 y:408" />
+      <Property Name="WindowSize" Value="x:76 y:14" />
+      <Property Name="WindowCaption" Value="默认网关：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransIPEdit" Name="StcGatewayEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
+		  <Property Name="WindowPos" Value="x:166 y:395" />
+      <Property Name="WindowSize" Value="x:170 y:32" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="Camera\Edit" />
+      <Property Name="FontColor" Value="r:59 g:59 b:59" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="31" />
+      <Event Type="WM_EDIT_CHANGED" Value="CSysCfgDlgLogic::OnGatewayChanged" />
+    </Window>
+
+    <Window Type="TransButton" Name="BtnSave" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:620 y:453" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="确定" />
+      <Property Name="WindowVisible" Value="true" />
+      <Event Type="WM_BUTTON_CLICK" Value="CSysCfgDlgLogic::OnBtnSave" />
+      <Property Name="Image" Value="btnConfirm" />
+    </Window>
+
+    <Window Type="TransButton" Name="BtnCancle" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:720 y:453" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="取消" />
+      <Property Name="WindowVisible" Value="true" />
+      <Event Type="WM_BUTTON_CLICK" Value="CSysCfgDlgLogic::OnBtnCancel" />
+      <Property Name="Image" Value="btnCancel" />
+    </Window>
+
+    <CallBackFunc Type="CallBackFunc" Value="CSysCfgDlgLogic::InitWnd" />
+  </Window>
+</UILayout>

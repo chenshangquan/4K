@@ -1,0 +1,836 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<UILayout>
+	<!--网络安全配置界面-->
+	
+	<Window Type="TransparentDlg" Name="CfgNetSecurityDlg" Style="WS_CHILD" ExStyle="">
+        <Property Name="WindowPos" Value="x:128 y:0" />
+        <Property Name="WindowSize" Value="x:736 y:541" />
+        <Property Name="Image" Value="" />
+		
+		<Window Type="TransStatic" Name="StcFtpServer" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:37 y:31" />
+		  <Property Name="WindowSize" Value="x:150 y:14" />
+		  <Property Name="WindowCaption" Value="FTP服务：" />
+		  <Property Name="WindowVisible" Value="True" />
+		  <Property Name="FontSize" Value="9" />
+		</Window>
+		
+		<Window Type="TransSwitchButton" Name="BtnFtpServerSwitch" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:534 y:16" />
+		  <Property Name="WindowSize" Value="x:107 y:42" />
+		  <Property Name="Image" Value="switchbutton" />
+	      <Property Name="WindowEnable" Value="true" />
+		  <Property Name="WindowVisible" Value="True" />
+		  <Property Name="SwitchState" Value="true" />
+		  <Event Type="WM_BUTTON_CLICK" Value="CCfgNetSecurityLogic::OnBtnSwitchFtpServer" />
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcFtpUsername" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:37 y:75" />
+		  <Property Name="WindowSize" Value="x:150 y:14" />
+		  <Property Name="WindowCaption" Value="FTP用户名：" />
+		  <Property Name="WindowVisible" Value="True" />
+		  <Property Name="FontSize" Value="9" />
+		</Window>
+		
+		<Window Type="TransEdit" Name="EdtFtpUsername" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
+		  <Property Name="WindowPos" Value="x:216 y:60" />
+		  <Property Name="WindowSize" Value="x:425 y:42" />
+		  <Property Name="WindowCaption" Value="" />
+		  <Property Name="WindowVisible" Value="true" />
+		  <Property Name="WindowEnable" Value="true" />
+		  <Property Name="Image" Value="Edit" />
+		  <Property Name="FontSize" Value="9" />
+		  <!--<Property Name="LimitLength" Value="4" />-->
+		  <Event Type="WM_EDIT_CHANGED" Value="CCfgNetSecurityLogic::OnFtpUsernameChange" />
+		  <Event Type="WM_KILL_FOCUS" Value="CCfgNetSecurityLogic::OnEdtFtpUsernameKillFocus" />
+		  <Scheme Name="SchmFtpSerOpen">
+			<Property Name="WindowEnable" Value="true" />
+		  </Scheme>
+		  <Scheme Name="SchmFtpSerClose">
+			<Property Name="WindowEnable" Value="false" />
+		  </Scheme>  
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTelnetPasswd" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:37 y:327" />
+		  <Property Name="WindowSize" Value="x:150 y:14" />
+		  <Property Name="WindowCaption" Value="Telnet密码：" />
+		  <Property Name="WindowVisible" Value="True" />
+		  <Property Name="FontSize" Value="9" />
+		</Window>
+		
+		<Window Type="TransEdit" Name="EdtTelnetPasswd" Style="WS_CHILD|WS_CLIPSIBLINGS|ES_PASSWORD|WS_TABSTOP">
+		  <Property Name="WindowPos" Value="x:216 y:312" />
+		  <Property Name="WindowSize" Value="x:425 y:42" />
+		  <Property Name="WindowCaption" Value="" />
+		  <Property Name="WindowVisible" Value="true" />
+		  <Property Name="WindowEnable" Value="true" />
+		  <Property Name="Image" Value="Edit" />
+		  <Property Name="FontSize" Value="9" />
+		  <Property Name="LimitLength" Value="16" />
+		  <Event Type="WM_EDIT_CHANGED" Value="CCfgNetSecurityLogic::OnTelnetPasswdChange" />
+		  <Event Type="WM_KILL_FOCUS" Value="CCfgNetSecurityLogic::OnEdtTelnetPasswdKillFocus" />
+		  <Event Type="WM_EDIT_SETFOCUS" Value="CCfgNetSecurityLogic::OnEdtTelnetPasswdSetFocus" />
+		  <Scheme Name="SchmTelSerOpen">
+			<Property Name="WindowEnable" Value="true" />
+		  </Scheme>
+		  <Scheme Name="SchmTelSerClose">
+			<Property Name="WindowEnable" Value="false" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTelnetUsername" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:37 y:284" />
+		  <Property Name="WindowSize" Value="x:150 y:14" />
+		  <Property Name="WindowCaption" Value="Telnet用户名：" />
+		  <Property Name="WindowVisible" Value="True" />
+		  <Property Name="FontSize" Value="9" />
+		</Window>
+		
+		<Window Type="TransEdit" Name="EdtTelnetUsername" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
+		  <Property Name="WindowPos" Value="x:216 y:269" />
+		  <Property Name="WindowSize" Value="x:425 y:42" />
+		  <Property Name="WindowCaption" Value="" />
+		  <Property Name="WindowVisible" Value="true" />
+		  <Property Name="WindowEnable" Value="true" />
+		  <Property Name="Image" Value="Edit" />
+		  <Property Name="FontSize" Value="9" />
+		  <!--<Property Name="LimitLength" Value="4" />-->
+		  <Event Type="WM_EDIT_CHANGED" Value="CCfgNetSecurityLogic::OnTelnetUsernameChange" />
+		  <Event Type="WM_KILL_FOCUS" Value="CCfgNetSecurityLogic::OnEdtTelnetUsernameKillFocus" />
+		  <Scheme Name="SchmTelSerOpen">
+			<Property Name="WindowEnable" Value="true" />
+		  </Scheme>
+		  <Scheme Name="SchmTelSerClose">
+			<Property Name="WindowEnable" Value="false" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcFtpPasswd" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:37 y:118" />
+		  <Property Name="WindowSize" Value="x:150 y:14" />
+		  <Property Name="WindowCaption" Value="FTP密码：" />
+		  <Property Name="WindowVisible" Value="True" />
+		  <Property Name="FontSize" Value="9" />
+		</Window>
+		
+		<Window Type="TransEdit" Name="EdtFtpPasswd" Style="WS_CHILD|WS_CLIPSIBLINGS|ES_PASSWORD|WS_TABSTOP">
+		  <Property Name="WindowPos" Value="x:216 y:103" />
+		  <Property Name="WindowSize" Value="x:425 y:42" />
+		  <Property Name="WindowCaption" Value="" />
+		  <Property Name="WindowVisible" Value="true" />
+		  <Property Name="WindowEnable" Value="true" />
+		  <Property Name="Image" Value="Edit" />
+		  <Property Name="FontSize" Value="9" />
+		  <Property Name="LimitLength" Value="16" />
+		  <Event Type="WM_EDIT_CHANGED" Value="CCfgNetSecurityLogic::OnFtpPasswdChange" />
+		  <Event Type="WM_EDIT_SETFOCUS" Value="CCfgNetSecurityLogic::OnEdtFtpPasswdSetFocus" />
+		  <Event Type="WM_KILL_FOCUS" Value="CCfgNetSecurityLogic::OnEdtFtpPasswdKillFocus" />
+		  <Scheme Name="SchmFtpSerOpen">
+			<Property Name="WindowEnable" Value="true" />
+		  </Scheme>
+		  <Scheme Name="SchmFtpSerClose">
+			<Property Name="WindowEnable" Value="false" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTipSecurity1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:222 y:155" />
+		  <Property Name="WindowSize" Value="x:64 y:5" />
+		  <Property Name="WindowCaption" Value="" /> 
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="NoFocus">
+			<Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="PswEmpty">
+		    <Property Name="WindowVisible" Value="true" />
+			<Property Name="Image" Value="CfgNetSecurity\security.png" />
+		  </Scheme>
+		  <Scheme Name="TipSec1Img1">
+			<Property Name="Image" Value="CfgNetSecurity\security.png" />
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="TipSec1Img2">
+			<Property Name="Image" Value="CfgNetSecurity\lowsecurity.png" />
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcNoFocusTipImage" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:222 y:153" />
+		  <Property Name="WindowSize" Value="x:15 y:12" />
+		  <Property Name="WindowCaption" Value="" />  
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="ScheFocus">
+		    <Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="NoFocus">
+		    <Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="ScheNoFocusImg1">
+			<Property Name="WindowVisible" Value="true" />
+			<Property Name="Image" Value="CfgNetSecurity\Tipnormal.png" />
+		  </Scheme>
+		  <Scheme Name="ScheNoFocusImg2">
+			<Property Name="WindowVisible" Value="true" />
+			<Property Name="Image" Value="CfgNetSecurity\Tiperror.png" />
+		  </Scheme>
+        </Window>
+		
+		<Window Type="TransStatic" Name="StcNoFocusErrorTips" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:240 y:153" />
+		  <Property Name="WindowSize" Value="x:300 y:14" />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="WindowCaption" Value="密码设置不符合要求" />
+		  <Property Name="FontSize" Value="9" />
+		  <Property Name="FontColor" Value="r:233 g:70 b:67" />
+		  <Scheme Name="ScheFocus">
+		    <Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="NofocusError">
+		    <Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="NofocusOK">
+		    <Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+        </Window>
+	
+		<Window Type="TransStatic" Name="StcNoFocusNorTips" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:240 y:153" />
+		  <Property Name="WindowSize" Value="x:45 y:14" />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="WindowCaption" Value="强度：" />
+		  <Property Name="FontSize" Value="9" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Scheme Name="ScheFocus">
+		    <Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="NofocusNor">
+		    <Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+        </Window>
+		
+	    <Window Type="TransStatic" Name="StcNoFocusNorTipStatus" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:277 y:153" />
+		  <Property Name="WindowSize" Value="x:32 y:14" />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="ScheFocus">
+		    <Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="NofocusNor">
+		    <Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="ScheNoFocusTipLow">
+			<Property Name="WindowCaption" Value="弱" />
+			<Property Name="WindowVisible" Value="true" />
+			<Property Name="FontColor" Value="r:233 g:70 b:67" />
+		  </Scheme>
+		  <Scheme Name="ScheNoFocusTipMid">
+			<Property Name="WindowCaption" Value="中" />
+			<Property Name="WindowVisible" Value="true" />
+			<Property Name="FontColor" Value="r:242 g:148 b:23" />
+		  </Scheme>
+		  <Scheme Name="ScheNoFocusTipHigh">
+			<Property Name="WindowCaption" Value="强" />
+			<Property Name="WindowVisible" Value="true" />
+			<Property Name="FontColor" Value="r:99 g:183 b:60" />
+		  </Scheme>
+        </Window>
+		
+		<Window Type="TransStatic" Name="StcTipSecurity2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:290 y:155" />
+		  <Property Name="WindowSize" Value="x:64 y:5" />
+		  <Property Name="WindowCaption" Value="" />
+		  <Property Name="Image" Value="CfgNetSecurity\security.png" />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="NoFocus">
+			<Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="PswEmpty">
+		    <Property Name="WindowVisible" Value="true" />
+			<Property Name="Image" Value="CfgNetSecurity\security.png" />
+		  </Scheme>
+		  <Scheme Name="TipSec2Img1">
+			<Property Name="WindowVisible" Value="true" />
+			<Property Name="Image" Value="CfgNetSecurity\security.png" />
+		  </Scheme>
+		  <Scheme Name="TipSec2Img2">
+			<Property Name="WindowVisible" Value="true" />
+			<Property Name="Image" Value="CfgNetSecurity\midsecurity.png" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTipSecurity3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:358 y:155" />
+		  <Property Name="WindowSize" Value="x:64 y:5" />
+		  <Property Name="WindowCaption" Value="" />
+		  <Property Name="Image" Value="CfgNetSecurity\security.png" />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="NoFocus">
+			<Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="PswEmpty">
+		    <Property Name="WindowVisible" Value="true" />
+			<Property Name="Image" Value="CfgNetSecurity\security.png" />
+		  </Scheme>
+		  <Scheme Name="TipSec3Img1">
+			<Property Name="WindowVisible" Value="true" />
+			<Property Name="Image" Value="CfgNetSecurity\security.png" />
+		  </Scheme>
+		  <Scheme Name="TipSec3Img2">
+			<Property Name="WindowVisible" Value="true" />
+			<Property Name="Image" Value="CfgNetSecurity\highsecurity.png" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTipStrength" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:430 y:151" />
+		  <Property Name="WindowSize" Value="x:32 y:14" />
+		  <Property Name="WindowCaption" Value="强度" />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="NoFocus">
+			<Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="PswEmpty">
+		    <Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="OnFtpPswFocus"> 
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTipSecStrength" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:465 y:151" />
+		  <Property Name="WindowSize" Value="x:32 y:14" />
+		  <Property Name="WindowVisible" Value="false" /> 
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="PswEmpty">
+		    <Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="NoFocus">
+			<Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="PswLow">
+		    <Property Name="WindowVisible" Value="true" />
+			<Property Name="WindowCaption" Value="弱" />
+			<Property Name="FontColor" Value="r:233 g:70 b:67" />
+		  </Scheme>
+		  <Scheme Name="PswMid">
+		    <Property Name="WindowVisible" Value="true" />
+			<Property Name="WindowCaption" Value="中" />
+			<Property Name="FontColor" Value="r:242 g:148 b:23" />
+		  </Scheme>
+		  <Scheme Name="PswHigh">
+		    <Property Name="WindowVisible" Value="true" />
+			<Property Name="WindowCaption" Value="强" />
+			<Property Name="FontColor" Value="r:99 g:183 b:60" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTipCheckImg1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:222 y:168" />
+		  <Property Name="WindowSize" Value="x:15 y:12" />
+		  <Property Name="WindowCaption" Value="" />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="NoFocus">
+			<Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="PswEmpty">
+		    <Property Name="WindowVisible" Value="true" />
+			<Property Name="Image" Value="CfgNetSecurity\tipcircle.png" />
+		  </Scheme>
+		  <Scheme Name="LengthCheckOK">
+			<Property Name="Image" Value="CfgNetSecurity\Tipok.png" />
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="LengthCheckNO">
+			<Property Name="Image" Value="CfgNetSecurity\Tipfalse.png" />
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTipfont1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:243 y:168" />
+		  <Property Name="WindowSize" Value="x:200 y:14" />
+		  <Property Name="WindowCaption" Value="8~16个字符" />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontColor" Value="r:141 g:141 b:141" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="NoFocus">
+			<Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="PswEmpty">
+		    <Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="OnFtpPswFocus"> 
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTipCheckImg2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:222 y:185" />
+		  <Property Name="WindowSize" Value="x:15 y:12" />
+		  <Property Name="WindowCaption" Value="" />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="NoFocus">
+			<Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="PswEmpty">
+		    <Property Name="WindowVisible" Value="true" />
+			<Property Name="Image" Value="CfgNetSecurity\tipcircle.png" />
+		  </Scheme>
+		  <Scheme Name="CharactorCheckOK">
+			<Property Name="Image" Value="CfgNetSecurity\Tipok.png" />
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="CharactorCheckNO">
+			<Property Name="Image" Value="CfgNetSecurity\Tipfalse.png" />
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTipfont2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:243 y:185" />
+		  <Property Name="WindowSize" Value="x:300 y:14" />
+		  <Property Name="WindowCaption" Value="只能包含数字、字母和'_' '.' " />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontColor" Value="r:141 g:141 b:141" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="NoFocus">
+			<Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="PswEmpty">
+		    <Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="OnFtpPswFocus"> 
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTipCheckImg3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:222 y:202" />
+		  <Property Name="WindowSize" Value="x:15 y:12" />
+		  <Property Name="WindowCaption" Value="" />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="NoFocus">
+			<Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="PswEmpty">
+		    <Property Name="WindowVisible" Value="true" />
+			<Property Name="Image" Value="CfgNetSecurity\tipcircle.png" />
+		  </Scheme>
+		  <Scheme Name="CharStyleCheckOK">
+			<Property Name="Image" Value="CfgNetSecurity\Tipok.png" />
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="CharStyleCheckNO">
+			<Property Name="Image" Value="CfgNetSecurity\Tipfalse.png" />
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTipfont3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:243 y:202" />
+		  <Property Name="WindowSize" Value="x:300 y:14" />
+		  <Property Name="WindowCaption" Value="数字,字母和'_' '.'至少包含两种" />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontColor" Value="r:141 g:141 b:141" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="NoFocus">
+			<Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="PswEmpty">
+		    <Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="OnFtpPswFocus"> 
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTelnetServer" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:37 y:240" />
+		  <Property Name="WindowSize" Value="x:150 y:14" />
+		  <Property Name="WindowCaption" Value="Telnet服务：" />
+		  <Property Name="WindowVisible" Value="True" />
+		  <Property Name="FontSize" Value="9" />
+		</Window>
+		
+		<Window Type="TransSwitchButton" Name="BtnTelnetServerSwitch" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:534 y:225" />
+		  <Property Name="WindowSize" Value="x:107 y:42" />
+		  <Property Name="Image" Value="switchbutton" />
+	      <Property Name="WindowEnable" Value="true" />
+		  <Property Name="WindowVisible" Value="True" />
+		  <Property Name="SwitchState" Value="false" />
+		  <Event Type="WM_BUTTON_CLICK" Value="CCfgNetSecurityLogic::OnBtnSwitchTelnetServer" />
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTelTipSecurity1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:222 y:364" />
+		  <Property Name="WindowSize" Value="x:64 y:5" />
+		  <Property Name="WindowCaption" Value="" /> 
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="NoTelFocus">
+			<Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="PswTelEmpty">
+		    <Property Name="WindowVisible" Value="true" />
+			<Property Name="Image" Value="CfgNetSecurity\security.png" />
+		  </Scheme>
+		  <Scheme Name="TipTelSec1Img1">
+			<Property Name="Image" Value="CfgNetSecurity\security.png" />
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="TipTelSec1Img2">
+			<Property Name="Image" Value="CfgNetSecurity\lowsecurity.png" />
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTelNoFocusTipImage" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:222 y:362" />
+		  <Property Name="WindowSize" Value="x:15 y:12" />
+		  <Property Name="WindowCaption" Value="" />  
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="ScheTelFocus">
+		    <Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="NoTelFocus">
+		    <Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="ScheTelNoFocusImg1">
+			<Property Name="WindowVisible" Value="true" />
+			<Property Name="Image" Value="CfgNetSecurity\Tipnormal.png" />
+		  </Scheme>
+		  <Scheme Name="ScheTelNoFocusImg2">
+			<Property Name="WindowVisible" Value="true" />
+			<Property Name="Image" Value="CfgNetSecurity\Tiperror.png" />
+		  </Scheme>
+        </Window>
+		
+		<Window Type="TransStatic" Name="StcTelNoFocusErrorTips" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:240 y:362" />
+		  <Property Name="WindowSize" Value="x:300 y:14" />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="WindowCaption" Value="密码设置不符合要求" />
+		  <Property Name="FontSize" Value="9" />
+		  <Property Name="FontColor" Value="r:233 g:70 b:67" />
+		  <Scheme Name="ScheTelFocus">
+		    <Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="NoTelfocusError">
+		    <Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="NoTelfocusOK">
+		    <Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+        </Window>
+	
+		<Window Type="TransStatic" Name="StcTelNoFocusNorTips" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:240 y:362" />
+		  <Property Name="WindowSize" Value="x:45 y:14" />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="WindowCaption" Value="强度：" />
+		  <Property Name="FontSize" Value="9" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Scheme Name="ScheTelFocus">
+		    <Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="NoTelfocusNor">
+		    <Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+        </Window>
+		
+	    <Window Type="TransStatic" Name="StcTelNoFocusNorTipStatus" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:277 y:362" />
+		  <Property Name="WindowSize" Value="x:32 y:14" />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="ScheTelFocus">
+		    <Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="NoTelfocusNor">
+		    <Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="ScheTelNoFocusTipLow">
+			<Property Name="WindowCaption" Value="弱" />
+			<Property Name="FontColor" Value="r:233 g:70 b:67" />
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="ScheTelNoFocusTipMid">
+			<Property Name="WindowCaption" Value="中" />
+			<Property Name="FontColor" Value="r:242 g:148 b:23" />
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="ScheTelNoFocusTipHigh">
+			<Property Name="WindowCaption" Value="强" />
+			<Property Name="FontColor" Value="r:99 g:183 b:60" />
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+        </Window>
+		
+		<Window Type="TransStatic" Name="StcTelTipSecurity2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:290 y:364" />
+		  <Property Name="WindowSize" Value="x:64 y:5" />
+		  <Property Name="WindowCaption" Value="" />
+		  <Property Name="Image" Value="CfgNetSecurity\security.png" />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="NoTelFocus">
+			<Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="PswTelEmpty">
+		    <Property Name="WindowVisible" Value="true" />
+			<Property Name="Image" Value="CfgNetSecurity\security.png" />
+		  </Scheme>
+		  <Scheme Name="TipTelSec2Img1">
+			<Property Name="Image" Value="CfgNetSecurity\security.png" />
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="TipTelSec2Img2">
+			<Property Name="Image" Value="CfgNetSecurity\midsecurity.png" />
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTelTipSecurity3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:358 y:364" />
+		  <Property Name="WindowSize" Value="x:64 y:5" />
+		  <Property Name="WindowCaption" Value="" />
+		  <Property Name="Image" Value="CfgNetSecurity\security.png" />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="NoTelFocus">
+			<Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="PswTelEmpty">
+		    <Property Name="WindowVisible" Value="true" />
+			<Property Name="Image" Value="CfgNetSecurity\security.png" />
+		  </Scheme>
+		  <Scheme Name="TipTelSec3Img1">
+			<Property Name="Image" Value="CfgNetSecurity\security.png" />
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="TipTelSec3Img2">
+			<Property Name="Image" Value="CfgNetSecurity\highsecurity.png" />
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTelTipStrength" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:430 y:360" />
+		  <Property Name="WindowSize" Value="x:32 y:14" />
+		  <Property Name="WindowCaption" Value="强度" />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="NoTelFocus">
+			<Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="PswTelEmpty">
+		    <Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="OnTelPswFocus"> 
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>		  
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTelTipSecStrength" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:465 y:360" />
+		  <Property Name="WindowSize" Value="x:32 y:14" />
+		  <Property Name="WindowVisible" Value="false" /> 
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="PswTelEmpty">
+		    <Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="NoTelFocus">
+			<Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="PswTelLow">
+		    <Property Name="WindowVisible" Value="true" />
+			<Property Name="WindowCaption" Value="弱" />
+			<Property Name="FontColor" Value="r:233 g:70 b:67" />
+		  </Scheme>
+		  <Scheme Name="PswTelMid">
+		    <Property Name="WindowVisible" Value="true" />
+			<Property Name="WindowCaption" Value="中" />
+			<Property Name="FontColor" Value="r:242 g:148 b:23" />
+		  </Scheme>
+		  <Scheme Name="PswTelHigh">
+		    <Property Name="WindowVisible" Value="true" />
+			<Property Name="WindowCaption" Value="强" />
+			<Property Name="FontColor" Value="r:99 g:183 b:60" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTelTipCheckImg1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:222 y:377" />
+		  <Property Name="WindowSize" Value="x:15 y:12" />
+		  <Property Name="WindowCaption" Value="" />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="NoTelFocus">
+			<Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="PswTelEmpty">
+		    <Property Name="WindowVisible" Value="true" />
+			<Property Name="Image" Value="CfgNetSecurity\tipcircle.png" />
+		  </Scheme>
+		  <Scheme Name="LengthTelCheckOK">
+			<Property Name="Image" Value="CfgNetSecurity\Tipok.png" />
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="LengthTelCheckNO">
+			<Property Name="Image" Value="CfgNetSecurity\Tipfalse.png" />
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTelTipfont1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:243 y:377" />
+		  <Property Name="WindowSize" Value="x:200 y:14" />
+		  <Property Name="WindowCaption" Value="8~16个字符" />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontColor" Value="r:141 g:141 b:141" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="NoTelFocus">
+			<Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="PswTelEmpty">
+		    <Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="OnTelPswFocus"> 
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTelTipCheckImg2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:222 y:394" />
+		  <Property Name="WindowSize" Value="x:15 y:12" />
+		  <Property Name="WindowCaption" Value="" />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="NoTelFocus">
+			<Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="PswTelEmpty">
+		    <Property Name="WindowVisible" Value="true" />
+			<Property Name="Image" Value="CfgNetSecurity\tipcircle.png" />
+		  </Scheme>
+		  <Scheme Name="CharactorTelCheckOK">
+			<Property Name="Image" Value="CfgNetSecurity\Tipok.png" />
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="CharactorTelCheckNO">
+			<Property Name="Image" Value="CfgNetSecurity\Tipfalse.png" />
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTelTipfont2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:243 y:394" />
+		  <Property Name="WindowSize" Value="x:300 y:14" />
+		  <Property Name="WindowCaption" Value="只能包含数字、字母和'_' '.' " />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontColor" Value="r:141 g:141 b:141" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="NoTelFocus">
+			<Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="PswTelEmpty">
+		    <Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="OnTelPswFocus"> 
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTelTipCheckImg3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:222 y:411" />
+		  <Property Name="WindowSize" Value="x:15 y:12" />
+		  <Property Name="WindowCaption" Value="" />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="NoTelFocus">
+			<Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="PswTelEmpty">
+		    <Property Name="WindowVisible" Value="true" />
+			<Property Name="Image" Value="CfgNetSecurity\tipcircle.png" />
+		  </Scheme>
+		  <Scheme Name="CharStyleTelCheckOK">
+			<Property Name="Image" Value="CfgNetSecurity\Tipok.png" />
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="CharStyleTelCheckNO">
+			<Property Name="Image" Value="CfgNetSecurity\Tipfalse.png" />
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcTelTipfont3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	      <Property Name="WindowPos" Value="x:243 y:411" />
+		  <Property Name="WindowSize" Value="x:300 y:14" />
+		  <Property Name="WindowCaption" Value="数字,字母和'_' '.'至少包含两种" />
+		  <Property Name="WindowVisible" Value="false" />
+		  <Property Name="FontColor" Value="r:141 g:141 b:141" />
+		  <Property Name="FontSize" Value="9" />
+		  <Scheme Name="NoTelFocus">
+			<Property Name="WindowVisible" Value="false" />
+		  </Scheme>
+		  <Scheme Name="PswTelEmpty">
+		    <Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		  <Scheme Name="OnTelPswFocus"> 
+			<Property Name="WindowVisible" Value="true" />
+		  </Scheme>
+		</Window>
+		
+		<Window Type="TransButton" Name="BtnSave" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:491 y:452" />
+		  <Property Name="WindowSize" Value="x:86 y:38" />
+		  <Property Name="WindowCaption" Value="保存配置" />
+		  <Property Name="WindowVisible" Value="true" />
+		  <Event Type="WM_BUTTON_CLICK" Value="CCfgNetSecurityLogic::OnBtnSave" />
+		  <Property Name="Image" Value="btnSave" />
+		</Window>
+		
+		<Window Type="TransButton" Name="BtnCancle" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:591 y:452" />
+		  <Property Name="WindowSize" Value="x:86 y:38" />
+		  <Property Name="WindowCaption" Value="还原配置" />
+		  <Property Name="WindowVisible" Value="true" />
+		  <Event Type="WM_BUTTON_CLICK" Value="CCfgNetSecurityLogic::OnBtnCancel" />
+		  <Property Name="Image" Value="btnCancleCfg" />
+		</Window>
+		
+		<CallBackFunc Type="CallBackFunc" Value="CCfgNetSecurityLogic::InitWnd" />	
+	</Window>
+</UILayout>

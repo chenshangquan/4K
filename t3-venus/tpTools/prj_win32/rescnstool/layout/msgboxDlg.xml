@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  <!--msgbox弹出界面-->
+   
+	<Window Type="TransparentDlg" Name="MsgboxDlg" Style="WS_POPUP" >
+	 	<Property Name="WindowPos" Value="x:0 y:150" />
+		<Property Name="WindowSize" Value="x:450 y:278" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="Image" Value="msgboxbk.png" />
+		<Property Name="WindowCaption" Value="Msgbox弹出界面" />	
+		<Property Name="MoveStatus" Value="true" />
+		
+    <Window Type="TransStatic" Name="StcMsgboxTip" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	    <Property Name="WindowPos" Value="x:24 y:20" />
+	    <Property Name="WindowSize" Value="x:200 y:14" />
+	    <Property Name="WindowCaption" Value="提示消息" />
+	    <Property Name="WindowVisible" Value="True" />
+	    <Property Name="FontColor" Value="r:200 g:200 b:200" />
+	    <Property Name="FontSize" Value="9" />
+    </Window>
+		
+    <Window Type="TransStatic" Name="StcMsgboxShowText" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		    <Property Name="WindowPos" Value="x:74 y:84" />
+		    <Property Name="WindowSize" Value="x:302 y:48" />
+		    <Property Name="WindowCaption" Value="" />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:241 g:244 b:244" />
+		    <Property Name="FontSize" Value="9" />
+        <Property Name="Alignment" Value="0" />	    
+    </Window>
+
+   	<Window Type="TransButton" Name="BtnMsgboxOk" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+	      <Property Name="WindowPos" Value="x:210 y:230" />
+	      <Property Name="WindowSize" Value="x:89 y:33" />
+	      <Property Name="WindowCaption" Value="" />
+	      <Property Name="Tooltip" Value="确定" />
+	      <Property Name="Image" Value="Common/btnOK" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Event Type="WM_BUTTON_CLICK" Value="CMsgboxDlgLogic::OnBtnOk" />
+	      <Scheme Name="SchmDefBtnStyle">
+	      		<Property Name="WindowPos" Value="x:210 y:230" />
+	      	 	<Property Name="WindowVisible" Value="True" />     	
+	      </Scheme>
+	      <Scheme Name="SchmOnlyOkBtnStyle">
+	      		<Property Name="WindowPos" Value="x:190 y:230" />
+	      		<Property Name="WindowVisible" Value="true" />
+  			</Scheme>
+	      <Scheme Name="SchmNoBtnStyle">
+            <Property Name="WindowVisible" Value="False" />
+  			</Scheme>  				      
+  			<Scheme Name="SchmOnlyRead">
+            <Property Name="WindowVisible" Value="False" />
+  			</Scheme>
+	  </Window>
+
+   	<Window Type="TransButton" Name="BtnMsgboxCancel" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+	      <Property Name="WindowPos" Value="x:325 y:230" />
+	      <Property Name="WindowSize" Value="x:89 y:33" />
+	      <Property Name="WindowCaption" Value="" />
+	      <Property Name="Tooltip" Value="取消" />
+	      <Property Name="Image" Value="Common/btnCancel" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Event Type="WM_BUTTON_CLICK" Value="CMsgboxDlgLogic::OnBtnCancel" />
+	      <Scheme Name="SchmDefBtnStyle">
+	      		<Property Name="WindowPos" Value="x:325 y:230" />
+	      	 	<Property Name="WindowVisible" Value="True" />     	
+	      </Scheme>	      
+	      <Scheme Name="SchmOnlyOkBtnStyle">
+	      		<Property Name="WindowVisible" Value="False" />
+  			</Scheme>	      
+	      <Scheme Name="SchmNoBtnStyle">
+            <Property Name="WindowVisible" Value="False" />
+  			</Scheme>	      
+  			<Scheme Name="SchmOnlyRead">
+            <Property Name="WindowVisible" Value="False" />
+  			</Scheme>
+	  </Window>
+	  
+	  
+    <Window Type="TransButton" Name="BtnMsgboxClose" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:390 y:5" />
+      <Property Name="WindowSize" Value="x:44 y:28" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Tooltip" Value="关闭" />
+      <Property Name="Image" Value="Common/btnClose" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CMsgboxDlgLogic::OnBtnCancel" />    
+      <Scheme Name="SchmDefBtnStyle">
+	      	 	<Property Name="WindowVisible" Value="True" />     	
+	      </Scheme>
+	      <Scheme Name="SchmOnlyOkBtnStyle">
+	      		<Property Name="WindowVisible" Value="true" />
+  			</Scheme>
+	      <Scheme Name="SchmNoBtnStyle">
+            <Property Name="WindowVisible" Value="True" />
+  			</Scheme>  				      
+      <Scheme Name="SchmOnlyRead">
+            <Property Name="WindowVisible" Value="False" />
+  		</Scheme>
+	  </Window> 
+	  
+	  
+		<CallBackFunc Type="CallBackFunc" Value="CMsgboxDlgLogic::InitWnd" />
+	</Window>
+</UILayout>

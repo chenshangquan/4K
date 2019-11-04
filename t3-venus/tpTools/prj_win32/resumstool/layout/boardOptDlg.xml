@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  <!--单板添加删除界面-->
+   
+	<Window Type="TransparentDlg" Name="BoardOptDlg" Style="WS_POPUP" ><!--WS_EX_TOPMOST|ExStyle="WS_EX_TOOLWINDOW"-->
+		<Property Name="WindowPos" Value="x:0 y:0" />
+		<Property Name="WindowSize" Value="x:490 y:340" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="Image" Value="optbk.png" />
+		<Property Name="MoveStatus" Value="true" />
+		<Property Name="WindowCaption" Value="单板添加删除界面" />	
+		
+    <Window Type="CStatic" Name="StcOptBoard" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		    <Property Name="WindowPos" Value="x:24 y:20" />
+		    <Property Name="WindowSize" Value="x:200 y:14" />
+		    <Property Name="WindowCaption" Value="添加单板" />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:200 g:200 b:200" />
+		    <Property Name="FontSize" Value="9" />
+		    <Scheme Name="SchBoardAdd">
+		    		<Property Name="WindowCaption" Value="添加单板" /> 
+		    </Scheme>
+		    <Scheme Name="SchBoardModify">
+		    		<Property Name="WindowCaption" Value="修改单板" /> 
+		    </Scheme>
+		  	<Scheme Name="SchTvwBoardAdd">
+			    	<Property Name="WindowCaption" Value="添加单板" /> 
+		    </Scheme>
+		    <Scheme Name="SchTvwBoardModify">
+		    		<Property Name="WindowCaption" Value="修改单板" /> 
+		    </Scheme>	  		    
+    </Window>
+		
+    <Window Type="CStatic" Name="StcBoardType" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		    <Property Name="WindowPos" Value="x:65 y:96" />
+		    <Property Name="WindowSize" Value="x:200 y:14" />
+		    <Property Name="WindowCaption" Value="单板类型：" />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		    <Property Name="FontSize" Value="9" />
+    </Window>
+    
+    <Window Type="CStatic" Name="StcBoardTypeShow" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		    <Property Name="WindowPos" Value="x:209 y:96" />
+		    <Property Name="WindowSize" Value="x:200 y:14" />
+		    <Property Name="WindowCaption" Value="" />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:53 g:70 b:70" />
+		    <Property Name="FontSize" Value="9" />
+		    <Scheme Name="SchBoardAdd">
+		    		<Property Name="WindowVisible" Value="False" />
+		    </Scheme>
+		    <Scheme Name="SchBoardModify">
+		    		<Property Name="WindowVisible" Value="True" /> 
+		    </Scheme>
+		    <Scheme Name="SchTvwBoardAdd">
+		    		<Property Name="WindowVisible" Value="False" />
+		    </Scheme>
+		    <Scheme Name="SchTvwBoardModify">
+		    		<Property Name="WindowVisible" Value="True" /> 
+		    </Scheme>		    			    
+    </Window>
+	
+	<Window Type="TransparentComboBox" Name="ComboboxTvwBoardType" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:205 y:87" />
+            <Property Name="WindowSize" Value="x:220 y:32" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="IsIPStyle" Value="False" />
+            <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+            <Property Name="Image" Value="ComboboxCommon" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="EditEdgeHeight" Value="5" />
+            <Property Name="DropListHeight" Value="212" />
+            <Property Name="ComboShowIcon" Value="False" />
+            <Property Name="ReadOnly" Value="True" />
+			<Scheme Name="SchBoardOptClean">
+				<Property Name="TransparentComboBoxText" Value="" /> 
+			</Scheme>	
+			<Scheme Name="SchBoardAdd">
+				<Property Name="WindowVisible" Value="False" /> 
+			</Scheme>
+		    <Scheme Name="SchBoardModify">
+				<Property Name="WindowVisible" Value="False" /> 
+			</Scheme>
+			<Scheme Name="SchTvwBoardAdd">
+				<Property Name="WindowVisible" Value="True" />
+			</Scheme>
+			<Scheme Name="SchTvwBoardModify">
+				<Property Name="WindowVisible" Value="False" /> 
+		    </Scheme>		    	 	    
+    </Window>
+    
+    <Window Type="TransparentComboBox" Name="ComboboxBoardType" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:205 y:87" />
+            <Property Name="WindowSize" Value="x:220 y:32" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="IsIPStyle" Value="False" />
+            <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+            <Property Name="Image" Value="ComboboxCommon" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="EditEdgeHeight" Value="5" />
+            <Property Name="DropListHeight" Value="212" />
+            <Property Name="ComboShowIcon" Value="False" />
+            <Property Name="ReadOnly" Value="True" />
+				    <Scheme Name="SchBoardOptClean">
+				       <Property Name="TransparentComboBoxText" Value="" /> 
+				    </Scheme>	
+				    <Scheme Name="SchBoardAdd">
+				       <Property Name="WindowVisible" Value="True" /> 
+				    </Scheme>
+				    <Scheme Name="SchBoardModify">
+				       <Property Name="WindowVisible" Value="False" /> 
+				    </Scheme>
+					  <Scheme Name="SchTvwBoardAdd">
+				    		<Property Name="WindowVisible" Value="False" />
+				    </Scheme>
+				    <Scheme Name="SchTvwBoardModify">
+				    		<Property Name="WindowVisible" Value="False" /> 
+				    </Scheme>		    
+		    		 	    
+    </Window>
+
+   <!-- <Window Type="CStatic" Name="StcLayarNo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		    <Property Name="WindowPos" Value="x:65 y:119" />
+		    <Property Name="WindowSize" Value="x:200 y:14" />
+		    <Property Name="WindowCaption" Value="层号：" />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		    <Property Name="FontSize" Value="9" />
+    </Window>
+    
+    <Window Type="CStatic" Name="StcShowLayarNo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		    <Property Name="WindowPos" Value="x:209 y:119" />
+		    <Property Name="WindowSize" Value="x:200 y:14" />
+		    <Property Name="WindowCaption" Value="" />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:59 g:59 b:59" />
+		    <Property Name="FontSize" Value="9" />
+		    <Scheme Name="SchBoardOptClean">
+		       <Property Name="WindowCaption" Value="" /> 
+		    </Scheme>
+    </Window>
+
+    <Window Type="CStatic" Name="StcSlotNo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		    <Property Name="WindowPos" Value="x:65 y:159" />
+		    <Property Name="WindowSize" Value="x:200 y:14" />
+		    <Property Name="WindowCaption" Value="槽号：" />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		    <Property Name="FontSize" Value="9" />
+    </Window>
+    
+    <Window Type="CStatic" Name="StcShowSlotNo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		    <Property Name="WindowPos" Value="x:209 y:159" />
+		    <Property Name="WindowSize" Value="x:200 y:14" />
+		    <Property Name="WindowCaption" Value="" />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:59 g:59 b:59" />
+		    <Property Name="FontSize" Value="9" />
+		    <Scheme Name="SchBoardOptClean">
+		       <Property Name="WindowCaption" Value="" /> 
+		    </Scheme>		        
+    </Window>    -->
+
+    <Window Type="CStatic" Name="StcIpAddr" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		    <Property Name="WindowPos" Value="x:65 y:152" />
+		    <Property Name="WindowSize" Value="x:200 y:14" />
+		    <Property Name="WindowCaption" Value="IP地址：" />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		    <Property Name="FontSize" Value="9" />
+    </Window>
+    
+ 		<Window Type="CTransparentIpEdit" Name="EdtIpAddr" Style="WS_CHILD|WS_TABSTOP"> 
+			 <Property Name="WindowPos" Value="x:205 y:143" /> 
+			 <Property Name="WindowSize" Value="x:220 y:32" />
+		   <Property Name="WindowCaption" Value="" />
+       <Property Name="Image" Value="Edit" />
+		   <Property Name="WindowVisible" Value="true" />  
+   		 <Property Name="LimitLength" Value="260" />
+   		 <Property Name="FontColor" Value="r:59 g:59 b:59" />
+       <Property Name="FontSize" Value="9" />
+		   <Event Type="WM_EDIT_CHANGED" Value="CBoardOptDlgLogic::OnBoardOptIpChange" />        
+		   <Scheme Name="SchBoardOptClean">
+		      <Property Name="WindowCaption" Value="" /> 
+		   </Scheme>       
+		   <Scheme Name="SchBoardAdd">
+		    	<Property Name="WindowCaption" Value="" />
+		   </Scheme>
+		   <Scheme Name="SchTvwBoardAdd">
+		    	<Property Name="WindowCaption" Value="" />
+		   </Scheme>		   		   
+		</Window>
+			
+
+   	<Window Type="CButton" Name="BtnBoardOk" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+	      <Property Name="WindowPos" Value="x:250 y:292" />
+	      <Property Name="WindowSize" Value="x:89 y:33" />
+	      <Property Name="WindowCaption" Value="" />
+	      <Property Name="Tooltip" Value="确定" />
+	      <Property Name="Image" Value="Common/btnOK" />
+	      <Property Name="WindowVisible" Value="True" />
+	    	<Event Type="WM_BUTTON_CLICK" Value="CBoardOptDlgLogic::OnBtnOptBoardOk" />  
+				<Scheme Name="SchBoardAdd">
+		    		<Property Name="WindowVisible" Value="True" />
+		    </Scheme>
+		    <Scheme Name="SchBoardModify">
+		    		<Property Name="WindowVisible" Value="True" /> 
+		    </Scheme>
+			  <Scheme Name="SchTvwBoardAdd">
+		    		<Property Name="WindowVisible" Value="False" />
+		    </Scheme>
+		    <Scheme Name="SchTvwBoardModify">
+		    		<Property Name="WindowVisible" Value="False" /> 
+		    </Scheme>			          
+	  </Window>
+
+   	<Window Type="CButton" Name="BtnBoardCancel" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+	      <Property Name="WindowPos" Value="x:365 y:292" />
+	      <Property Name="WindowSize" Value="x:89 y:33" />
+	      <Property Name="WindowCaption" Value="" />
+	      <Property Name="Tooltip" Value="取消" />
+	      <Property Name="Image" Value="Common/btnCancel" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Event Type="WM_BUTTON_CLICK" Value="CBoardOptDlgLogic::OnBtnOptBoardCancel" />
+			  <Scheme Name="SchBoardAdd">
+	    		<Property Name="WindowVisible" Value="True" />
+	    	</Scheme>
+	    	<Scheme Name="SchBoardModify">
+	    		<Property Name="WindowVisible" Value="True" /> 
+	    	</Scheme>
+				<Scheme Name="SchTvwBoardAdd">
+		    		<Property Name="WindowVisible" Value="False" />
+		    </Scheme>
+		    <Scheme Name="SchTvwBoardModify">
+		    		<Property Name="WindowVisible" Value="False" /> 
+		    </Scheme>	    	      
+	  </Window>
+	  
+   	<Window Type="CButton" Name="BtnTvwBoardOk" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+	      <Property Name="WindowPos" Value="x:250 y:292" />
+	      <Property Name="WindowSize" Value="x:89 y:33" />
+	      <Property Name="WindowCaption" Value="" />
+	      <Property Name="Tooltip" Value="确定" />
+	      <Property Name="Image" Value="Common/btnOK" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Event Type="WM_BUTTON_CLICK" Value="CBoardOptDlgLogic::OnBtnOptTvwBoardOk" />
+			  <Scheme Name="SchBoardAdd">
+	    		<Property Name="WindowVisible" Value="False" />
+	    	</Scheme>
+	    	<Scheme Name="SchBoardModify">
+	    		<Property Name="WindowVisible" Value="False" /> 
+	    	</Scheme>	      
+			  <Scheme Name="SchTvwBoardAdd">
+		    		<Property Name="WindowVisible" Value="True" />
+		    </Scheme>
+		    <Scheme Name="SchTvwBoardModify">
+		    		<Property Name="WindowVisible" Value="True" /> 
+		    </Scheme>	  
+	  </Window>
+
+   	<Window Type="CButton" Name="BtnTvwBoardCancel" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+	      <Property Name="WindowPos" Value="x:365 y:292" />
+	      <Property Name="WindowSize" Value="x:89 y:33" />
+	      <Property Name="WindowCaption" Value="" />
+	      <Property Name="Tooltip" Value="取消" />
+	      <Property Name="Image" Value="Common/btnCancel" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Event Type="WM_BUTTON_CLICK" Value="CBoardOptDlgLogic::OnBtnOptTvwBoardCancel" />
+			  <Scheme Name="SchBoardAdd">
+	    		<Property Name="WindowVisible" Value="False" />
+	    	</Scheme>
+	    	<Scheme Name="SchBoardModify">
+	    		<Property Name="WindowVisible" Value="False" /> 
+	    	</Scheme>	      
+			  <Scheme Name="SchTvwBoardAdd">
+		    		<Property Name="WindowVisible" Value="True" />
+		    </Scheme>
+		    <Scheme Name="SchTvwBoardModify">
+		    		<Property Name="WindowVisible" Value="True" /> 
+		    </Scheme>	      
+	  </Window>	  
+	  
+	  <Window Type="CButton" Name="BtnBoardClose" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:430 y:6" />
+      <Property Name="WindowSize" Value="x:44 y:28" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Tooltip" Value="关闭" />
+      <Property Name="Image" Value="Common/btnClose" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CBoardOptDlgLogic::OnBtnOptBoardCancel" />    
+	  </Window>
+	  
+		<CallBackFunc Type="CallBackFunc" Value="CBoardOptDlgLogic::InitWnd" />
+	</Window>
+</UILayout>

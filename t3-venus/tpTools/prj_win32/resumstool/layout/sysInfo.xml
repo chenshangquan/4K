@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<UILayout>
+    <!--系统信息界面  Style="WS_CHILD"-->
+    <Window Type="TransparentDlg" Name="SysInfoDlg" Style="WS_CHILD" ExStyle="">
+        <Property Name="WindowPos" Value="x:0 y:73" />
+        <Property Name="WindowSize" Value="x:864 y:491" />
+        <Property Name="Image" Value="" />
+
+        <Window Type="CStatic" Name="StcStaticInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:45 y:32" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="静态信息" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:53 g:70 b:70" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="FontStyle" Value="1" />            
+        </Window>
+        
+        <Window Type="CStatic" Name="LineTop" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:139 y:38" />
+            <Property Name="WindowSize" Value="x:664 y:1" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="line.png" />
+        </Window>
+        
+        <Window Type="CStatic" Name="StcHardWareVer" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:73 y:56" />
+            <Property Name="WindowSize" Value="x:400 y:14" />
+            <Property Name="WindowCaption" Value="UMS 硬件版本:" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />       
+            <Scheme Name="SchmClean">
+          		<Property Name="WindowCaption" Value="UMS 硬件版本:" /> 
+      			</Scheme>
+        </Window>
+        
+        <Window Type="CStatic" Name="StcSoftWareVer" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:73 y:78" />
+            <Property Name="WindowSize" Value="x:400 y:14" />
+            <Property Name="WindowCaption" Value="UMS 软件版本:" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Scheme Name="SchmClean">
+          		<Property Name="WindowCaption" Value="UMS 软件版本:" /> 
+      			</Scheme>
+        </Window>
+        
+        <Window Type="CStatic" Name="StcSipSevr" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:73 y:100" />
+            <Property Name="WindowSize" Value="x:400 y:14" />
+            <Property Name="WindowCaption" Value="UMS 注册网呈服务器:" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Scheme Name="SchmClean">
+          		<Property Name="WindowCaption" Value="UMS 注册网呈服务器:" /> 
+      			</Scheme>
+        </Window>
+        
+        <Window Type="CStatic" Name="StcGkSevr" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:73 y:122" />
+            <Property Name="WindowSize" Value="x:400 y:14" />
+            <Property Name="WindowCaption" Value="注册GK:" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Scheme Name="SchmClean">
+          		<Property Name="WindowCaption" Value="注册GK:" /> 
+      			</Scheme>
+        </Window>
+        
+        <Window Type="CStatic" Name="StcAuthCount" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:73 y:144" />
+            <Property Name="WindowSize" Value="x:400 y:14" />
+            <Property Name="WindowCaption" Value="授权数目:" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Scheme Name="SchmClean">
+          		<Property Name="WindowCaption" Value="授权数目:" /> 
+      			</Scheme>
+        </Window>
+        
+         <Window Type="CStatic" Name="StcSysTime" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:45 y:187" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="系统时间" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:53 g:70 b:70" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="FontStyle" Value="1" />      
+            <Scheme Name="SchmClean">
+          		<Property Name="WindowCaption" Value="系统时间" /> 
+      			</Scheme>           
+        </Window>
+        
+        <Window Type="CStatic" Name="LineMid" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:139 y:193" />
+            <Property Name="WindowSize" Value="x:664 y:1" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="line.png" />
+        </Window>
+        
+        <Window Type="CStatic" Name="StcSysTimeValue" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:73 y:211" />
+            <Property Name="WindowSize" Value="x:400 y:14" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Scheme Name="SchmClean">
+          		<Property Name="WindowCaption" Value="" /> 
+      			</Scheme>
+        </Window>
+        
+        <Window Type="CStatic" Name="StcRealTimeInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:45 y:254" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="动态信息" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:53 g:70 b:70" />   
+            <Property Name="FontSize" Value="9" />
+            <Property Name="FontStyle" Value="1" />
+        </Window>
+        
+        <Window Type="CStatic" Name="LineBottom" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:139 y:260" />
+            <Property Name="WindowSize" Value="x:664 y:1" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="line.png" />
+        </Window>
+        
+        <Window Type="CStatic" Name="StcCpuRate" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:73 y:278" />
+            <Property Name="WindowSize" Value="x:400 y:14" />
+            <Property Name="WindowCaption" Value="CPU使用率:" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Scheme Name="SchmClean">
+          		<Property Name="WindowCaption" Value="CPU使用率:" /> 
+      			</Scheme>           
+        </Window>
+        
+        <Window Type="CStatic" Name="StcMemeryRate" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:73 y:300" />
+            <Property Name="WindowSize" Value="x:400 y:14" />
+            <Property Name="WindowCaption" Value="内存使用率:" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Scheme Name="SchmClean">
+          		<Property Name="WindowCaption" Value="内存使用率:" /> 
+      			</Scheme>        
+        </Window>
+
+        <Window Type="CStatic" Name="StcCoufCount" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:73 y:322" />
+            <Property Name="WindowSize" Value="x:400 y:14" />
+            <Property Name="WindowCaption" Value="会议数目:" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Scheme Name="SchmClean">
+          		<Property Name="WindowCaption" Value="会议数目:" /> 
+      			</Scheme>        
+        </Window>
+
+      <Window Type="CStatic" Name="StcMixAudioPer" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:73 y:344" />
+            <Property Name="WindowSize" Value="x:400 y:14" />
+            <Property Name="WindowCaption" Value="混音器占用情况:" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Scheme Name="SchmClean">
+          		<Property Name="WindowCaption" Value="混音器占用情况:" /> 
+      			</Scheme>        
+        </Window>
+        
+        <Window Type="CStatic" Name="StcImageCompondPer" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:73 y:366" />
+            <Property Name="WindowSize" Value="x:400 y:14" />
+            <Property Name="WindowCaption" Value="画面合成器占用情况:" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Scheme Name="SchmClean">
+          		<Property Name="WindowCaption" Value="画面合成器占用情况:" /> 
+      			</Scheme>        
+        </Window>        
+        
+        <Window Type="CStatic" Name="StcTvwPer" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:73 y:388" />
+            <Property Name="WindowSize" Value="x:400 y:14" />
+            <Property Name="WindowCaption" Value="电视墙占用情况:" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Scheme Name="SchmClean">
+          		<Property Name="WindowCaption" Value="电视墙占用情况:" /> 
+      			</Scheme>        
+        </Window>
+        
+        <Window Type="CStatic" Name="StcSteamAdaptePer" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:73 y:410" />
+            <Property Name="WindowSize" Value="x:400 y:14" />
+            <Property Name="WindowCaption" Value="码流适配器占用情况:" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Scheme Name="SchmClean">
+          		<Property Name="WindowCaption" Value="码流适配器占用情况:" /> 
+      			</Scheme>        
+        </Window>
+
+      <Window Type="CStatic" Name="StcAudioAdapter" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:73 y:432" />
+        <Property Name="WindowSize" Value="x:400 y:14" />
+        <Property Name="WindowCaption" Value="音频适配器占用情况:" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+        <Scheme Name="SchmClean">
+          <Property Name="WindowCaption" Value="音频适配器占用情况:" />
+        </Scheme>
+      </Window>
+
+      <Window Type="CStatic" Name="StcMultiScreen" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:73 y:454" />
+        <Property Name="WindowSize" Value="x:400 y:14" />
+        <Property Name="WindowCaption" Value="多画面合成器占用情况:" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="FontColor" Value="r:15 g:79 b:81" />
+        <Property Name="FontSize" Value="9" />
+        <Scheme Name="SchmClean">
+          <Property Name="WindowCaption" Value="多画面合成器占用情况:" />
+        </Scheme>
+      </Window>
+
+       	<Window Type="CButton" Name="BtnImportAuth" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			      <Property Name="WindowPos" Value="x:620 y:453" />
+			      <Property Name="WindowSize" Value="x:86 y:38" />
+			      <Property Name="WindowCaption" Value="" />
+			      <Property Name="Tooltip" Value="导入授权" />
+			      <Property Name="Image" Value="btnImpAuth" />
+			      <Property Name="WindowVisible" Value="True" />
+			      <Event Type="WM_BUTTON_CLICK" Value="CSysInfoLogic::OnBtnImportAuth" />
+			      <Property Name="WindowEnable" Value="True" />
+			  </Window>
+			  
+			  <Window Type="CButton" Name="BtnExportAuth" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			      <Property Name="WindowPos" Value="x:720 y:453" />
+			      <Property Name="WindowSize" Value="x:86 y:38" />
+			      <Property Name="WindowCaption" Value="" />
+			      <Property Name="Tooltip" Value="导出授权" />
+			      <Property Name="Image" Value="btnExpAuth" />
+			      <Property Name="WindowVisible" Value="True" />
+			      <Event Type="WM_BUTTON_CLICK" Value="CSysInfoLogic::OnBtnExportAuth" />
+			      <Property Name="WindowEnable" Value="True" />
+			  </Window>
+			  
+			  <Window Type="CButton" Name="BtnSyncSevr" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			      <Property Name="WindowPos" Value="x:661 y:202" />
+			      <Property Name="WindowSize" Value="x:112 y:31" />
+			      <Property Name="WindowCaption" Value="" />
+			      <Property Name="Tooltip" Value="同步到服务器" />
+			      <Property Name="Image" Value="btnSyncSevr" />
+			      <Property Name="WindowVisible" Value="True" />
+			      <Event Type="WM_BUTTON_CLICK" Value="CSysInfoLogic::OnBtnSyncSevr" />
+			      <Property Name="WindowEnable" Value="True" />
+			  </Window>
+			  
+			  			  
+			  <Window Type="CButton" Name="BtnRealTimeRefresh" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			      <Property Name="WindowPos" Value="x:686 y:393" />
+			      <Property Name="WindowSize" Value="x:87 y:31" />
+			      <Property Name="WindowCaption" Value="" />
+			      <Property Name="Tooltip" Value="实时刷新" />
+			      <Property Name="Image" Value="btnRealTimeRefresh" />
+			      <Property Name="WindowVisible" Value="True" />
+			      <Event Type="WM_BUTTON_CLICK" Value="CSysInfoLogic::OnBtnRealTimeRefresh" />
+			      <Property Name="WindowEnable" Value="True" />
+			  </Window>
+			 
+			  
+        <CallBackFunc Type="CallBackFunc" Value="CSysInfoLogic::InitWnd" />
+        <Property Name="WindowVisible" Value="True" />
+    </Window>
+</UILayout>

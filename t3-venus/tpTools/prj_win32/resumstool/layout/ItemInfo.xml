@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  <!--umstool主界面-->
+  <ItemInfo>
+    <Item Name="TextLstItem" Type="Text" Size="x:48 y:10" Text="" Func="" FontName="宋体" FontColor="r:27 g:100 b:104" FontSize="9" SelColor="r:27 g:100 b:104" Alignment="1" /> 
+    <!--单板图片-->
+    <Item Name="ImageItemBoardListNor" Type="Image" Size="x:60 y:64" Text="" Func="" Image="boardlisticonnor" />
+    <Item Name="ImageItemBoardListNull" Type="Image" Size="x:60 y:64" Text="" Func="" Image="boardlisticonnull" />
+    <Item Name="ImageItemBoardListDis" Type="Image" Size="x:60 y:64" Text="" Func="" Image="boardlisticondis" />
+        
+    <!--用户列表中的展开图标-->
+    <Item Name="ImageItemUserLstToInfo" Type="Image" Size="x:39 y:47" Text="" Func="" Image="moreImg" />
+
+    <!--灰色文字条目-->
+    <Item Name="GrayTextItem" Type="Text" Size="x:90 y:44" Text="" Func="" FontName="宋体" FontColor="r:108 g:124 b:148" FontSize="12" Alignment="0" SelColor="r:255 g:255 b:255" />
+
+
+    <!-- 两行字符 -->
+    <Item Name="ExTextItem" Type="ExText" Size="x:76 y:40" Text="" Func="" FontName="宋体" FontColor="r:27 g:100 b:104" FontSize="9" Alignment="1" LineAlignment="2"
+    	SecondText="" SecondFontName="宋体" SecondFontColor="r:27 g:100 b:104" SecondFontSize="9" SecondAlignment="1" SelColor="r:27 g:100 b:104"></Item>
+
+
+    <!--主界面功能列表Item -->  
+    <Item Name="ImageItemMenuSysInfo" Type="ButtonItem" Size="x:85 y:31" Text="" Func="CMainFrameLogic::OnBtnTabSysInfo" Image="itemToSysInfo" />
+    <Item Name="ImageItemMenuCfg" Type="ButtonItem" Size="x:83 y:31" Text="" Func="CMainFrameLogic::OnBtnTabConfig" Image="itemToCfg" />
+    <Item Name="ImageItemMenuAddrbookExp" Type="ButtonItem" Size="x:83 y:31" Text="" Func="CMainFrameLogic::OnBtnTabAddrBook" Image="itemToAddrbook" />
+    <Item Name="ImageItemMenuTemplateExp" Type="ButtonItem" Size="x:83 y:31" Text="" Func="CMainFrameLogic::OnBtnTabConfTmp" Image="itemToTemplate" />
+    <Item Name="ImageItemMenuUmsDiag" Type="ButtonItem" Size="x:83 y:31" Text="" Func="CMainFrameLogic::OnBtnTabUmsDiag" Image="itemToUmsDiag" />
+    
+
+     <!--配置界面功能列表Item -->  
+    <Item Name="ImageItemToUmsConfig" Type="ButtonItem" Size="x:118 y:58" Text="" Func="CCorrelativeCfgLogic::OnBtnLeftTabEthnet" Image="itemToUmsConfig" />
+    <Item Name="ImageItemToBoardConfig" Type="ButtonItem" Size="x:118 y:58" Text="" Func="CCorrelativeCfgLogic::OnBtnLeftTabBoard" Image="itemToBoardConfig" />
+    <Item Name="ImageItemToTvwConfig" Type="ButtonItem" Size="x:118 y:58" Text="" Func="" Image="itemToTvwConfig" />
+    <Item Name="ImageItemToTvwdefConfig" Type="ButtonItem" Size="x:118 y:58" Text="" Func="" Image="itemToTvwdefConfig" />
+    <Item Name="ImageItemToNetmngConfig" Type="ButtonItem" Size="x:118 y:58" Text="" Func="" Image="itemToNetmngConfig" />
+    <Item Name="ImageItemTobakupConfig" Type="ButtonItem" Size="x:118 y:58" Text="" Func="" Image="itemTobakupConfig" /> 
+    <Item Name="ImageItemToVTRConfig" Type="ButtonItem" Size="x:118 y:58" Text="" Func="" Image="imageItemToVTRConfig" />
+    
+   	<!--单板层界面功能列表Item -->  
+    <Item Name="ImageItemMenuZeroFloor" Type="ButtonItem" Size="x:97 y:30" Text="" Func="CBoardCfgLogic::OnBoardLstFloorItem" Image="itemzerofloor" />
+    <Item Name="ImageItemMenuFirFloor" Type="ButtonItem" Size="x:97 y:30" Text="" Func="CBoardCfgLogic::OnBoardLstFloorItem" Image="itemfirstfloor" />
+    <Item Name="ImageItemMenuSecFloor" Type="ButtonItem" Size="x:97 y:30" Text="" Func="CBoardCfgLogic::OnBoardLstFloorItem" Image="itemsecondfloor" />
+    <Item Name="ImageItemMenuThiFloor" Type="ButtonItem" Size="x:97 y:30" Text="" Func="CBoardCfgLogic::OnBoardLstFloorItem" Image="itemthirdfloor" />
+
+   	<!--电视墙单板层界面功能列表Item -->  
+    <Item Name="ImageTvwItemMenuZeroFloor" Type="ButtonItem" Size="x:63 y:31" Text="" Func="CBoardCfgLogic::OnTvwBoardLstFloorItem" Image="tvwCfgDlg/tvwitemzerofloor" />
+    <Item Name="ImageTvwItemMenuFirFloor" Type="ButtonItem" Size="x:63 y:31" Text="" Func="CBoardCfgLogic::OnTvwBoardLstFloorItem" Image="tvwCfgDlg/tvwitemfirstfloor" />
+    <Item Name="ImageTvwItemMenuSecFloor" Type="ButtonItem" Size="x:63 y:31" Text="" Func="CBoardCfgLogic::OnTvwBoardLstFloorItem" Image="tvwCfgDlg/tvwitemsecondfloor" />
+    <Item Name="ImageTvwItemMenuThiFloor" Type="ButtonItem" Size="x:63 y:31" Text="" Func="CBoardCfgLogic::OnTvwBoardLstFloorItem" Image="tvwCfgDlg/tvwitemthirdfloor" />
+    <Item Name="ImageTvwItemMenuForFloor" Type="ButtonItem" Size="x:63 y:31" Text="" Func="CBoardCfgLogic::OnTvwBoardLstFloorItem" Image="tvwCfgDlg/tvwitemforfloor" />
+    <Item Name="ImageTvwItemMenuFifFloor" Type="ButtonItem" Size="x:63 y:31" Text="" Func="CBoardCfgLogic::OnTvwBoardLstFloorItem" Image="tvwCfgDlg/tvwitemfiffloor" />
+    <Item Name="ImageTvwItemMenuSixFloor" Type="ButtonItem" Size="x:63 y:31" Text="" Func="CBoardCfgLogic::OnTvwBoardLstFloorItem" Image="tvwCfgDlg/tvwitemsixfloor" />
+    <Item Name="ImageTvwItemMenuSevenFloor" Type="ButtonItem" Size="x:63 y:31" Text="" Func="CBoardCfgLogic::OnTvwBoardLstFloorItem" Image="tvwCfgDlg/tvwitemsevenfloor" />
+    <Item Name="ImageTvwItemMenuEightFloor" Type="ButtonItem" Size="x:63 y:31" Text="" Func="CBoardCfgLogic::OnTvwBoardLstFloorItem" Image="tvwCfgDlg/tvwitemeightfloor" />
+    <Item Name="ImageTvwItemMenuNineFloor" Type="ButtonItem" Size="x:63 y:31" Text="" Func="CBoardCfgLogic::OnTvwBoardLstFloorItem" Image="tvwCfgDlg/tvwitemninefloor" />
+
+   	<!--电视墙预案界面功能列表Item -->  
+    <Item Name="ImageItemTvwStyleList" Type="Image" Size="x:76 y:40" Text="" Func="" Image="tvwStyleCfgDlg/LstTvwStyle/btnTvwStyleLst" />
+
+
+    <!--网管服务器界面功能列表Item -->
+    <Item Name="TextItemNetMng" Type="Text" Size="x:129 y:42" Text="" Func="" FontName="宋体" FontColor="r:4 g:27 b:28" SelColor="r:255 g:255 b:255" FontSize="9" Alignment="1" />
+    <Item Name="ImageItemNetMng" Type="ListItem" Size="x:649 y:40" Text="" Func="" Image="NetMngCfg/Item" />
+    
+    <!--单板升级界面功能列表Item -->
+    <Item Name="TextItemBoardUpgrade" Type="Text" Size="x:236 y:30" Text="" Func="" FontName="宋体" FontColor="r:4 g:27 b:28" FontSize="9" SelColor="r:255 g:255 b:255" Alignment="0" /> 
+    <Item Name="ImageItemBoardUpgrade" Type="ListItem" Size="x:490 y:30" Text="" Func="" Image="impexpCommonDlg/ItemSel" />    
+    
+    <!--录像机界面功能列表Item -->
+    <Item Name="TextItemVTR" Type="Text" Size="x:215 y:42" Text="" Func="" FontName="宋体" FontColor="r:4 g:27 b:28" SelColor="r:255 g:255 b:255" FontSize="9" Alignment="1" />
+    <Item Name="ImageItemVTR" Type="ListItem" Size="x:649 y:40" Text="" Func="" Image="NetMngCfg/Item" />
+    
+  </ItemInfo>
+</UILayout>

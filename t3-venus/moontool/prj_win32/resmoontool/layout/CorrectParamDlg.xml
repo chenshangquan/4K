@@ -1,0 +1,1110 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+	<Window Type="TransparentDlg" Name="CorrectParamDlg" Style="WS_POPUP" >
+	  <Property Name="WindowPos" Value="x:0 y:0" />
+	  <Property Name="WindowSize" Value="x:1034 y:608" />
+	  <Property Name="WindowVisible" Value="true" />
+	  <Property Name="Image" Value="paramsetbkg.png" />
+	  <Property Name="MoveStatus" Value="true" />	
+	  <Property Name="WindowCaption" Value="矫正参数" />
+
+		<Window Type="TransStatic" Name="StcCorrectParamCap" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:15 y:15" />
+			<Property Name="WindowSize" Value="x:974 y:14" />
+			<Property Name="WindowCaption" Value="矫正参数" />
+			<Property Name="WindowVisible" Value="True" />
+			<Property Name="FontColor" Value="r:200 g:200 b:200" />
+			<Property Name="FontSize" Value="9" />
+	   </Window>
+		
+	   <Window Type="TransButton" Name="BtnCorrectParamDlgClose" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+		<Property Name="WindowPos" Value="x:974 y:7" />
+		<Property Name="WindowSize" Value="x:44 y:28" />
+		<Property Name="WindowCaption" Value="" />
+		<Property Name="Tooltip" Value="关闭" />
+		<Property Name="Image" Value="Common/btnClose" />
+		<Property Name="WindowVisible" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnBtnClose" />
+	  </Window>
+	  
+	  <!-- 左边矩形 -->
+	  
+	  <Window Type="TransStatic" Name="StcCamStyle1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		 <Property Name="WindowPos" Value="x:242 y:93" />
+		 <Property Name="WindowSize" Value="x:150 y:14" />
+		 <Property Name="WindowCaption" Value="摄像机1" />
+	     <Property Name="WindowVisible" Value="True" />
+		 <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		 <Property Name="FontSize" Value="9" />
+	  </Window>
+	  
+	  <Window Type="TransparentDlg" Name="LeftRectAreaDlg" Style="WS_CHILD" ExStyle="">
+		<Property Name="WindowPos" Value="x:124 y:168" />
+		<Property Name="WindowSize" Value="x:273 y:200" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="Image" Value="CheckParamDlg\CheckParamRect.png" />
+		<Property Name="WindowCaption" Value="" />
+		
+		<Window Type="TransStatic" Name="StcRotate" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:64 y:93" />
+		  <Property Name="WindowSize" Value="x:60 y:14" />
+		  <Property Name="WindowCaption" Value="旋转：" />
+	      <Property Name="WindowVisible" Value="True" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+		</Window>
+		
+	    <Window Type="TransButton" Name="BtnRotateLeftReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:104 y:93" />
+		  <Property Name="WindowSize" Value="x:15 y:15" />
+		  <Property Name="WindowVisible" Value="True" />
+		  <Property Name="Image" Value="btnReduce" />
+		  <Property Name="WindowEnable" Value="True" />
+		  <Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRotateLeftReduceBtnClick" />
+	    </Window>
+	  
+	    <Window Type="TransEdit" Name="BtnRotateLeftEdit" Style="WS_CHILD|ES_WANTRETURN|ES_MULTILINE">
+		  <Property Name="WindowPos" Value="x:123 y:86" />
+		  <Property Name="WindowSize" Value="x:68 y:28" />
+		  <Property Name="WindowVisible" Value="True" />
+		  <Property Name="WindowCaption" Value="0.05" />
+		  <Property Name="Image" Value="Camera\Edit" />
+		  <Property Name="WindowEnable" Value="True" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+		  <Property Name="Alignment" Value="1" />
+		  <Property Name="LimitLength" Value="5" />
+		  <Property Name="LimitInput" Value="True" />
+		  <Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnRotateLeftEditChange" />
+		  <Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnRotateLeftEditKillFocus" />
+	    </Window>
+	  
+	    <Window Type="TransButton" Name="BtnRotateLeftIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:196 y:93" />
+		  <Property Name="WindowSize" Value="x:15 y:15" />
+		  <Property Name="WindowVisible" Value="True" />
+		  <Property Name="Image" Value="btnIncrease" />
+		  <Property Name="WindowEnable" Value="True" />
+		  <Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRotateLeftIncreaseBtnClick" />
+	    </Window>
+		
+	  </Window>
+	  
+	  <!-- 左边 -->
+	  <Window Type="TransButton" Name="BtnLeftOneReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:18 y:172" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftOneReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnLeftOneEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:37 y:165" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+		<Property Name="LimitLength" Value="3" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnLeftOneEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnLeftOneEditKillFocus" />
+	 </Window>
+	  
+	  <Window Type="TransButton" Name="BtnLeftOneIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:100 y:172" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftOneIncreaseBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransButton" Name="BtnLeftTwoReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:18 y:260" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftTwoReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnLeftTwoEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:37 y:253" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+		<Property Name="LimitLength" Value="3" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnLeftTwoEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnLeftTwoEditKillFocus" />
+	  </Window>
+	  
+	  <Window Type="TransButton" Name="BtnLeftTwoIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:100 y:260" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftTwoIncreaseBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransButton" Name="BtnLeftThreeReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:18 y:350" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftThreeReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnLeftThreeEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:37 y:343" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="LimitLength" Value="3" />
+		<Property Name="Alignment" Value="1" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnLeftThreeEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnLeftThreeEditKillFocus" />
+	  </Window>
+	  
+	  <Window Type="TransButton" Name="BtnLeftThreeIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:100 y:350" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftThreeIncreaseBtnClick" />
+	  </Window>
+	  
+	  <!-- 上边  -->	  
+	  <Window Type="TransButton" Name="BtnLeftFourReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:100 y:131" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftFourReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnLeftFourEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:119 y:124" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+		<Property Name="LimitLength" Value="3" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnLeftFourEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnLeftFourEditKillFocus" />
+	 </Window>
+	  
+	  <Window Type="TransButton" Name="BtnLeftFourIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:182 y:131" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftFourIncreaseBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransButton" Name="BtnLeftFiveReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:215 y:131" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftFiveReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnLeftFiveEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:234 y:124" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+		<Property Name="LimitLength" Value="3" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnLeftFiveEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnLeftFiveEditKillFocus" />
+	 </Window>
+	  
+	  <Window Type="TransButton" Name="BtnLeftFiveIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:297 y:131" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftFiveIncreaseBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransButton" Name="BtnLeftSixReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:330 y:131" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftSixReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnLeftSixEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:349 y:124" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+		<Property Name="LimitLength" Value="3" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnLeftSixEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnLeftSixEditKillFocus" />
+	 </Window>
+	  
+	  <Window Type="TransButton" Name="BtnLeftSixIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:412 y:131" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftSixIncreaseBtnClick" />
+	  </Window>
+	  
+	  <!-- 右边 -->
+	  <Window Type="TransButton" Name="BtnLeftSevenReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:406 y:172" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftSevenReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnLeftSevenEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:425 y:165" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+		<Property Name="LimitLength" Value="3" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnLeftSevenEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnLeftSevenEditKillFocus" />
+	 </Window>
+	  
+	  <Window Type="TransButton" Name="BtnLeftSevenIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:488 y:172" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftSevenIncreaseBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransButton" Name="BtnLeftEightReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:406 y:260" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftEightReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnLeftEightEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:425 y:253" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+		<Property Name="LimitLength" Value="3" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnLeftEightEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnLeftEightEditKillFocus" />
+	 </Window>
+	  
+	  <Window Type="TransButton" Name="BtnLeftEightIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:488 y:260" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftEightIncreaseBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransButton" Name="BtnLeftNineReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:406 y:348" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftNineReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnLeftNineEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:425 y:341" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+		<Property Name="LimitLength" Value="3" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnLeftNineEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnLeftNineEditKillFocus" />
+	 </Window>
+	  
+	  <Window Type="TransButton" Name="BtnLeftNineIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:488 y:348" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftNineIncreaseBtnClick" />
+	  </Window>
+	  
+	  <!-- 下边 -->
+	   <Window Type="TransButton" Name="BtnLeftTenReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:100 y:388" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftTenReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnLeftTenEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:119 y:381" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+		<Property Name="LimitLength" Value="3" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnLeftTenEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnLeftTenEditKillFocus" />
+	 </Window>
+	  
+	  <Window Type="TransButton" Name="BtnLeftTenIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:182 y:388" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftTenIncreaseBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransButton" Name="BtnLeftElevenReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:215 y:388" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftElevenReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnLeftElevenEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:234 y:381" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+		<Property Name="LimitLength" Value="3" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnLeftElevenEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnLeftElevenEditKillFocus" />
+	 </Window>
+	  
+	  <Window Type="TransButton" Name="BtnLeftElevenIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:297 y:388" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftElevenIncreaseBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransButton" Name="BtnLeftTwelveReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:330 y:388" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftTwelveReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnLeftTwelveEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:349 y:381" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+		<Property Name="LimitLength" Value="3" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnLeftTwelveEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnLeftTwelveEditKillFocus" />
+	 </Window>
+	  
+	  <Window Type="TransButton" Name="BtnLeftTwelveIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:412 y:388" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnLeftTwelveIncreaseBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransStatic" Name="StcLeftVisualField" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:128 y:438" />
+		<Property Name="WindowSize" Value="x:60 y:14" />
+		<Property Name="WindowCaption" Value="视野：" />
+	    <Property Name="WindowVisible" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+	  </Window>
+	  
+	  <!-- 左边视野 -->
+		<Window Type="TransButton" Name="BtnLeftZoomPlus" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			<Property Name="WindowPos" Value="x:163 y:429" />
+			<Property Name="WindowSize" Value="x:68 y:32" />
+			<Property Name="WindowCaption" Value="" />
+			<Property Name="TransparentBtnUseTimer" Value="True" />
+			<Property Name="Image" Value="Camera\BtnZoomPlus" />
+			<Property Name="WindowVisible" Value="True" />
+			<!--
+			<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnBtnZoomPlusClick" />
+			<Event Type="WM_BTN_HOLD" Value="CCorrectParamLogic::OnBtnZoomPlusHold" />
+			<Event Type="WM_BTN_HOLD_END" Value="CCorrectParamLogic::OnBtnZoomPlusHoldEnd" />
+			-->
+			<Event Type="WM_LBUTTONDOWN" Value="CCorrectParamLogic::OnLBtnDownZoomPlus" />
+			<Event Type="WM_LBUTTONUP" Value="CCorrectParamLogic::OnLBtnUpZoomPlus" />
+			<Event Type="WM_LBUTTONDBLCLK" Value="CCorrectParamLogic::OnLBtnDoubleDownZoomPlus" />
+		</Window>
+		<Window Type="TransButton" Name="BtnLeftZoomSub" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			<Property Name="WindowPos" Value="x:228 y:429" />
+			<Property Name="WindowSize" Value="x:68 y:32" />
+			<Property Name="WindowCaption" Value="" />
+			<Property Name="Image" Value="Camera\BtnZoomSub" />
+			<Property Name="WindowVisible" Value="True" />
+			<Property Name="TransparentBtnUseTimer" Value="True" />
+			<!--
+			<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnBtnZoomSubClick" />
+			<Event Type="WM_BTN_HOLD" Value="CCorrectParamLogic::OnBtnZoomSubHold" />
+			<Event Type="WM_BTN_HOLD_END" Value="CCorrectParamLogic::OnBtnZoomSubHoldEnd" />
+			-->
+			<Event Type="WM_LBUTTONDOWN" Value="CCorrectParamLogic::OnLBtnDownZoomSub" />
+			<Event Type="WM_LBUTTONUP" Value="CCorrectParamLogic::OnLBtnUpZoomSub" />
+			<Event Type="WM_LBUTTONDBLCLK" Value="CCorrectParamLogic::OnLBtnDoubleDownZoomSub" />
+		</Window>
+		
+		<Window Type="TransEdit" Name="EdtLeftZoom" Style="WS_CHILD|ES_WANTRETURN|ES_MULTILINE">
+			<Property Name="WindowPos" Value="x:294 y:429" />
+			<Property Name="WindowSize" Value="x:68 y:32" />
+			<Property Name="WindowCaption" Value="" />
+			<Property Name="Image" Value="Camera\Edit" />
+			<Property Name="WindowVisible" Value="true" />
+			<Property Name="FontColor" Value="r:15 g:79 b:81" />
+			<Property Name="FontSize" Value="9" />
+			<Property Name="Alignment" Value="1" />
+			<Property Name="LimitLength" Value="5" />
+			<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnEdtLeftZoomChange" />
+			<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnEdtLeftZoomKillFocus" />
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcLeftZoom" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:365 y:440" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="3.40" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:53 g:70 b:70" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+	  
+	  <!-- 右边矩形 -->
+		
+	  <Window Type="TransStatic" Name="StcCamStyle2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		 <Property Name="WindowPos" Value="x:748 y:93" />
+		 <Property Name="WindowSize" Value="x:150 y:14" />
+		 <Property Name="WindowCaption" Value="摄像机2" />
+	     <Property Name="WindowVisible" Value="True" />
+		 <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		 <Property Name="FontSize" Value="9" />
+	  </Window>
+	  
+	  <Window Type="TransparentDlg" Name="RightRectAreaDlg" Style="WS_CHILD" ExStyle="">
+		<Property Name="WindowPos" Value="x:633 y:168" />
+		<Property Name="WindowSize" Value="x:273 y:200" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="Image" Value="CheckParamDlg\CheckParamRect.png" />
+		<Property Name="WindowCaption" Value="" />
+		
+		<Window Type="TransStatic" Name="StcRotate" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:64 y:93" />
+		  <Property Name="WindowSize" Value="x:60 y:14" />
+		  <Property Name="WindowCaption" Value="旋转：" />
+	      <Property Name="WindowVisible" Value="True" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+		</Window>
+		
+	    <Window Type="TransButton" Name="BtnRotateRightReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:104 y:93" />
+		  <Property Name="WindowSize" Value="x:15 y:15" />
+		  <Property Name="WindowVisible" Value="True" />
+		  <Property Name="Image" Value="btnReduce" />
+		  <Property Name="WindowEnable" Value="True" />
+		  <Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRotateRightReduceBtnClick" />
+	    </Window>
+	  
+	    <Window Type="TransEdit" Name="BtnRotateRightEdit" Style="WS_CHILD|ES_WANTRETURN|ES_MULTILINE">
+		  <Property Name="WindowPos" Value="x:123 y:86" />
+		  <Property Name="WindowSize" Value="x:68 y:28" />
+		  <Property Name="WindowVisible" Value="True" />
+		  <Property Name="WindowCaption" Value="0.05" />
+		  <Property Name="Image" Value="Camera\Edit" />
+		  <Property Name="WindowEnable" Value="True" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+		  <Property Name="Alignment" Value="1" />
+		  <Property Name="LimitLength" Value="5" />
+		  <Property Name="LimitInput" Value="True" />
+		  <Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnRotateRightEditChange" />
+		  <Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnRotateRightEditKillFocus" />
+	    </Window>
+	  
+	    <Window Type="TransButton" Name="BtnRotateRightIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:196 y:93" />
+		  <Property Name="WindowSize" Value="x:15 y:15" />
+		  <Property Name="WindowVisible" Value="True" />
+		  <Property Name="Image" Value="btnIncrease" />
+		  <Property Name="WindowEnable" Value="True" />
+		  <Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRotateRightIncreaseBtnClick" />
+	    </Window>		
+	  </Window>
+	   
+	  <!-- 左边 -->  
+	  <Window Type="TransButton" Name="BtnRightOneReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:525 y:172" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightOneReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnRightOneEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:544 y:165" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+		<Property Name="LimitLength" Value="3" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnRightOneEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnRightOneEditKillFocus" />
+	 </Window>
+	  
+	  <Window Type="TransButton" Name="BtnRightOneIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:607 y:172" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightOneIncreaseBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransButton" Name="BtnRightTwoReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:525 y:260" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightTwoReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnRightTwoEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:544 y:253" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+		<Property Name="LimitLength" Value="3" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnRightTwoEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnRightTwoEditKillFocus" />
+	 </Window>
+	  
+	  <Window Type="TransButton" Name="BtnRightTwoIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:607 y:260" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightTwoIncreaseBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransButton" Name="BtnRightThreeReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:525 y:348" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightThreeReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnRightThreeEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:544 y:341" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+		<Property Name="LimitLength" Value="3" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnRightThreeEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnRightThreeEditKillFocus" />
+	 </Window>
+	  
+	  <Window Type="TransButton" Name="BtnRightThreeIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:607 y:348" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightThreeIncreaseBtnClick" />
+	  </Window>
+	  
+	  <!-- 上边 -->
+	  <Window Type="TransButton" Name="BtnRightFourReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:607 y:131" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightFourReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnRightFourEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:626 y:124" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+		<Property Name="LimitLength" Value="3" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnRightFourEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnRightFourEditKillFocus" />
+	 </Window>
+	  
+	  <Window Type="TransButton" Name="BtnRightFourIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:689 y:131" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightFourIncreaseBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransButton" Name="BtnRightFiveReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:722 y:131" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightFiveReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnRightFiveEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:741 y:124" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+		<Property Name="LimitLength" Value="3" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnRightFiveEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnRightFiveEditKillFocus" />
+	 </Window>
+	  
+	  <Window Type="TransButton" Name="BtnRightFiveIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:804 y:131" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightFiveIncreaseBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransButton" Name="BtnRightSixReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:837 y:131" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightSixReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnRightSixEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:856 y:124" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+		<Property Name="LimitLength" Value="3" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnRightSixEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnRightSixEditKillFocus" />
+	 </Window>
+	  
+	  <Window Type="TransButton" Name="BtnRightSixIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:919 y:131" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightSixIncreaseBtnClick" />
+	  </Window>
+	  
+	  <!-- 右边 -->
+	  <Window Type="TransButton" Name="BtnRightSevenReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:915 y:172" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightSevenReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnRightSevenEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:934 y:165" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+		<Property Name="LimitLength" Value="3" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnRightSevenEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnRightSevenEditKillFocus" />
+	 </Window>
+	  
+	  <Window Type="TransButton" Name="BtnRightSevenIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:997 y:172" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightSevenIncreaseBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransButton" Name="BtnRightEightReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:915 y:260" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightEightReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnRightEightEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:934 y:253" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+		<Property Name="LimitLength" Value="3" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnRightEightEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnRightEightEditKillFocus" />
+	 </Window>
+	  
+	  <Window Type="TransButton" Name="BtnRightEightIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:997 y:260" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightEightIncreaseBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransButton" Name="BtnRightNineReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:915 y:348" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightNineReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnRightNineEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:934 y:341" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+		<Property Name="LimitLength" Value="3" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnRightNineEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnRightNineEditKillFocus" />
+	 </Window>
+	  
+	  <Window Type="TransButton" Name="BtnRightNineIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:997 y:348" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightNineIncreaseBtnClick" />
+	  </Window>
+	  
+	  <!-- 下边 -->
+	  <Window Type="TransButton" Name="BtnRightTenReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:607 y:388" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightTenReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnRightTenEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:626 y:381" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+		<Property Name="LimitLength" Value="3" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnRightTenEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnRightTenEditKillFocus" />
+	 </Window>
+	  
+	  <Window Type="TransButton" Name="BtnRightTenIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:689 y:388" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightTenIncreaseBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransButton" Name="BtnRightElevenReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:722 y:388" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightElevenReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnRightElevenEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:741 y:381" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+		<Property Name="LimitLength" Value="3" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnRightElevenEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnRightElevenEditKillFocus" />
+	 </Window>
+	  
+	  <Window Type="TransButton" Name="BtnRightElevenIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:804 y:388" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightElevenIncreaseBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransButton" Name="BtnRightTwelveReduce" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:837 y:388" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnReduce" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightTwelveReduceBtnClick" />
+	  </Window>
+	  
+	  <Window Type="TransEdit" Name="BtnRightTwelveEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+		<Property Name="WindowPos" Value="x:856 y:381" />
+		<Property Name="WindowSize" Value="x:60 y:28" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="WindowCaption" Value="200" />
+		<Property Name="Image" Value="Camera\Edit" />
+		<Property Name="WindowEnable" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="Alignment" Value="1" />
+		<Property Name="LimitLength" Value="3" />
+		<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnRightTwelveEditChange" />
+		<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnRightTwelveEditKillFocus" />
+	 </Window>
+	  
+	  <Window Type="TransButton" Name="BtnRightTwelveIncrease" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:919 y:388" />
+		<Property Name="WindowSize" Value="x:15 y:15" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="btnIncrease" />
+		<Property Name="WindowEnable" Value="True" />
+		<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnRightTwelveIncreaseBtnClick" />
+	  </Window>
+	  
+	  <!-- 右边视野 -->
+	  <Window Type="TransStatic" Name="StcRightVisualField" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:636 y:438" />
+		<Property Name="WindowSize" Value="x:60 y:14" />
+		<Property Name="WindowCaption" Value="视野：" />
+	    <Property Name="WindowVisible" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+	  </Window>
+
+	  <!-- 右边视野 -->
+		<Window Type="TransButton" Name="BtnRightZoomPlus" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			<Property Name="WindowPos" Value="x:671 y:429" />
+			<Property Name="WindowSize" Value="x:68 y:32" />
+			<Property Name="WindowCaption" Value="" />
+			<Property Name="TransparentBtnUseTimer" Value="True" />
+			<Property Name="Image" Value="Camera\BtnZoomPlus" />
+			<Property Name="WindowVisible" Value="True" />
+			<!--
+			<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnBtnZoomPlusClick" />
+			<Event Type="WM_BTN_HOLD" Value="CCorrectParamLogic::OnBtnZoomPlusHold" />
+			<Event Type="WM_BTN_HOLD_END" Value="CCorrectParamLogic::OnBtnZoomPlusHoldEnd" />
+			-->
+			<Event Type="WM_LBUTTONDOWN" Value="CCorrectParamLogic::OnRBtnDownZoomPlus" />
+			<Event Type="WM_LBUTTONUP" Value="CCorrectParamLogic::OnRBtnUpZoomPlus" />
+			<Event Type="WM_LBUTTONDBLCLK" Value="CCorrectParamLogic::OnRBtnDoubleDownZoomPlus" />
+		</Window>
+		
+		<Window Type="TransButton" Name="BtnRightZoomSub" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			<Property Name="WindowPos" Value="x:736 y:429" />
+			<Property Name="WindowSize" Value="x:68 y:32" />
+			<Property Name="WindowCaption" Value="" />
+			<Property Name="Image" Value="Camera\BtnZoomSub" />
+			<Property Name="WindowVisible" Value="True" />
+			<Property Name="TransparentBtnUseTimer" Value="True" />
+			<!--
+			<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnBtnZoomSubClick" />
+			<Event Type="WM_BTN_HOLD" Value="CCorrectParamLogic::OnBtnZoomSubHold" />
+			<Event Type="WM_BTN_HOLD_END" Value="CCorrectParamLogic::OnBtnZoomSubHoldEnd" />
+			-->
+			<Event Type="WM_LBUTTONDOWN" Value="CCorrectParamLogic::OnRBtnDownZoomSub" />
+			<Event Type="WM_LBUTTONUP" Value="CCorrectParamLogic::OnRBtnUpZoomSub" />
+			<Event Type="WM_LBUTTONDBLCLK" Value="CCorrectParamLogic::OnRBtnDoubleDownZoomSub" />
+		</Window>
+		
+		<Window Type="TransEdit" Name="EdtRightZoom" Style="WS_CHILD|ES_WANTRETURN|ES_MULTILINE">
+			<Property Name="WindowPos" Value="x:802 y:429" />
+			<Property Name="WindowSize" Value="x:68 y:32" />
+			<Property Name="WindowCaption" Value="" />
+			<Property Name="Image" Value="Camera\Edit" />
+			<Property Name="WindowVisible" Value="true" />
+			<Property Name="FontColor" Value="r:15 g:79 b:81" />
+			<Property Name="FontSize" Value="9" />
+			<Property Name="Alignment" Value="1" />
+			<Property Name="LimitLength" Value="5" />
+			<Event Type="WM_EDIT_ONCHAR" Value="CCorrectParamLogic::OnEdtRightZoomChange" />
+			<Event Type="WM_KILL_FOCUS" Value="CCorrectParamLogic::OnEdtRightZoomKillFocus" />
+		</Window>
+		
+		<Window Type="TransStatic" Name="StcRightZoom" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:875 y:440" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="3.40" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:53 g:70 b:70" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+	  
+	    <Window Type="TransButton" Name="BtnUppage" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:431 y:515" />
+			<Property Name="WindowSize" Value="x:80 y:25" />
+			<Property Name="WindowCaption" Value="" />
+			<Property Name="WindowVisible" Value="true" />
+			<Property Name="WindowEnable" Value="false" />
+			<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnBtnUppage" />
+			<Property Name="Image" Value="CheckParamDlg/btnUppage" />
+		</Window>
+	  
+	    <Window Type="TransButton" Name="BtnDownpage" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:525 y:515" />
+			<Property Name="WindowSize" Value="x:80 y:25" />
+			<Property Name="WindowCaption" Value="" />
+			<Property Name="WindowVisible" Value="true" />
+			<Event Type="WM_BUTTON_CLICK" Value="CCorrectParamLogic::OnBtnDownpage" />
+			<Property Name="Image" Value="CheckParamDlg/btnDownpage" />
+		</Window>
+	
+	  <CallBackFunc Type="CallBackFunc" Value="CCorrectParamLogic::InitWnd" />    
+    </Window>
+</UILayout>

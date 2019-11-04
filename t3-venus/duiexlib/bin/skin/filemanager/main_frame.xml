@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window pos="100,100" size="1000,600" caption="0,0,0,26" bktrans="true" alpha="230" logic="mainFrame">
+	
+	<Font name="微软雅黑" size="14" bold="false" default="true" /> 
+  <Font name="宋体" size="13" bold="true" /> 
+  <Font name="宋体" size="12" /> 
+  <Font name="宋体" size="40" bold="true" italic="true"/>
+  <Font name="宋体" size="12" />
+	
+	
+  <VerticalLayout name="bkGrd" bkimage="res/background.png" childpadding="20"> 
+   <Label name="labe1" text="wwwwwww" font="0" />
+ <!--  <ChildWindow file="childDlg.xml" /> -->
+   <Button name="backBtn" tooltip="返回" text="mainBack" textcolor="#FFFFFFFF" font="2" align="left" width="72" height="37"normalimage="res/btn_back/back.png" pushedimage="res/btn_back/back_down.png" /> 
+  </VerticalLayout>
+  
+  <Case name="caseTest">
+  	<backBtn enabled="false" text="方案" textcolor="#FFFFFFFF" font="3"/>
+  	 <labe1 font="3"   /> 
+  </Case>
+   
+</Window>

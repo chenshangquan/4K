@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="gb2312"?>
+<System>
+	
+	<!--基本配置项-->
+  <SystemInfo Name="ImagePath" Value="rescnstool\\src\\" />
+  <SystemInfo Name="DefaultFont" Value="宋体.font" /> 
+  <SystemInfo Name="DefaultResolution" Value="x:800 y:600" />  
+  <SystemInfo Name="IsSelAdpResolution" Value="false" />
+  <!--是否自适应分辨率,若xml中无该项配置，则默认为true-->
+  <SystemInfo Name="LayoutPath" Value="rescnstool\\layout\\" /> 
+  <SystemInfo Name="ItemInfo" Value="rescnstool\\layout\\itemInfo.xml" />  
+  <SystemInfo Name="EditInfo" Value=""  FontName="宋体" FontSize="12" FontColor="r:59 g:59 b:59" FocusColor="r:59 g:59 b:59" DisableColor="r:153 g:153 b:153" />
+  
+  <SystemInfo Name="StaticInfo" Value=""  FontName="宋体" FontSize="12" FontColor="r:15 g:79 b:81" />
+   <!---->
+  <!--所有窗口父子关系及layout文件映射配置
+  Note:无父窗口的，Parent=""；若直属父窗口是child类型，则需要使用/来标示，如Parent="TPDlg/LoginDlg"
+  -->
+
+  <WindowInfo Name="MainFrame" Value="mainFrame.xml" Parent="" />
+  <WindowInfo Name="BasicInfoDlg" Value="basicInfo.xml" Parent="MainFrame" />
+ <!-- <WindowInfo Name="DiagInfoDlg" Value="diagInfo.xml" Parent="MainFrame" /> -->
+  <WindowInfo Name="CfgDiagnosticFrame" Value="CfgDiagnosticFrame.xml" Parent="MainFrame" />
+  <WindowInfo Name="InterfaceDiagnosticDlg" Value="InterfaceDiagnosticDlg.xml" Parent="MainFrame/CfgDiagnosticFrame" />
+  <WindowInfo Name="NetDiagnosticDlg" Value="NetDiagnosticDlg.xml" Parent="MainFrame/CfgDiagnosticFrame" />
+  <WindowInfo Name="NetPacketDlg" Value="NetPacketDlg.xml" Parent="MainFrame/CfgDiagnosticFrame" />
+  <WindowInfo Name="DiagTestFrame" Value="diagTestFrame.xml" Parent="" />
+  <WindowInfo Name="DiagTestInDlg" Value="diagInTestInfo.xml" Parent="DiagTestFrame" />
+  <WindowInfo Name="DiagTestOutDlg" Value="diagOutTestInfo.xml" Parent="DiagTestFrame" />
+  <WindowInfo Name="CentCfgFrame" Value="centCfgFrame.xml" Parent="MainFrame" />
+  <WindowInfo Name="CentCfgStatusMesDlg" Value="centCfgStatusMesDlg.xml" Parent="MainFrame/CentCfgFrame" />
+  <WindowInfo Name="CentCfgCurtainDlg" Value="centCfgDlg.xml" Parent="MainFrame/CentCfgFrame" />
+  <WindowInfo Name="CentCfgCameraDlg" Value="centCfgCameraDlg.xml" Parent="MainFrame/CentCfgFrame" />
+  <WindowInfo Name="CentCfgAirConditionDlg" Value="centCfgDlg.xml" Parent="MainFrame/CentCfgFrame" />
+  <WindowInfo Name="CentCfgDuoVideo" Value="centCfgDlg.xml" Parent="MainFrame/CentCfgFrame" />
+  <WindowInfo Name="CentCfgLightDlg" Value="centCfgLightDlg.xml" Parent="MainFrame/CentCfgFrame" />
+  <WindowInfo Name="CentCfgDisplayDlg" Value="centCfgDisplayDlg.xml" Parent="MainFrame/CentCfgFrame" />
+  <WindowInfo Name="CfgFrame" Value="cfgFrame.xml" Parent="MainFrame" />
+  <WindowInfo Name="CfgMainAudioDlg" Value="cfgMainAudioDlg.xml" Parent="MainFrame/CfgFrame" />
+  <WindowInfo Name="CfgDemonStrationDlg" Value="cfgDemonStrationDlg.xml" Parent="MainFrame/CfgFrame" />
+  <WindowInfo Name="CfgAdjustImageDlg" Value="cfgAdjustImageDlg.xml" Parent="MainFrame/CfgFrame" />
+  <WindowInfo Name="CfgMainAudioDlg" Value="cfgMainAudioDlg.xml" Parent="MainFrame/CfgFrame" />
+  <WindowInfo Name="CfgAudioPortDlg" Value="cfgAudioPortDlg.xml" Parent="MainFrame/CfgFrame" />
+  <WindowInfo Name="CfgAudioDlg" Value="cfgAudioDlg.xml" Parent="MainFrame/CfgFrame" />
+  <WindowInfo Name="CfgEqDlg" Value="cfgEqDlg.xml" Parent="MainFrame/CfgFrame" />
+  <WindowInfo Name="CfgCnsFrame" Value="cfgCnsFrame.xml" Parent="MainFrame" />
+  <!--<WindowInfo Name="CfgMixAudioDlg" Value="cfgMixAudioDlg.xml" Parent="MainFrame/CfgCnsFrame" />-->
+  <WindowInfo Name="CfgCallSerDlg" Value="cfgCallSerDlg.xml" Parent="MainFrame/CfgCnsFrame" />
+  <WindowInfo Name="CfgAdvanceDlg" Value="cfgAdvanceDlg.xml" Parent="MainFrame/CfgCnsFrame" />
+  <WindowInfo Name="CfgCnsDlg" Value="cfgCnsDlg.xml" Parent="MainFrame/CfgCnsFrame" />
+  <WindowInfo Name="CfgServerDlg" Value="cfgServerDlg.xml" Parent="MainFrame/CfgCnsFrame" />
+  <WindowInfo Name="MsgboxDlg" Value="msgboxDlg.xml" Parent="" />
+  <WindowInfo Name="CfgNetMngDlg" Value="cfgnetmng.xml" Parent="MainFrame/CfgCnsFrame" />
+  <WindowInfo Name="CfgNetSecurityDlg" Value="cfgNetSecurityDlg.xml" Parent="MainFrame/CfgCnsFrame" />
+  <WindowInfo Name="NetMngOptDlg" Value="netmngOptDlg.xml" Parent="" />
+  <WindowInfo Name="RouteCfgInfoDlg" Value="RouteCfgInfoDlg.xml" Parent="" />
+  <WindowInfo Name="CameraDlg" Value="cameraDlg.xml" Parent="MainFrame" />
+  <WindowInfo Name="AddrbookExpDlg" Value="addrbookexp.xml" Parent="MainFrame" />
+  <WindowInfo Name="ExpCommonDlg" Value="expCommonDlg.xml" Parent="" />
+  <WindowInfo Name="ImpCommonDlg" Value="impCommonDlg.xml" Parent="" />
+  <WindowInfo Name="WaringDlg" Value="warning.xml" Parent="MainFrame" />
+  <WindowInfo Name="RenameOptDlg" Value="RenameOptDlg.xml" Parent="" />
+  <WindowInfo Name="StatisticOptDlg" Value="StatisticalDlg.xml" Parent="" />
+
+  <!-- 窗口类型映射   	-->
+  <WindowType SrcType="TransWnd" TagType="CTransparentBaseWnd" />
+  <WindowType SrcType="Wnd" TagType="CBaseWnd" /> 
+  
+  <!-- dlg类型映射   	-->
+  <WindowType SrcType="TransparentDlg" TagType="CTransparentDlg" />
+  
+   
+  
+  <!-- 常用控件类型映射   	-->
+  <WindowType SrcType="TransButton" TagType="CTransparentBtn" /> 
+  <WindowType SrcType="TransStatic" TagType="CTransparentStatic" />
+  <WindowType SrcType="TransIPCtrl" TagType="CTransparentIPAddrCtrl" />
+  <WindowType SrcType="TransEdit"   TagType="CTransparentEdit" />
+  <WindowType SrcType="TransList"   TagType="CTransparentList" />
+  <WindowType SrcType="TransSlider" TagType="CTransparentSliderWnd" />   
+  <WindowType SrcType="TransIPEdit" TagType="CTransparentIpEdit" /> 
+  <WindowType SrcType="TransComboBox" TagType="CTransparentComboBox" />  
+  <WindowType SrcType="TransSliderWnd" TagType="CTransparentSliderWnd" />  
+  <WindowType SrcType="TransCheckButton" TagType="CTransparentCheckButton" />  
+  <WindowType SrcType="TransSwitchButton" TagType="CTransparentSwitchButton" />  
+  <WindowType SrcType="TransProgress" TagType="CTransparentProgress" />      
+</System>

@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  <!--音视频设置界面-->
+   
+	<Window Type="TransparentDlg" Name="CfgMainAudioDlg" Style="WS_CHILD" ExStyle="">
+		<Property Name="WindowPos" Value="x:122 y:0" />
+		<Property Name="WindowSize" Value="x:728 y:501" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="Image" Value="" />
+    <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="WindowCaption" Value="主视频配置界面" />
+    <Event Type="WM_CNSTOOL_FTPSnapDownLoad" Value="CCfgMainAudioDlg::OnDownloadProgress" />
+    
+    <Window Type="TransStatic" Name="StcConference" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:31" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="网呈会议" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontStyle" Value="1" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+    
+    <Window Type="TransStatic" Name="StcLine1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:143 y:36" />
+      <Property Name="WindowSize" Value="x:548 y:1" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="line.png" />
+    </Window>
+
+    <!--line 1-->
+    <Window Type="TransStatic" Name="StcAudioSource1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:64" />
+      <Property Name="WindowSize" Value="x:120 y:14" />
+      <Property Name="WindowCaption" Value="第1路视频源 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcBigPic1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:145 y:64" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="大图像 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransComboBox" Name="ComboboxLargerImage1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:211 y:54" />
+      <Property Name="WindowSize" Value="x:177 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="IsIPStyle" Value="False" />
+      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+      <Property Name="Image" Value="ComboboxCommon" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontColor" Value="r:59 g:59 b:59" />
+      <Property Name="EditEdgeHeight" Value="6" />
+      <Property Name="DropListHeight" Value="212" />
+      <Property Name="ComboShowIcon" Value="False" />
+      <Property Name="ReadOnly" Value="True" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgMainAudioDlg::OnLargeImage1Change" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+    
+    <Window Type="TransStatic" Name="StcSmallPic1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:427 y:64" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="小图像 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransComboBox" Name="ComboboxSmallImage1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:493 y:54" />
+      <Property Name="WindowSize" Value="x:177 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="IsIPStyle" Value="False" />
+      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+      <Property Name="Image" Value="ComboboxCommon" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontColor" Value="r:59 g:59 b:59" />
+      <Property Name="EditEdgeHeight" Value="6" />
+      <Property Name="DropListHeight" Value="212" />
+      <Property Name="ComboShowIcon" Value="False" />
+      <Property Name="ReadOnly" Value="True" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgMainAudioDlg::OnSmallImage1Change" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <!--line 2-->
+    <Window Type="TransStatic" Name="StcAudioSource2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:96" />
+      <Property Name="WindowSize" Value="x:120 y:14" />
+      <Property Name="WindowCaption" Value="第2路视频源 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcBigPic2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:145 y:96" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="大图像 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransComboBox" Name="ComboboxLargerImage2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:211 y:86" />
+      <Property Name="WindowSize" Value="x:177 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="IsIPStyle" Value="False" />
+      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+      <Property Name="Image" Value="ComboboxCommon" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontColor" Value="r:59 g:59 b:59" />
+      <Property Name="EditEdgeHeight" Value="6" />
+      <Property Name="DropListHeight" Value="212" />
+      <Property Name="ComboShowIcon" Value="False" />
+      <Property Name="ReadOnly" Value="True" />
+      <Event Type="WM_CLICK_COMBOLIST" Value="CCfgMainAudioDlg::OnLargeImage2Change" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcSmallPic2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:427 y:96" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="小图像 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransComboBox" Name="ComboboxSmallImage2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:493 y:86" />
+      <Property Name="WindowSize" Value="x:177 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="IsIPStyle" Value="False" />
+      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+      <Property Name="Image" Value="ComboboxCommon" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontColor" Value="r:59 g:59 b:59" />
+      <Property Name="EditEdgeHeight" Value="6" />
+      <Property Name="DropListHeight" Value="212" />
+      <Property Name="ComboShowIcon" Value="False" />
+      <Property Name="ReadOnly" Value="True" />
+      <Event Type="WM_CLICK_COMBOLIST" Value="CCfgMainAudioDlg::OnSmallImage2Change" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+    
+    <!--line 3-->
+    <Window Type="TransStatic" Name="StcAudioSource3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:128" />
+      <Property Name="WindowSize" Value="x:120 y:14" />
+      <Property Name="WindowCaption" Value="第3路视频源 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcBigPic3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:145 y:128" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="大图像 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransComboBox" Name="ComboboxLargerImage3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:211 y:118" />
+      <Property Name="WindowSize" Value="x:177 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="IsIPStyle" Value="False" />
+      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+      <Property Name="Image" Value="ComboboxCommon" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontColor" Value="r:59 g:59 b:59" />
+      <Property Name="EditEdgeHeight" Value="6" />
+      <Property Name="DropListHeight" Value="212" />
+      <Property Name="ComboShowIcon" Value="False" />
+      <Property Name="ReadOnly" Value="True" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgMainAudioDlg::OnLargeImage3Change" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcSmallPic3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:427 y:128" />
+      <Property Name="WindowSize" Value="x:100 y:14" />
+      <Property Name="WindowCaption" Value="小图像 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransComboBox" Name="ComboboxSmallImage3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:493 y:118" />
+      <Property Name="WindowSize" Value="x:177 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="IsIPStyle" Value="False" />
+      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+      <Property Name="Image" Value="ComboboxCommon" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontColor" Value="r:59 g:59 b:59" />
+      <Property Name="EditEdgeHeight" Value="6" />
+      <Property Name="DropListHeight" Value="212" />
+      <Property Name="ComboShowIcon" Value="False" />
+      <Property Name="ReadOnly" Value="True" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgMainAudioDlg::OnSmallImage3Change" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransButton" Name="RenameBtn" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:592 y:160" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Image" Value="itemToRenameBtn" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgMainAudioDlg::OnBtnOptRenameDlg" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransButton" Name="RenameBtnStatus" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:592 y:200" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Image" Value="itemToRenameBtn" />
+      <Property Name="WindowVisible" Value="false" />
+    </Window>
+    
+    <!--line 4-->
+    <Window Type="TransStatic" Name="StcLayout" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:219" />
+      <Property Name="WindowSize" Value="x:120 y:14" />
+      <Property Name="WindowCaption" Value="方案布局 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+    
+    <Window Type="TransComboBox" Name="ComboboxLayout" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:138 y:209" />
+      <Property Name="WindowSize" Value="x:220 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="IsIPStyle" Value="False" />
+      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+      <Property Name="Image" Value="ComboboxCommon" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontColor" Value="r:59 g:59 b:59" />
+      <Property Name="EditEdgeHeight" Value="6" />
+      <Property Name="DropListHeight" Value="212" />
+      <Property Name="ComboShowIcon" Value="False" />
+      <Property Name="ReadOnly" Value="True" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgMainAudioDlg::OnLayoutChange" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+    
+    <!--line 5-->
+
+    <Window Type="TransStatic" Name="StcSnapShot1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:253" />
+      <Property Name="WindowSize" Value="x:167 y:93 " />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Image" Value="itemToSnapShot/background.png" />
+      <Property Name="Alignment" Value="0" />
+      <Scheme Name="SchmNormal">
+        <Property Name="Image" Value="itemToSnapShot/background.png" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcSnapShot2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:204 y:253" />
+      <Property Name="WindowSize" Value="x:167 y:93 " />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Image" Value="itemToSnapShot/background.png" />
+      <Property Name="Alignment" Value="0" />
+      <Scheme Name="SchmNormal">
+        <Property Name="Image" Value="itemToSnapShot/background.png" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcSnapShot3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:371 y:253" />
+      <Property Name="WindowSize" Value="x:167 y:93 " />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Image" Value="itemToSnapShot/background.png" />
+      <Property Name="Alignment" Value="0" />
+      <Scheme Name="SchmNormal">
+        <Property Name="Image" Value="itemToSnapShot/background.png" />
+      </Scheme>
+    </Window>
+    
+    <Window Type="TransButton" Name="PreviewBtn" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:592 y:281" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Image" Value="itemToSnapShot/btnPreview" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgMainAudioDlg::OnBtnPreview" />
+      <Scheme Name="SchmFtpTra">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmFtpEnd">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchmNormal">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+    
+    <!--line 6-->
+    <Window Type="TransStatic" Name="StcH323" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:370" />
+      <Property Name="WindowSize" Value="x:120 y:14" />
+      <Property Name="WindowCaption" Value="H .323会议" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontStyle" Value="1" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcLine2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:143 y:375" />
+      <Property Name="WindowSize" Value="x:548 y:1" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="line.png" />
+    </Window>
+    
+    <!--line 7-->
+    <Window Type="TransStatic" Name="StcImageSynthesis" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:398" />
+      <Property Name="WindowSize" Value="x:120 y:14" />
+      <Property Name="WindowCaption" Value="画面合成 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransSwitchButton" Name="BtnImageSynthesisSwitch" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:137 y:388" />
+      <Property Name="WindowSize" Value="x:107 y:32" />
+      <Property Name="Image" Value="AudioSwitch" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="SwitchState" Value="false" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgMainAudioDlg::OnSwitchSynthesis" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+	<Window Type="TransStatic" Name="StcImageSynthesisStyle" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:290 y:398" />
+      <Property Name="WindowSize" Value="x:120 y:14" />
+      <Property Name="WindowCaption" Value="画面合成风格 ：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+	
+	<Window Type="TransCheckButton" Name="AudioGroup1" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON|WS_GROUP">
+      <Property Name="WindowPos" Value="x:410 y:395" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgMainAudioDlg::OnSelSynthesisStyle" />
+	  <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+	  <Scheme Name="SchmCheckBtnClose">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmCheckBtnOpen">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+		 
+	<Window Type="TransStatic" Name="Group1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:440 y:398" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="四画面" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window> 
+    
+     <Window Type="TransCheckButton" Name="AudioGroup2" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+      <Property Name="WindowPos" Value="x:520 y:395" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgMainAudioDlg::OnSelSynthesisStyle" />
+	  <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+	  <Scheme Name="SchmCheckBtnClose">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmCheckBtnOpen">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+		 
+	<Window Type="TransStatic" Name="Group2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:550 y:398" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="三画面" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window> 
+    
+    <Window Type="TransButton" Name="BtnDefault" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:391 y:452" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="恢复默认" />
+      <Property Name="Image" Value="btnDefault" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgMainAudioDlg::OnBtnDefault" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransButton" Name="BtnSave" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:491 y:452" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="保存配置" />
+      <Property Name="Image" Value="btnSave" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgMainAudioDlg::OnBtnSave" />
+    </Window>
+
+    <Window Type="TransButton" Name="BtnCancle" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:591 y:452" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="还原配置" />
+      <Property Name="Image" Value="btnCancleCfg" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgMainAudioDlg::OnBtnCancel" />
+    </Window>
+    
+		<CallBackFunc Type="CallBackFunc" Value="CCfgMainAudioDlg::InitWnd" />
+	</Window>
+</UILayout>

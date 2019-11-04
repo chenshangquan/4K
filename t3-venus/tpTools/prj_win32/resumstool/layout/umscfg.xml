@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<UILayout>
+    <!--Ums配置界面  Style="WS_CHILD"-->
+    <Window Type="TransparentDlg" Name="UmsCfgDlg" Style="WS_CHILD" ExStyle="">
+        <Property Name="WindowPos" Value="x:128 y:0" />
+        <Property Name="WindowSize" Value="x:736 y:541" />
+        <Property Name="Image" Value="" />
+        
+        <Window Type="CStatic" Name="StcStaticUmsIP" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:38 y:32" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="UMS地址 ：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+        <Window Type="CTransparentIpEdit" Name="IPCtrlUmsIP" Style="WS_CHILD|WS_TABSTOP">
+            <Property Name="WindowPos" Value="x:217 y:18" />
+            <Property Name="WindowSize" Value="x:425 y:42" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="Image" Value="UmsCfg/Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:59 g:59 b:59" />
+            <Property Name="FontSize" Value="9" />
+            <Event Type="WM_EDIT_CHANGED" Value="CUmsCfgLogic::OnChangedIPCtrlUmsIP" />
+            <Scheme Name="SchmEdit">
+                <Property Name="WindowEnable" Value="true" /> 
+                <Property Name="FontColor" Value="r:59 g:59 b:59" />
+            </Scheme>
+            <Scheme Name="SchmNormal">
+                <Property Name="WindowEnable" Value="false" />
+                <Property Name="FontColor" Value="r:153 g:153 b:153" />
+            </Scheme>
+            <Scheme Name="SchmDef">
+                <Property Name="WindowCaption" Value="" />
+            </Scheme>
+        </Window>
+        
+        <Window Type="CStatic" Name="StcStaticSubnetMask" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:38 y:74" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="子网掩码 ：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+        <Window Type="CTransparentIpEdit" Name="IPCtrlSubnetMask" Style="WS_CHILD|WS_TABSTOP">
+            <Property Name="WindowPos" Value="x:217 y:60" />
+            <Property Name="WindowSize" Value="x:425 y:42" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="Image" Value="UmsCfg/Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:59 g:59 b:59" />
+            <Property Name="FontSize" Value="9" />
+            <Event Type="WM_EDIT_CHANGED" Value="CUmsCfgLogic::OnChangedIPCtrlSubnetMask" />
+            <Scheme Name="SchmEdit">
+                <Property Name="WindowEnable" Value="true" /> 
+                <Property Name="FontColor" Value="r:59 g:59 b:59" />
+            </Scheme>
+            <Scheme Name="SchmNormal">
+                <Property Name="WindowEnable" Value="false" />
+                <Property Name="FontColor" Value="r:153 g:153 b:153" />
+            </Scheme>
+            <Scheme Name="SchmDef">
+                <Property Name="WindowCaption" Value="" />
+            </Scheme>
+        </Window>
+        
+        <Window Type="CStatic" Name="StcStaticGateway" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:38 y:116" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="默认网关 ：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+        <Window Type="CTransparentIpEdit" Name="IPCtrlGateway" Style="WS_CHILD|WS_TABSTOP">
+            <Property Name="WindowPos" Value="x:217 y:102" />
+            <Property Name="WindowSize" Value="x:425 y:42" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="Image" Value="UmsCfg/Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:59 g:59 b:59" />
+            <Property Name="FontSize" Value="9" />
+            <Event Type="WM_EDIT_CHANGED" Value="CUmsCfgLogic::OnChangedIPCtrlGateway" />
+            <Scheme Name="SchmEdit">
+                <Property Name="WindowEnable" Value="true" /> 
+                <Property Name="FontColor" Value="r:59 g:59 b:59" />
+            </Scheme>
+            <Scheme Name="SchmNormal">
+                <Property Name="WindowEnable" Value="false" />
+                <Property Name="FontColor" Value="r:153 g:153 b:153" />
+            </Scheme>
+            <Scheme Name="SchmDef">
+                <Property Name="WindowCaption" Value="" />
+            </Scheme>
+        </Window>
+        
+        <Window Type="CStatic" Name="StcStaticSipIP" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:38 y:158" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="网呈服务器地址 ：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+        <Window Type="CTransparentIpEdit" Name="IPCtrlSipIP" Style="WS_CHILD|WS_TABSTOP">
+            <Property Name="WindowPos" Value="x:217 y:144" />
+            <Property Name="WindowSize" Value="x:425 y:42" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="Image" Value="UmsCfg/Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:59 g:59 b:59" />
+            <Property Name="FontSize" Value="9" />
+            <Event Type="WM_EDIT_CHANGED" Value="CUmsCfgLogic::OnChangedIPCtrlSipIP" />
+            <Scheme Name="SchmEdit">
+                <Property Name="WindowEnable" Value="true" /> 
+                <Property Name="FontColor" Value="r:59 g:59 b:59" />
+            </Scheme>
+            <Scheme Name="SchmNormal">
+                <Property Name="WindowEnable" Value="false" />
+                <Property Name="FontColor" Value="r:153 g:153 b:153" />
+            </Scheme>
+            <Scheme Name="SchmDef">
+                <Property Name="WindowCaption" Value="" />
+            </Scheme>
+        </Window>
+        
+        <Window Type="CStatic" Name="StcStaticGKSvr" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:38 y:200" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="GK服务 ：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+        <Window Type="CTransparentSwitchButton" Name="BtnGKSwitch" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:535 y:186" />
+            <Property Name="WindowSize" Value="x:107 y:42" />
+            <Property Name="Image" Value="UmsCfg\SwitchButton" />
+            <Property Name="WindowEnable" Value="true" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="SwitchState" Value="false" />
+            <Event Type="WM_BUTTON_CLICK" Value="CUmsCfgLogic::OnBtnSwitchGKClick" />
+            <Scheme Name="SchmDef">
+                <Property Name="SwitchState" Value="false" />
+            </Scheme>
+            <Scheme Name="SchmNormal">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>
+            <Scheme Name="SchmEdit">
+                <Property Name="WindowEnable" Value="true" />
+            </Scheme>
+				</Window>
+        
+        <Window Type="CStatic" Name="StcStaticGKIP" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:38 y:242" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="GK服务器地址 ：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+        <Window Type="CTransparentIpEdit" Name="IPCtrlGKIP" Style="WS_CHILD|WS_TABSTOP">
+            <Property Name="WindowPos" Value="x:217 y:228" />
+            <Property Name="WindowSize" Value="x:425 y:42" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="Image" Value="UmsCfg/Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:59 g:59 b:59" />
+            <Property Name="FontSize" Value="9" />
+            <Event Type="WM_EDIT_CHANGED" Value="CUmsCfgLogic::OnChangedIPCtrlGKIP" />
+            <Scheme Name="SchmEdit">
+                <Property Name="WindowEnable" Value="true" /> 
+                <Property Name="FontColor" Value="r:59 g:59 b:59" />
+            </Scheme>
+            <Scheme Name="SchmNormal">
+                <Property Name="WindowEnable" Value="false" />
+                <Property Name="FontColor" Value="r:153 g:153 b:153" />
+            </Scheme>
+            <Scheme Name="SchmDef">
+                <Property Name="WindowCaption" Value="" />
+            </Scheme>
+        </Window>
+		
+		<Window Type="CStatic" Name="StcDataQuantumService" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:38 y:284" />
+		  <Property Name="WindowSize" Value="x:200 y:14" />
+		  <Property Name="WindowCaption" Value="量子加密服务器：" />
+		  <Property Name="WindowVisible" Value="True" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+		</Window>
+		
+		<Window Type="CTransparentSwitchButton" Name="BtnQuantumSwitch" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:535 y:270" />
+            <Property Name="WindowSize" Value="x:107 y:42" />
+            <Property Name="Image" Value="UmsCfg\SwitchButton" />
+            <Property Name="WindowEnable" Value="true" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="SwitchState" Value="false" />
+            <Event Type="WM_BUTTON_CLICK" Value="CUmsCfgLogic::OnBtnSwitchQuantumClick" />
+            <Scheme Name="SchmDef">
+                <Property Name="SwitchState" Value="false" />
+            </Scheme>
+            <Scheme Name="SchmNormal">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>
+            <Scheme Name="SchmEdit">
+                <Property Name="WindowEnable" Value="true" />
+            </Scheme>
+		</Window>
+
+		<Window Type="CStatic" Name="StcDataQuantumEncryption" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:38 y:326" />
+		  <Property Name="WindowSize" Value="x:200 y:14" />
+		  <Property Name="WindowCaption" Value="量子加密服务器地址：" />
+		  <Property Name="WindowVisible" Value="True" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+		</Window>
+      
+		<Window Type="CTransparentIpEdit" Name="IPCtrlDataQuantumEncry" Style="WS_CHILD|WS_TABSTOP">
+		  <Property Name="WindowPos" Value="x:217 y:312" />
+		  <Property Name="WindowSize" Value="x:425 y:42" />
+		  <Property Name="WindowCaption" Value="" />
+		  <Property Name="Image" Value="UmsCfg/Edit" />
+		  <Property Name="WindowVisible" Value="true" />
+		  <Property Name="FontColor" Value="r:59 g:59 b:59" />
+		  <Property Name="FontSize" Value="9" />
+		  <Event Type="WM_EDIT_CHANGED" Value="CUmsCfgLogic::OnChangedDataQuantumEncryIP" />
+		  <Scheme Name="SchmEdit">
+              <Property Name="WindowEnable" Value="true" /> 
+              <Property Name="FontColor" Value="r:59 g:59 b:59" />
+          </Scheme>
+          <Scheme Name="SchmNormal">
+              <Property Name="WindowEnable" Value="false" />
+              <Property Name="FontColor" Value="r:153 g:153 b:153" />
+          </Scheme>
+          <Scheme Name="SchmDef">
+              <Property Name="WindowCaption" Value="" />
+          </Scheme>
+		</Window>
+	
+		<Window Type="CStatic" Name="StcIDQuantumEncryption" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:38 y:368" />
+		  <Property Name="WindowSize" Value="x:200 y:14" />
+		  <Property Name="WindowCaption" Value="量子加密ID：" />
+		  <Property Name="WindowVisible" Value="True" />
+		  <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		  <Property Name="FontSize" Value="9" />
+		</Window>
+		  
+		<Window Type="CEdit" Name="EditIDQuantumEncry" Style="WS_CHILD|ES_NUMBER|WS_TABSTOP">
+		  <Property Name="WindowPos" Value="x:217 y:354" />
+		  <Property Name="WindowSize" Value="x:425 y:42" />
+		  <Property Name="WindowCaption" Value="" />
+		  <Property Name="Image" Value="UmsCfg/Edit" />
+		  <Property Name="WindowVisible" Value="true" />
+		  <Property Name="WindowEnable" Value="true" />
+		  <Property Name="LimitLength" Value="10" /> 
+		  <Property Name="FontSize" Value="9" />
+		  <Event Type="WM_EDIT_CHANGED" Value="CUmsCfgLogic::OnChangedQuantumEncryID" />
+		  <Scheme Name="SchmEdit">
+              <Property Name="WindowEnable" Value="true" /> 
+              <Property Name="FontColor" Value="r:59 g:59 b:59" />
+          </Scheme>
+          <Scheme Name="SchmNormal">
+              <Property Name="WindowEnable" Value="false" />
+              <Property Name="FontColor" Value="r:153 g:153 b:153" />
+          </Scheme>
+          <Scheme Name="SchmDef">
+              <Property Name="WindowCaption" Value="" />
+          </Scheme>
+		</Window>
+        
+        <Window Type="CButton" Name="BtnSave" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:392 y:453" />
+            <Property Name="WindowSize" Value="x:86 y:38" />
+            <Property Name="WindowCaption" Value="保存配置" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="Image" Value="UmsCfg\BtnSave" />
+            <Event Type="WM_BUTTON_CLICK" Value="CUmsCfgLogic::OnBtnSaveClick" />
+            <Scheme Name="SchmNormal">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>
+        </Window>
+        <Window Type="CButton" Name="BtnReduction" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:492 y:453" />
+            <Property Name="WindowSize" Value="x:86 y:38" />
+            <Property Name="WindowCaption" Value="还原配置" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="Image" Value="UmsCfg\BtnReduction" />
+            <Event Type="WM_BUTTON_CLICK" Value="CUmsCfgLogic::OnBtnReductionClick" />
+            <Scheme Name="SchmNormal">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>
+        </Window>
+        <Window Type="CButton" Name="BtnExport" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:592 y:453" />
+            <Property Name="WindowSize" Value="x:86 y:38" />
+            <Property Name="WindowCaption" Value="导出配置" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="Image" Value="UmsCfg\BtnExport" />
+            <Event Type="WM_BUTTON_CLICK" Value="CUmsCfgLogic::OnBtnExportClick" />
+            <Scheme Name="SchmNormal">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>
+            <Scheme Name="SchmEdit">
+                <Property Name="WindowEnable" Value="true" />
+            </Scheme>
+        </Window>
+        
+        <CallBackFunc Type="CallBackFunc" Value="CUmsCfgLogic::InitWnd" />
+        <Property Name="WindowVisible" Value="True" />
+    </Window>
+</UILayout>

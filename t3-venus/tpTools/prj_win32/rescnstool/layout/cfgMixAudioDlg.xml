@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="gb379"?>
+<UILayout>
+  <!--配置界面-->
+   
+	<Window Type="TransparentDlg" Name="CfgMixAudioDlg" Style="WS_CHILD" ExStyle="">
+		<Property Name="WindowPos" Value="x:122 y:0" />
+		<Property Name="WindowSize" Value="x:728 y:501" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="Image" Value="" />
+		<Property Name="WindowCaption" Value="混音配置界面" />
+				 
+		<Window Type="TransStatic" Name="StcName" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:32" />
+      <Property Name="WindowSize" Value="x:210 y:14" />
+      <Property Name="WindowCaption" Value="单路主音频混音" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontStyle" Value="1" />
+    </Window>
+                   
+    <Window Type="TransStatic" Name="StcLine" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:173 y:38" />
+        <Property Name="WindowSize" Value="x:501 y:1" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="Image" Value="mixline.png" />
+    </Window>
+           			 
+		<Window Type="TransStatic" Name="StcGroup1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:65 y:74" />
+      <Property Name="WindowSize" Value="x:120 y:14" />
+      <Property Name="WindowCaption" Value="主音频组1：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+             
+    <Window Type="TransCheckButton" Name="Audio1Group2" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+      <Property Name="WindowPos" Value="x:273 y:71" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgMixLogic::OnSelAudio1Group" />         
+    </Window>
+		 
+		<Window Type="TransStatic" Name="1Group2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:303 y:74" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="2" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+                   
+    <Window Type="TransCheckButton" Name="Audio1Group3" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+      <Property Name="WindowPos" Value="x:383 y:71" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgMixLogic::OnSelAudio1Group" />    
+    </Window>
+		 
+		<Window Type="TransStatic" Name="1Group3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:413 y:74" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="3" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+                         
+    <Window Type="TransCheckButton" Name="Audio1Group4" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+      <Property Name="WindowPos" Value="x:493 y:71" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" /> 
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgMixLogic::OnNoSelAudio1Group" />   
+    </Window>
+		 
+		<Window Type="TransStatic" Name="1Group4" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:523 y:74" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="4" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+                           
+    <Window Type="TransCheckButton" Name="Audio1Group1" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON|WS_GROUP">
+      <Property Name="WindowPos" Value="x:163 y:71" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgMixLogic::OnSelAudio1Group" />         
+    </Window>
+		 
+		<Window Type="TransStatic" Name="1Group1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:193 y:74" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="1" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>  
+          			 
+		<Window Type="TransStatic" Name="StcGroup2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:65 y:116" />
+      <Property Name="WindowSize" Value="x:120 y:14" />
+      <Property Name="WindowCaption" Value="主音频组2：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+            
+    <Window Type="TransCheckButton" Name="Audio2Group2" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+      <Property Name="WindowPos" Value="x:273 y:113" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgMixLogic::OnSelAudio2Group" />         
+    </Window>
+		 
+		<Window Type="TransStatic" Name="2Group2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:303 y:116" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="2" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+                   
+    <Window Type="TransCheckButton" Name="Audio2Group3" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+      <Property Name="WindowPos" Value="x:383 y:113" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgMixLogic::OnSelAudio2Group" />    
+    </Window>
+		 
+		<Window Type="TransStatic" Name="2Group3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:413 y:116" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="3" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+                         
+    <Window Type="TransCheckButton" Name="Audio2Group4" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+      <Property Name="WindowPos" Value="x:493 y:113" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" /> 
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgMixLogic::OnSelAudio2Group" />   
+    </Window>
+		 
+		<Window Type="TransStatic" Name="2Group4" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:523 y:116" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="4" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+                           
+    <Window Type="TransCheckButton" Name="Audio2Group1" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON|WS_GROUP">
+      <Property Name="WindowPos" Value="x:163 y:113" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgMixLogic::OnSelAudio2Group" />         
+    </Window>
+		 
+		<Window Type="TransStatic" Name="2Group1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:193 y:116" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="1" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>  
+          			          			 
+		<Window Type="TransStatic" Name="StcGroup3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:65 y:158" />
+      <Property Name="WindowSize" Value="x:120 y:14" />
+      <Property Name="WindowCaption" Value="主音频组3：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+	         
+    <Window Type="TransCheckButton" Name="Audio3Group2" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+      <Property Name="WindowPos" Value="x:273 y:155" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgMixLogic::OnSelAudio3Group" />         
+    </Window>
+		 
+		<Window Type="TransStatic" Name="3Group2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:303 y:158" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="2" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+                   
+    <Window Type="TransCheckButton" Name="Audio3Group3" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+      <Property Name="WindowPos" Value="x:383 y:155" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgMixLogic::OnSelAudio3Group" />    
+    </Window>
+		 
+		<Window Type="TransStatic" Name="3Group3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:413 y:158" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="3" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+                         
+    <Window Type="TransCheckButton" Name="Audio3Group4" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+      <Property Name="WindowPos" Value="x:493 y:155" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" /> 
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgMixLogic::OnSelAudio3Group" />   
+    </Window>
+		 
+		<Window Type="TransStatic" Name="3Group4" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:523 y:158" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="4" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+                           
+    <Window Type="TransCheckButton" Name="Audio3Group1" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON|WS_GROUP">
+      <Property Name="WindowPos" Value="x:163 y:155" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgMixLogic::OnSelAudio3Group" />         
+    </Window>
+		 
+		<Window Type="TransStatic" Name="3Group1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:193 y:158" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="1" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>  
+          			 
+		<Window Type="TransStatic" Name="StcMix" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:235" />
+      <Property Name="WindowSize" Value="x:210 y:14" />
+      <Property Name="WindowCaption" Value="会场主音频混音" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontStyle" Value="1" />
+    </Window>
+                    
+    <Window Type="TransStatic" Name="StcMixLine" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:173 y:241" />
+        <Property Name="WindowSize" Value="x:501 y:1" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="Image" Value="mixline.png" />
+    </Window>
+       
+		<Window Type="TransStatic" Name="StcMixGroup" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:65 y:277" />
+      <Property Name="WindowSize" Value="x:120 y:14" />
+      <Property Name="WindowCaption" Value="混音路数：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+	         
+    <Window Type="TransCheckButton" Name="MixGroup2" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+      <Property Name="WindowPos" Value="x:273 y:274" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgMixLogic::OnSelMixGroup" />         
+    </Window>
+		 
+		<Window Type="TransStatic" Name="MGroup2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:303 y:277" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="2" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+                   
+    <Window Type="TransCheckButton" Name="MixGroup3" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+      <Property Name="WindowPos" Value="x:383 y:274" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgMixLogic::OnSelMixGroup" />    
+    </Window>
+		 
+		<Window Type="TransStatic" Name="MGroup3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:413 y:277" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="3" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+  
+    <Window Type="TransCheckButton" Name="MixGroup1" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON|WS_GROUP">
+      <Property Name="WindowPos" Value="x:163 y:274" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgMixLogic::OnSelMixGroup" />         
+    </Window>
+		 
+		<Window Type="TransStatic" Name="MGroup1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:193 y:277" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="1" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>  
+          						            		              		       	        	                       
+  	<Window Type="TransButton" Name="BtnDefault" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:391 y:452" />
+			<Property Name="WindowSize" Value="x:86 y:38" />
+			<Property Name="WindowCaption" Value="恢复默认" />
+			<Property Name="WindowVisible" Value="true" />
+			<Event Type="WM_BUTTON_CLICK" Value="CCfgMixLogic::OnBtnDefault" />
+			<Property Name="Image" Value="btnDefault" />
+		</Window>
+         						            		              		       	        	                       
+  	<Window Type="TransButton" Name="BtnSave" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:491 y:452" />
+			<Property Name="WindowSize" Value="x:86 y:38" />
+			<Property Name="WindowCaption" Value="保存配置" />
+			<Property Name="WindowVisible" Value="true" />
+			<Event Type="WM_BUTTON_CLICK" Value="CCfgMixLogic::OnBtnSave" />
+			<Property Name="Image" Value="btnSave" />
+		</Window>
+
+		<Window Type="TransButton" Name="BtnCancle" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:591 y:452" />
+			<Property Name="WindowSize" Value="x:86 y:38" />
+			<Property Name="WindowCaption" Value="还原配置" />
+			<Property Name="WindowVisible" Value="true" />
+			<Event Type="WM_BUTTON_CLICK" Value="CCfgMixLogic::OnBtnCancel" />
+			<Property Name="Image" Value="btnCancleCfg" />
+		</Window>
+ 
+		<CallBackFunc Type="CallBackFunc" Value="CCfgMixLogic::InitWnd" />
+	</Window>
+</UILayout>

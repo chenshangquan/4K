@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window>
+  <ListContainerElement>
+    <VerticalLayout>
+    
+      <VerticalLayout height="32">
+        <HorizontalLayout>
+            <VerticalLayout name="ctWall" width="50">
+            	<HorizontalLayout>
+            	    <Control width="8" />
+            	    <Button name="btnCheck" width="32" height="32" normalimage="file='btnCommon/btnFile/Normal.png' mask='0xffffffff'" hotimage="file='btnCommon/btnFile/Sel.png' mask='0xffffffff'" focusedimage="file='btnCommon/btnFile/Sel.png' corner='2,2,2,2' mask='0xffffffff'" pushedimage="file='btnCommon/btnFile/Sel.png' corner='2,2,2,2'" />
+            	</HorizontalLayout>
+            </VerticalLayout>
+            <VerticalLayout >
+                <HorizontalLayout>
+              	    <Label name="lbFileName" width="220" textcolor="#FF2E374C"/>
+              	    <Label name="lbFilePath" textcolor="#FFFFFFAA"/>
+            	</HorizontalLayout>
+            </VerticalLayout>
+        </HorizontalLayout>
+      </VerticalLayout>
+      
+      <VerticalLayout name="paneListItemHide" height="18" visible="false">
+          <HorizontalLayout width="72" padding="40, 0, 0, 0">
+ 
+          </HorizontalLayout>
+      </VerticalLayout >
+      
+    </VerticalLayout>
+  </ListContainerElement>
+</Window>

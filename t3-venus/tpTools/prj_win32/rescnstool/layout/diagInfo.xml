@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  <!--诊断界面-->
+   
+	<Window Type="TransparentDlg" Name="DiagInfoDlg" Style="WS_CHILD" ExStyle="">
+		<Property Name="WindowPos" Value="x:0 y:73" />
+		<Property Name="WindowSize" Value="x:864 y:501" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="Image" Value="" />
+		<Property Name="WindowCaption" Value="诊断界面" />
+	   
+    <Window Type="TransStatic" Name="StcInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:45 y:32" />
+      <Property Name="WindowSize" Value="x:120 y:14" />
+      <Property Name="WindowCaption" Value="接口诊断" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontStyle" Value="1" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />      
+      <Property Name="Alignment" Value="0" />
+    </Window>
+               
+    <Window Type="TransStatic" Name="StcLine" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:139 y:38" />
+        <Property Name="WindowSize" Value="x:664 y:1" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="Image" Value="Diagline.png" />
+    </Window>
+                       
+		<Window Type="TransButton" Name="BtnDiagPort" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:686 y:58" />
+			<Property Name="WindowSize" Value="x:87 y:31" />
+			<Property Name="WindowCaption" Value="接口测试" />
+			<Property Name="WindowVisible" Value="true" />
+			<Event Type="WM_BUTTON_CLICK" Value="CDiagInfoLogic::OnBtnDiagTest" />
+			<Property Name="Image" Value="btnDiagPort" />
+		</Window>
+		   
+    <Window Type="TransStatic" Name="StcInPortInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:73 y:66" />
+      <Property Name="WindowSize" Value="x:220 y:14" />
+      <Property Name="WindowCaption" Value="主视频输入接口：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+		   
+    <Window Type="TransStatic" Name="StcInPort" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:211 y:66" />
+      <Property Name="WindowSize" Value="x:220 y:14" />
+      <Property Name="WindowCaption" Value="摄像机1,摄像机2,摄像机3" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+		   
+    <Window Type="TransStatic" Name="StcInAdPortInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:73 y:100" />
+      <Property Name="WindowSize" Value="x:220 y:14" />
+      <Property Name="WindowCaption" Value="主音频输入接口：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+		   
+    <Window Type="TransStatic" Name="StcInAdPort1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:211 y:100" />
+      <Property Name="WindowSize" Value="x:320 y:14" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+		  		   
+    <Window Type="TransStatic" Name="StcInAdPort2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:211 y:134" />
+      <Property Name="WindowSize" Value="x:320 y:14" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+		  		   
+    <Window Type="TransStatic" Name="StcInAdPort3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:211 y:168" />
+      <Property Name="WindowSize" Value="x:320 y:14" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+		  		  		   
+    <Window Type="TransStatic" Name="StcShowInPortInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:73 y:202" />
+      <Property Name="WindowSize" Value="x:220 y:14" />
+      <Property Name="WindowCaption" Value="演示源输入接口：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+		             
+    <Window Type="TransComboBox" Name="ComboboxInPort" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:196 y:193" />
+        <Property Name="WindowSize" Value="x:301 y:32" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="IsIPStyle" Value="False" />
+        <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+        <Property Name="Image" Value="ComboboxCommon" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="EditEdgeHeight" Value="6" />            
+        <Property Name="DropListHeight" Value="212" />
+        <Property Name="ComboShowIcon" Value="False" />
+        <Property Name="ReadOnly" Value="True" />
+    </Window>
+		   
+    <Window Type="TransStatic" Name="StcOutPortInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:73 y:236" />
+      <Property Name="WindowSize" Value="x:220 y:14" />
+      <Property Name="WindowCaption" Value="主视频输出接口：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+		   
+    <Window Type="TransStatic" Name="StcOutPort" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:211 y:236" />
+      <Property Name="WindowSize" Value="x:220 y:14" />
+      <Property Name="WindowCaption" Value="显示器1,显示器2,显示器3" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+		   
+    <Window Type="TransStatic" Name="StcOutAdPortInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:73 y:270" />
+      <Property Name="WindowSize" Value="x:220 y:14" />
+      <Property Name="WindowCaption" Value="主音频输出接口：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+		   
+    <Window Type="TransStatic" Name="StcOutAdPort" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:211 y:270" />
+      <Property Name="WindowSize" Value="x:220 y:14" />
+      <Property Name="WindowCaption" Value="主音箱1,主音箱2,主音箱3" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+		   
+    <Window Type="TransStatic" Name="StcShowOutPortInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:73 y:304" />
+      <Property Name="WindowSize" Value="x:220 y:14" />
+      <Property Name="WindowCaption" Value="演示源输出接口：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+		             
+    <Window Type="TransComboBox" Name="ComboboxOutPort" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:196 y:295" />
+        <Property Name="WindowSize" Value="x:301 y:32" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="IsIPStyle" Value="False" />
+        <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+        <Property Name="Image" Value="ComboboxCommon" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="EditEdgeHeight" Value="6" />            
+        <Property Name="DropListHeight" Value="212" />
+        <Property Name="ComboShowIcon" Value="False" />
+        <Property Name="ReadOnly" Value="True" />
+    </Window>
+		   		  		 		   		  		 		   
+    <Window Type="TransStatic" Name="StcNetDiag" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:45 y:354" />
+      <Property Name="WindowSize" Value="x:220 y:14" />
+      <Property Name="WindowCaption" Value="网络诊断" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontStyle" Value="1" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+               
+    <Window Type="TransStatic" Name="StcLine2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:139 y:361" />
+        <Property Name="WindowSize" Value="x:664 y:1" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Property Name="Image" Value="Diagline.png" />
+    </Window>
+          		   
+    <Window Type="TransStatic" Name="StcLostPacketInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:73 y:388" />
+      <Property Name="WindowSize" Value="x:220 y:14" />
+      <Property Name="WindowCaption" Value="丢包率：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+        		   
+    <Window Type="TransStatic" Name="StcLostPacket" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:120 y:388" />
+      <Property Name="WindowSize" Value="x:220 y:14" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+               		   
+    <Window Type="TransStatic" Name="StcUpstreamInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:73 y:422" />
+      <Property Name="WindowSize" Value="x:220 y:14" />
+      <Property Name="WindowCaption" Value="上行网络速率：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+               		   
+    <Window Type="TransStatic" Name="StcUpstream" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:157 y:422" />
+      <Property Name="WindowSize" Value="x:220 y:14" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+        		        		   
+    <Window Type="TransStatic" Name="StcDownstreamInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:73 y:456" />
+      <Property Name="WindowSize" Value="x:220 y:14" />
+      <Property Name="WindowCaption" Value="下行网络速率：" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+               		   
+    <Window Type="TransStatic" Name="StcDownstream" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:157 y:456" />
+      <Property Name="WindowSize" Value="x:220 y:14" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransButton" Name="BtnOfStatistic" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:686 y:460" />
+      <Property Name="WindowSize" Value="x:87 y:31" />
+      <Property Name="WindowCaption" Value="开启统计" />
+      <Property Name="WindowVisible" Value="true" />
+      <Event Type="WM_BUTTON_CLICK" Value="CDiagInfoLogic::OnBtnStatistic" />
+      <Property Name="Image" Value="btnToStatictic" />
+      <Scheme Name="SchStartStatistics">
+        <Property Name="Image" Value="btnToStatictic\start" />
+      </Scheme>
+      <Scheme Name="SchEndOfStatistics">
+        <Property Name="Image" Value="btnToStatictic\end" />
+      </Scheme>
+    </Window>
+    
+		<CallBackFunc Type="CallBackFunc" Value="CDiagInfoLogic::InitWnd" />
+	</Window>
+</UILayout>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<UILayout>
+    <Window Type="TransparentDlg" Name="OrderListDlg" Style="WS_CHILD" ExStyle="">
+		<Property Name="WindowPos" Value="x:0 y:73" />
+		<Property Name="WindowSize" Value="x:864 y:501" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="Image" Value="" />
+		<Property Name="WindowCaption" Value="" />
+    <Event Type="WM_MoonTool_FTP_PreSetSnapDownLoad" Value="COrderListDlgLogic::OnDownloadProgress" />
+      
+	<Window Type="TransStatic" Name="StcOrderPosList" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:46 y:32" />
+		<Property Name="WindowSize" Value="x:110 y:14" />
+		<Property Name="WindowCaption" Value="预置位列表：" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="FontColor" Value="r:53 g:70 b:70" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="FontStyle" Value="1" />
+    </Window>
+	
+	<Window Type="TransStatic" Name="StcLine" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:165 y:38" />
+		<Property Name="WindowSize" Value="x:551 y:1" />
+		<Property Name="WindowCaption" Value="" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="Image" Value="mixline.png" />
+	</Window>
+
+      <Window Type="TransparentDlg" Name="OrderListChildDlg" Style="WS_CHILD" ExStyle="">
+        <Property Name="WindowPos" Value="x:59 y:55" />
+        <Property Name="WindowSize" Value="x:747 y:386" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="Image" Value="OrderPosBkg.png" />
+        <Window Type="TransparentViewList" Name="LstOrderPos" Style="WS_CHILD|WS_CLIPSIBLINGS">
+          <Property Name="WindowPos" Value="x:19 y:10" />
+          <Property Name="WindowSize" Value="x:676 y:362" />
+          <Property Name="ListImage" Value="OrderPosListDlg\" />
+          <Property Name="WindowVisible" Value="true" />
+          <Property Name="Drag" Value="false" />
+          <Property Name="VertSliderOffset" Value="x:19 y:0" />
+          <Property Name="TransparentListOffset" Value="0" />
+          <Property Name="ViewListSelItem" Value="-1" />
+          <Property Name="TransparentListOver" Value="true" />
+          <Event Type="WM_LST_UN_SELECT_ITEM" Value="COrderListDlgLogic::OnClickOrderLstDlgBlack" />
+          <Scheme Name="SchmOrderListDataClean">
+            <Property Name="TransparentListOffset" Value="0" />
+            <Property Name="ViewListSelItem" Value="-1" />
+          </Scheme>
+        </Window>
+      </Window>
+	
+	<Window Type="TransButton" Name="BtnDelete" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:220 y:453" />
+		<Property Name="WindowSize" Value="x:86 y:38" />
+		<Property Name="WindowCaption" Value="删除" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="WindowEnable" Value="false" /> 
+		<Event Type="WM_BUTTON_CLICK" Value="COrderListDlgLogic::OnBtnDelete" />
+		<Property Name="Image" Value="btnDelete" />
+	<Scheme Name="SchmNoItemCheck">
+		<Property Name="WindowEnable" Value="false" /> 
+	</Scheme>
+	<Scheme Name="SchmItemCheck">
+		<Property Name="WindowEnable" Value="true" /> 
+	</Scheme>
+	</Window>
+	
+	<Window Type="TransButton" Name="BtnImport" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:320 y:453" />
+		<Property Name="WindowSize" Value="x:86 y:38" />
+		<Property Name="WindowCaption" Value="导入" />
+		<Property Name="WindowVisible" Value="true" />
+		<Event Type="WM_BUTTON_CLICK" Value="COrderListDlgLogic::OnBtnImport" />
+		<Property Name="Image" Value="btnImport" />
+	</Window>
+	
+	<Window Type="TransButton" Name="BtnExport" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:420 y:453" />
+		<Property Name="WindowSize" Value="x:86 y:38" />
+		<Property Name="WindowCaption" Value="导出" />
+		<Property Name="WindowVisible" Value="true" />
+		<Event Type="WM_BUTTON_CLICK" Value="COrderListDlgLogic::OnBtnExport" />
+		<Property Name="Image" Value="btnExport" />
+	</Window>
+	
+	<Window Type="TransButton" Name="BtnModify" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:520 y:453" />
+		<Property Name="WindowSize" Value="x:86 y:38" />
+		<Property Name="WindowCaption" Value="修改" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="WindowEnable" Value="true" /> 
+		<Event Type="WM_BUTTON_CLICK" Value="COrderListDlgLogic::OnBtnModify" />
+		<Property Name="Image" Value="btnModify" />
+	</Window>
+		
+	<Window Type="TransButton" Name="BtnInvoke" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:620 y:453" />
+		<Property Name="WindowSize" Value="x:86 y:38" />
+		<Property Name="WindowCaption" Value="调用" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="WindowEnable" Value="false" /> 
+		<Event Type="WM_BUTTON_CLICK" Value="COrderListDlgLogic::OnBtnInvoke" />
+		<Property Name="Image" Value="btnInvoke" />
+	<Scheme Name="SchmNoItemCheck">
+		<Property Name="WindowEnable" Value="false" /> 
+	</Scheme>
+	<Scheme Name="SchmItemCheck">
+		<Property Name="WindowEnable" Value="true" /> 
+	</Scheme>
+	</Window>
+	
+	<Window Type="TransButton" Name="BtnBack" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:720 y:453" />
+		<Property Name="WindowSize" Value="x:86 y:38" />
+		<Property Name="WindowCaption" Value="返回" />
+		<Property Name="WindowVisible" Value="true" />
+		<Event Type="WM_BUTTON_CLICK" Value="COrderListDlgLogic::OnBtnBack" />
+		<Property Name="Image" Value="btnBack" />
+	</Window>
+	
+		<CallBackFunc Type="CallBackFunc" Value="COrderListDlgLogic::InitWnd" />
+	</Window>
+</UILayout>

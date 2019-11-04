@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<UILayout>
+  <Window Type="TransparentDlg" Name="MoonAdjustDlg" Style="WS_CHILD" ExStyle="">
+    <Property Name="WindowPos" Value="x:0 y:73" />
+    <Property Name="WindowSize" Value="x:864 y:501" />
+    <Property Name="WindowVisible" Value="true" />
+    <Property Name="Image" Value="" />
+    <Property Name="WindowCaption" Value="拼接调整界面" />
+    <Event Type="WM_MoonTool_FTPSnapDownLoad" Value="CMoonAdjustDlg::OnDownloadProgress" />
+    
+    <Window Type="TransparentDlg" Name="SnapShotDlg" Style="WS_CHILD" ExStyle="">
+      <Property Name="WindowPos" Value="x:189 y:28" />
+      <Property Name="WindowSize" Value="x:484 y:94" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="Image" Value="AdjustDlg\SnapShotBkg.png" />
+      <Property Name="WindowCaption" Value="快照界面" />
+
+      <Window Type="TransStatic" Name="ImageSnapshot1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:2 y:1" />
+        <Property Name="WindowSize" Value="x:160 y:90" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Scheme Name ="SchmClearSnap" >
+          <Property Name ="Image" Value ="" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransStatic" Name="ImageSnapshot2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:162 y:1" />
+        <Property Name="WindowSize" Value="x:160 y:90" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Scheme Name ="SchmClearSnap" >
+          <Property Name ="Image" Value ="" />
+        </Scheme>
+      </Window>
+
+      <Window Type="TransStatic" Name="ImageSnapshot3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:322 y:1" />
+        <Property Name="WindowSize" Value="x:160 y:90" />
+        <Property Name="WindowCaption" Value="" />
+        <Property Name="WindowVisible" Value="True" />
+        <Scheme Name ="SchmClearSnap" >
+          <Property Name ="Image" Value ="" />
+        </Scheme>
+      </Window>
+    </Window>
+    
+    <Window Type="TransStatic" Name="StcReferenceLine" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:190 y:138" />
+      <Property Name="WindowSize" Value="x:42 y:14" />
+      <Property Name="WindowCaption" Value="参考线" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+    </Window>
+
+    <Window Type="TransSwitchButton" Name="RefLineSwitchBtn" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:232 y:129" />
+      <Property Name="WindowSize" Value="x:107 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="Camera\SwitchBtn" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name ="SwitchSate" Value="false" />
+      <Event Type="WM_BUTTON_CLICK" Value="CMoonAdjustDlg::OnRefLineSwitchBtnChange" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcHorFlip" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:358 y:138" />
+      <Property Name="WindowSize" Value="x:57 y:14" />
+      <Property Name="WindowCaption" Value="水平翻转" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+    </Window>
+    
+    <Window Type="TransSwitchButton" Name="HorFlipSwitchBtn" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:413 y:129" />
+      <Property Name="WindowSize" Value="x:107 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="Camera\SwitchBtn" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name ="SwitchSate" Value="false" />
+      <Event Type="WM_BUTTON_CLICK" Value="CMoonAdjustDlg::OnHorFlipSwitchBtnChange" />
+    </Window>
+
+    <Window Type="TransButton" Name="SnapShotBtn" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:531 y:129" />
+      <Property Name="WindowSize" Value="x:68 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="AdjustDlg\SnapShotBtn" />
+      <Property Name="WindowEnable" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CMoonAdjustDlg::OnSnapShotBtnClick" />
+      <Scheme Name ="SchmFtpEnd" >
+        <Property Name ="WindowEnable" Value ="True" />
+      </Scheme>
+      <Scheme Name ="SchmFtpBegin" >
+        <Property Name ="WindowEnable" Value ="False" />
+      </Scheme>
+      <Scheme Name ="SchmNormal" >
+        <Property Name ="WindowEnable" Value ="True" />
+      </Scheme>
+      <Scheme Name ="SchmWaitMessage" >
+        <Property Name ="WindowEnable" Value ="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransButton" Name="SnapShotSaveBtn" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:599 y:129" />
+      <Property Name="WindowSize" Value="x:78 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="AdjustDlg\SnapSaveAsBtn" />
+      <Property Name="WindowEnable" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CMoonAdjustDlg::OnSnapShotSaveBtnClick" />
+      <Scheme Name ="SchmFtpEnd" >
+        <Property Name ="WindowEnable" Value ="False" />
+      </Scheme>
+      <Scheme Name ="SchmFtpBegin" >
+        <Property Name ="WindowEnable" Value ="False" />
+      </Scheme>
+      <Scheme Name ="SchmExist" >
+        <Property Name ="WindowEnable" Value ="True" />
+      </Scheme>
+      <Scheme Name ="SchmNonExist" >
+        <Property Name ="WindowEnable" Value ="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcLineTraCor" Style="WS_CHILD|WS_CLIPSIBLINGS" >
+      <Property Name="WindowPos" Value="x:190 y:202" />
+      <Property Name="WindowSize" Value="x:3 y:15" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="Camera\line.png" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcTrapezoidalCorrection" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:196 y:203" />
+      <Property Name="WindowSize" Value="x:57 y:14" />
+      <Property Name="WindowCaption" Value="梯形矫正" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+    </Window>
+
+    <Window Type="TransSwitchButton" Name="TraCorSwitchBtn" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:259 y:194" />
+      <Property Name="WindowSize" Value="x:107 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="Camera\SwitchBtn" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name ="SwitchSate" Value="false" />
+      <Event Type="WM_BUTTON_CLICK" Value="CMoonAdjustDlg::OnTraCorSwitchBtnChange" />
+    </Window>
+    
+<!--水平矫正-->
+    <Window Type="TransStatic" Name="StcLineHorCor" Style="WS_CHILD|WS_CLIPSIBLINGS" >
+      <Property Name="WindowPos" Value="x:190 y:246" />
+      <Property Name="WindowSize" Value="x:3 y:15" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="Camera\line.png" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcHorCor" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:196 y:247" />
+      <Property Name="WindowSize" Value="x:57 y:14" />
+      <Property Name="WindowCaption" Value="水平矫正" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+    </Window>
+
+    <Window Type="TransButton" Name="HorCorReduceBtn" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:259 y:238" />
+      <Property Name="WindowSize" Value="x:43 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="AdjustDlg\ReduceBtn" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="TransparentBtnUseTimer" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CMoonAdjustDlg::OnBtnHorCorReduceHold" />
+      <Event Type="WM_BTN_HOLD" Value="CMoonAdjustDlg::OnBtnHorCorReduceHold" />
+      <Event Type="WM_BTN_HOLD_END" Value="CMoonAdjustDlg::OnBtnHorCorReduceHoldEnd" />
+      <Scheme Name="EnableScheme">
+        <Property Name="WindowEnable" Value="True" />
+      </Scheme>
+      <Scheme Name ="DisableScheme">
+        <Property Name="WindowEnable" Value="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransEdit" Name="HorCorEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+      <Property Name="WindowPos" Value="x:302 y:238" />
+      <Property Name="WindowSize" Value="x:68 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="WindowCaption" Value="140" />
+      <Property Name="Image" Value="Camera\Edit" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="FontColor" Value="r:59 g:59 b:59" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="4" />
+      <Event Type="WM_EDIT_ONCHAR" Value="CMoonAdjustDlg::OnHorCorEditChange" />
+      <Event Type="WM_KILL_FOCUS" Value="CMoonAdjustDlg::OnHorCorEditKillFocus" />
+      <Scheme Name="EnableScheme">
+        <Property Name="WindowEnable" Value="True" />
+      </Scheme>
+      <Scheme Name ="DisableScheme">
+        <Property Name="WindowEnable" Value="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransButton" Name="HorCorIncreaseBtn" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:370 y:238" />
+      <Property Name="WindowSize" Value="x:43 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="AdjustDlg\IncreaseBtn" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="TransparentBtnUseTimer" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CMoonAdjustDlg::OnBtnHorCorIncreaseHold" />
+      <Event Type="WM_BTN_HOLD" Value="CMoonAdjustDlg::OnBtnHorCorIncreaseHold" />
+      <Event Type="WM_BTN_HOLD_END" Value="CMoonAdjustDlg::OnBtnHorCorIncreaseHoldEnd" />
+      <Scheme Name="EnableScheme">
+        <Property Name="WindowEnable" Value="True" />
+      </Scheme>
+      <Scheme Name ="DisableScheme">
+        <Property Name="WindowEnable" Value="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcHorCorRange" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:415 y:247" />
+      <Property Name="WindowSize" Value="x:57 y:14" />
+      <Property Name="WindowCaption" Value="0～548" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+    </Window>
+    
+<!--水平拉伸-->
+    <Window Type="TransStatic" Name="StcLineHorStretch" Style="WS_CHILD|WS_CLIPSIBLINGS" >
+      <Property Name="WindowPos" Value="x:190 y:287" />
+      <Property Name="WindowSize" Value="x:3 y:15" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="Camera\line.png" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcHorStretch" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:196 y:288" />
+      <Property Name="WindowSize" Value="x:57 y:14" />
+      <Property Name="WindowCaption" Value="水平拉伸" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+    </Window>
+    
+    <Window Type="TransButton" Name="HorStretchReduceBtn" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:259 y:279" />
+      <Property Name="WindowSize" Value="x:43 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="AdjustDlg\ReduceBtn" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="TransparentBtnUseTimer" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CMoonAdjustDlg::OnBtnHorStrReduceHold" />
+      <Event Type="WM_BTN_HOLD" Value="CMoonAdjustDlg::OnBtnHorStrReduceHold" />
+      <Event Type="WM_BTN_HOLD_END" Value="CMoonAdjustDlg::OnBtnHorStrReduceHoldEnd" />
+      <Scheme Name="EnableScheme">
+        <Property Name="WindowEnable" Value="True" />
+      </Scheme>
+      <Scheme Name ="DisableScheme">
+        <Property Name="WindowEnable" Value="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransEdit" Name="HorStretchEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+      <Property Name="WindowPos" Value="x:302 y:279" />
+      <Property Name="WindowSize" Value="x:68 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="WindowCaption" Value="512" />
+      <Property Name="Image" Value="Camera\Edit" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="FontColor" Value="r:59 g:59 b:59" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="4" />
+      <Event Type="WM_EDIT_ONCHAR" Value="CMoonAdjustDlg::OnHorStrEditChange" />
+      <Event Type="WM_KILL_FOCUS" Value="CMoonAdjustDlg::OnHorStrEditKillFocus" />
+      <Scheme Name="EnableScheme">
+        <Property Name="WindowEnable" Value="True" />
+      </Scheme>
+      <Scheme Name ="DisableScheme">
+        <Property Name="WindowEnable" Value="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransButton" Name="HorStretchIncreaseBtn" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:370 y:279" />
+      <Property Name="WindowSize" Value="x:43 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="AdjustDlg\IncreaseBtn" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="TransparentBtnUseTimer" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CMoonAdjustDlg::OnBtnHorStrIncreaseHold" />
+      <Event Type="WM_BTN_HOLD" Value="CMoonAdjustDlg::OnBtnHorStrIncreaseHold" />
+      <Event Type="WM_BTN_HOLD_END" Value="CMoonAdjustDlg::OnBtnHorStrIncreaseHoldEnd" />
+      <Scheme Name="EnableScheme">
+        <Property Name="WindowEnable" Value="True" />
+      </Scheme>
+      <Scheme Name ="DisableScheme">
+        <Property Name="WindowEnable" Value="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcHorStretchRange" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:415 y:288" />
+      <Property Name="WindowSize" Value="x:57 y:14" />
+      <Property Name="WindowCaption" Value="0～512" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+    </Window>
+    
+    <!--垂直矫正-->
+    <Window Type="TransStatic" Name="StcLineVerCor" Style="WS_CHILD|WS_CLIPSIBLINGS" >
+      <Property Name="WindowPos" Value="x:190 y:328" />
+      <Property Name="WindowSize" Value="x:3 y:15" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="Camera\line.png" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcVerCor" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:196 y:329" />
+      <Property Name="WindowSize" Value="x:57 y:14" />
+      <Property Name="WindowCaption" Value="垂直矫正" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+    </Window>
+
+    <Window Type="TransButton" Name="VerCorReduceBtn" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:259 y:320" />
+      <Property Name="WindowSize" Value="x:43 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="AdjustDlg\ReduceBtn" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="TransparentBtnUseTimer" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CMoonAdjustDlg::OnBtnVerCorReduceHold" />
+      <Event Type="WM_BTN_HOLD" Value="CMoonAdjustDlg::OnBtnVerCorReduceHold" />
+      <Event Type="WM_BTN_HOLD_END" Value="CMoonAdjustDlg::OnBtnVerCorReduceHoldEnd" />
+      <Scheme Name="EnableScheme">
+        <Property Name="WindowEnable" Value="True" />
+      </Scheme>
+      <Scheme Name ="DisableScheme">
+        <Property Name="WindowEnable" Value="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransEdit" Name="VerCorEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+      <Property Name="WindowPos" Value="x:302 y:320" />
+      <Property Name="WindowSize" Value="x:68 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="WindowCaption" Value="140" />
+      <Property Name="Image" Value="Camera\Edit" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="FontColor" Value="r:59 g:59 b:59" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="4" />
+      <Event Type="WM_EDIT_ONCHAR" Value="CMoonAdjustDlg::OnVerCorEditChange" />
+      <Event Type="WM_KILL_FOCUS" Value="CMoonAdjustDlg::OnVerCorEditKillFocus" />
+      <Scheme Name="EnableScheme">
+        <Property Name="WindowEnable" Value="True" />
+      </Scheme>
+      <Scheme Name ="DisableScheme">
+        <Property Name="WindowEnable" Value="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransButton" Name="VerCorIncreaseBtn" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:370 y:320" />
+      <Property Name="WindowSize" Value="x:43 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="AdjustDlg\IncreaseBtn" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="TransparentBtnUseTimer" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CMoonAdjustDlg::OnBtnVerCorIncreaseHold" />
+      <Event Type="WM_BTN_HOLD" Value="CMoonAdjustDlg::OnBtnVerCorIncreaseHold" />
+      <Event Type="WM_BTN_HOLD_END" Value="CMoonAdjustDlg::OnBtnVerCorIncreaseHoldEnd" />
+      <Scheme Name="EnableScheme">
+        <Property Name="WindowEnable" Value="True" />
+      </Scheme>
+      <Scheme Name ="DisableScheme">
+        <Property Name="WindowEnable" Value="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcVerCorRange" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:415 y:329" />
+      <Property Name="WindowSize" Value="x:57 y:14" />
+      <Property Name="WindowCaption" Value="0～548" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+    </Window>
+    
+    <!--垂直拉伸-->
+    <Window Type="TransStatic" Name="StcLineVerStretch" Style="WS_CHILD|WS_CLIPSIBLINGS" >
+      <Property Name="WindowPos" Value="x:190 y:369" />
+      <Property Name="WindowSize" Value="x:3 y:15" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="Camera\line.png" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcVerStretch" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:196 y:370" />
+      <Property Name="WindowSize" Value="x:57 y:14" />
+      <Property Name="WindowCaption" Value="垂直拉伸" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+    </Window>
+
+    <Window Type="TransButton" Name="VerStretchReduceBtn" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:259 y:361" />
+      <Property Name="WindowSize" Value="x:43 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="AdjustDlg\ReduceBtn" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="TransparentBtnUseTimer" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CMoonAdjustDlg::OnBtnVerStrReduceHold" />
+      <Event Type="WM_BTN_HOLD" Value="CMoonAdjustDlg::OnBtnVerStrReduceHold" />
+      <Event Type="WM_BTN_HOLD_END" Value="CMoonAdjustDlg::OnBtnVerStrReduceHoldEnd" />
+      <Scheme Name="EnableScheme">
+        <Property Name="WindowEnable" Value="True" />
+      </Scheme>
+      <Scheme Name ="DisableScheme">
+        <Property Name="WindowEnable" Value="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransEdit" Name="VerStretchEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP|ES_NUMBER">
+      <Property Name="WindowPos" Value="x:302 y:361" />
+      <Property Name="WindowSize" Value="x:68 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="WindowCaption" Value="512" />
+      <Property Name="Image" Value="Camera\Edit" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="FontColor" Value="r:59 g:59 b:59" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="4" />
+      <Event Type="WM_EDIT_ONCHAR" Value="CMoonAdjustDlg::OnVerStrEditChange" />
+      <Event Type="WM_KILL_FOCUS" Value="CMoonAdjustDlg::OnVerStrEditKillFocus" />
+      <Scheme Name="EnableScheme">
+        <Property Name="WindowEnable" Value="True" />
+      </Scheme>
+      <Scheme Name ="DisableScheme">
+        <Property Name="WindowEnable" Value="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransButton" Name="VerStretchIncreaseBtn" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:370 y:361" />
+      <Property Name="WindowSize" Value="x:43 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="AdjustDlg\IncreaseBtn" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="TransparentBtnUseTimer" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CMoonAdjustDlg::OnBtnVerStrIncreaseHold" />
+      <Event Type="WM_BTN_HOLD" Value="CMoonAdjustDlg::OnBtnVerStrIncreaseHold" />
+      <Event Type="WM_BTN_HOLD_END" Value="CMoonAdjustDlg::OnBtnVerStrIncreaseHoldEnd" />
+      <Scheme Name="EnableScheme">
+        <Property Name="WindowEnable" Value="True" />
+      </Scheme>
+      <Scheme Name ="DisableScheme">
+        <Property Name="WindowEnable" Value="False" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcVerStretchRange" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:415 y:370" />
+      <Property Name="WindowSize" Value="x:57 y:14" />
+      <Property Name="WindowCaption" Value="0～512" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+    </Window>
+    
+    <CallBackFunc Type="CallBackFunc" Value="CMoonAdjustDlg::InitWnd" />
+  </Window>
+</UILayout>

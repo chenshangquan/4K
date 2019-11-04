@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  <!--配置界面-->
+
+  <Window Type="TransparentDlg" Name="CfgCallSerDlg" Style="WS_CHILD" ExStyle="">
+    <Property Name="WindowPos" Value="x:122 y:0" />
+    <Property Name="WindowSize" Value="x:728 y:501" />
+    <Property Name="WindowVisible" Value="true" />
+    <Property Name="Image" Value="" />
+    <Property Name="WindowCaption" Value="呼叫配置界面" />
+
+    <Window Type="TransStatic" Name="StcCallMode" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:31" />
+      <Property Name="WindowSize" Value="x:150 y:14" />
+      <Property Name="WindowCaption" Value="优选会议格式：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransComboBox" Name="ComboboxCallMode" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:216 y:16" />
+      <Property Name="WindowSize" Value="x:425 y:42" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="IsIPStyle" Value="False" />
+      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+      <Property Name="Image" Value="ComboboxSer" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="EditEdgeHeight" Value="6" />
+      <Property Name="DropListHeight" Value="212" />
+      <Property Name="ComboShowIcon" Value="False" />
+      <Property Name="ReadOnly" Value="True" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgCallSerLogic::OnCallModeChange" />
+      <Scheme Name="SchmConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcShowMode" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:73" />
+      <Property Name="WindowSize" Value="x:150 y:14" />
+      <Property Name="WindowCaption" Value="优选演示格式：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransComboBox" Name="ComboboxShowMode" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:216 y:58" />
+      <Property Name="WindowSize" Value="x:425 y:42" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="IsIPStyle" Value="False" />
+      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+      <Property Name="Image" Value="ComboboxSer" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="EditEdgeHeight" Value="6" />
+      <Property Name="DropListHeight" Value="212" />
+      <Property Name="ComboShowIcon" Value="False" />
+      <Property Name="ReadOnly" Value="True" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgCallSerLogic::OnShowModeChange" />
+      <Scheme Name="SchmConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcAudioMode" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:115" />
+      <Property Name="WindowSize" Value="x:150 y:14" />
+      <Property Name="WindowCaption" Value="优选音频格式：" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransComboBox" Name="ComboboxAudioMode" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:216 y:100" />
+      <Property Name="WindowSize" Value="x:425 y:42" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="IsIPStyle" Value="False" />
+      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+      <Property Name="Image" Value="ComboboxSer" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="EditEdgeHeight" Value="6" />
+      <Property Name="DropListHeight" Value="212" />
+      <Property Name="ComboShowIcon" Value="False" />
+      <Property Name="ReadOnly" Value="True" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgCallSerLogic::OnAudioModeChange" />
+      <Scheme Name="SchmConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcConfRate" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:157" />
+      <Property Name="WindowSize" Value="x:229 y:14" />
+      <Property Name="WindowCaption" Value="单屏码率（Kbps）：" />
+      <Property Name="Image" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransComboBox" Name="ComboboxConfRate" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:216 y:142" />
+      <Property Name="WindowSize" Value="x:425 y:42" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="IsIPStyle" Value="False" />
+      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+      <Property Name="Image" Value="ComboboxSer" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="EditEdgeHeight" Value="6" />
+      <Property Name="DropListHeight" Value="212" />
+      <Property Name="ComboShowIcon" Value="False" />
+      <Property Name="ReadOnly" Value="false" />
+      <Property Name="LimitLength" Value="4" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgCallSerLogic::OnConfRateChange" />
+      <Event Type="WM_KILL_FOCUS" Value="CCfgCallSerLogic::OnConfRateNoFocus" />
+      <Scheme Name="SchmConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcRate" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:199" />
+      <Property Name="WindowSize" Value="x:229 y:14" />
+      <Property Name="WindowCaption" Value="演示码率（Kbps）：" />
+      <Property Name="Image" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransComboBox" Name="ComboboxShowRate" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:216 y:184" />
+      <Property Name="WindowSize" Value="x:425 y:42" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="IsIPStyle" Value="False" />
+      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+      <Property Name="Image" Value="ComboboxSer" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="EditEdgeHeight" Value="6" />
+      <Property Name="DropListHeight" Value="212" />
+      <Property Name="ComboShowIcon" Value="False" />
+      <Property Name="ReadOnly" Value="false" />
+      <Property Name="LimitLength" Value="4" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgCallSerLogic::OnShowRateChange" />
+      <Event Type="WM_KILL_FOCUS" Value="CCfgCallSerLogic::OnShowRateNoFocus" />
+      <Scheme Name="SchmConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <!--Window Type="TransStatic" Name="StcDiscuss" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:241" />
+      <Property Name="WindowSize" Value="x:229 y:14" />
+      <Property Name="WindowCaption" Value="会议讨论：" />
+      <Property Name="Image" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+    <Window Type="CTransparentSwitchButton" Name="BtnDiscuss" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
+      <Property Name="WindowPos" Value="x:534 y:226" />
+      <Property Name="WindowSize" Value="x:107 y:42" />
+      <Property Name="Image" Value="switchbutton" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="SwitchState" Value="true" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgCallSerLogic::OnBtnSwitchDiscuss" />
+      <Scheme Name="SchmConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window-->
+
+    <Window Type="TransStatic" Name="StcAES" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:241" />
+      <Property Name="WindowSize" Value="x:110 y:14" />
+      <Property Name="WindowCaption" Value="加密：" />
+      <Property Name="FontColor" Value="r:15 g:79 b:81" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+	
+	<Window Type="TransCheckButton" Name="AudioGroup1" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON|WS_GROUP">
+      <Property Name="WindowPos" Value="x:216 y:239" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgCallSerLogic::OnSelEncrptyStyle" />
+	  <Scheme Name="SchmConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+		 
+	<Window Type="TransStatic" Name="Group1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:241 y:241" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="不加密" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window> 
+    
+    <Window Type="TransCheckButton" Name="AudioGroup2" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+      <Property Name="WindowPos" Value="x:312 y:239" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgCallSerLogic::OnSelEncrptyStyle" />
+	  <Scheme Name="SchmConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>	  
+    </Window>
+		 
+	<Window Type="TransStatic" Name="Group2" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:337 y:241" />
+      <Property Name="WindowSize" Value="x:116 y:14" />
+      <Property Name="WindowCaption" Value="AES加密" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window> 
+    
+    <!--Window Type="TransCheckButton" Name="AudioGroup3" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+      <Property Name="WindowPos" Value="x:408 y:281" />
+      <Property Name="WindowSize" Value="x:20 y:20" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="radiobutton" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgCallSerLogic::OnSelEncrptyStyle" />
+	  <Scheme Name="SchmConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>	  
+    </Window>
+		 
+	<Window Type="TransStatic" Name="Group3" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:433 y:284" />
+      <Property Name="WindowSize" Value="x:200 y:14" />
+      <Property Name="WindowCaption" Value="量子加密" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+	
+	<Window Type="TransComboBox" Name="ComboboxShowQuantumErp" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:490 y:269" />
+      <Property Name="WindowSize" Value="x:152 y:42" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="IsIPStyle" Value="False" />
+      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+      <Property Name="Image" Value="ComboboxSer" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="EditEdgeHeight" Value="6" />
+      <Property Name="DropListHeight" Value="212" />
+      <Property Name="ComboShowIcon" Value="False" />
+      <Property Name="ReadOnly" Value="false" />
+      <Property Name="LimitLength" Value="4" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgCallSerLogic::OnShowQuantumErpChange" />
+      <Event Type="WM_KILL_FOCUS" Value="CCfgCallSerLogic::OnShowQuantumErpNoFocus" />
+      <Scheme Name="SchmQuantumErp">
+        <Property Name="WindowVisible" Value="true" />
+      </Scheme>
+      <Scheme Name="SchmNoQuantumErp">
+        <Property Name="WindowVisible" Value="false" />
+      </Scheme>
+	  <Scheme Name="SchmConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window-->
+
+    <!--<Window Type="TransSwitchButton" Name="BtnAESSwitch" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:534 y:268" />
+      <Property Name="WindowSize" Value="x:107 y:42" />
+      <Property Name="Image" Value="switchbutton" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="SwitchState" Value="false" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgCallSerLogic::OnBtnSwitchAES" />
+      <Scheme Name="SchmConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window> -->
+
+    <!--Window Type="TransStatic" Name="StcPolling" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:325" />
+      <Property Name="WindowSize" Value="x:229 y:14" />
+      <Property Name="WindowCaption" Value="会议轮询：" />
+      <Property Name="Image" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+    <Window Type="CTransparentSwitchButton" Name="BtnPolling" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
+      <Property Name="WindowPos" Value="x:534 y:310" />
+      <Property Name="WindowSize" Value="x:107 y:42" />
+      <Property Name="Image" Value="switchbutton" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="SwitchState" Value="true" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgCallSerLogic::OnBtnSwitchPolling" />
+      <Scheme Name="SchmConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmNoConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
+
+    <Window Type="TransStatic" Name="StcPoll" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:37 y:367" />
+      <Property Name="WindowSize" Value="x:229 y:14" />
+      <Property Name="WindowCaption" Value="轮询时间（秒）：" />
+      <Property Name="Image" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransEdit" Name="EditPollTime" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:216 y:352" />
+      <Property Name="WindowSize" Value="x:425 y:42" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="true" />
+      <Property Name="WindowEnable" Value="true" />
+      <Property Name="Image" Value="Edit" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="LimitLength" Value="4" />
+      <Event Type="WM_EDIT_CHANGED" Value="CCfgCallSerLogic::OnPollTimeChange" />
+      <Scheme Name="SchmEdit">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name="SchmNormal">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+    </Window-->
+
+    <Window Type="TransButton" Name="BtnSave" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:491 y:452" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="保存配置" />
+      <Property Name="WindowVisible" Value="true" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgCallSerLogic::OnBtnSave" />
+      <Property Name="Image" Value="btnSave" />
+    </Window>
+
+    <Window Type="TransButton" Name="BtnCancle" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:591 y:452" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="还原配置" />
+      <Property Name="WindowVisible" Value="true" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgCallSerLogic::OnBtnCancel" />
+      <Property Name="Image" Value="btnCancleCfg" />
+    </Window>
+
+    <CallBackFunc Type="CallBackFunc" Value="CCfgCallSerLogic::InitWnd" />
+  </Window>
+</UILayout>

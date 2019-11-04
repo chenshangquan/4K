@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  <!--预置位信息界面-->
+   
+	<Window Type="TransparentDlg" Name="OrderPosInfoDlg" Style="WS_POPUP" ><!--WS_EX_TOPMOST|ExStyle="WS_EX_TOOLWINDOW"-->
+		<Property Name="WindowPos" Value="x:0 y:0" />
+		<Property Name="WindowSize" Value="x:490 y:340" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="Image" Value="CfgNetMng\OptDlg\background.png" />
+		<Property Name="WindowCaption" Value="预置位信息界面" />	
+		<Property Name="MoveStatus" Value="true" />
+		
+	<Window Type="TransButton" Name="BtnOrderPosInfoDlgClose" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+		  <Property Name="WindowPos" Value="x:430 y:5" />
+		  <Property Name="WindowSize" Value="x:44 y:28" />
+		  <Property Name="WindowCaption" Value="" />
+		  <Property Name="Tooltip" Value="关闭" />
+		  <Property Name="Image" Value="Common/btnClose" />
+		  <Property Name="WindowVisible" Value="True" />
+		  <Event Type="WM_BUTTON_CLICK" Value="COrderPosInfoLogic::OnBtnClose" />
+		  <Scheme Name="SchmImpCommonClean">
+			<Property Name="WindowEnable" Value="True" />    		    	
+		  </Scheme>	    
+		<Scheme Name="SchmTransferBeg">
+			<Property Name="WindowEnable" Value="False" />          		
+		</Scheme>	
+		<Scheme Name="SchmTransferEnd">
+			<Property Name="WindowEnable" Value="True" />          		
+		</Scheme>				      
+	</Window>	 
+		
+    <Window Type="TransStatic" Name="StcPresetInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:24 y:20" />
+		<Property Name="WindowSize" Value="x:200 y:14" />
+		<Property Name="WindowCaption" Value="预置位信息" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="FontColor" Value="r:200 g:200 b:200" />
+		<Property Name="FontSize" Value="9" />
+    </Window>
+		
+    <Window Type="TransStatic" Name="StcPresetIndex" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:65 y:87" />
+		<Property Name="WindowSize" Value="x:200 y:14" />
+		<Property Name="WindowCaption" Value="预置位编号：" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+    </Window>
+	
+	<Window Type="TransComboBox" Name="ComboboxOrderPosIndex" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:209 y:80" />
+		<Property Name="WindowSize" Value="x:220 y:32" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="IsIPStyle" Value="False" />
+		<Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+		<Property Name="Image" Value="ComboboxCommon" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="EditEdgeHeight" Value="6" />            
+		<Property Name="DropListHeight" Value="212" />
+		<Property Name="ComboShowIcon" Value="False" />
+		<Property Name="ReadOnly" Value="True" />
+		<Event Type="WM_CLICK_COMBOLIST" Value="COrderPosInfoLogic::OnComboboxpresetIndexClick" />
+    <Scheme Name="SchmEnable">
+      <Property Name="WindowEnable" Value="False" />
+    </Scheme>
+    <Scheme Name="SchmNormal">
+      <Property Name="WindowEnable" Value="True" />
+    </Scheme>
+  </Window>	
+    
+    <Window Type="TransStatic" Name="StcOrderPosInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:65 y:147" />
+		<Property Name="WindowSize" Value="x:200 y:14" />
+		<Property Name="WindowCaption" Value="预置位信息：" />
+		<Property Name="WindowVisible" Value="True" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+    </Window>
+    <Window Type="TransEdit" Name="EdtPresetInfo" Style="WS_CHILD|WS_TABSTOP|ES_AUTOHSCROLL">
+		<Property Name="WindowPos" Value="x:209 y:140" />
+		<Property Name="WindowSize" Value="x:220 y:32" />
+		<Property Name="WindowCaption" Value="" />
+		<Property Name="Image" Value="CfgNetMng\OptDlg\Edit" />
+		<Property Name="WindowVisible" Value="true" />
+		<Property Name="FontColor" Value="r:59 g:59 b:59" />
+		<Property Name="FontSize" Value="9" />
+		<Property Name="LimitLength" Value="32" />
+    </Window>
+          
+    <Window Type="TransButton" Name="BtnPresetOk" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+	      <Property Name="WindowPos" Value="x:250 y:292" />
+	      <Property Name="WindowSize" Value="x:89 y:33" />
+	      <Property Name="WindowCaption" Value="" />
+	      <Property Name="Tooltip" Value="确定" />
+	      <Property Name="Image" Value="CfgNetMng\OptDlg\BtnOK" />
+	      <Property Name="WindowVisible" Value="True" />
+	    	<Event Type="WM_BUTTON_CLICK" Value="COrderPosInfoLogic::OnBtnPresetInfoOk" />
+      <Scheme Name ="SchmEnd" >
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name ="SchmBegin" >
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+	  </Window>
+
+   	<Window Type="TransButton" Name="BtnBoardCancel" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+	      <Property Name="WindowPos" Value="x:365 y:292" />
+	      <Property Name="WindowSize" Value="x:89 y:33" />
+	      <Property Name="WindowCaption" Value="" />
+	      <Property Name="Tooltip" Value="取消" />
+	      <Property Name="Image" Value="CfgNetMng\OptDlg\BtnCancel" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Event Type="WM_BUTTON_CLICK" Value="COrderPosInfoLogic::OnBtnPresetInfoCancel" />
+	  </Window>
+    
+		<CallBackFunc Type="CallBackFunc" Value="COrderPosInfoLogic::InitWnd" />
+	</Window>
+</UILayout>

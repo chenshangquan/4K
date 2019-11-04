@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window>
+  <ListContainerElement>
+  <VerticalLayout> 
+  
+      <HorizontalLayout>   
+          <VerticalLayout width = "340">
+              <Control height="8"/>	
+              <Label name="lbAddrName" textcolor="#FF2E374C"/>
+              <Control height="1"/>	
+              <Label name="lbAddrNum" textcolor="#FF6C7C94"/>
+          </VerticalLayout>
+          
+          <VerticalLayout>
+              <Control height="10"/>	
+              <ListIconUI name="lbCheck" labelimagebk="poptestdlg/check/check_normal.png" labelselimagebk="poptestdlg/check/check_select.png"/>
+          </VerticalLayout>
+      </HorizontalLayout>  
+        
+      <HorizontalLayout height="2">
+          <Label name="lbListLine" labelimagebk="poptestdlg/list/list_line.png" islabelhormosaic="true" labelmosaicpos="2"/>
+      </HorizontalLayout> 
+      
+  </VerticalLayout>   
+  </ListContainerElement>
+</Window>

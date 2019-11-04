@@ -1,0 +1,868 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<UILayout>
+    <!--摄像调节界面  Style="WS_CHILD"-->
+    <Window Type="TransparentDlg" Name="CameraDlg" Style="WS_CHILD" ExStyle="">
+        <Property Name="WindowPos" Value="x:0 y:73" />
+        <Property Name="WindowSize" Value="x:864 y:501" />
+        <Property Name="Image" Value="" /> 
+        <Property Name="WindowVisible" Value="true" />
+        
+        <Window Type="TransComboBox" Name="ComboboxCamera" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:34 y:15" />
+            <Property Name="WindowSize" Value="x:306 y:32" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="IsIPStyle" Value="False" />
+            <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+            <Property Name="Image" Value="ComboboxCommon" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="EditEdgeHeight" Value="6" />            
+            <Property Name="DropListHeight" Value="212" />
+            <Property Name="ComboShowIcon" Value="False" />
+            <Property Name="ReadOnly" Value="True" />
+            <Event Type="WM_CLICK_COMBOLIST" Value="CCameraCtrlLogic::OnComboboxCameraClick" />
+        </Window>
+       
+	    	
+<!--恢复默认、升级、重启按钮功能移至右上工具栏 CCameraLogic::OnBtnResumeClick -->	    	    	
+	    <!-- 视野 -->
+	    <Window Type="TransStatic" Name="StcLineVisualField" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:33 y:80" />
+            <Property Name="WindowSize" Value="x:3 y:15" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="Camera\line.png" />
+        </Window>
+	    <Window Type="TransStatic" Name="StcVisualField" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:39 y:81" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="视野" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:53 g:70 b:70" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="FontStyle" Value="1" />
+        </Window>
+		<!-- 视野 -->
+		<Window Type="TransButton" Name="BtnZoomPlus" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			<Property Name="WindowPos" Value="x:102 y:72" />
+			<Property Name="WindowSize" Value="x:68 y:32" />
+			<Property Name="WindowCaption" Value="" />
+			<Property Name="TransparentBtnUseTimer" Value="True" />
+			<Property Name="Image" Value="Camera\BtnZoomPlus" />
+			<Property Name="WindowVisible" Value="True" />
+			<!--
+			<Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnZoomPlusClick" />
+			<Event Type="WM_BTN_HOLD" Value="CCameraCtrlLogic::OnBtnZoomPlusHold" />
+			<Event Type="WM_BTN_HOLD_END" Value="CCameraCtrlLogic::OnBtnZoomPlusHoldEnd" />
+			-->
+			<Event Type="WM_LBUTTONDOWN" Value="CCameraCtrlLogic::OnLBtnDownZoomPlus" />
+			<Event Type="WM_LBUTTONUP" Value="CCameraCtrlLogic::OnLBtnUpZoomPlus" />
+			<Event Type="WM_LBUTTONDBLCLK" Value="CCameraCtrlLogic::OnLBtnDoubleDownZoomPlus" />
+		</Window>
+		<Window Type="TransButton" Name="BtnZoomSub" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			<Property Name="WindowPos" Value="x:187 y:72" />
+			<Property Name="WindowSize" Value="x:68 y:32" />
+			<Property Name="WindowCaption" Value="" />
+			<Property Name="Image" Value="Camera\BtnZoomSub" />
+			<Property Name="WindowVisible" Value="True" />
+			<Property Name="TransparentBtnUseTimer" Value="True" />
+			<!--
+			<Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnZoomSubClick" />
+			<Event Type="WM_BTN_HOLD" Value="CCameraCtrlLogic::OnBtnZoomSubHold" />
+			<Event Type="WM_BTN_HOLD_END" Value="CCameraCtrlLogic::OnBtnZoomSubHoldEnd" />
+			-->
+			<Event Type="WM_LBUTTONDOWN" Value="CCameraCtrlLogic::OnLBtnDownZoomSub" />
+			<Event Type="WM_LBUTTONUP" Value="CCameraCtrlLogic::OnLBtnUpZoomSub" />
+			<Event Type="WM_LBUTTONDBLCLK" Value="CCameraCtrlLogic::OnLBtnDoubleDownZoomSub" />
+		</Window>
+		
+		<Window Type="TransEdit" Name="EdtZoom" Style="WS_CHILD|ES_WANTRETURN|ES_MULTILINE">
+			<Property Name="WindowPos" Value="x:272 y:72" />
+			<Property Name="WindowSize" Value="x:68 y:32" />
+			<Property Name="WindowCaption" Value="" />
+			<Property Name="Image" Value="Camera\Edit" />
+			<Property Name="WindowVisible" Value="true" />
+			<Property Name="FontColor" Value="r:15 g:79 b:81" />
+			<Property Name="FontSize" Value="9" />
+			<Property Name="Alignment" Value="1" />
+			<Property Name="LimitLength" Value="5" />
+			<Event Type="WM_EDIT_ONCHAR" Value="CCameraCtrlLogic::OnEdtZoomChange" />
+			<Event Type="WM_KILL_FOCUS" Value="CCameraCtrlLogic::OnEdtZoomKillFocus" />
+		</Window>
+        <!-- 聚焦 -->
+	    <Window Type="TransStatic" Name="StcLineFocus" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:433 y:80" />
+            <Property Name="WindowSize" Value="x:3 y:15" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="Camera\line.png" />
+        </Window>
+	    <Window Type="TransStatic" Name="StcFocus" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:442 y:81" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="聚焦" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:53 g:70 b:70" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="FontStyle" Value="1" />
+        </Window>
+        					
+			
+          
+          <!-- 聚焦具体设置 -->
+	  <!--
+	  <Window Type="TransButton" Name="BtnManuelFocus" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			<Property Name="WindowPos" Value="x:502 y:72" />
+			<Property Name="WindowSize" Value="x:68 y:32" />
+			<Property Name="WindowCaption" Value="" />
+			<Property Name="Image" Value="Camera\BtnManuel" />
+			<Property Name="WindowVisible" Value="True" />
+			<Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnManuelFocusClick" />
+		</Window>
+		<Window Type="TransButton" Name="BtnAutoFocus" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			<Property Name="WindowPos" Value="x:587 y:72" />
+			<Property Name="WindowSize" Value="x:68 y:32" />
+			<Property Name="WindowCaption" Value="" />
+			<Property Name="Image" Value="Camera\BtnAuto" />
+			<Property Name="WindowVisible" Value="True" />
+			<Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnAutoFocusClick" />
+		</Window>
+	  -->
+
+		<Window Type="CTransparentCheckButton" Name="BtnCheckAutoFocus" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
+            <Property Name="WindowPos" Value="x:587 y:72" />
+            <Property Name="WindowSize" Value="x:68 y:32" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="Image" Value="Camera\BtnCheckAuto" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="SwitchState" Value="true" />
+            <Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnAutoFocusClick" />
+        </Window>
+		
+		<Window Type="CTransparentCheckButton" Name="BtnCheckManuelFocus" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON|WS_GROUP">
+            <Property Name="WindowPos" Value="x:502 y:72" />
+            <Property Name="WindowSize" Value="x:68 y:32" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="Image" Value="Camera\BtnCheckManuel" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="SwitchState" Value="true" />
+            <Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnManuelFocusClick" />
+        </Window>
+		
+		<Window Type="TransButton" Name="BtnFocusNear" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			<Property Name="WindowPos" Value="x:672 y:72" />
+			<Property Name="WindowSize" Value="x:68 y:32" />
+			<Property Name="WindowCaption" Value="" />
+			<Property Name="Image" Value="Camera\BtnFocusNear" />
+			<Property Name="WindowVisible" Value="True" />
+			<Property Name="TransparentBtnUseTimer" Value="True" />
+			<Event Type="WM_LBUTTONDOWN" Value="CCameraCtrlLogic::OnLBtnDownFocusNear" />
+			<Event Type="WM_LBUTTONUP" Value="CCameraCtrlLogic::OnLBtnUpFocusNear" />
+			<Scheme Name="SchAutoFocus">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>
+            <Scheme Name="SchManuelFocus">
+                <Property Name="WindowEnable" Value="true" />
+            </Scheme>
+		</Window>
+		<Window Type="TransButton" Name="BtnFocusFar" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+			<Property Name="WindowPos" Value="x:757 y:72" />
+			<Property Name="WindowSize" Value="x:68 y:32" />
+			<Property Name="WindowCaption" Value="" />
+			<Property Name="Image" Value="Camera\BtnFocusFar" />
+			<Property Name="WindowVisible" Value="True" />
+			<Property Name="TransparentBtnUseTimer" Value="True" />
+			<Event Type="WM_LBUTTONDOWN" Value="CCameraCtrlLogic::OnLBtnDownFocusFar" />
+			<Event Type="WM_LBUTTONUP" Value="CCameraCtrlLogic::OnLBtnUpFocusFar" />
+			<Scheme Name="SchAutoFocus">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>
+            <Scheme Name="SchManuelFocus">
+                <Property Name="WindowEnable" Value="true" />
+            </Scheme>
+		</Window>
+       
+		<!-- 曝光 -->
+		<Window Type="TransStatic" Name="StcLineExposure" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:33 y:137" />
+            <Property Name="WindowSize" Value="x:3 y:15" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="Camera\line.png" />
+        </Window>
+	    <Window Type="TransStatic" Name="StcExposure" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:39 y:138" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="曝光" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:53 g:70 b:70" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="FontStyle" Value="1" />
+        </Window>
+        <Window Type="CTransparentSwitchButton" Name="BtnSwitchAutoExposure" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:102 y:129" />
+            <Property Name="WindowSize" Value="x:68 y:32" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="Image" Value="Camera\BtnSwitchAuto" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="SwitchState" Value="true" />
+            <Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnSwitchAutoExposure" />
+			<Scheme Name="SchAutoExposure">
+                <Property Name="SwitchState" Value="true" />
+            </Scheme>
+            <Scheme Name="SchManuelExposure">
+                <Property Name="SwitchState" Value="false" />
+            </Scheme>
+        </Window>
+        <Window Type="TransStatic" Name="StcAperture" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:178 y:138" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="光圈：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+        <Window Type="TransComboBox" Name="ComboboxAperture" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:215 y:129" />
+            <Property Name="WindowSize" Value="x:91 y:32" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="IsIPStyle" Value="False" />
+            <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+            <Property Name="Image" Value="ComboboxCommon" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="EditEdgeHeight" Value="6" />            
+            <Property Name="DropListHeight" Value="120" />
+            <Property Name="ComboShowIcon" Value="False" />
+            <Property Name="ReadOnly" Value="True" />
+            <Property Name="ComboEditFrontLen" Value="14" />
+            <Property Name="ComboEditBackLen" Value="5" />
+            <Event Type="WM_CLICK_COMBOLIST" Value="CCameraCtrlLogic::OnComboboxApertureClick" />
+			<Scheme Name="SchAutoExposure">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>
+            <Scheme Name="SchManuelExposure">
+                <Property Name="WindowEnable" Value="true" />
+            </Scheme>
+        </Window>
+
+        <Window Type="TransStatic" Name="StcShut" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:314 y:138" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="快门：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+        <Window Type="TransComboBox" Name="ComboboxShut" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:351 y:129" />
+            <Property Name="WindowSize" Value="x:105 y:32" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="IsIPStyle" Value="False" />
+            <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+            <Property Name="Image" Value="ComboboxCommon" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="EditEdgeHeight" Value="6" />            
+            <Property Name="DropListHeight" Value="120" />
+            <Property Name="ComboShowIcon" Value="False" />
+            <Property Name="ReadOnly" Value="True" />
+            <Property Name="ComboEditFrontLen" Value="14" />
+            <Property Name="ComboEditBackLen" Value="5" />
+            <Event Type="WM_CLICK_COMBOLIST" Value="CCameraCtrlLogic::OnComboboxShutClick" />
+			<Scheme Name="SchAutoExposure">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>
+            <Scheme Name="SchManuelExposure">
+                <Property Name="WindowEnable" Value="true" />
+            </Scheme>
+        </Window>
+		
+		<Window Type="TransStatic" Name="StcExposureGain" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:464 y:138" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="增益：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+        <Window Type="TransComboBox" Name="ComboboxExposureGain" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:501 y:129" />
+            <Property Name="WindowSize" Value="x:105 y:32" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="IsIPStyle" Value="False" />
+            <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+            <Property Name="Image" Value="ComboboxCommon" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="EditEdgeHeight" Value="6" />            
+            <Property Name="DropListHeight" Value="120" />                  
+            <Property Name="ComboShowIcon" Value="False" />
+            <Property Name="ReadOnly" Value="True" />
+            <Property Name="ComboEditFrontLen" Value="14" />
+            <Property Name="ComboEditBackLen" Value="5" />
+            <Event Type="WM_CLICK_COMBOLIST" Value="CCameraCtrlLogic::OnComboboxExposureGainClick" />
+			<Scheme Name="SchAutoExposure">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>
+            <Scheme Name="SchManuelExposure">
+                <Property Name="WindowEnable" Value="true" />
+            </Scheme>
+        </Window>
+		
+		<Window Type="TransCheckButton" Name="BtnCheckBackLight" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX|WS_GROUP">
+		  <Property Name="WindowPos" Value="x:618 y:136" />
+		  <Property Name="WindowSize" Value="x:20 y:20" />
+		  <Property Name="WindowCaption" Value="" />
+		  <Property Name="WindowVisible" Value="true" />
+		  <Property Name="WindowEnable" Value="true" />
+		  <Property Name="Image" Value="Checkbtn" />
+		  <Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnCheckBackLightClick" />   
+		  <!--背光补偿 手动/自动 禁用/启用-->
+			<Scheme Name="SchAutoExposure">
+                <Property Name="WindowEnable" Value="true" />
+            </Scheme>
+            <Scheme Name="SchManuelExposure">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>		  
+		</Window>
+
+		<Window Type="TransStatic" Name="StcBackLight" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		  <Property Name="WindowPos" Value="x:646 y:138" />
+		  <Property Name="WindowSize" Value="x:95 y:14" />
+		  <Property Name="WindowCaption" Value="背光补偿" />
+		  <Property Name="WindowVisible" Value="true" />
+		  <Property Name="FontSize" Value="9" />
+		  <!--背光补偿 手动/自动 禁用/启用
+			<Scheme Name="SchAutoExposure">
+                <Property Name="WindowEnable" Value="true" />
+            </Scheme>
+            <Scheme Name="SchManuelExposure">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>
+		  -->
+		</Window>
+		         
+        <!-- 白平衡 -->
+        <Window Type="TransStatic" Name="StcLineWB" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:33 y:194" />
+            <Property Name="WindowSize" Value="x:3 y:15" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="Camera\line.png" />
+        </Window>
+	    <Window Type="TransStatic" Name="StcWB" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:39 y:195" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="白平衡" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:53 g:70 b:70" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="FontStyle" Value="1" />
+        </Window>
+        <Window Type="CTransparentSwitchButton" Name="BtnSwitchAutoWB" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:102 y:186" />
+            <Property Name="WindowSize" Value="x:68 y:32" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="Image" Value="Camera\BtnSwitchAuto" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="SwitchState" Value="true" />
+            <Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnSwitchAutoWB" />
+			<Scheme Name="SchAutoWB">
+                <Property Name="SwitchState" Value="true" />
+            </Scheme>
+            <Scheme Name="SchManuelWB">
+                <Property Name="SwitchState" Value="false" />
+            </Scheme>
+        </Window>
+        <Window Type="TransStatic" Name="StcRGain" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:107 y:228" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="R Gain：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+        <Window Type="CTransparentSliderWnd" Name="SliderRGain" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:167 y:224" />
+            <Property Name="WindowSize" Value="x:196 y:13" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="Camera/slider" />
+            <Property Name="CSliderCtrlRange" Value="min:0 max:255" />      <!-- 255有问题， 只能显示两位数字 -->
+            <Property Name="CTransparentSliderWndStyle" Value="1" />
+            <Event Type="SLIDER_CHANGED" Value="CCameraCtrlLogic::OnSliderRGainChanged" />
+			<Scheme Name="SchAutoWB">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>
+            <Scheme Name="SchManuelWB">
+                <Property Name="WindowEnable" Value="true" />
+            </Scheme>
+        </Window>
+        <Window Type="TransEdit" Name="EdtRGain" Style="WS_CHILD|WS_TABSTOP|ES_NUMBER">
+            <Property Name="WindowPos" Value="x:370 y:218" />
+            <Property Name="WindowSize" Value="x:54 y:32" />
+            <Property Name="WindowCaption" Value="0" />
+            <Property Name="Image" Value="Camera\Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="1" />
+			<Property Name="LimitLength" Value="3" />			
+            <Event Type="WM_EDIT_ONCHAR" Value="CCameraCtrlLogic::OnEdtRGainChange" />
+			<Event Type="WM_KILL_FOCUS" Value="CCameraCtrlLogic::OnKillFocusEdtRGain" />
+			<Scheme Name="SchAutoWB">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>
+            <Scheme Name="SchManuelWB">
+                <Property Name="WindowEnable" Value="true" />
+            </Scheme>
+        </Window>
+        <Window Type="TransStatic" Name="StcBGain" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:468 y:228" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="B Gain：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+        <Window Type="CTransparentSliderWnd" Name="SliderBGain" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:528 y:224" />
+            <Property Name="WindowSize" Value="x:196 y:13" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="Camera/slider" />
+            <Property Name="CSliderCtrlRange" Value="min:0 max:255" />
+            <Property Name="CTransparentSliderWndStyle" Value="1" />
+            <Event Type="SLIDER_CHANGED" Value="CCameraCtrlLogic::OnSliderBGainChanged" />
+			<Scheme Name="SchAutoWB">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>
+            <Scheme Name="SchManuelWB">
+                <Property Name="WindowEnable" Value="true" />
+            </Scheme>
+        </Window>
+        <Window Type="TransEdit" Name="EdtBGain" Style="WS_CHILD|WS_TABSTOP|ES_NUMBER">
+            <Property Name="WindowPos" Value="x:731 y:218" />
+            <Property Name="WindowSize" Value="x:54 y:32" />
+            <Property Name="WindowCaption" Value="0" />
+            <Property Name="Image" Value="Camera\Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="1" />
+			<Property Name="LimitLength" Value="3" />			
+            <Event Type="WM_EDIT_ONCHAR" Value="CCameraCtrlLogic::OnEdtBGainChange" />
+			<Event Type="WM_KILL_FOCUS" Value="CCameraCtrlLogic::OnKillFocusEdtBGain" />		
+			<Scheme Name="SchAutoWB">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>
+            <Scheme Name="SchManuelWB">
+                <Property Name="WindowEnable" Value="true" />
+            </Scheme>
+        </Window>
+    
+        <!-- 图片参数 B1版本不实现 先隐藏
+        <Window Type="TransStatic" Name="StcLinePic" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:33 y:283" />
+            <Property Name="WindowSize" Value="x:3 y:15" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="Camera\line.png" />
+        </Window>
+	    <Window Type="TransStatic" Name="StcPic" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:39 y:284" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="图片参数" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:53 g:70 b:70" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="FontStyle" Value="1" />
+        </Window>
+        <!-- 对比度 
+        <Window Type="TransStatic" Name="StcContrast" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:107 y:285" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="对比度：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+        <Window Type="CTransparentSliderWnd" Name="SliderContrast" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:167 y:281" />
+            <Property Name="WindowSize" Value="x:196 y:13" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="Camera/slider" />
+            <Property Name="CSliderCtrlRange" Value="min:0 max:200" />
+            <Property Name="CTransparentSliderWndStyle" Value="1" />
+            <Event Type="SLIDER_CHANGED" Value="CCameraCtrlLogic::OnSliderContrastChanged" />
+        </Window>
+        <Window Type="TransEdit" Name="EdtContrast" Style="WS_CHILD|WS_TABSTOP|ES_NUMBER">
+            <Property Name="WindowPos" Value="x:370 y:275" />
+            <Property Name="WindowSize" Value="x:54 y:32" />
+            <Property Name="WindowCaption" Value="0" />
+            <Property Name="Image" Value="Camera\Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="1" />
+			<Property Name="LimitLength" Value="3" />			
+            <Event Type="WM_EDIT_ONCHAR" Value="CCameraCtrlLogic::OnEdtContrastChange" />
+			<Event Type="WM_KILL_FOCUS" Value="CCameraCtrlLogic::OnKillFocusEdtContrast" />
+        </Window>
+        <!-- 饱和度 
+        <Window Type="TransStatic" Name="StcSaturat" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:468 y:285" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="饱和度：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+        <Window Type="CTransparentSliderWnd" Name="SliderSaturat" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:528 y:281" />
+            <Property Name="WindowSize" Value="x:196 y:13" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="Camera/slider" />
+            <Property Name="CSliderCtrlRange" Value="min:0 max:200" />
+            <Property Name="CTransparentSliderWndStyle" Value="1" />
+            <Event Type="SLIDER_CHANGED" Value="CCameraCtrlLogic::OnSliderSaturatChanged" />
+        </Window>
+        <Window Type="TransEdit" Name="EdtSaturat" Style="WS_CHILD|WS_TABSTOP|ES_NUMBER">
+            <Property Name="WindowPos" Value="x:731 y:275" />
+            <Property Name="WindowSize" Value="x:54 y:32" />
+            <Property Name="WindowCaption" Value="0" />
+            <Property Name="Image" Value="Camera\Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="1" />
+			<Property Name="LimitLength" Value="3" />			
+            <Event Type="WM_EDIT_ONCHAR" Value="CCameraCtrlLogic::OnEdtSaturatChange" />
+			<Event Type="WM_KILL_FOCUS" Value="CCameraCtrlLogic::OnKillFocusEdtSaturat" />
+        </Window>
+        <!-- 色度 
+        <Window Type="TransStatic" Name="StcColor" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:107 y:318" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="色度：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+        <Window Type="CTransparentSliderWnd" Name="SliderColor" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:167 y:314" />
+            <Property Name="WindowSize" Value="x:196 y:13" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="Camera/slider" />
+            <Property Name="CSliderCtrlRange" Value="min:0 max:200" />
+            <Property Name="CTransparentSliderWndStyle" Value="1" />
+            <Event Type="SLIDER_CHANGED" Value="CCameraCtrlLogic::OnSliderColorChanged" />
+        </Window>
+        <Window Type="TransEdit" Name="EdtColor" Style="WS_CHILD|WS_TABSTOP|ES_NUMBER">
+            <Property Name="WindowPos" Value="x:370 y:308" />
+            <Property Name="WindowSize" Value="x:54 y:32" />
+            <Property Name="WindowCaption" Value="0" />
+            <Property Name="Image" Value="Camera\Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="1" />
+			<Property Name="LimitLength" Value="3" />			
+            <Event Type="WM_EDIT_ONCHAR" Value="CCameraCtrlLogic::OnEdtColorChange" />
+			<Event Type="WM_KILL_FOCUS" Value="CCameraCtrlLogic::OnKillFocusEdtColor" />
+        </Window>
+        <!-- 亮度 
+        <Window Type="TransStatic" Name="StcBright" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:468 y:318" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="亮度：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+        <Window Type="CTransparentSliderWnd" Name="SliderBright" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:528 y:314" />
+            <Property Name="WindowSize" Value="x:196 y:13" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="Camera/slider" />
+            <Property Name="CSliderCtrlRange" Value="min:0 max:200" />
+            <Property Name="CTransparentSliderWndStyle" Value="1" />
+            <Event Type="SLIDER_CHANGED" Value="CCameraCtrlLogic::OnSliderBrightChanged" />
+        </Window>
+        <Window Type="TransEdit" Name="EdtBright" Style="WS_CHILD|WS_TABSTOP|ES_NUMBER">
+            <Property Name="WindowPos" Value="x:731 y:308" />
+            <Property Name="WindowSize" Value="x:54 y:32" />
+            <Property Name="WindowCaption" Value="0" />
+            <Property Name="Image" Value="Camera\Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="1" />
+			<Property Name="LimitLength" Value="3" />			
+            <Event Type="WM_EDIT_ONCHAR" Value="CCameraCtrlLogic::OnEdtBrightChange" />
+			<Event Type="WM_KILL_FOCUS" Value="CCameraCtrlLogic::OnKillFocusEdtBright" />
+        </Window>
+		-->
+<!--		
+		<Window Type="TransStatic" Name="StcLineBackLight" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:33 y:283" />
+            <Property Name="WindowSize" Value="x:3 y:15" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="Camera\line.png" />
+		</Window>	
+	    <Window Type="TransStatic" Name="StcBackLight" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:39 y:284" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="背光补偿" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:53 g:70 b:70" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="FontStyle" Value="1" />
+        </Window>
+		
+		<!--是否开启背光补偿
+        <Window Type="CTransparentSwitchButton" Name="BtnSwitchLightPensation" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:102 y:278" />
+			<Property Name="WindowSize" Value="x:107 y:32" />
+			<Property Name="Image" Value="Camera\SwitchBtn" />
+			<Property Name="WindowEnable" Value="true" />
+			<Property Name="WindowVisible" Value="True" />
+			<Property Name="SwitchState" Value="true" />
+			<Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnSwitchLightPensationClick" />
+			<!--背光补偿 手动/自动 禁用/启用
+			<Scheme Name="SchAutoExposure">
+                <Property Name="WindowEnable" Value="true" />
+            </Scheme>
+            <Scheme Name="SchManuelExposure">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>
+        </Window>
+	-->	
+        <!-- 降噪 -->
+        <Window Type="TransStatic" Name="StcLineNR" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:33 y:283" />
+            <Property Name="WindowSize" Value="x:3 y:15" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="Camera\line.png" />
+        </Window>
+		
+		<Window Type="TransStatic" Name="StcNR" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:39 y:284" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="降噪" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:53 g:70 b:70" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="FontStyle" Value="1" />
+        </Window>
+				
+		<Window Type="CTransparentSwitchButton" Name="BtnSwitchNR" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:102 y:278" />
+			<Property Name="WindowSize" Value="x:107 y:32" />
+			<Property Name="Image" Value="Camera\SwitchBtn" />
+			<Property Name="WindowEnable" Value="true" />
+			<Property Name="WindowVisible" Value="True" />
+			<Property Name="SwitchState" Value="true" />
+			<Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnSwitchNRClick" />
+        </Window>
+		
+		<Window Type="TransComboBox" Name="ComboboxNR" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:227 y:278" />
+            <Property Name="WindowSize" Value="x:91 y:32" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="IsIPStyle" Value="False" />
+            <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+            <Property Name="Image" Value="ComboboxCommon" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="EditEdgeHeight" Value="6" />            
+            <Property Name="DropListHeight" Value="120" />
+            <Property Name="ComboShowIcon" Value="False" />
+            <Property Name="ReadOnly" Value="True" />
+            <Property Name="ComboEditFrontLen" Value="14" />
+            <Property Name="ComboEditBackLen" Value="5" />
+            <Event Type="WM_CLICK_COMBOLIST" Value="CCameraCtrlLogic::OnComboboxNRClick" />
+			<Scheme Name="SchAutoNR">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>
+            <Scheme Name="SchManuelNR">
+                <Property Name="WindowEnable" Value="true" />
+            </Scheme>
+        </Window>
+		
+		<Window Type="TransStatic" Name="StcLineOrderPos" Style="WS_CHILD|WS_CLIPSIBLINGS" >
+            <Property Name="WindowPos" Value="x:432 y:283" />
+            <Property Name="WindowSize" Value="x:3 y:15" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="Camera\line.png" />
+        </Window>
+		
+		<Window Type="TransStatic" Name="StcOrderPos" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:438 y:284" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="开机调用" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:53 g:70 b:70" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="FontStyle" Value="1" />
+        </Window>
+		
+		<!--效果图内分两排显示-->
+		<Window Type="TransStatic" Name="StcOrderPos1" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:438 y:303" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="预置位1" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:53 g:70 b:70" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="FontStyle" Value="1" />
+        </Window>
+		
+		<Window Type="CTransparentSwitchButton" Name="BtnSwitchOrderPos" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:501 y:278" />
+			<Property Name="WindowSize" Value="x:107 y:32" />
+			<Property Name="Image" Value="Camera\SwitchBtn" />
+			<Property Name="WindowEnable" Value="true" />
+			<Property Name="WindowVisible" Value="True" />
+			<Property Name="SwitchState" Value="true" />
+			<Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnSwitchOrderPosClick" />
+        </Window>
+		<!--B2中梯形校正放到拼接调整中-->
+		<!--梯形校正--><!-- 
+		<Window Type="TransStatic" Name="StcLineKeystoneAdjust" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:33 y:342" />
+            <Property Name="WindowSize" Value="x:3 y:15" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="Camera\line.png" />
+        </Window>
+		
+		<Window Type="TransStatic" Name="StcKeyStoneAdjust" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:39 y:343" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="梯形校正" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:53 g:70 b:70" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="FontStyle" Value="1" />
+        </Window>
+		
+		<Window Type="CTransparentSwitchButton" Name="BtnSwitchKA" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:102 y:337" />
+			<Property Name="WindowSize" Value="x:107 y:32" />
+			<Property Name="Image" Value="Camera\SwitchBtn" />
+			<Property Name="WindowEnable" Value="true" />
+			<Property Name="WindowVisible" Value="True" />
+			<Property Name="SwitchState" Value="true" />
+			<Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnSwitchKeyStoneAdjust" />
+        </Window>
+		
+		<Window Type="TransStatic" Name="StcAdjustRange" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:107 y:386" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="校正幅度：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+        <Window Type="CTransparentSliderWnd" Name="SliderAdjustRange" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:167 y:382" />
+            <Property Name="WindowSize" Value="x:196 y:13" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="Camera/slider" />
+            <Property Name="CSliderCtrlRange" Value="min:0 max:140" />      --><!-- 255有问题， 只能显示两位数字 --><!--
+            <Property Name="CTransparentSliderWndStyle" Value="1" />
+            <Event Type="SLIDER_CHANGED" Value="CCameraCtrlLogic::OnSliderAdjustRangeChanged" />
+			<Scheme Name="SchKeyStoneAdjustOn">
+                <Property Name="WindowEnable" Value="true" />
+            </Scheme>
+            <Scheme Name="SchKeyStoneAdjustOff">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>
+        </Window>
+        <Window Type="TransEdit" Name="EdtAdjustRange" Style="WS_CHILD|WS_TABSTOP|ES_NUMBER">
+            <Property Name="WindowPos" Value="x:370 y:376" />
+            <Property Name="WindowSize" Value="x:54 y:32" />
+            <Property Name="WindowCaption" Value="0" />
+            <Property Name="Image" Value="Camera\Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="1" />
+			<Property Name="LimitLength" Value="3" />			
+            <Event Type="WM_EDIT_ONCHAR" Value="CCameraCtrlLogic::OnEdtAdjustRangeChange" />
+			<Event Type="WM_KILL_FOCUS" Value="CCameraCtrlLogic::OnKillFocusEdtAdjustRange" />
+			<Scheme Name="SchKeyStoneAdjustOn">
+                <Property Name="WindowEnable" Value="true" />
+            </Scheme>
+            <Scheme Name="SchKeyStoneAdjustOff">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>
+        </Window>
+        <Window Type="TransStatic" Name="StcHoriStretch" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:468 y:386" />
+            <Property Name="WindowSize" Value="x:200 y:14" />
+            <Property Name="WindowCaption" Value="水平拉伸：" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+        </Window>
+        <Window Type="CTransparentSliderWnd" Name="SliderHoriStretch" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:528 y:382" />
+            <Property Name="WindowSize" Value="x:196 y:13" />
+            <Property Name="WindowVisible" Value="True" />
+            <Property Name="Image" Value="Camera/slider" />
+            <Property Name="CSliderCtrlRange" Value="min:0 max:192" />
+            <Property Name="CTransparentSliderWndStyle" Value="1" />
+            <Event Type="SLIDER_CHANGED" Value="CCameraCtrlLogic::OnSliderHoriStretchChanged" />
+			<Scheme Name="SchKeyStoneAdjustOn">
+                <Property Name="WindowEnable" Value="true" />
+            </Scheme>
+            <Scheme Name="SchKeyStoneAdjustOff">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>
+        </Window>
+        <Window Type="TransEdit" Name="EdtHoriStretch" Style="WS_CHILD|WS_TABSTOP|ES_NUMBER">
+            <Property Name="WindowPos" Value="x:731 y:376" />
+            <Property Name="WindowSize" Value="x:54 y:32" />
+            <Property Name="WindowCaption" Value="0" />
+            <Property Name="Image" Value="Camera\Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:15 g:79 b:81" />
+            <Property Name="FontSize" Value="9" />
+            <Property Name="Alignment" Value="1" />
+			<Property Name="LimitLength" Value="3" />			
+            <Event Type="WM_EDIT_ONCHAR" Value="CCameraCtrlLogic::OnEdtHoriStretchChange" />
+			<Event Type="WM_KILL_FOCUS" Value="CCameraCtrlLogic::OnKillFocusEdtHoriStretch" />	
+			<Scheme Name="SchKeyStoneAdjustOn">
+                <Property Name="WindowEnable" Value="true" />
+            </Scheme>
+            <Scheme Name="SchKeyStoneAdjustOff">
+                <Property Name="WindowEnable" Value="false" />
+            </Scheme>			
+        </Window>-->
+		
+		<Window Type="TransButton" Name="BtnOrderPosList" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:620 y:453" />
+			<Property Name="WindowSize" Value="x:86 y:38" />
+			<Property Name="WindowCaption" Value="预置位列表" />
+			<Property Name="WindowVisible" Value="true" />
+			<Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnOrderPosList" />
+			<Property Name="Image" Value="btnOrderPosList" />
+		</Window>
+		
+		<Window Type="TransButton" Name="BtnSaveOrderPos" Style="WS_CHILD|WS_CLIPSIBLINGS">
+			<Property Name="WindowPos" Value="x:720 y:453" />
+			<Property Name="WindowSize" Value="x:86 y:38" />
+			<Property Name="WindowCaption" Value="保存预置位" />
+			<Property Name="WindowVisible" Value="true" />
+			<Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnSaveOrderPos" />
+			<Property Name="Image" Value="btnSaveOrderPos" />
+      <Scheme Name ="SchmEnd" >
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+      <Scheme Name ="SchmBegin" >
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+		</Window>
+              
+        <CallBackFunc Type="CallBackFunc" Value="CCameraCtrlLogic::InitWnd" />
+    </Window>
+</UILayout>

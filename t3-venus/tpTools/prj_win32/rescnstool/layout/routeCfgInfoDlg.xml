@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="gb2312"?>
+<UILayout>
+  <!--路由配置添加界面-->
+   
+	<Window Type="TransparentDlg" Name="RouteCfgInfoDlg" Style="WS_POPUP" ><!--WS_EX_TOPMOST|ExStyle="WS_EX_TOOLWINDOW"-->
+		<Property Name="WindowPos" Value="x:0 y:0" />
+		<Property Name="WindowSize" Value="x:490 y:340" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="Image" Value="CfgRouteInfo\OptDlg\background.png" />
+		<Property Name="WindowCaption" Value="配置路由信息" />	
+		<Property Name="MoveStatus" Value="true" />
+		
+    <Window Type="TransStatic" Name="StcRouteCfg" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		    <Property Name="WindowPos" Value="x:24 y:20" />
+		    <Property Name="WindowSize" Value="x:200 y:14" />
+		    <Property Name="WindowCaption" Value="路由配置" />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:200 g:200 b:200" />
+		    <Property Name="FontSize" Value="9" />
+    </Window>
+		
+    <Window Type="TransStatic" Name="StcDstSubnetIP" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		    <Property Name="WindowPos" Value="x:65 y:79" />
+		    <Property Name="WindowSize" Value="x:200 y:14" />
+		    <Property Name="WindowCaption" Value="目的子网：" />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		    <Property Name="FontSize" Value="9" />
+    </Window>
+    <Window Type="TransIPEdit" Name="IPCtrlDstSubnetIP" Style="WS_CHILD|WS_TABSTOP">
+            <Property Name="WindowPos" Value="x:209 y:70" />
+            <Property Name="WindowSize" Value="x:220 y:32" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="Image" Value="CfgRouteInfo\OptDlg\Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:59 g:59 b:59" />
+            <Property Name="FontSize" Value="9" />
+            <Scheme Name="SchmClean">
+		    		<Property Name="WindowCaption" Value="" /> 
+            </Scheme>
+			
+    </Window>
+	
+	<Window Type="TransStatic" Name="StcPriority" Style="WS_CHILD|WS_CLIPSIBLINGS">
+	<Property Name="WindowPos" Value="x:65 y:201" />
+		    <Property Name="WindowSize" Value="x:200 y:14" />
+		    <Property Name="WindowCaption" Value="优先级：" />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		    <Property Name="FontSize" Value="9" />
+    </Window>
+	
+	<!--<Window Type="TransComboBox" Name="ComboboxPriorLevel" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:209 y:190" />
+      <Property Name="WindowSize" Value="x:220 y:32" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="IsIPStyle" Value="False" />
+      <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+      <Property Name="Image" Value="ComboboxCommon" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="EditEdgeHeight" Value="6" />
+      <Property Name="DropListHeight" Value="212" />
+      <Property Name="ComboShowIcon" Value="False" />
+      <Property Name="ReadOnly" Value="True" />
+      <Event Type="WM_CLICK_COMBOLIST" Value="CRouteCfgdlgLogic::OnPriorLevel" />
+	 </Window> -->
+	 
+	 <Window Type="TransEdit" Name="EdtPriorLevel" Style="WS_CHILD|ES_NUMBER|WS_TABSTOP">
+            <Property Name="WindowPos" Value="x:209 y:190" />
+            <Property Name="WindowSize" Value="x:220 y:32" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="Image" Value="CfgRouteInfo\OptDlg\Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:59 g:59 b:59" />
+            <Property Name="FontSize" Value="9" />
+			<Event Type="WM_EDIT_ONCHAR" Value="CRouteCfgdlgLogic::OnEdtPriorLevelChange" />
+			<Event Type="WM_KILL_FOCUS" Value="CRouteCfgdlgLogic::OnEdtPriorLevelKillFocus" />
+            <Scheme Name="SchmClean">
+		    		<Property Name="WindowCaption" Value="" /> 
+            </Scheme>
+    </Window>
+	
+	<Window Type="TransStatic" Name="StcNMGatewayIP" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		    <Property Name="WindowPos" Value="x:65 y:159" />
+		    <Property Name="WindowSize" Value="x:200 y:14" />
+		    <Property Name="WindowCaption" Value="网关：" />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		    <Property Name="FontSize" Value="9" />
+    </Window>
+    <Window Type="TransIPEdit" Name="IPCtrlGatewayIP" Style="WS_CHILD|WS_TABSTOP">
+            <Property Name="WindowPos" Value="x:209 y:150" />
+            <Property Name="WindowSize" Value="x:220 y:32" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="Image" Value="CfgRouteInfo\OptDlg\Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:59 g:59 b:59" />
+            <Property Name="FontSize" Value="9" />
+            <Scheme Name="SchmClean">
+		    		<Property Name="WindowCaption" Value="" /> 
+            </Scheme>
+    </Window>
+    
+    <Window Type="TransStatic" Name="StcMastIP" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		    <Property Name="WindowPos" Value="x:65 y:119" />
+		    <Property Name="WindowSize" Value="x:200 y:14" />
+		    <Property Name="WindowCaption" Value="掩码：" />
+		    <Property Name="WindowVisible" Value="True" />
+		    <Property Name="FontColor" Value="r:15 g:79 b:81" />
+		    <Property Name="FontSize" Value="9" />
+    </Window>
+    <Window Type="TransIPEdit" Name="IPCtrlMastIP" Style="WS_CHILD|WS_TABSTOP">
+            <Property Name="WindowPos" Value="x:209 y:110" />
+            <Property Name="WindowSize" Value="x:220 y:32" />
+            <Property Name="WindowCaption" Value="" />
+            <Property Name="Image" Value="CfgRouteInfo\OptDlg\Edit" />
+            <Property Name="WindowVisible" Value="true" />
+            <Property Name="FontColor" Value="r:59 g:59 b:59" />
+            <Property Name="FontSize" Value="9" />
+            <Scheme Name="SchmClean">
+		    		<Property Name="WindowCaption" Value="" /> 
+            </Scheme>
+    </Window>
+	
+	<Window Type="TransStatic" Name="StcTipImage" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:230 y:228" />
+		<Property Name="WindowSize" Value="x:15 y:12" />
+		<Property Name="WindowCaption" Value="" />
+		<Property Name="Image" Value="CfgRouteInfo\OptDlg\Tips\tip.png" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="FontColor" Value="r:15 g:79 b:81" />
+		<Property Name="FontSize" Value="9" />
+		<Scheme Name="TipVisible">
+		    <Property Name="WindowVisible" Value="true" />
+		</Scheme>
+		<Scheme Name="TipUnVisible">
+		    <Property Name="WindowVisible" Value="false" />
+		</Scheme>
+    </Window>
+	
+	<Window Type="TransStatic" Name="StcTips" Style="WS_CHILD|WS_CLIPSIBLINGS">
+		<Property Name="WindowPos" Value="x:250 y:228" />
+		<Property Name="WindowSize" Value="x:200 y:14" />
+		<Property Name="WindowCaption" Value="路由优先级应该在1-10之间" />
+		<Property Name="Image" Value="" />
+		<Property Name="WindowVisible" Value="false" />
+		<Property Name="FontColor" Value="r:233 g:70 b:67" />
+		<Property Name="FontSize" Value="9" />
+		<Scheme Name="TipVisible">
+		    <Property Name="WindowVisible" Value="true" />
+		</Scheme>
+		<Scheme Name="TipUnVisible">
+		    <Property Name="WindowVisible" Value="false" />
+		</Scheme>
+    </Window>
+	
+    <Window Type="TransButton" Name="BtnRouteCfgOk" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+	      <Property Name="WindowPos" Value="x:250 y:292" />
+	      <Property Name="WindowSize" Value="x:89 y:33" />
+	      <Property Name="WindowCaption" Value="" />
+	      <Property Name="Tooltip" Value="确定" />
+	      <Property Name="Image" Value="CfgRouteInfo/OptDlg/BtnOK" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Event Type="WM_BUTTON_CLICK" Value="CRouteCfgdlgLogic::OnBtnRouteCfgOk" />
+	  </Window>
+
+   	<Window Type="TransButton" Name="BtnRouteCfgCancel" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+	      <Property Name="WindowPos" Value="x:365 y:292" />
+	      <Property Name="WindowSize" Value="x:89 y:33" />
+	      <Property Name="WindowCaption" Value="" />
+	      <Property Name="Tooltip" Value="取消" />
+	      <Property Name="Image" Value="CfgRouteInfo/OptDlg/BtnCancel" />
+	      <Property Name="WindowVisible" Value="True" />
+	      <Event Type="WM_BUTTON_CLICK" Value="CRouteCfgdlgLogic::OnBtnRouteCfgCancel" />
+	  </Window>
+	  
+	  <Window Type="TransButton" Name="BtnRouteCfgClose" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
+      <Property Name="WindowPos" Value="x:430 y:5" />
+      <Property Name="WindowSize" Value="x:44 y:28" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="Tooltip" Value="关闭" />
+      <Property Name="Image" Value="Common/btnClose" />
+      <Property Name="WindowVisible" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CRouteCfgdlgLogic::OnBtnRouteCfgCancel" />
+	  </Window> 
+    
+		<CallBackFunc Type="CallBackFunc" Value="CRouteCfgdlgLogic::InitWnd" />
+	</Window>
+</UILayout>

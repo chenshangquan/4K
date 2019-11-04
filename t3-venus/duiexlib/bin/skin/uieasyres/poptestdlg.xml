@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window size="1000,600" caption="0,0,0,600" logic="poptestdlg">	
+	
+	<Default name="Button" value="normalimage=&quot;
+		file='btnCommon/btndefnor.png'  fade='200'&quot; hotimage=&quot;
+		file='btnCommon/btndefover.png' fade='200'&quot; pushedimage=&quot;
+		file='btnCommon/btndefdown.png' fade='200'&quot; " />	
+	
+	<VerticalLayout bkimage="bkImg/blwoodbg.png" > 
+	
+		<Button name="btnclose" text="关闭" width="120" height="30" />	 
+		<Control height="10" />
+		
+		<HorizontalLayout>
+			<Control width="10" />
+			
+			<WindowChildUI  width="500" height = "550" bkimage="bkImg/woodbg.png" >
+				<HorizontalLayout>
+					<Control width="25" />
+					<VerticalLayout> 
+						<Button name="btntest" text="测试按键" width="120" height="30" />
+						<Control height="5"/>
+						<CommonListUI name="listAddr" width="400" height = "500" header="hidden" style="addr_list_item" isdrag="true" ismosaicbk = "true" itemshowhtml="true" bkcolor="#FFEFF5FF" bkimage="poptestdlg/list" vscrollbar="true" listitemheight="50" listitemselheight="50" listitemselbkpos="5" />  
+					</VerticalLayout>
+				</HorizontalLayout>	
+			</WindowChildUI>
+			
+			<Control width="80" />
+			<CommonListUI name="listSelAddr" width="400" height = "500" header="hidden" style="addr_list_item" isdrag="true" ismosaicbk = "true" itemshowhtml="true" bkcolor="#FFEFF5FF" bkimage="poptestdlg/list" vscrollbar="true" listitemheight="50" listitemselheight="50" listitemselbkpos="5" />	
+		</HorizontalLayout>
+		
+	</VerticalLayout>
+</Window>
+   
