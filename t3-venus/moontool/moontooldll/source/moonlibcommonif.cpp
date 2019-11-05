@@ -76,10 +76,10 @@ u16	CMoonlibCommonIF::DisConnect()
 {
 #if 0
 	u16 re = MOONSESSION_MGR_PTR->GetSessionIF()->DisconnectMoon();
-	return re;
 #else
-    return true;
+    u16 re = MOONSESSION_MGR_PTR->GetSysCtrlIF()->CloseSocket();
 #endif
+    return true;
 }
 
 u16 CMoonlibCommonIF::SetOutputFormatCmd( const TPOutputFmt& tOutputFmt)

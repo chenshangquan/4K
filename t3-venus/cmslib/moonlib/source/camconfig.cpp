@@ -29,7 +29,7 @@ CCamConfig::~CCamConfig()
 
 void CCamConfig::BuildEventsMap()
 {   
-    REG_PFUN( OSP_DISCONNECT, CCamConfig::OnLinkBreak ); 
+    REG_PFUN( UI_RKC_DISCONNECTED, CCamConfig::OnLinkBreak ); 
 	REG_PFUN( ev_TpMoonCamInfo_Nty, CCamConfig::OnMoonCamCfgNty );
 	REG_PFUN( ev_TpMechanismSelect_Nty, CCamConfig::OnMechanismSelectNty );
 	REG_PFUN( ev_TpMechVer_Nty, CCamConfig::OnTpMechverNty );
@@ -115,7 +115,7 @@ void CCamConfig::DispEvent(const CMessage &cMsg)
 
 void CCamConfig::OnLinkBreak(const CMessage& cMsg)
 {
-	PrtRkcMsg( OSP_DISCONNECT, emEventTypeScoketRecv,"[CCamConfig::OnLinkBreak]清空配置信息" );	
+	PrtRkcMsg( UI_RKC_DISCONNECTED, emEventTypeScoketRecv,"[CCamConfig::OnLinkBreak]清空配置信息" );	
 	memset( &m_tCnCameraCfg1, 0, sizeof(TTPMoonCamInfo) );
 	memset( &m_tCnCameraCfg2, 0, sizeof(TTPMoonCamInfo) );
 	memset( &m_tCnCameraCfg3, 0, sizeof(TTPMoonCamInfo) );
@@ -190,7 +190,6 @@ void CCamConfig::OnMoonCamCfgNty( const CMessage& cMsg )
     if (RK100_OPT_RTN_OK != tMsgHead.wOptRtn && tMsgHead.wOptRtn != RK100_OPT_ERR_FIRST_LOGIN)
     {
         PrtRkcMsg( RK100_EVT_LOGIN_ACK, emEventTypeScoketRecv, _T("Login Error."));
-        //PostEvent(UI_MOONTOOL_CONNECTED, WPARAM(RK100_OPT_RTN_OK == tMsgHead.wOptRtn) , (LPARAM)tMsgHead.wOptRtn );
         return;
     }
 
@@ -225,11 +224,14 @@ void CCamConfig::OnMoonCamCfgNty( const CMessage& cMsg )
 		PostEvent( UI_MOONTOOL_CAMINFO_NTY, NULL, NULL );
 	}
 
-	PrtRkcMsg( RK100_EVT_LOGIN_ACK, emEventTypeScoketRecv, "MoonCamInfo Notify:<CamNumFlag:[%d,%d,%d],dwZoomPos:%d,GainInputVal:%d>\n \
-        <R Gain:%d, B Gian:%d>\n <BrightVal:%d,ColorHueVal:%d,ColorGainVal:%d>",
+	PrtRkcMsg( RK100_EVT_LOGIN_ACK, emEventTypeScoketRecv, "MoonCamInfo Notify:\n \
+<CamNumFlag:[%d,%d,%d],dwZoomPos:%d,GainInputVal:%d>\n \
+<R Gain:%d, B Gian:%d>\n \
+<BrightVal:%d,ColorHueVal:%d,ColorGainVal:%d, Gama:[%d,%d,%d]>",
         tTPMoonCamInfo.TCamIDIndex.CamNum1Flag, tTPMoonCamInfo.TCamIDIndex.CamNum2Flag, tTPMoonCamInfo.TCamIDIndex.CamNum3Flag,
         tTPMoonCamInfo.dwZoomPos, tTPMoonCamInfo.GainMode.GainInputVal, tTPMoonCamInfo.WBMode.RGainVal, tTPMoonCamInfo.WBMode.BGainVal,
-        tTPMoonCamInfo.CamImagParam.BrightVal, tTPMoonCamInfo.CamImagParam.ColorHueVal, tTPMoonCamInfo.CamImagParam.ColorGainVal);
+        tTPMoonCamInfo.CamImagParam.BrightVal, tTPMoonCamInfo.CamImagParam.ColorHueVal, tTPMoonCamInfo.CamImagParam.ColorGainVal,
+        tTPMoonCamInfo.CamImagParam.Gamma_opt_1_flag, tTPMoonCamInfo.CamImagParam.Gamma_opt_2_flag, tTPMoonCamInfo.CamImagParam.Gamma_opt_3_flag);
 }
 
 void CCamConfig::OnCamSelNty( const CMessage& cMsg )

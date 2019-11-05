@@ -84,14 +84,15 @@ void CRkcSysCtrl::BuildEventsMap()
 void CRkcSysCtrl::OnDicconnected(const CMessage& cMsg)
 {
     //发送界面提醒
-    PostEvent( UI_RKC_DISCONNECTED);
+    PrtRkcMsg( RK100_EVT_LOGIN_ACK, emEventTypeScoketRecv, "UI_RKC_DISCONNECTED" );
+    //PostEvent( UI_MOONTOOL_DISCONNECTED);
 }
 
 void CRkcSysCtrl::OnLoginOther(const CMessage& cMsg)
 {
     CloseSocket();
     PrtRkcMsg( RK100_EVT_LOGIN_OTHER, emEventTypeScoketRecv, "被抢登...");
-    PostEvent( UI_RKC_DISCONNECTED, 1  );
+    PostEvent( UI_MOONTOOL_DISCONNECTED, 1  );
 }
 
 void CRkcSysCtrl::OnLoginRsp(const CMessage& cMsg)

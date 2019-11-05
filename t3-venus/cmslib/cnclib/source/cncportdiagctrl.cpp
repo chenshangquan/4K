@@ -308,6 +308,12 @@ void CCncPortDiagCtrl::OnLostPacketInfoRsp(const CMessage& cMsg)
 	{
 		LostPacketRate = 0;
 	}
+
+    //丢包率不应为负数  问题单号：SDM-00158560
+    if ( LostPacketRate < 0 )
+    {
+        LostPacketRate = 0;
+    }
     	
 	m_strLostPacketInfo.Format("%.2f", LostPacketRate);
 	 

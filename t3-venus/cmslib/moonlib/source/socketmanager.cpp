@@ -24,7 +24,7 @@ UINT ThreadHeartBeat(LPVOID lpParam)
         g_nHeartBeatLostCount++;
         if (g_nHeartBeatLostCount > 2)//超过两次没响应则认为断链
         {
-            PrtRkcMsg( UI_RKC_DISCONNECTED, emEventTypeScoketRecv, "断链关闭...");
+            PrtRkcMsg( RK100_EVT_SET_HEART_BEAT, emEventTypeScoketRecv, "断链关闭...");
             SOCKETWORK->CloseSocket();
             return 0;
         }
@@ -227,8 +227,6 @@ void CSocketManager::SendDataPack()
         TRK100MsgHead tRK100MsgHead = *(TRK100MsgHead*)(rkmsg.GetBody());
         //设置等待回复的消息为发送的消息+1 没有回复这不可继续发送消息
         m_evWaitMsg = ntohl(tRK100MsgHead.dwEvent) + 1;
-        /*PrtRkcMsg( htonl(tRK100MsgHead.dwEvent), emEventTypeScoketSend, "event:%d,msglen:%d,bodylen:%d",
-            ntohl(tRK100MsgHead.dwEvent), ntohs(tRK100MsgHead.wMsgLen),rkmsg.GetBodyLen());*/
         int ret = send(m_sclient, (const char*)rkmsg.GetBody(), rkmsg.GetBodyLen(), 0);
         if (ret == -1)
         {

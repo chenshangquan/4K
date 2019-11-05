@@ -23,6 +23,7 @@ void CMoonlibDataMgr::InitDataMgr()
     // new add as the last one 577 if not add interface can't rec msg
 	MOONSESSION_MGR_PTR->GetCamConfigIF()->SetNotifyWnd( GetSafeHwnd() );
 	MOONSESSION_MGR_PTR->GetSysConfigIF()->SetNotifyWnd( GetSafeHwnd() );
+    MOONSESSION_MGR_PTR->GetSysCtrlIF()->SetNotifyWnd( GetSafeHwnd() );
 }
 
 CMoonlibDataMgr* CMoonlibDataMgr::GetDataMgrIF()

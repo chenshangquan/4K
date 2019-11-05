@@ -28,7 +28,7 @@ CSysConfig::~CSysConfig()
 void CSysConfig::BuildEventsMap()
 {  
 	//¶ÏÁ´Çå¿Õ×ÊÔ´
-	REG_PFUN(OSP_DISCONNECT, CSysConfig::OnLinkBreak); 
+	REG_PFUN(UI_RKC_DISCONNECTED, CSysConfig::OnLinkBreak); 
 	REG_PFUN(ev_TpMoonVerInfo_Nty, CSysConfig::OnSoftWareVerInfoNty);
 	REG_PFUN(ev_TpCamOutPortInfo_Nty, CSysConfig::OnCamOutputInfoNty);
 	REG_PFUN(ev_TpCamImageAdjust_Nty, CSysConfig::OnCamImageAdjustNty);

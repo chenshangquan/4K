@@ -2642,7 +2642,7 @@ void CCameraCtrlLogic::SetCameraCfg( TTPMoonCamInfo tMoonCameraCfg )
     SetAutoExp(m_emExposureMode);
     //快门 -- 输出制式 已设置
     //增益
-    SetExpGainValue( tMoonCameraCfg.dwZoomPos );
+    SetExpGainValue( tMoonCameraCfg.GainMode.GainInputVal );
 	
 	//开机调用预置位1
 	//SetPresetValue( tMoonCameraCfg.bIsPreUsed );
@@ -3239,6 +3239,15 @@ void CCameraCtrlLogic::GetExpGainValue( EmTPExpGain &emGain )
 
 void CCameraCtrlLogic::SetExpGainValue( u8 byExpGain )
 {
+    if ( byExpGain < 0 )
+    {
+        byExpGain = 0;
+    }
+    else if ( byExpGain > 45 )
+    {
+        byExpGain = 45;
+    }
+
     CString strCaption;
     strCaption.Format("%d", byExpGain);
     UIFACTORYMGR_PTR->SetCaption( m_strEdtExpGain, (String)strCaption, m_pWndTree );
