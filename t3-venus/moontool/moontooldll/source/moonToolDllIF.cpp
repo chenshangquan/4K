@@ -98,7 +98,7 @@ MOONTOOLDLL_API void _stdcall InitMoonTool( HWND hNotifyWnd )
  		DWORD dwProcessId = GetCurrentProcessId();
  		TCHAR aszPrompt[32] = "";
  		
- 		sprintf( aszPrompt, "tptool(%d):", dwProcessId );
+ 		sprintf( aszPrompt, "moontool(%d):", dwProcessId );
  		OspSetPrompt( aszPrompt );
 
 	}

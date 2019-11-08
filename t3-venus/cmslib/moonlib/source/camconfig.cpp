@@ -227,11 +227,31 @@ void CCamConfig::OnMoonCamCfgNty( const CMessage& cMsg )
 	PrtRkcMsg( RK100_EVT_LOGIN_ACK, emEventTypeScoketRecv, "MoonCamInfo Notify:\n \
 <CamNumFlag:[%d,%d,%d],dwZoomPos:%d,GainInputVal:%d>\n \
 <R Gain:%d, B Gian:%d>\n \
-<BrightVal:%d,ColorHueVal:%d,ColorGainVal:%d, Gama:[%d,%d,%d]>",
+<BrightVal:%d,ColorHueVal:%d,ColorGainVal:%d, Gama:[%d,%d,%d]>\n \
+<OutputFmt:[4K30:%d,4K25:%d,1080P60:%d,1080P50:%d,1080P30:%d,1080P25:%d,720P60:%d,720P50:%d]>",
+
         tTPMoonCamInfo.TCamIDIndex.CamNum1Flag, tTPMoonCamInfo.TCamIDIndex.CamNum2Flag, tTPMoonCamInfo.TCamIDIndex.CamNum3Flag,
         tTPMoonCamInfo.dwZoomPos, tTPMoonCamInfo.GainMode.GainInputVal, tTPMoonCamInfo.WBMode.RGainVal, tTPMoonCamInfo.WBMode.BGainVal,
         tTPMoonCamInfo.CamImagParam.BrightVal, tTPMoonCamInfo.CamImagParam.ColorHueVal, tTPMoonCamInfo.CamImagParam.ColorGainVal,
-        tTPMoonCamInfo.CamImagParam.Gamma_opt_1_flag, tTPMoonCamInfo.CamImagParam.Gamma_opt_2_flag, tTPMoonCamInfo.CamImagParam.Gamma_opt_3_flag);
+        tTPMoonCamInfo.CamImagParam.Gamma_opt_1_flag, tTPMoonCamInfo.CamImagParam.Gamma_opt_2_flag, tTPMoonCamInfo.CamImagParam.Gamma_opt_3_flag,
+        tTPMoonCamInfo.OutputFmt.FMT4K_30fps_flag, tTPMoonCamInfo.OutputFmt.FMT4K_25fps_flag, tTPMoonCamInfo.OutputFmt.FMT1080_60fps_flag, tTPMoonCamInfo.OutputFmt.FMT1080_50fps_flag,
+        tTPMoonCamInfo.OutputFmt.FMT1080_30fps_flag, tTPMoonCamInfo.OutputFmt.FMT1080_25fps_flag, tTPMoonCamInfo.OutputFmt.FMT720_60fps_flag, tTPMoonCamInfo.OutputFmt.FMT720_50fps_flag);
+    PrtRkcMsg( RK100_EVT_LOGIN_ACK, emEventTypeScoketRecv, "\n \
+<[Sixty:%d, Thirty:%d], [%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d]>\n \
+<[Fifty:%d, TenwFif:%d], [%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d]>",
+        tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.SixtyFpsModeFlag, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.ThirtyFpsModeFlag, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_30Sp,
+        tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_60Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_90Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_100Sp,
+        tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_125Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_180Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_250Sp,
+        tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_350Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_500Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_725Sp,
+        tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_1000Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_1500Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_2000Sp,
+        tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_3000Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_4000Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_6000Sp,
+        tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_10000Sp, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.FiftyFpsModeFlag, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.TenwFifFpsModeFlag,
+        tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_25Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_50Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_60Spd,
+        tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_100Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_120Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_150Spd,
+        tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_215Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_300Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_425Spd,
+        tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_600Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_1000Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_1250Spd,
+        tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_1750Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_2500Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_3500Spd,
+        tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_6000Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_10000Spd);
 }
 
 void CCamConfig::OnCamSelNty( const CMessage& cMsg )

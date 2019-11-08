@@ -489,7 +489,7 @@ BOOL COrderListDlgLogic::DownloadCore( const String & strFileName )
 			UIFACTORYMGR_PTR->LoadScheme("SchmEnd",NULL,g_strMoonMainFrame);
 			CMsgDispatch::SendMessage(WM_MoonTool_StatusSet,NULL,NULL);
 			return false;
-		}
+        } 
 	}
 	
 	return TRUE;

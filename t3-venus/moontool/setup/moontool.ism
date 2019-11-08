@@ -105,10 +105,12 @@
 		<row><td>Files</td><td>{C4BC89A9-C40D-4CF6-86FA-285DB4AC6912}</td><td>TARGETDIR</td><td>0</td><td/><td>moontooldll.dll</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files1</td><td>{DC15CD90-01BC-484E-9898-0E66F93BB2DB}</td><td>RES</td><td>0</td><td/><td>tabmoonsel.png</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files2</td><td>{8D9C5F6C-E0F7-4CA2-BAF2-19DC2F311317}</td><td>BTNSYNC</td><td>0</td><td/><td>sel.png</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Files3</td><td>{FF2078F5-6B65-4800-B60A-5539430B1B97}</td><td>BTNGAINPLUS</td><td>0</td><td/><td>sel.png4</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files4</td><td>{2529605F-C158-461C-B21B-B2BEC4C9AC63}</td><td>RESMOONTOOL</td><td>0</td><td/><td>system.xml1</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files5</td><td>{BFA15979-AC17-41FB-B62B-7F0018CEE9C4}</td><td>NoDirectory</td><td>8</td><td/><td>uncheckpress.png8</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files6</td><td>{D625C075-2011-46A9-BF35-D539AD629E94}</td><td>CHECKMOON904K30</td><td>8</td><td/><td>uncheckpress.png9</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files69</td><td>{43277FEB-2A6D-4A09-A3C2-ED593FED1F0C}</td><td>NoDirectory</td><td>0</td><td/><td>uncheckpress.png5</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Files7</td><td>{25A1E7CE-A950-49E0-85FD-A71C09188ACA}</td><td>BTNGAINSUB</td><td>0</td><td/><td>sel.png5</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files70</td><td>{D27DD54B-AE2A-4CC5-919A-B2FF79A8944B}</td><td>NoDirectory</td><td>8</td><td/><td>uncheckdisable.png</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files71</td><td>{4DD5F6E9-A339-4A46-9256-6BD164FD2912}</td><td>NoDirectory</td><td>0</td><td/><td>uncheckpress.png</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files72</td><td>{9281E743-CFDA-4EDE-8F39-0AF10686C2C1}</td><td>NoDirectory</td><td>8</td><td/><td>normal.png164</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -180,6 +182,8 @@
 		<row><td>BTNEXPORT8</td><td>IMPEXPCOMMONDLG2</td><td>btnExport</td><td/><td>0</td><td/></row>
 		<row><td>BTNFOCUSFAR1</td><td>CAMERA1</td><td>BtnFocusFar</td><td/><td>0</td><td/></row>
 		<row><td>BTNFOCUSNEAR1</td><td>CAMERA1</td><td>BtnFocusNear</td><td/><td>0</td><td/></row>
+		<row><td>BTNGAINPLUS</td><td>CAMERA1</td><td>BtnGainPlus</td><td/><td>0</td><td/></row>
+		<row><td>BTNGAINSUB</td><td>CAMERA1</td><td>BtnGainSub</td><td/><td>0</td><td/></row>
 		<row><td>BTNGAMMAOFF1</td><td>CAMERA1</td><td>BtnGammaOff</td><td/><td>0</td><td/></row>
 		<row><td>BTNGAMMAON1</td><td>CAMERA1</td><td>BtnGammaOn</td><td/><td>0</td><td/></row>
 		<row><td>BTNIMPORT5</td><td>SRC2</td><td>btnImport</td><td/><td>0</td><td/></row>
@@ -295,7 +299,7 @@
 		<row><td>WINSYSDIR64</td><td>WINDIR</td><td>Windows System (64-bit)</td><td/><td>0</td><td/></row>
 		<row><td>newfolder1</td><td>ProgramMenuFolder</td><td>Kedacom</td><td/><td>1</td><td>newfolder1</td></row>
 		<row><td>newfolder2</td><td>newfolder1</td><td>cmc</td><td/><td>1</td><td>PCMT</td></row>
-		<row><td>product_name</td><td>newfolder1</td><td>网呈维护工具</td><td/><td>1</td><td>product_name</td></row>
+		<row><td>product_name</td><td>newfolder1</td><td>网呈维护工具-moon</td><td/><td>1</td><td>product_name</td></row>
 	</table>
 
 	<table name="Feature">
@@ -320,10 +324,12 @@
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files1</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files2</td></row>
+		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files3</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files4</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files5</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files6</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files69</td></row>
+		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files7</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files70</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files71</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files72</td></row>
@@ -455,6 +461,8 @@
 		<row><td>disable.png146</td><td>Files4</td><td>Disable.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\impexpCommonDlg\btnImport\Disable.png</td><td>1</td><td>btnImport5</td></row>
 		<row><td>disable.png147</td><td>Files4</td><td>Disable.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\impexpCommonDlg\btnOpenFolder\Disable.png</td><td>1</td><td>btnOpenFolder4</td></row>
 		<row><td>disable.png148</td><td>Files4</td><td>Disable.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\impexpCommonDlg\btnScan\Disable.png</td><td>1</td><td>btnScan4</td></row>
+		<row><td>disable.png2</td><td>Files3</td><td>Disable.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BTNGAINPLUS_FILES&gt;\Disable.png</td><td>1</td><td/></row>
+		<row><td>disable.png3</td><td>Files7</td><td>Disable.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BTNGAINSUB_FILES&gt;\Disable.png</td><td>1</td><td/></row>
 		<row><td>disable.png94</td><td>Files4</td><td>Disable.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\AdjustDlg\IncreaseBtn\Disable.png</td><td>1</td><td>IncreaseBtn</td></row>
 		<row><td>disable.png95</td><td>Files4</td><td>Disable.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\AdjustDlg\ReduceBtn\Disable.png</td><td>1</td><td>ReduceBtn</td></row>
 		<row><td>disable.png96</td><td>Files4</td><td>Disable.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\AdjustDlg\SnapSaveAsBtn\Disable.png</td><td>1</td><td>SnapSaveAsBtn</td></row>
@@ -615,6 +623,8 @@
 		<row><td>normal.png229</td><td>Files4</td><td>Normal.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\itemToOrderPos\Normal.png</td><td>1</td><td>itemToOrderPos</td></row>
 		<row><td>normal.png230</td><td>Files4</td><td>Normal.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\itemToSysCfg\Normal.png</td><td>1</td><td>itemToSysCfg</td></row>
 		<row><td>normal.png3</td><td>Files1</td><td>Normal.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RES_FILES1&gt;\LoginBtn\Normal.png</td><td>1</td><td>LoginBtn</td></row>
+		<row><td>normal.png4</td><td>Files3</td><td>Normal.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BTNGAINPLUS_FILES&gt;\Normal.png</td><td>1</td><td/></row>
+		<row><td>normal.png5</td><td>Files7</td><td>Normal.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BTNGAINSUB_FILES&gt;\Normal.png</td><td>1</td><td/></row>
 		<row><td>normal1.png</td><td>Files4</td><td>Normal1.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\itemOrderPosImage\Normal1.png</td><td>1</td><td>itemOrderPosImage</td></row>
 		<row><td>normalbottom.png3</td><td>Files4</td><td>NormalBottom.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\ComboboxCommon\List\VertSlider\NormalBottom.png</td><td>1</td><td>VertSlider3</td></row>
 		<row><td>normalbottom.png4</td><td>Files4</td><td>NormalBottom.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\OrderPosListDlg\VertSlider\NormalBottom.png</td><td>1</td><td>VertSlider4</td></row>
@@ -787,6 +797,8 @@
 		<row><td>over.png223</td><td>Files4</td><td>Over.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\itemToOrderPos\Over.png</td><td>1</td><td>itemToOrderPos</td></row>
 		<row><td>over.png224</td><td>Files4</td><td>Over.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\itemToSysCfg\Over.png</td><td>1</td><td>itemToSysCfg</td></row>
 		<row><td>over.png3</td><td>Files1</td><td>Over.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RES_FILES1&gt;\LoginBtn\Over.png</td><td>1</td><td>LoginBtn</td></row>
+		<row><td>over.png4</td><td>Files3</td><td>Over.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BTNGAINPLUS_FILES&gt;\Over.png</td><td>1</td><td/></row>
+		<row><td>over.png5</td><td>Files7</td><td>Over.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BTNGAINSUB_FILES&gt;\Over.png</td><td>1</td><td/></row>
 		<row><td>presetbg.png1</td><td>Files4</td><td>PresetBG.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\Camera\PresetBG.png</td><td>1</td><td>Camera1</td></row>
 		<row><td>search.png3</td><td>Files4</td><td>Search.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\ComboboxCommon\Edit\Search.png</td><td>1</td><td>Edit13</td></row>
 		<row><td>sel.png</td><td>Files2</td><td>Sel.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BTNSYNC_FILES&gt;\Sel.png</td><td>1</td><td/></row>
@@ -859,6 +871,8 @@
 		<row><td>sel.png231</td><td>Files4</td><td>Sel.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\itemToOrderPos\Sel.png</td><td>1</td><td>itemToOrderPos</td></row>
 		<row><td>sel.png232</td><td>Files4</td><td>Sel.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\itemToSysCfg\Sel.png</td><td>1</td><td>itemToSysCfg</td></row>
 		<row><td>sel.png3</td><td>Files1</td><td>Sel.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RES_FILES1&gt;\LoginBtn\Sel.png</td><td>1</td><td>LoginBtn</td></row>
+		<row><td>sel.png4</td><td>Files3</td><td>Sel.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BTNGAINPLUS_FILES&gt;\Sel.png</td><td>1</td><td/></row>
+		<row><td>sel.png5</td><td>Files7</td><td>Sel.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BTNGAINSUB_FILES&gt;\Sel.png</td><td>1</td><td/></row>
 		<row><td>snapshotbkg.png</td><td>Files4</td><td>SnapShotBkg.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\AdjustDlg\SnapShotBkg.png</td><td>1</td><td>AdjustDlg</td></row>
 		<row><td>syscfgdlg.xml</td><td>Files4</td><td>SysCfgDlg.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\layout\SysCfgDlg.xml</td><td>1</td><td>layout2</td></row>
 		<row><td>system.xml1</td><td>Files4</td><td>system.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\system.xml</td><td>1</td><td/></row>
@@ -947,10 +961,12 @@
 		<row><td>Files</td><td/><td/><td>_D4A6823A_3970_4620_A767_AE15E90D3945_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files1</td><td/><td/><td>_FED971F4_5855_4EE2_8A4E_7188BC313B3F_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files2</td><td/><td/><td>_7D4CCD3D_0593_49E6_B628_762110294A48_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Files3</td><td/><td/><td>_1C8AA595_27D3_4CE4_BB11_7FC6A2F108FC_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files4</td><td/><td/><td>_0DC9788F_25E2_4B39_A3AF_9BF4C7FE6C90_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files5</td><td/><td/><td>_89A567A1_495A_438F_9972_E4790094889D_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files6</td><td/><td/><td>_470F30FD_7B50_4339_AAC2_5DF828EFFC1C_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files69</td><td/><td/><td>_4CFBA148_43FE_4EEF_B400_145C3CB89810_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Files7</td><td/><td/><td>_F815A1C8_2E4B_4DE4_AEE6_5BC12511088A_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files70</td><td/><td/><td>_3EBAD864_B4A6_449F_A7B9_AF6FE8F3042A_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files71</td><td/><td/><td>_5FB6C7D8_9DEB_4893_BB0E_678A4E01480D_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files72</td><td/><td/><td>_2A951E9D_5E16_4F60_920D_CDB70B77382F_FILTER</td><td/><td/><td/><td/></row>
@@ -964,6 +980,8 @@
 		<col def="S72">ISSubFolder_Parent</col>
 		<col def="s255">Path</col>
 		<row><td>AdjustDlg</td><td>Files4</td><td>src2</td><td>AdjustDlg</td></row>
+		<row><td>BTNGAINPLUS</td><td>Files4</td><td>Camera1</td><td>BtnGainPlus</td></row>
+		<row><td>BTNGAINSUB</td><td>Files4</td><td>Camera1</td><td>BtnGainSub</td></row>
 		<row><td>BTNSYNC</td><td>Files4</td><td>Camera1</td><td>btnSync</td></row>
 		<row><td>BtnAdd3</td><td>Files4</td><td>CfgNetMng1</td><td>BtnAdd</td></row>
 		<row><td>BtnAuto1</td><td>Files4</td><td>Camera1</td><td>BtnAuto</td></row>
@@ -1289,6 +1307,8 @@
 		<row><td>ISProjectDataFolder</td><td/><td/><td>1</td></row>
 		<row><td>ISProjectFolder</td><td/><td/><td>1</td></row>
 		<row><td>PATH_TO_BACKUPCFG_FILES</td><td>..\setup files\resumstool\src\BackupCfg</td><td/><td>2</td></row>
+		<row><td>PATH_TO_BTNGAINPLUS_FILES</td><td>..\setup files\resmoontool\src\Camera\BtnGainPlus</td><td/><td>2</td></row>
+		<row><td>PATH_TO_BTNGAINSUB_FILES</td><td>..\setup files\resmoontool\src\Camera\BtnGainSub</td><td/><td>2</td></row>
 		<row><td>PATH_TO_BTNSYNC_FILES</td><td>..\setup files\resmoontool\src\Camera\btnSync</td><td/><td>2</td></row>
 		<row><td>PATH_TO_CAMERA_FILES</td><td>..\setup files\rescnstool\src\Camera</td><td/><td>2</td></row>
 		<row><td>PATH_TO_CHECKMOON904K30_FILES</td><td>..\setup files\res\CheckMoon904K30</td><td/><td>2</td></row>
@@ -1617,19 +1637,19 @@
 		<row><td>IDPROP_SETUPTYPE_COMPLETE_DESC</td><td>2052</td><td>C%MT98E;Q8@`</td><td>4</td><td/><td/></row>
 		<row><td>IDPROP_SETUPTYPE_CUSTOM</td><td>2052</td><td>ZH&amp;:6TE.</td><td>3</td><td/><td/></row>
 		<row><td>IDPROP_SETUPTYPE_CUSTOM_DESC_PRO</td><td>2052</td><td>ZH&amp;:6TE.</td><td>3</td><td/><td/></row>
-		<row><td>IDS_SHORTCUT_DISPLAY_NAME1</td><td>2052</td><td>47](5/1^I&amp;+E77=1+@!E`'@`90``</td><td>10</td><td/><td>1377900270</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME1</td><td>2052</td><td>47](5/1^I&amp;+E77=1+0!M`&amp;\`;P!N`"X`90!X`&amp;4`</td><td>15</td><td/><td>1168607563</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME13</td><td>1033</td><td/><td>0</td><td/><td>1377925935</td></row>
-		<row><td>IDS_SHORTCUT_DISPLAY_NAME13</td><td>2052</td><td>47](5/1^I&amp;+E77=1</td><td>6</td><td/><td>1377899471</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME13</td><td>2052</td><td>moontool</td><td>0</td><td/><td>1168591978</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME14</td><td>1033</td><td/><td>0</td><td/><td>1377948463</td></row>
-		<row><td>IDS_SHORTCUT_DISPLAY_NAME14</td><td>2052</td><td>47](5/1^I&amp;+E77=1</td><td>6</td><td/><td>1377919823</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME14</td><td>2052</td><td>47](5/1^I&amp;+E77=1+0!M`&amp;\`;P!N````</td><td>11</td><td/><td>1168613707</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME15</td><td>1033</td><td/><td>0</td><td/><td>1377930063</td></row>
-		<row><td>IDS_SHORTCUT_DISPLAY_NAME15</td><td>2052</td><td>47](5/1^I&amp;+E77=1+@!E`'@`90``</td><td>10</td><td/><td>1377944399</td></row>
-		<row><td>IDS_SHORTCUT_DISPLAY_NAME2</td><td>2052</td><td>47](5/1^I&amp;+E77=1+@!E`'@`90``</td><td>10</td><td/><td>1377900270</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME15</td><td>2052</td><td>47](5/1^I&amp;+E77=1+0!M`&amp;\`;P!N`"X`90!X`&amp;4`</td><td>15</td><td/><td>1168619851</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME2</td><td>2052</td><td>47](5/1^I&amp;+E77=1+0!M`&amp;\`;P!N`"X`90!X`&amp;4`</td><td>15</td><td/><td>1168628043</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME3</td><td>1033</td><td/><td>0</td><td/><td>-199048914</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME3</td><td>2052</td><td>Launch moontool.exe</td><td>0</td><td/><td>-987271888</td></row>
-		<row><td>IDS_SHORTCUT_DISPLAY_NAME4</td><td>2052</td><td>47](5/1^I&amp;+E77=1</td><td>6</td><td/><td>1377900270</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME4</td><td>2052</td><td>47](5/1^I&amp;+E77=1+0!M`&amp;\`;P!N````</td><td>11</td><td/><td>1168585067</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME5</td><td>2052</td><td>Launch moontool.exe</td><td>0</td><td/><td>-987261648</td></row>
-		<row><td>IDS_SHORTCUT_DISPLAY_NAME6</td><td>2052</td><td>47](5/1^I&amp;+E77=1+@!E`'@`90``</td><td>10</td><td/><td>1377900270</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME6</td><td>2052</td><td>47](5/1^I&amp;+E77=1+0!M`&amp;\`;P!N`"X`90!X`&amp;4`</td><td>15</td><td/><td>1168578923</td></row>
 		<row><td>IDS_SQLSCRIPT_INSTALLING</td><td>2052</td><td>8VLH5V=B3(@@`%,`40!,`"``B5O%B!J!+&amp;&lt;N`"X`+@``</td><td>16</td><td/><td/></row>
 		<row><td>IDS_SQLSCRIPT_UNINSTALLING</td><td>2052</td><td>8VLH5V=B3(@@`%,`40!,`"``&gt;%-]CQJ!+&amp;&lt;N`"X`+@``</td><td>16</td><td/><td/></row>
 		<row><td>IDS__DialogId_10103</td><td>1033</td><td> </td><td>0</td><td/><td>1377900270</td></row>
@@ -1713,15 +1733,15 @@
 		<row><td>IDS__NewDialog_ControlId_51</td><td>2052</td><td>Your Sub-Title Here</td><td>0</td><td/><td>278304778</td></row>
 		<row><td>IDS__NewDialog_ControlId_9</td><td>2052</td><td>Cancel</td><td>0</td><td/><td>278302730</td></row>
 		<row><td>ID_STRING1</td><td>2052</td><td>kedacom</td><td>0</td><td/><td>1377900270</td></row>
-		<row><td>ID_STRING16</td><td>1033</td><td>网呈维护工具.exe</td><td>0</td><td/><td>1377946447</td></row>
-		<row><td>ID_STRING16</td><td>2052</td><td>47](5/1^I&amp;+E77=1+@!E`'@`90``</td><td>10</td><td/><td>1377946447</td></row>
-		<row><td>ID_STRING2</td><td>2052</td><td>47](5/1^I&amp;+E77=1+@!E`'@`90``</td><td>10</td><td/><td>1377900270</td></row>
-		<row><td>ID_STRING3</td><td>2052</td><td>47](5/1^I&amp;+E77=1+@!E`'@`90``</td><td>10</td><td/><td>1377900270</td></row>
-		<row><td>ID_STRING4</td><td>2052</td><td>47](5/1^I&amp;+E77=1+@!E`'@`90``</td><td>10</td><td/><td>1377900270</td></row>
-		<row><td>ID_STRING5</td><td>2052</td><td>47](5/1^I&amp;+E77=1+@!E`'@`90``</td><td>10</td><td/><td>1377900270</td></row>
-		<row><td>ID_STRING6</td><td>1033</td><td>网呈维护工具</td><td>0</td><td/><td>908145902</td></row>
-		<row><td>ID_STRING6</td><td>2052</td><td>47](5/1^I&amp;+E77=1</td><td>6</td><td/><td>908145902</td></row>
-		<row><td>ID_STRING7</td><td>2052</td><td>47](5/1^I&amp;+E77=1+@!E`'@`90``</td><td>10</td><td/><td>1377900270</td></row>
+		<row><td>ID_STRING16</td><td>1033</td><td>网呈维护工具-moon.exe</td><td>0</td><td/><td>1377946447</td></row>
+		<row><td>ID_STRING16</td><td>2052</td><td>47](5/1^I&amp;+E77=1+0!M`&amp;\`;P!N`"X`90!X`&amp;4`</td><td>15</td><td/><td>1168611595</td></row>
+		<row><td>ID_STRING2</td><td>2052</td><td>47](5/1^I&amp;+E77=1+0!M`&amp;\`;P!N`"X`90!X`&amp;4`</td><td>15</td><td/><td>1168617739</td></row>
+		<row><td>ID_STRING3</td><td>2052</td><td>47](5/1^I&amp;+E77=1+0!M`&amp;\`;P!N`"X`90!X`&amp;4`</td><td>15</td><td/><td>1168625931</td></row>
+		<row><td>ID_STRING4</td><td>2052</td><td>47](5/1^I&amp;+E77=1+0!M`&amp;\`;P!N`"X`90!X`&amp;4`</td><td>15</td><td/><td>1168630027</td></row>
+		<row><td>ID_STRING5</td><td>2052</td><td>47](5/1^I&amp;+E77=1+0!M`&amp;\`;P!N`"X`90!X`&amp;4`</td><td>15</td><td/><td>1168576811</td></row>
+		<row><td>ID_STRING6</td><td>1033</td><td>网呈维护工具-moon</td><td>0</td><td/><td>908145902</td></row>
+		<row><td>ID_STRING6</td><td>2052</td><td>47](5/1^I&amp;+E77=1+0!M`&amp;\`;P!N````</td><td>11</td><td/><td>1168582955</td></row>
+		<row><td>ID_STRING7</td><td>2052</td><td>47](5/1^I&amp;+E77=1+0!M`&amp;\`;P!N`"X`90!X`&amp;4`</td><td>15</td><td/><td>1168587051</td></row>
 	</table>
 
 	<table name="ISVRoot">
@@ -1871,7 +1891,7 @@ UwBJAE4ARwBMAEUAXwBFAFgARQBfAEkATQBBAEcARQABAE0AZQBkAGkAYQA=
 		<row><td>DWUSINTERVAL</td><td>30</td><td/></row>
 		<row><td>DWUSLINK</td><td>CEACC098D9FCB7E8BEACA0DFFE9C978F9ECB108FCE8BC0B8CE9C97F88E2CC798B98C90E89EAC</td><td/></row>
 		<row><td>DefaultUIFont</td><td>Tahoma8</td><td/></row>
-		<row><td>ISAppExeFile</td><td>网呈维护工具-moontool.exe</td><td/></row>
+		<row><td>ISAppExeFile</td><td>网呈维护工具-moon.exe</td><td/></row>
 		<row><td>ISENABLEDWUSFINISHDIALOG</td><td/><td/></row>
 		<row><td>ISVROOT_PORT_NO</td><td>0</td><td/></row>
 		<row><td>IS_SQLSERVER_AUTHENTICATION</td><td>0</td><td/></row>
@@ -1917,8 +1937,8 @@ UwBJAE4ARwBMAEUAXwBFAFgARQBfAEkATQBBAEcARQABAE0AZQBkAGkAYQA=
 		<row><td>ProObjShortName</td><td>##IDS_PROOBJ_SHORTNAME##</td><td/></row>
 		<row><td>ProObjUseDefaultSettings</td><td>##IDS_PROOBJ_USEDEFAULTSETTINGS##</td><td/></row>
 		<row><td>ProductCode</td><td>{F34D9DDA-C589-4F58-899E-C219BC14DCCD}</td><td/></row>
-		<row><td>ProductName</td><td>网呈维护工具-moontool</td><td/></row>
-		<row><td>ProductVersion</td><td>1.00.0000</td><td/></row>
+		<row><td>ProductName</td><td>网呈维护工具-moon</td><td/></row>
+		<row><td>ProductVersion</td><td>1.01.006</td><td/></row>
 		<row><td>___</td><td>选项一</td><td/></row>
 		<row><td>___1</td><td>选项三</td><td/></row>
 	</table>

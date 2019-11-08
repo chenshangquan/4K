@@ -1373,10 +1373,10 @@ bool CCameraCtrlLogic::OnSliderSaturatChanged( const IArgs& args )
 	Value_CSliderCtrlPos valueCSliderCtrlPos;
 	UIFACTORYMGR_PTR->GetPropertyValue( valueCSliderCtrlPos, m_strSliderSaturat, m_pWndTree );
 	
-	SetSaturatValue( valueCSliderCtrlPos.nPos );
+    //moon904k30 饱和度调节范围为 60~200
+	SetSaturatValue( valueCSliderCtrlPos.nPos + 60 );
 
-	u32 dwSaturat = valueCSliderCtrlPos.nPos;
-
+	u32 dwSaturat = valueCSliderCtrlPos.nPos + 60;
 	if ( dwSaturat == m_dwSaturat )
 	{
 		return true;
@@ -2187,9 +2187,9 @@ void CCameraCtrlLogic::SetSaturatCmd( CString str )
 	{
 		n = 200;
 	}
-	else if ( n < 0 )
+	else if ( n < 60 )
 	{
-		n = 0;
+		n = 60;
 	}
 	
 	u16 nRet = COMIFMGRPTR->CamImageParaCmd( emSaturat, n );
@@ -3483,7 +3483,7 @@ void CCameraCtrlLogic::SetAutoExp( EmTPMOOMMode emExpMode )
 	}
 }
 
-void CCameraCtrlLogic::SetOutputFormatValue( TPOutputFmt tOutputFmt )
+void CCameraCtrlLogic::SetOutputFormatValue( TPOutputFmt &tOutputFmt )
 {
     if (tOutputFmt.FMT1080_25fps_flag || tOutputFmt.FMT1080_50fps_flag ||
         tOutputFmt.FMT4K_25fps_flag || tOutputFmt.FMT720_50fps_flag)
@@ -3494,6 +3494,46 @@ void CCameraCtrlLogic::SetOutputFormatValue( TPOutputFmt tOutputFmt )
     {
         m_bSourceCfg = 1;
     }
+
+    String strCaption;
+    if ( tOutputFmt.FMT4K_30fps_flag == 1 )
+    {
+        strCaption  = _T("4K@30fps");
+    }
+    else if ( tOutputFmt.FMT4K_25fps_flag == 1 )
+    {
+        strCaption  = _T("4K@25fps");
+    }
+    else if ( tOutputFmt.FMT1080_60fps_flag == 1 )
+    {
+        strCaption  = _T("1080P@60fps");
+    }
+    else if ( tOutputFmt.FMT1080_50fps_flag == 1 )
+    {
+        strCaption  = _T("1080P@50fps");
+    }
+    else if ( tOutputFmt.FMT1080_30fps_flag == 1 )
+    {
+        strCaption  = _T("1080P@30fps");
+    }
+    else if ( tOutputFmt.FMT1080_25fps_flag == 1 )
+    {
+        strCaption  = _T("1080P@25fps");
+    }
+    else if ( tOutputFmt.FMT720_60fps_flag == 1 )
+    {
+        strCaption  = _T("720P@60fps");
+    }
+    else if ( tOutputFmt.FMT720_50fps_flag == 1 )
+    {
+        strCaption  = _T("720P@50fps");
+    }
+    else
+    {
+        strCaption = _T("");
+    }
+
+    UIFACTORYMGR_PTR->SetComboText( m_strComboboxOutputFormat, strCaption, m_pWndTree );
     
     SetShutComboxData();
 }
@@ -3625,16 +3665,16 @@ void CCameraCtrlLogic::SetSaturatValue( u32 dwSaturat )
     {
         dwSaturat = 200;
     }
-    else if ( dwSaturat < 0 )
+    else if ( dwSaturat < 60 )
     {
-        dwSaturat = 0;
+        dwSaturat = 60;
     }
     else
     {
     }
 
 	Value_CSliderCtrlPos valueCSliderCtrlPos;
-	valueCSliderCtrlPos.nPos = dwSaturat;
+	valueCSliderCtrlPos.nPos = dwSaturat - 60;  //moon904k30 饱和度调节范围为 60~200
 	UIFACTORYMGR_PTR->SetPropertyValue( valueCSliderCtrlPos, m_strSliderSaturat, m_pWndTree );
 	
 	CString strCaption;

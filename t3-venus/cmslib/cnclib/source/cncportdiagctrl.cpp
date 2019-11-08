@@ -310,7 +310,7 @@ void CCncPortDiagCtrl::OnLostPacketInfoRsp(const CMessage& cMsg)
 	}
 
     //丢包率不应为负数  问题单号：SDM-00158560
-    if ( LostPacketRate < 0 )
+    if ( LostPacketRate <= 0 )
     {
         LostPacketRate = 0;
     }

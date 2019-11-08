@@ -115,7 +115,7 @@
 #define MOON_MAX_NODE_NUM	1		//单一MOON接入实例最大数
 
 #define MAX_THREECAMERA_NUM       3             //三眼摄像机摄像头个数
-#define MAX_CAMERA_Pre_NUM        16            //三眼摄像机预置位个数
+#define MAX_CAMERA_Pre_NUM        8            //三眼摄像机预置位个数
 #define MAX_THREECAMERA_LEN       32             //三眼摄像机预置位描述
 
 

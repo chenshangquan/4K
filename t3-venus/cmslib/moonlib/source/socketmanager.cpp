@@ -179,7 +179,9 @@ u8 CSocketManager::OpenSocket()
     //AfxBeginThread(ThreadRevcDadaPack, NULL);
     //启动心跳保活Timer
     PrtRkcMsg( RK100_EVT_LOGIN, emEventTypeScoketSend, "ThreadHeartBeat start");
+#ifndef NO_CAM_LOGIN
     StartHeartBeat();
+#endif
     return NOERROR;
 }
 
@@ -226,7 +228,9 @@ void CSocketManager::SendDataPack()
         LeaveCriticalSection(&m_csMsgLock);
         TRK100MsgHead tRK100MsgHead = *(TRK100MsgHead*)(rkmsg.GetBody());
         //设置等待回复的消息为发送的消息+1 没有回复这不可继续发送消息
+#ifndef NO_CAM_LOGIN
         m_evWaitMsg = ntohl(tRK100MsgHead.dwEvent) + 1;
+#endif
         int ret = send(m_sclient, (const char*)rkmsg.GetBody(), rkmsg.GetBodyLen(), 0);
         if (ret == -1)
         {

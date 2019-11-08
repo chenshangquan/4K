@@ -4,6 +4,7 @@
 
 #include "stdafx.h"
 #include "SysCfgDlgLogic.h"
+#include "common.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -59,6 +60,10 @@ bool CSysCfgDlgLogic::InitWnd( const IArgs & arg )
 	vecRaudRate.push_back(TransRaudRateTypeToStr(em_LVDSBaud_115200bps).c_str());
 	UIFACTORYMGR_PTR->SetComboListData( m_strComboBaudRate, vecRaudRate, m_pWndTree );
 	UIFACTORYMGR_PTR->SetComboText( m_strComboBaudRate, TransRaudRateTypeToStr(em_LVDSBaud_9600bps).c_str(), m_pWndTree );
+
+    //软件版本信息
+    UIFACTORYMGR_PTR->SetCaption( m_strSoftWareInfo, GetMoonToolBuildVersion(), m_pWndTree );
+
 	m_vctWndName.clear();
 	UpBtnState();
 	return true;
@@ -121,7 +126,7 @@ bool CSysCfgDlgLogic::OnBtnSave( const IArgs& args )
 	//先校验网络IP信息,防止有弹框剩余信息仍能保存成功
 
 	bool bOk = SaveNet(); 
-
+#if 0
 	if ( bOk )
 	{
 		s32 nCheckState = 0;
@@ -171,7 +176,8 @@ bool CSysCfgDlgLogic::OnBtnSave( const IArgs& args )
 		UpBtnState();
 		return true;
 	}
-	return false;
+#endif
+	return bOk;
 }
 
 bool CSysCfgDlgLogic::OnBtnCancel( const IArgs& args )
@@ -582,11 +588,11 @@ bool CSysCfgDlgLogic::SaveNet()
 	Value_IpEditData valGateway;
     UIFACTORYMGR_PTR->GetPropertyValue(valGateway, m_strEdtGateWay, m_pWndTree); 
 	
-	TTPEthnetInfo tOldEthnetInfo;
-	MOONLIBDATAMGRPTR->GetEthnetCfg( tOldEthnetInfo );	
+	//TTPEthnetInfo tOldEthnetInfo;
+	//MOONLIBDATAMGRPTR->GetEthnetCfg( tOldEthnetInfo );	
 	
-	if ( htonl( valCNSIp.dwIP ) != tOldEthnetInfo.dwIP || htonl( valSubMask.dwIP ) != tOldEthnetInfo.dwMask
-		|| htonl( valGateway.dwIP ) != tOldEthnetInfo.dwGateWay || m_bCnsIp || m_bGateWay || m_bSubMask )
+	//if ( htonl( valCNSIp.dwIP ) != tOldEthnetInfo.dwIP || htonl( valSubMask.dwIP ) != tOldEthnetInfo.dwMask
+	//	|| htonl( valGateway.dwIP ) != tOldEthnetInfo.dwGateWay || m_bCnsIp || m_bGateWay || m_bSubMask )
 	{
 		//效验IP
 		String strCaption;

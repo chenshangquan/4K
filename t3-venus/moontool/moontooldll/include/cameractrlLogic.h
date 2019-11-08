@@ -771,7 +771,7 @@ protected:
 	
 
 private:
-    void SetOutputFormatValue( TPOutputFmt tOutputFmt );
+    void SetOutputFormatValue( TPOutputFmt &tOutputFmt );
 	void GetShutSpdValue( EmTPSOrThShutter &emShutSpd );
 	void GetTwShutterValue( EmTPFOrTwShutter &emTwShutter );
 	void GetApertureValue(EmTPAperture &emAper);

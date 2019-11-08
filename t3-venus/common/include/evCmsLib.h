@@ -18,6 +18,8 @@
 #include "msgIdDispatch.h"
 #include "tpeventcomm.h"
 
+#define NO_CAM_LOGIN
+
 /** @defgroup  cms 消息定义部分
  *  @{
  */

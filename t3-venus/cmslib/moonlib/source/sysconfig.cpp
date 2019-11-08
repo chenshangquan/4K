@@ -15,6 +15,7 @@
 CSysConfig::CSysConfig( CRkcSession &cSession) : CSysConfigIF()                                                 
 {
 	m_pSession = &cSession;
+    ZeroMemory(&m_tEthnetInfo, sizeof(TTPEthnetInfo));
 
 	BuildEventsMap();
 } 
@@ -335,6 +336,7 @@ u16 CSysConfig::UpdateEthnetCfg( const TTPEthnetInfo& cfg )
 	tAddr.S_un.S_addr = cfg.dwIP;
 	PrtMsg( ev_TpMoonCfgEthnet_Cmd, emEventTypemoontoolSend, "MoonIP: %s", inet_ntoa(tAddr) );
 	return wRet;*/
+#if 0
 	TRK100MsgHead tRK100MsgHead;//定义消息头结构体
 	memset(&tRK100MsgHead,0,sizeof(TRK100MsgHead));
 	//整型传数据集的转网络序
@@ -353,7 +355,8 @@ u16 CSysConfig::UpdateEthnetCfg( const TTPEthnetInfo& cfg )
 	PrtRkcMsg( ev_TpMoonCfgEthnet_Cmd, emEventTypeScoketSend , "MoonIP: %s", inet_ntoa(tAddr) );
 
 	SOCKETWORK->SendDataPack(rkmsg);//消息发送
-	return NOERROR;
+#endif
+	return 1;
 }
 
 u16 CSysConfig::SetBaudRateCmd( EmTPLVDSBaud emBaudRate )

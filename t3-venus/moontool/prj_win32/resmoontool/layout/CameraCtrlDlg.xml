@@ -622,7 +622,7 @@
             <Property Name="WindowSize" Value="x:68 y:32" />
             <Property Name="WindowCaption" Value="" />
             <Property Name="TransparentBtnUseTimer" Value="True" />
-            <Property Name="Image" Value="Camera\BtnZoomPlus" />
+            <Property Name="Image" Value="Camera\BtnGainPlus" />
             <Property Name="WindowVisible" Value="False" />
             <!--
             <Event Type="WM_LBUTTONDOWN" Value="CCameraCtrlLogic::OnLBtnDownExpGainPlus" />
@@ -648,7 +648,7 @@
             <Property Name="WindowSize" Value="x:68 y:32" />
             <Property Name="WindowCaption" Value="" />
             <Property Name="TransparentBtnUseTimer" Value="True" />
-            <Property Name="Image" Value="Camera\BtnZoomPlus" />
+            <Property Name="Image" Value="Camera\BtnGainSub" />
             <Property Name="WindowVisible" Value="False" />
             <!--
             <Event Type="WM_LBUTTONDOWN" Value="CCameraCtrlLogic::OnLBtnDownExpGainSub" />
@@ -1420,7 +1420,7 @@
             <Property Name="WindowSize" Value="x:196 y:13" />
             <Property Name="WindowVisible" Value="True" />
             <Property Name="Image" Value="Camera/slider" />
-            <Property Name="CSliderCtrlRange" Value="min:0 max:200" />
+            <Property Name="CSliderCtrlRange" Value="min:0 max:140" />
             <Property Name="CTransparentSliderWndStyle" Value="1" />
             <Event Type="SLIDER_CHANGED" Value="CCameraCtrlLogic::OnSliderSaturatChanged" />
             <Scheme Name="SchmCamNormal">

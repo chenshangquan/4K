@@ -34,14 +34,14 @@ bool COrderPosInfoLogic::InitWnd( const IArgs & arg )
 	vecOrderPos.push_back("Ô¤ÖÃÎ»6");
 	vecOrderPos.push_back("Ô¤ÖÃÎ»7");
 	vecOrderPos.push_back("Ô¤ÖÃÎ»8");
-	vecOrderPos.push_back("Ô¤ÖÃÎ»9");
+	/*vecOrderPos.push_back("Ô¤ÖÃÎ»9");
 	vecOrderPos.push_back("Ô¤ÖÃÎ»10");
 	vecOrderPos.push_back("Ô¤ÖÃÎ»11");
 	vecOrderPos.push_back("Ô¤ÖÃÎ»12");
 	vecOrderPos.push_back("Ô¤ÖÃÎ»13");
 	vecOrderPos.push_back("Ô¤ÖÃÎ»14");
 	vecOrderPos.push_back("Ô¤ÖÃÎ»15");
-	vecOrderPos.push_back("Ô¤ÖÃÎ»16");
+	vecOrderPos.push_back("Ô¤ÖÃÎ»16");*/
 
 	UIFACTORYMGR_PTR->SetComboListData( "ComboboxOrderPosIndex", vecOrderPos, m_pWndTree );
 	UIFACTORYMGR_PTR->SetComboText( "ComboboxOrderPosIndex", "Ô¤ÖÃÎ»1", m_pWndTree );
@@ -140,7 +140,7 @@ bool COrderPosInfoLogic::OnBtnPresetInfoOk( const IArgs& args )
 	{
 		tTPCamPre.byPre = 7;
 	}
-	else if ( strOrderPosIndex == "Ô¤ÖÃÎ»9")
+	/*else if ( strOrderPosIndex == "Ô¤ÖÃÎ»9")
 	{
 		tTPCamPre.byPre = 8;
 	}
@@ -171,7 +171,7 @@ bool COrderPosInfoLogic::OnBtnPresetInfoOk( const IArgs& args )
 	else if ( strOrderPosIndex == "Ô¤ÖÃÎ»16")
 	{
 		tTPCamPre.byPre = 15;
-	}
+	}*/
 	tTPCamPre.bIsUsed = TRUE;
 	String strCaption;
 	UIFACTORYMGR_PTR->GetCaption( m_strEdtPresetInfo, strCaption, m_pWndTree);
@@ -311,7 +311,7 @@ void COrderPosInfoLogic::UpdatePreData( TTPCamPre tTPCamPre )
 	{
 		strOrderPosIndex = "Ô¤ÖÃÎ»8";
 	}
-	else if ( tTPCamPre.byPre == 8 )
+	/*else if ( tTPCamPre.byPre == 8 )
 	{
 		strOrderPosIndex = "Ô¤ÖÃÎ»9";
 	}
@@ -342,7 +342,7 @@ void COrderPosInfoLogic::UpdatePreData( TTPCamPre tTPCamPre )
 	else if ( tTPCamPre.byPre == 15 )
 	{
 		strOrderPosIndex = "Ô¤ÖÃÎ»16";
-	}
+	}*/
 
 	UIFACTORYMGR_PTR->SetComboText( "ComboboxOrderPosIndex", strOrderPosIndex, m_pWndTree );
 	

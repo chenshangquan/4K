@@ -34,7 +34,9 @@ UINT ThreadConnectMoon(LPVOID lpParam)
 	}
     else
     {
-        //SendMessage( MOONLIBDATAMGRPTR->GetSafeHwnd() ,UI_MOONTOOL_CONNECTED, TRUE, NO_ERROR);  //界面调试可用
+#ifdef NO_CAM_LOGIN
+        SendMessage( MOONLIBDATAMGRPTR->GetSafeHwnd() ,UI_MOONTOOL_CONNECTED, TRUE, NO_ERROR);  //界面调试可用
+#endif
         TRK100LoginInfo tRK100LoginInfo;
         ZeroMemory(tRK100LoginInfo.szUsr, sizeof(tRK100LoginInfo.szUsr));
         ZeroMemory(tRK100LoginInfo.szPwd, sizeof(tRK100LoginInfo.szPwd));

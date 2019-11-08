@@ -248,6 +248,9 @@ void CCRenameOptDlg::SetDisplaySourceData()
 	string strComboxText;
 	string strEditText;
 
+    EmCnModel emCnModel;
+	LIBDATAMGRPTR->GetEmCnModelInfo( &emCnModel );
+
 	strDisplaySourceType = TransDefaultDisplaySource(emVgaTypeDocCamera);
 	vecDiplaySource.push_back(strDisplaySourceType.c_str());
 	
@@ -257,8 +260,11 @@ void CCRenameOptDlg::SetDisplaySourceData()
 	strDisplaySourceType = TransDefaultDisplaySource(emVgaType002);
 	vecDiplaySource.push_back(strDisplaySourceType.c_str());
 	
-	strDisplaySourceType = TransDefaultDisplaySource(emVgaType003);
-	vecDiplaySource.push_back(strDisplaySourceType.c_str());
+    if ( emCnModel != T300E_4K )
+    {
+        strDisplaySourceType = TransDefaultDisplaySource(emVgaType003);
+	    vecDiplaySource.push_back(strDisplaySourceType.c_str());
+    }
 	
 	strDisplaySourceType = TransDefaultDisplaySource(emVgaTypeFullScreenCamera);
 	vecDiplaySource.push_back(strDisplaySourceType.c_str());
