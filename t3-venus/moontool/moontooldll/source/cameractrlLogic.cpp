@@ -376,13 +376,6 @@ bool CCameraCtrlLogic::InitWnd(  const IArgs & arg )
     vecCamera.clear();
     vecCamera.push_back("…œ“ª¥Œ◊¥Ã¨");
     vecCamera.push_back("‘§÷√Œª1");
-    vecCamera.push_back("‘§÷√Œª2");
-    vecCamera.push_back("‘§÷√Œª3");
-    vecCamera.push_back("‘§÷√Œª4");
-    vecCamera.push_back("‘§÷√Œª5");
-    vecCamera.push_back("‘§÷√Œª6");
-    vecCamera.push_back("‘§÷√Œª7");
-    vecCamera.push_back("‘§÷√Œª8");
     UIFACTORYMGR_PTR->SetComboListData( m_strComboboxOrderPos, vecCamera, m_pWndTree );
 	UIFACTORYMGR_PTR->SetComboText( m_strComboboxOrderPos, _T("…œ“ª¥Œ◊¥Ã¨"), m_pWndTree );
 
@@ -638,34 +631,6 @@ bool CCameraCtrlLogic::OnComboboxOrderPosClick(const IArgs& args)
     if( "‘§÷√Œª1" == strComboText )
     {
         tCamPresetPos.PresetNumber1 = 1;
-    }
-    else if( "‘§÷√Œª2" == strComboText )
-    {
-        tCamPresetPos.PresetNumber2 = 1;
-    }
-    else if( "‘§÷√Œª3" == strComboText )
-    {
-        tCamPresetPos.PresetNumber3 = 1;
-    }
-    else if( "‘§÷√Œª4" == strComboText )
-    {
-        tCamPresetPos.PresetNumber4 = 1;
-    }
-    else if( "‘§÷√Œª5" == strComboText )
-    {
-        tCamPresetPos.PresetNumber5 = 1;
-    }
-    else if( "‘§÷√Œª6" == strComboText )
-    {
-        tCamPresetPos.PresetNumber6 = 1;
-    }
-    else if( "‘§÷√Œª7" == strComboText )
-    {
-        tCamPresetPos.PresetNumber7 = 1;
-    }
-    else if( "‘§÷√Œª8" == strComboText )
-    {
-        tCamPresetPos.PresetNumber8 = 1;
     }
     else
     {

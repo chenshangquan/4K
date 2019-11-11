@@ -294,9 +294,9 @@ Dlg_ObjDialogs:
 
         case REMOVEALL: 
         
-			if ProcessRunning("tpTools") then
+			if ProcessRunning("moontool") then
 				//MessageBox("Application is running.", INFORMATION);
-				ProcessEnd("tpTools"); 
+				ProcessEnd("moontool"); 
 			endif;
 			//LaunchAppAndWait("", "Taskkill /IM tpTools.exe /F", LAAW_OPTION_NOWAIT|LAAW_OPTION_HIDDEN);
 			//Delay(1);  

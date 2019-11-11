@@ -2692,9 +2692,8 @@ u16 CCamConfig::CamOrderPosCheckCmd( const TCamPresetNumberList& tCamPreset )
     rkmsg.SetBody(&tRK100MsgHead, sizeof(TRK100MsgHead));//添加头内容
     rkmsg.CatBody(&tCamPreset, sizeof(TCamPresetNumberList));//添加消息体
     
-    PrtRkcMsg( RK100_EVT_SET_CAM_Preset_PowOnRecall, emEventTypeScoketSend, "LaseState:%d, PresetPos:<%d,%d,%d,%d,%d,%d,%d,%d>",
-        tCamPreset.PresetLaststate, tCamPreset.PresetNumber1, tCamPreset.PresetNumber2, tCamPreset.PresetNumber3, tCamPreset.PresetNumber4,
-        tCamPreset.PresetNumber5, tCamPreset.PresetNumber6, tCamPreset.PresetNumber7, tCamPreset.PresetNumber8);
+    PrtRkcMsg( RK100_EVT_SET_CAM_Preset_PowOnRecall, emEventTypeScoketSend, "LaseState:%d, PresetPos:%d",
+        tCamPreset.PresetLaststate, tCamPreset.PresetNumber1 );
     
     SOCKETWORK->SendDataPack(rkmsg);//消息发送
     return NOERROR;
