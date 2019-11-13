@@ -1,0 +1,27 @@
+// idatamgr.cpp: implementation of the IDataMgr class.
+//
+//////////////////////////////////////////////////////////////////////
+
+#include "stdafx.h"
+#include "umstooldll.h"
+#include "idatamgr.h"
+
+#ifdef _DEBUG
+#undef THIS_FILE
+static char THIS_FILE[]=__FILE__;
+#define new DEBUG_NEW
+#endif
+
+//////////////////////////////////////////////////////////////////////
+// Construction/Destruction
+//////////////////////////////////////////////////////////////////////
+
+IDataMgr::IDataMgr()
+{
+
+}
+
+IDataMgr::~IDataMgr()
+{
+
+}

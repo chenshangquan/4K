@@ -330,13 +330,6 @@ bool CMainFrameLogic::OnClickSysCfg( const IArgs& args )
 
 HRESULT CMainFrameLogic::OnGrabLoginNty( WPARAM wparam, LPARAM lparam )
 {
-// 	u32 dwIP = (u32)wparam;
-//     in_addr tAddr;
-//     tAddr.S_un.S_addr =  dwIP ; 
-//     CString CMsg;
-//     CMsg.Format("您已经被强制下线，该账户%s已在另一个地方登录", inet_ntoa(tAddr));
-// 	String msg = LPCSTR(CMsg);
-// 	MSG_BOX_OK( msg );
 	COMIFMGRPTR->DisConnect();
 	UIFACTORYMGR_PTR->HideAllWindow();
 //	LOGICMGR_PTR->DestroyLogic();

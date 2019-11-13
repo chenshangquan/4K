@@ -90,9 +90,31 @@ void CRkcSysCtrl::OnDicconnected(const CMessage& cMsg)
 
 void CRkcSysCtrl::OnLoginOther(const CMessage& cMsg)
 {
-    CloseSocket();
-    PrtRkcMsg( RK100_EVT_LOGIN_OTHER, emEventTypeScoketRecv, "±»ÇÀµÇ...");
-    PostEvent( UI_MOONTOOL_DISCONNECTED, 1  );
+    TRK100MsgHead tMsgHead = *reinterpret_cast<TRK100MsgHead*>( cMsg.content );
+    tMsgHead.dwEvent = ntohl(tMsgHead.dwEvent);
+    tMsgHead.dwHandle = ntohl(tMsgHead.dwHandle);
+    tMsgHead.dwProtocolVer = ntohl(tMsgHead.dwProtocolVer);
+    tMsgHead.dwRsvd = ntohl(tMsgHead.dwRsvd);
+    tMsgHead.dwSerial = ntohl(tMsgHead.dwSerial);
+    tMsgHead.nArgv = ntohl(tMsgHead.nArgv);
+    tMsgHead.wExtLen = ntohs(tMsgHead.wExtLen);
+    tMsgHead.wMsgLen = ntohs(tMsgHead.wMsgLen);
+    tMsgHead.wOptRtn = ntohs(tMsgHead.wOptRtn);
+    tMsgHead.wReserved1 = ntohs(tMsgHead.wReserved1);
+
+    u32 dwIP = 0;
+    if (tMsgHead.wMsgLen != 0)
+    {
+        dwIP = *reinterpret_cast<u32*>( cMsg.content + sizeof(TRK100MsgHead) );
+	}
+
+    CString strIP;
+    struct in_addr addrIPAddr;
+    addrIPAddr.S_un.S_addr =  dwIP;
+	strIP = inet_ntoa(addrIPAddr);
+
+    PrtRkcMsg( RK100_EVT_LOGIN_OTHER, emEventTypeScoketRecv, "±»[IP:%s]ÇÀµÇ...", strIP);
+    PostEvent( UI_UMS_GRAB_LOGIN_NOTIFY, (WPARAM)dwIP );
 }
 
 void CRkcSysCtrl::OnLoginRsp(const CMessage& cMsg)

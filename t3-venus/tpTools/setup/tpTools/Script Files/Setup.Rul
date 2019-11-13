@@ -1,0 +1,357 @@
+//===========================================================================
+//
+//  File Name:    Setup.rul
+//
+//  Description:  Blank setup main script file
+//
+//  Comments:     Blank setup is an empty setup project. If you want to
+//				  create a new project via. step-by step instructions use the
+//				  Project Assistant.
+//
+//===========================================================================
+
+// Included header files ----------------------------------------------------
+#include "ifx.h"
+#include "ShutDownRunningApp.rul"    
+
+//---------------------------------------------------------------------------                                                                        
+// OnFirstUIBefore
+//
+// First Install UI Sequence - Before Move Data
+//
+// The OnFirstUIBefore event is called by OnShowUI when the setup is
+// running in first install mode. By default this event displays UI allowing
+// the end user to specify installation parameters.
+//
+// Note: This event will not be called automatically in a
+// program...endprogram style setup.
+//---------------------------------------------------------------------------
+function OnFirstUIBefore()
+    number  nResult, nLevel, nSize, nSetupType;
+    string  szTitle, szMsg, szOpt1, szOpt2, szLicenseFile;
+    string  szName, szCompany, szTargetPath, szDir, szFeatures;
+    BOOL    bLicenseAccepted;	
+begin	
+   
+    nSetupType = COMPLETE;	
+    szDir = TARGETDIR;
+    szName = "";
+    szCompany = "";
+    bLicenseAccepted = FALSE;
+
+// Beginning of UI Sequence
+Dlg_Start:
+    nResult = 0;
+
+Dlg_SdWelcome:
+    szTitle = "";
+    szMsg = "";
+    //{{IS_SCRIPT_TAG(Dlg_SdWelcome)
+    nResult = SdWelcome( szTitle, szMsg );
+    //}}IS_SCRIPT_TAG(Dlg_SdWelcome)
+    if (nResult = BACK) goto Dlg_Start;
+
+Dlg_SdLicense2:
+    szTitle = "";
+    szOpt1 = "";
+    szOpt2 = "";
+    //{{IS_SCRIPT_TAG(License_File_Path)
+    szLicenseFile = SUPPORTDIR ^ "License.rtf";
+    //}}IS_SCRIPT_TAG(License_File_Path)
+    //{{IS_SCRIPT_TAG(Dlg_SdLicense2)
+   // nResult = SdLicense2Rtf( szTitle, szOpt1, szOpt2, szLicenseFile, bLicenseAccepted );
+    //}}IS_SCRIPT_TAG(Dlg_SdLicense2)
+    if (nResult = BACK) then
+        goto Dlg_SdWelcome;
+    else
+        bLicenseAccepted = TRUE;
+    endif;
+
+Dlg_SdRegisterUser:
+    szMsg = "";
+    szTitle = "";
+    //{{IS_SCRIPT_TAG(Dlg_SdRegisterUser)	
+   // nResult = SdRegisterUser( szTitle, szMsg, szName, szCompany );
+    //}}IS_SCRIPT_TAG(Dlg_SdRegisterUser)
+    if (nResult = BACK) goto Dlg_SdLicense2;
+
+Dlg_SetupType2:   
+    szTitle = "";
+    szMsg = "";
+    nResult = CUSTOM;
+    //{{IS_SCRIPT_TAG(Dlg_SetupType2)	
+   // nResult = SetupType2( szTitle, szMsg, "", nSetupType, 0 );
+    //}}IS_SCRIPT_TAG(Dlg_SetupType2)
+    if (nResult = BACK) then
+        goto Dlg_SdRegisterUser;
+    else
+        nSetupType = nResult;
+        if (nSetupType != CUSTOM) then
+            szTargetPath = TARGETDIR;
+            nSize = 0;
+            FeatureCompareSizeRequired( MEDIA, szTargetPath, nSize );
+            if (nSize != 0) then      
+                MessageBox( szSdStr_NotEnoughSpace, WARNING );
+                goto Dlg_SetupType2;
+            endif;
+        endif;   
+    endif;
+
+Dlg_SdAskDestPath2:
+    if ((nResult = BACK) && (nSetupType != CUSTOM)) goto Dlg_SetupType2;
+	szTitle = "";
+    szMsg = "";
+    if (nSetupType = CUSTOM) then
+                //{{IS_SCRIPT_TAG(Dlg_SdAskDestPath2)	
+		nResult = SdAskDestPath2( szTitle, szMsg, szDir );
+                //}}IS_SCRIPT_TAG(Dlg_SdAskDestPath2)
+        TARGETDIR = szDir;
+    endif;
+    if (nResult = BACK) goto Dlg_SdWelcome;
+           
+Dlg_SdFeatureTree: 
+    if ((nResult = BACK) && (nSetupType != CUSTOM)) goto Dlg_SdAskDestPath2;
+    szTitle = "";
+    szMsg = "";
+    szFeatures = "";
+    nLevel = 2;
+    if (nSetupType = CUSTOM) then
+        //{{IS_SCRIPT_TAG(Dlg_SdFeatureTree)	
+       // nResult = SdFeatureTree( szTitle, szMsg, TARGETDIR, szFeatures, nLevel );
+        //}}IS_SCRIPT_TAG(Dlg_SdFeatureTree)
+        if (nResult = BACK) goto Dlg_SdAskDestPath2;  
+    endif;
+
+Dlg_SQLServer:
+    nResult = OnSQLServerInitialize( nResult );
+    if( nResult = BACK ) goto Dlg_SdFeatureTree;
+
+Dlg_ObjDialogs:
+    nResult = ShowObjWizardPages( nResult );
+    if (nResult = BACK) goto Dlg_SQLServer;
+    
+Dlg_SdStartCopy2:
+    szTitle = "";
+    szMsg = "";
+    //{{IS_SCRIPT_TAG(Dlg_SdStartCopy2)	
+    nResult = SdStartCopy2( szTitle, szMsg );	
+    //}}IS_SCRIPT_TAG(Dlg_SdStartCopy2)
+    if (nResult = BACK) goto Dlg_ObjDialogs;
+
+    // Added in 11.0 - Set appropriate StatusEx static text.
+    SetStatusExStaticText( SdLoadString( IDS_IFX_STATUSEX_STATICTEXT_FIRSTUI ) );
+ 
+    return 0;
+end;
+//---------------------------------------------------------------------------
+// OnSetUpdateMode
+//
+// OnSetUpdateMode is called directly by the framework to set the UPDATEMODE
+// InstallShield system variable appropriately to control which UI events
+// are called by OnShowUI.
+//
+// Note: This event is called for all setups.
+//---------------------------------------------------------------------------
+function OnSetUpdateMode()
+	number	nIgnore, nMediaFlags, nInstalledVersion, nUpdateVersion, nResult;
+	string	szVersion, szIgnore, szMsg;
+begin
+	
+	UPDATEMODE = FALSE; // Non-update mode by default.
+
+	// Added 11.5 - Don't set UPDATEMODE when running from Add/Remove
+	if( ADDREMOVE ) then
+		return ISERR_SUCCESS;
+	endif;
+
+	// Added 11.5 - Don't set UPDATEMODE when REMOVEONLY is specified
+	if( REMOVEONLY ) then
+		return ISERR_SUCCESS;
+	endif;
+
+	// Get the media flags.
+	MediaGetData( MEDIA, MEDIA_FIELD_MEDIA_FLAGS, nMediaFlags, szIgnore );
+
+	if( ! ( nMediaFlags & MEDIA_FLAG_UPDATEMODE_SUPPORTED ) ) then
+		return ISERR_SUCCESS; // Update mode not supported by the setup.
+	endif;
+
+	// TODO: If you are updating an application that was installed by a previous
+	// version of InstallShield, IFX_INSTALLED_VERSION will be empty, and
+	// VERSION_COMPARE_RESULT_NOT_INSTALLED will be returned by
+	// VerProductCompareVersions. Change the value of IFX_INSTALLED_VERSION (and
+	// IFX_INSTALLED_DISPLAY_VERSION) here based on application specific version
+	// information determined by the setup. Only do this if IFX_INSTALLED_VERSION
+	// is empty.
+	//if ( !StrLengthChars( IFX_INSTALLED_VERSION ) && MAINTENANCE ) then
+	//	IFX_INSTALLED_VERSION = "X.XX.XXX";
+	//	IFX_INSTALLED_DISPLAY_VERSION = IFX_INSTALLED_VERSION;
+	//endif;
+
+	// Verify that the installed version is valid.
+	if( !StrLengthChars( IFX_INSTALLED_VERSION ) && MAINTENANCE ) then
+		// If this error occurs, IFX_INSTALLED_VERSION needs to be set manually.
+		szMsg = SdLoadString( IDS_IFX_ERROR_UPDATE_NO_INSTALLED_VERSION );
+		MessageBox( szMsg, SEVERE );
+		abort;
+	endif;
+
+	// Verify that the product version is valid.
+	if( !StrLengthChars( IFX_PRODUCT_VERSION ) ) then
+		// If this error occures, IFX_PRODUCT_VERSION was not initialized correctly.
+		szMsg = SdLoadString( IDS_IFX_ERROR_UPDATE_NO_PRODUCT_VERSION );
+		MessageBox( szMsg, SEVERE );
+		abort;
+	endif;
+
+	// Do the version comparison.
+	nResult = VerProductCompareVersions();
+
+	// Make sure that valid data was returned by VerProductCompareVersions
+	if( nResult < ISERR_SUCCESS ) then
+		szMsg = SdLoadString( IDS_IFX_ERROR_UPDATE_VERSION_COMPARE_FAILURE );
+		MessageBox( szMsg, SEVERE );
+		abort;
+	endif;
+
+	// Set update mode if this is a differential media or the product is already installed and the versions do not match.
+	UPDATEMODE = ( nMediaFlags & MEDIA_FLAG_FORMAT_DIFFERENTIAL || ( MAINTENANCE && ( nResult != VERSION_COMPARE_RESULT_SAME ) ) );
+
+end;
+//---------------------------------------------------------------------------
+// OnMaintUIBefore
+//
+// Maintenance UI Sequence - Before Move Data
+//
+// The OnMaintUIBefore event is called by OnShowUI when the setup is
+// running in maintenance mode. By default this event displays UI that
+// allows the end user to add or remove features, repair currently
+// installed features or uninstall the application.
+//
+// Note: This event will not be called automatically in a
+// program...endprogram style setup.
+//---------------------------------------------------------------------------
+function OnMaintUIBefore()
+    number	nResult, nType, nMediaFlags;
+    string	szTitle, szMsg, szIgnore;
+begin
+	
+	// nType defaults to MODIFY.
+	nType = MODIFY;
+
+    //Initialize SQL
+    OnSQLServerInitializeMaint();
+
+// Beginning of UI Sequence
+Dlg_Start:
+
+    // Added in Version 9.5 - Support for REMOVEONLY option.
+    if( !REMOVEONLY ) then
+    	// In standard mode show maintenance dialog
+	    Disable( BACKBUTTON );
+	    nType = SdWelcomeMaint( szTitle, szMsg, nType );
+	    Enable( BACKBUTTON );
+        nResult = NEXT;
+    else
+        // Hide the initial progress dialog as otherwise the user can
+        // click on it, and hide the MessageBox.
+        Disable( DIALOGCACHE );
+
+        // In RemoveOnly mode, set to remove.
+        nType = REMOVEALL;
+    endif;
+
+	// Show Uninstall Confirmation Dialog
+    if ( nType = REMOVEALL ) then
+		nResult = MessageBox( SdLoadString( IFX_MAINTUI_MSG ), MB_YESNO );
+		if (nResult != IDYES ) then
+            
+            if( REMOVEONLY ) then
+                // In REMOVEONLY mode, abort the setup.
+                abort;
+            else
+                // In non-REMOVEONLY mode, redisplay the previous dialog.
+			    goto Dlg_Start;
+            endif;
+
+		endif;
+	endif;
+
+Dlg_SdFeatureTree:
+	if ( nType = MODIFY ) then
+		szTitle = "";
+		szMsg = SdLoadString( SD_STR_COMPONENT_MAINT_MSG );
+		nResult = SdFeatureTree( szTitle, szMsg, TARGETDIR, "", -1 );
+		if ( nResult = BACK ) goto Dlg_Start;
+    endif;
+
+Dlg_ObjDialogs:
+    nResult = ShowObjWizardPages( nResult );
+    if ( ( nResult = BACK ) && ( nType != MODIFY ) ) goto Dlg_Start;
+    if ( ( nResult = BACK ) && ( nType = MODIFY ) ) goto Dlg_SdFeatureTree;
+
+	switch(nType)
+
+        case REMOVEALL: 
+        
+			if ProcessRunning("tpTools") then
+				//MessageBox("Application is running.", INFORMATION);
+				ProcessEnd("tpTools"); 
+			endif;
+			//LaunchAppAndWait("", "Taskkill /IM tpTools.exe /F", LAAW_OPTION_NOWAIT|LAAW_OPTION_HIDDEN);
+			//Delay(1);  
+			//ComponentRemoveAll();
+			// Ensure that all previously installed features are removed
+			// for media that supports updating.
+			//MediaGetData( MEDIA, MEDIA_FIELD_MEDIA_FLAGS, nMediaFlags, szIgnore );
+			
+			if( nMediaFlags & MEDIA_FLAG_UPDATEMODE_SUPPORTED ) then
+				FeatureRemoveAllInMediaAndLog();
+			else
+				FeatureRemoveAllInMedia();
+			endif;
+
+            // Added in 11.0 - Set appropriate StatusEx static text.
+            SetStatusExStaticText( SdLoadString( IDS_IFX_STATUSEX_STATICTEXT_MAINTUI_REMOVEALL ) );
+
+        case REPAIR:
+				
+			// Changed for DevStudio 9, Disk1 files are now always updated when installed
+			// so when running from ADDREMOVE we need to prevent these files from being
+			// updated since this will result in files being updated that are locked by the setup.
+			// Updating these files when running from ADDREMOVE should not be needed since updates
+			// are not run directly from Add/Remove.
+            if( ADDREMOVE ) then
+                // Reinstall all previously installed features, except
+                // disk1 features.
+                FeatureUpdate( "" );
+            else
+                // Reinstall all previously installed features.
+                FeatureReinstall();
+            endif;
+
+            // Added in 11.0 - Set appropriate StatusEx static text.
+            SetStatusExStaticText( SdLoadString( IDS_IFX_STATUSEX_STATICTEXT_MAINTUI_REPAIR ) );
+
+        case MODIFY:
+            
+            // Added in 11.0 - Set appropriate StatusEx static text.
+            SetStatusExStaticText( SdLoadString( IDS_IFX_STATUSEX_STATICTEXT_MAINTUI_MODIFY ) );
+
+    endswitch;
+ 
+end;
+//---------------------------------------------------------------------------
+// OnBegin
+//
+// The OnBegin event is called directly by the framework after the setup
+// initializes. Note that this event will be called AFTER "Initialization"
+// events (i.e.) OnSetTARGETDIR, OnCheckMediaPassword.
+//
+// Note: This event will not be called automatically in a
+// program...endprogram style setup.
+//---------------------------------------------------------------------------
+function OnBegin()
+begin
+    // TODO: Perform custom initialization steps, check requirements, etc.
+end;

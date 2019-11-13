@@ -1,0 +1,25 @@
+SCC = This is a Source Code Control file
+
+[BkOffice.Mak]
+SCC_Aux_Path = "\\100.1.1.1\vss_kdcsh\"
+SCC_Project_Name = "$/software/compilePub/Platform SDK/Include", DVPGAAAA
+
+[Disable.Mak]
+SCC_Aux_Path = "\\100.1.1.1\vss_kdcsh\"
+SCC_Project_Name = "$/software/compilePub/Platform SDK/Include", DVPGAAAA
+
+[NtWin32.Mak]
+SCC_Aux_Path = "\\100.1.1.1\vss_kdcsh\"
+SCC_Project_Name = "$/software/compilePub/Platform SDK/Include", DVPGAAAA
+
+[SDKBld.Mak]
+SCC_Aux_Path = "\\100.1.1.1\vss_kdcsh\"
+SCC_Project_Name = "$/software/compilePub/Platform SDK/Include", DVPGAAAA
+
+[SDKPropBld.Mak]
+SCC_Aux_Path = "\\100.1.1.1\vss_kdcsh\"
+SCC_Project_Name = "$/software/compilePub/Platform SDK/Include", DVPGAAAA
+
+[Win32.Mak]
+SCC_Aux_Path = "\\100.1.1.1\vss_kdcsh\"
+SCC_Project_Name = "$/software/compilePub/Platform SDK/Include", DVPGAAAA

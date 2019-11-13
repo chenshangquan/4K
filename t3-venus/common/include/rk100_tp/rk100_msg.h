@@ -504,13 +504,6 @@ typedef struct
 {
     u8 PresetLaststate;
     u8 PresetNumber1;
-    u8 PresetNumber2;
-    u8 PresetNumber3;
-    u8 PresetNumber4;
-    u8 PresetNumber5;
-    u8 PresetNumber6;
-    u8 PresetNumber7;
-    u8 PresetNumber8;
 }TCamPresetNumberList;
 
 

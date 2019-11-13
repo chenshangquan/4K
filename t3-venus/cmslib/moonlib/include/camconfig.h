@@ -340,6 +340,14 @@ public:
 	//设置延时矫正
     virtual u16 SetDelayCorrectCmd(u8 nPosition, u32 dwDelay);
 
+    /** 
+	* 功能  获取图像参数
+	* @param [in] 	 
+	* @return  
+	* @remarks 
+	*/	
+	virtual TCamImagParam GetCamImagParam();
+
 protected:
     virtual void OnTimeOut(u16 wEvent); 
     virtual void DispEvent(const CMessage &cMsg);
@@ -479,11 +487,11 @@ private:
 	TTPMoonCamInfo  m_tCnCameraCfg1;
 	TTPMoonCamInfo  m_tCnCameraCfg2;
 	TTPMoonCamInfo  m_tCnCameraCfg3;
+    TTPMoonCamInfo *m_pTPMoonCamCfg;
 				
 	u8	m_byCameraSel;
 	u8  m_byCameraSyncSel;
 	EmH650Gamma    m_emH650Gamma;
-	TTPMoonCamInfo *m_pTPMoonCamCfg;
 
 	TTPCamPre       m_atTPCamPre[MAX_CAMERA_Pre_NUM];   //显示器信息 
     EmTPMechanism  m_emTPMechanism;  //机芯类型

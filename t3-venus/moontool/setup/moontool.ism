@@ -397,8 +397,6 @@
 		<row><td>checkpress.png6</td><td>Files4</td><td>CheckPress.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\Camera\checkbutton\CheckPress.png</td><td>1</td><td>checkbutton2</td></row>
 		<row><td>checkpress.png7</td><td>Files4</td><td>CheckPress.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\Checkbtn\CheckPress.png</td><td>1</td><td>Checkbtn</td></row>
 		<row><td>checkpress.png8</td><td>Files4</td><td>CheckPress.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\radiobutton\CheckPress.png</td><td>1</td><td>radiobutton2</td></row>
-		<row><td>cnstooldll.dll</td><td>Files</td><td>cnsToolDll.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SETUP FILES_FILES&gt;\cnsToolDll.dll</td><td>1</td><td/></row>
-		<row><td>cnstooldll.map</td><td>Files</td><td>cnsToolDll.map</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SETUP FILES_FILES&gt;\cnsToolDll.map</td><td>1</td><td/></row>
 		<row><td>copyright.png</td><td>Files1</td><td>Copyright.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RES_FILES2&gt;\Copyright.png</td><td>1</td><td/></row>
 		<row><td>cutlineleft.png2</td><td>Files4</td><td>CutlineLeft.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\itemToCamCtrl\CutlineLeft.png</td><td>1</td><td>itemToCamCtrl</td></row>
 		<row><td>cutlineright.png10</td><td>Files4</td><td>CutlineRight.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\itemToCamCtrl\CutlineRight.png</td><td>1</td><td>itemToCamCtrl</td></row>
@@ -880,7 +878,6 @@
 		<row><td>topleft.png6</td><td>Files4</td><td>topleft.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\ComboboxCommon\List\topleft.png</td><td>1</td><td>List5</td></row>
 		<row><td>topright.png</td><td>Files1</td><td>topright.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RES_FILES1&gt;\Combobox\List\topright.png</td><td>1</td><td>List</td></row>
 		<row><td>topright.png6</td><td>Files4</td><td>topright.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\ComboboxCommon\List\topright.png</td><td>1</td><td>List5</td></row>
-		<row><td>umstooldll.dll</td><td>Files</td><td>umstooldll.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SETUP FILES_FILES&gt;\umstooldll.dll</td><td>1</td><td/></row>
 		<row><td>uncheckdisable.png</td><td>Files70</td><td>UnCheckDisable.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SETUP FILES_FILES&gt;\res\checkums\UnCheckDisable.png</td><td>1</td><td/></row>
 		<row><td>uncheckdisable.png1</td><td>Files6</td><td>UnCheckDisable.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_CHECKMOON904K30_FILES1&gt;\UnCheckDisable.png</td><td>1</td><td/></row>
 		<row><td>uncheckdisable.png10</td><td>Files1</td><td>UnCheckDisable.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RES_FILES1&gt;\CheckMoon\UnCheckDisable.png</td><td>1</td><td>CheckMoon</td></row>
@@ -1300,12 +1297,12 @@
 		<row><td>ISProjectDataFolder</td><td/><td/><td>1</td></row>
 		<row><td>ISProjectFolder</td><td/><td/><td>1</td></row>
 		<row><td>PATH_TO_BACKUPCFG_FILES</td><td>..\setup files\resumstool\src\BackupCfg</td><td/><td>2</td></row>
-		<row><td>PATH_TO_BTNGAINPLUS_FILES</td><td>E:\root\20190424_TPS_4K_V6R0SP4\t3-venus\moontool\prj_win32\resmoontool\src\Camera\BtnGainPlus</td><td/><td>2</td></row>
-		<row><td>PATH_TO_BTNGAINSUB_FILES</td><td>E:\root\20190424_TPS_4K_V6R0SP4\t3-venus\moontool\prj_win32\resmoontool\src\Camera\BtnGainSub</td><td/><td>2</td></row>
+		<row><td>PATH_TO_BTNGAINPLUS_FILES</td><td>..\setup files\resmoontool\src\Camera\BtnGainPlus</td><td/><td>2</td></row>
+		<row><td>PATH_TO_BTNGAINSUB_FILES</td><td>..\setup files\resmoontool\src\Camera\BtnGainSub</td><td/><td>2</td></row>
 		<row><td>PATH_TO_BTNSYNC_FILES</td><td>..\setup files\resmoontool\src\Camera\btnSync</td><td/><td>2</td></row>
 		<row><td>PATH_TO_CAMERA_FILES</td><td>..\setup files\rescnstool\src\Camera</td><td/><td>2</td></row>
 		<row><td>PATH_TO_CHECKMOON904K30_FILES</td><td>..\setup files\res\CheckMoon904K30</td><td/><td>2</td></row>
-		<row><td>PATH_TO_CHECKMOON904K30_FILES1</td><td>E:\root\20190424_TPS_4K_V6R0SP4\t3-venus\moontool\prj_win32\res\CheckMoon904K30</td><td/><td>2</td></row>
+		<row><td>PATH_TO_CHECKMOON904K30_FILES1</td><td>..\setup files\res\CheckMoon904K30</td><td/><td>2</td></row>
 		<row><td>PATH_TO_CHECKMOON_FILES</td><td>..\setup files</td><td/><td>2</td></row>
 		<row><td>PATH_TO_LAYOUT_FILES</td><td>..\setup files\rescnstool\layout</td><td/><td>2</td></row>
 		<row><td>PATH_TO_LAYOUT_FILES2</td><td>..\setup files\resumstool\layout</td><td/><td>2</td></row>

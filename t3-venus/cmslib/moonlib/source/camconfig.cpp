@@ -19,6 +19,10 @@ CCamConfig::CCamConfig(CRkcSession &cSession) : CCamConfigIF()
 	m_byCameraSyncSel = 0;
     m_emTPMechanism = emSonyFCBCS8230;
 
+    memset( &m_tCnCameraCfg1, 0, sizeof(TTPMoonCamInfo) );
+    memset( &m_tCnCameraCfg2, 0, sizeof(TTPMoonCamInfo) );
+	memset( &m_tCnCameraCfg3, 0, sizeof(TTPMoonCamInfo) );
+
 	BuildEventsMap();
 }
 
@@ -196,62 +200,78 @@ void CCamConfig::OnMoonCamCfgNty( const CMessage& cMsg )
 	TTPMoonCamInfo tTPMoonCamInfo;
     ZeroMemory(&tTPMoonCamInfo, sizeof(TTPMoonCamInfo));
 
-	u8 byIndex = 0;
+	u8 byIndex = 0xff;
+    u8 byCount = tMsgHead.wMsgLen/sizeof(TTPMoonCamInfo);
+    if ( byCount <= 0 || byCount > 3 )
+    {
+        PrtRkcMsg( RK100_EVT_LOGIN_ACK, emEventTypeScoketRecv, ("wMsgLen Error:%d"), tMsgHead.wMsgLen);
+        return;
+    }
+    
 	if (tMsgHead.wMsgLen != 0)
 	{
         PrtRkcMsg( RK100_EVT_LOGIN_ACK, emEventTypeScoketRecv, "wMsgLen:%d, Need Length:%d", tMsgHead.wMsgLen, sizeof(TTPMoonCamInfo));
-		tTPMoonCamInfo = *reinterpret_cast<TTPMoonCamInfo*>( cMsg.content + sizeof(TRK100MsgHead) );
-	}
+        for ( s32 nIndex = 0; nIndex < byCount; nIndex++ )
+        {
+            tTPMoonCamInfo = *reinterpret_cast<TTPMoonCamInfo*>( cMsg.content + sizeof(TRK100MsgHead) + nIndex*sizeof(TTPMoonCamInfo) );
 
-    if ( tTPMoonCamInfo.TCamIDIndex.CamNum1Flag == 1 )
-    {
-        m_tCnCameraCfg1 = tTPMoonCamInfo;
-        byIndex = 0;
-    }
-    else if ( tTPMoonCamInfo.TCamIDIndex.CamNum2Flag == 1 )
-    {
-        m_tCnCameraCfg2 = tTPMoonCamInfo;
-	    byIndex = 1;
-    }
-    else
-    {
-        m_tCnCameraCfg3 = tTPMoonCamInfo;
-	    byIndex = 2;
-    }
+            if ( tTPMoonCamInfo.TCamIDIndex.CamNum1Flag == 1 )
+            {
+                m_tCnCameraCfg1 = tTPMoonCamInfo;
+                byIndex = 0;
+            }
+            else if ( tTPMoonCamInfo.TCamIDIndex.CamNum2Flag == 1 )
+            {
+                m_tCnCameraCfg2 = tTPMoonCamInfo;
+                byIndex = 1;
+            }
+            else if ( tTPMoonCamInfo.TCamIDIndex.CamNum3Flag == 1 )
+            {
+                m_tCnCameraCfg3 = tTPMoonCamInfo;
+                byIndex = 2;
+            }
+            else
+            {
+                byIndex = 0xff;
+            }
 
-	if ( m_byCameraSel == byIndex )
-	{
-		PostEvent( UI_MOONTOOL_CAMINFO_NTY, NULL, NULL );
-	}
+            if ( m_byCameraSel == byIndex )
+            {
+                PostEvent( UI_MOONTOOL_CAMINFO_NTY, NULL, NULL );
+	        }
 
-	PrtRkcMsg( RK100_EVT_LOGIN_ACK, emEventTypeScoketRecv, "MoonCamInfo Notify:\n \
+            PrtRkcMsg( RK100_EVT_LOGIN_ACK, emEventTypeScoketRecv, "MoonCamInfo Notify:\n \
 <CamNumFlag:[%d,%d,%d],dwZoomPos:%d,GainInputVal:%d>\n \
 <R Gain:%d, B Gian:%d>\n \
 <BrightVal:%d,ColorHueVal:%d,ColorGainVal:%d, Gama:[%d,%d,%d]>\n \
 <OutputFmt:[4K30:%d,4K25:%d,1080P60:%d,1080P50:%d,1080P30:%d,1080P25:%d,720P60:%d,720P50:%d]>",
-
-        tTPMoonCamInfo.TCamIDIndex.CamNum1Flag, tTPMoonCamInfo.TCamIDIndex.CamNum2Flag, tTPMoonCamInfo.TCamIDIndex.CamNum3Flag,
-        tTPMoonCamInfo.dwZoomPos, tTPMoonCamInfo.GainMode.GainInputVal, tTPMoonCamInfo.WBMode.RGainVal, tTPMoonCamInfo.WBMode.BGainVal,
-        tTPMoonCamInfo.CamImagParam.BrightVal, tTPMoonCamInfo.CamImagParam.ColorHueVal, tTPMoonCamInfo.CamImagParam.ColorGainVal,
-        tTPMoonCamInfo.CamImagParam.Gamma_opt_1_flag, tTPMoonCamInfo.CamImagParam.Gamma_opt_2_flag, tTPMoonCamInfo.CamImagParam.Gamma_opt_3_flag,
-        tTPMoonCamInfo.OutputFmt.FMT4K_30fps_flag, tTPMoonCamInfo.OutputFmt.FMT4K_25fps_flag, tTPMoonCamInfo.OutputFmt.FMT1080_60fps_flag, tTPMoonCamInfo.OutputFmt.FMT1080_50fps_flag,
-        tTPMoonCamInfo.OutputFmt.FMT1080_30fps_flag, tTPMoonCamInfo.OutputFmt.FMT1080_25fps_flag, tTPMoonCamInfo.OutputFmt.FMT720_60fps_flag, tTPMoonCamInfo.OutputFmt.FMT720_50fps_flag);
-    PrtRkcMsg( RK100_EVT_LOGIN_ACK, emEventTypeScoketRecv, "\n \
+tTPMoonCamInfo.TCamIDIndex.CamNum1Flag, tTPMoonCamInfo.TCamIDIndex.CamNum2Flag, tTPMoonCamInfo.TCamIDIndex.CamNum3Flag,
+tTPMoonCamInfo.dwZoomPos, tTPMoonCamInfo.GainMode.GainInputVal, tTPMoonCamInfo.WBMode.RGainVal, tTPMoonCamInfo.WBMode.BGainVal,
+tTPMoonCamInfo.CamImagParam.BrightVal, tTPMoonCamInfo.CamImagParam.ColorHueVal, tTPMoonCamInfo.CamImagParam.ColorGainVal,
+tTPMoonCamInfo.CamImagParam.Gamma_opt_1_flag, tTPMoonCamInfo.CamImagParam.Gamma_opt_2_flag, tTPMoonCamInfo.CamImagParam.Gamma_opt_3_flag,
+tTPMoonCamInfo.OutputFmt.FMT4K_30fps_flag, tTPMoonCamInfo.OutputFmt.FMT4K_25fps_flag, tTPMoonCamInfo.OutputFmt.FMT1080_60fps_flag, tTPMoonCamInfo.OutputFmt.FMT1080_50fps_flag,
+tTPMoonCamInfo.OutputFmt.FMT1080_30fps_flag, tTPMoonCamInfo.OutputFmt.FMT1080_25fps_flag, tTPMoonCamInfo.OutputFmt.FMT720_60fps_flag, tTPMoonCamInfo.OutputFmt.FMT720_50fps_flag);
+            PrtRkcMsg( RK100_EVT_LOGIN_ACK, emEventTypeScoketRecv, "\n \
 <[Sixty:%d, Thirty:%d], [%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d]>\n \
 <[Fifty:%d, TenwFif:%d], [%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d]>",
-        tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.SixtyFpsModeFlag, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.ThirtyFpsModeFlag, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_30Sp,
-        tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_60Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_90Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_100Sp,
-        tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_125Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_180Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_250Sp,
-        tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_350Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_500Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_725Sp,
-        tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_1000Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_1500Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_2000Sp,
-        tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_3000Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_4000Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_6000Sp,
-        tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_10000Sp, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.FiftyFpsModeFlag, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.TenwFifFpsModeFlag,
-        tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_25Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_50Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_60Spd,
-        tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_100Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_120Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_150Spd,
-        tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_215Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_300Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_425Spd,
-        tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_600Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_1000Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_1250Spd,
-        tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_1750Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_2500Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_3500Spd,
-        tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_6000Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_10000Spd);
+tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.SixtyFpsModeFlag, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.ThirtyFpsModeFlag, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_30Sp,
+tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_60Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_90Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_100Sp,
+tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_125Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_180Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_250Sp,
+tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_350Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_500Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_725Sp,
+tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_1000Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_1500Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_2000Sp,
+tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_3000Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_4000Sp, tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_6000Sp,
+tTPMoonCamInfo.ShutterMode.SixtyOrThirtyMode.Shutter_10000Sp, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.FiftyFpsModeFlag, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.TenwFifFpsModeFlag,
+tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_25Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_50Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_60Spd,
+tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_100Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_120Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_150Spd,
+tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_215Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_300Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_425Spd,
+tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_600Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_1000Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_1250Spd,
+tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_1750Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_2500Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_3500Spd,
+tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_6000Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_10000Spd);
+            
+            byIndex = 0xff;
+            ZeroMemory(&tTPMoonCamInfo, sizeof(TTPMoonCamInfo));
+        }
+	}   
 }
 
 void CCamConfig::OnCamSelNty( const CMessage& cMsg )
@@ -616,6 +636,11 @@ void CCamConfig::OnOutputFormatRsp(const CMessage& cMsg)
     {
         tOutputFmt = *reinterpret_cast<TPOutputFmt*>( cMsg.content + sizeof(TRK100MsgHead) );
     }
+
+    if ( RK100_OPT_RTN_OK == tMsgHead.wOptRtn )
+    {
+        m_pTPMoonCamCfg->OutputFmt = tOutputFmt;
+    }
     
     PrtRkcMsg( RK100_EVT_SET_CAM_OUTPUT_FORMAT_ACK, emEventTypeScoketRecv, "wRtn:%d", tMsgHead.wOptRtn);
     PostEvent( UI_MOONTOOL_OUTPUT_FORMAT_RSP, (WPARAM)&tOutputFmt, (LPARAM)tMsgHead.wOptRtn );
@@ -659,10 +684,13 @@ void CCamConfig::OnSetCamZoomValRsp(const CMessage& cMsg)
     tMsgHead.wReserved1 = ntohs(tMsgHead.wReserved1);
     
     TCamZoomVal tCamZoomVal;
-    u8 byIndex = 0;
     if (tMsgHead.wMsgLen != 0)
     {
         tCamZoomVal = *reinterpret_cast<TCamZoomVal*>( cMsg.content + sizeof(TRK100MsgHead) );
+    }
+
+    if ( tMsgHead.wOptRtn == RK100_OPT_RTN_OK )
+    {
         m_pTPMoonCamCfg->dwZoomPos = tCamZoomVal.InputVal;
     }
 
@@ -1229,6 +1257,28 @@ void CCamConfig::OnSetCamApertreRsp( const CMessage& cMsg )
     {
         tIrisAutoManuMode = *reinterpret_cast<TIrisAutoManuMode*>( cMsg.content + sizeof(TRK100MsgHead) );
     }
+
+    if ( RK100_OPT_RTN_OK == tMsgHead.wOptRtn )
+    {
+        if ( 1 == tIrisAutoManuMode.IrisAutoFlag )
+        {
+            m_pTPMoonCamCfg->IrisMode.IrisAutoFlag = 1;
+            m_pTPMoonCamCfg->IrisMode.IrisManuFlag = 0;
+            m_pTPMoonCamCfg->IrisMode.IrisBackCompFlag = tIrisAutoManuMode.IrisBackCompFlag;
+        }
+
+        if ( 1 == tIrisAutoManuMode.IrisManuFlag )
+        {
+            m_pTPMoonCamCfg->IrisMode.IrisAutoFlag = 0;
+            m_pTPMoonCamCfg->IrisMode.IrisManuFlag = 1;
+            m_pTPMoonCamCfg->IrisMode.optIrisF2_8Flag = tIrisAutoManuMode.optIrisF2_8Flag;
+            m_pTPMoonCamCfg->IrisMode.optIrisF3_1Flag = tIrisAutoManuMode.optIrisF3_1Flag;
+            m_pTPMoonCamCfg->IrisMode.optIrisF3_4Flag = tIrisAutoManuMode.optIrisF3_4Flag;
+            m_pTPMoonCamCfg->IrisMode.optIrisF3_7Flag = tIrisAutoManuMode.optIrisF3_7Flag;
+            m_pTPMoonCamCfg->IrisMode.optIrisF4_0Flag = tIrisAutoManuMode.optIrisF4_0Flag;
+            m_pTPMoonCamCfg->IrisMode.optIrisF4_4Flag = tIrisAutoManuMode.optIrisF4_4Flag;
+        }
+    }
     
     PrtRkcMsg( RK100_EVT_SET_CAM_IRIS_ACK, emEventTypeScoketRecv, "wRtn:%d", tMsgHead.wOptRtn);
     PostEvent( UI_MOONTOOL_CAMERA_APERTRE_RSP, NULL, (LPARAM)tMsgHead.wOptRtn );
@@ -1320,6 +1370,10 @@ void CCamConfig::OnAutoExposureInd(const CMessage& cMsg)
     if (tMsgHead.wMsgLen != 0)
     {
         tExposAutoMode = *reinterpret_cast<TExposAutoMode*>( cMsg.content + sizeof(TRK100MsgHead) );
+    }
+
+    if ( RK100_OPT_RTN_OK == tMsgHead.wOptRtn )
+    {
         m_pTPMoonCamCfg->ExpMode.ExposAutoModeFlag = tExposAutoMode.ExposAutoModeFlag;
     }
 
@@ -1686,9 +1740,16 @@ void CCamConfig::OnCamShutSpdCInd(const CMessage& cMsg)
     tMsgHead.wOptRtn = ntohs(tMsgHead.wOptRtn);
     tMsgHead.wReserved1 = ntohs(tMsgHead.wReserved1);
     
+    TShutterMode tShutterMode;
+    ZeroMemory(&tShutterMode, sizeof(TShutterMode));
     if (tMsgHead.wMsgLen != 0)
     {
-        //emDVIOutPortType = *reinterpret_cast<EmTPDVIOutPortType*>( cMsg.content + sizeof(TRK100MsgHead) );
+        tShutterMode = *reinterpret_cast<TShutterMode*>( cMsg.content + sizeof(TRK100MsgHead) );
+    }
+
+    if ( RK100_OPT_RTN_OK == tMsgHead.wOptRtn )
+    {
+        m_pTPMoonCamCfg->ShutterMode = tShutterMode ;
     }
     
     PrtRkcMsg( RK100_EVT_SET_CAM_SHUTTER_ACK, emEventTypeScoketRecv, "CamShutterRsp :%d", tMsgHead.wOptRtn);
@@ -1782,6 +1843,11 @@ void CCamConfig::OnCamGainInd(const CMessage& cMsg)
     if (tMsgHead.wMsgLen != 0)
     {
         tCainMode = *reinterpret_cast<TGainMode*>( cMsg.content + sizeof(TRK100MsgHead) );
+    }
+
+    if ( RK100_OPT_RTN_OK == tMsgHead.wOptRtn )
+    {
+        m_pTPMoonCamCfg->GainMode.GainInputVal = tCainMode.GainInputVal;
     }
     
     PrtRkcMsg( RK100_EVT_SET_CAM_GAIN_ACK, emEventTypeScoketRecv, "wRtn:%d, GainVal:%d", tMsgHead.wOptRtn, tCainMode.GainInputVal);
@@ -2066,6 +2132,7 @@ u16 CCamConfig::CamImageParaCmd( EmTPImagePara emImagePara, const u32& dwImagePa
 
     TCamImagParam tCamImgParam;
     ZeroMemory(&tCamImgParam, sizeof(TCamImagParam));
+    tCamImgParam = GetCamImagParam();
     if ( emImagePara == emBlight )
     {
         tCamImgParam.BrightVal = dwImagePara;
@@ -2099,8 +2166,10 @@ u16 CCamConfig::CamImageParaCmd( EmTPImagePara emImagePara, const u32& dwImagePa
     }
 
     rkmsg.CatBody(&tCamImgParam, sizeof(TCamImagParam));//添加消息体
-    PrtRkcMsg( RK100_EVT_SET_CAM_ImagParam, emEventTypeScoketSend, "emImagePara:%d, dwImagePara:%d", emImagePara, dwImagePara);
-    
+    PrtRkcMsg( RK100_EVT_SET_CAM_ImagParam, emEventTypeScoketSend, "emImagePara:%d, tCamImgParam:[Bright:%d,Hue:%d,saturation:%d], Gamma:[%d,%d,%d]",
+        emImagePara, tCamImgParam.BrightVal, tCamImgParam.ColorHueVal, tCamImgParam.ColorGainVal,
+        tCamImgParam.Gamma_opt_1_flag, tCamImgParam.Gamma_opt_2_flag, tCamImgParam.Gamma_opt_3_flag);
+
     SOCKETWORK->SendDataPack(rkmsg);//消息发送
     return NOERROR;
 }
@@ -2163,13 +2232,30 @@ void CCamConfig::OnCamImageParaInd(const CMessage& cMsg)
     tMsgHead.wOptRtn = ntohs(tMsgHead.wOptRtn);
     tMsgHead.wReserved1 = ntohs(tMsgHead.wReserved1);
     
+    TCamImagParam tCamImagParam;
+    ZeroMemory(&tCamImagParam, sizeof(TCamImagParam));
     if (tMsgHead.wMsgLen != 0)
     {
-        //emDVIOutPortType = *reinterpret_cast<TCamImagParam*>( cMsg.content + sizeof(TRK100MsgHead) );
+        tCamImagParam = *reinterpret_cast<TCamImagParam*>( cMsg.content + sizeof(TRK100MsgHead) );
+    }
+
+    if ( RK100_OPT_RTN_OK == tMsgHead.wOptRtn )
+    {
+        m_pTPMoonCamCfg->CamImagParam = tCamImagParam;
     }
     
     PrtRkcMsg( RK100_EVT_SET_CAM_ImagParam_ACK, emEventTypeScoketRecv, "wRtn:%d", tMsgHead.wOptRtn);
     PostEvent( UI_MOONTOOL_IMAGEPARA_IND, (WPARAM)NULL, (LPARAM)tMsgHead.wOptRtn );
+}
+
+TCamImagParam CCamConfig::GetCamImagParam()
+{
+    if (m_pTPMoonCamCfg == NULL)
+    {
+        SetCameraCfgPtr();
+	}
+
+    return m_pTPMoonCamCfg->CamImagParam;
 }
 
 //背光补偿
@@ -2630,6 +2716,11 @@ void CCamConfig::OnCam2DNRInd(const CMessage& cMsg)
     {
         tCamD2NRMode = *reinterpret_cast<TCamD2NRMode*>( cMsg.content + sizeof(TRK100MsgHead) );
     }
+
+    if ( RK100_OPT_RTN_OK == tMsgHead.wOptRtn )
+    {
+        m_pTPMoonCamCfg->CamD2NRMode = tCamD2NRMode;
+    }
     
     PrtRkcMsg( RK100_EVT_SET_CAM_D2NR_ACK, emEventTypeScoketRecv, "wRtn:%d", tMsgHead.wOptRtn);
     PostEvent( UI_MOONTOOL_CAMERA_2DNR_IND, (WPARAM)tCamD2NRMode.D2NROnFlag, (LPARAM)tMsgHead.wOptRtn );
@@ -2666,6 +2757,11 @@ void CCamConfig::OnCam3DNRInd(const CMessage& cMsg)
     if (tMsgHead.wMsgLen != 0)
     {
         tCamD3NRMode = *reinterpret_cast<TCamD3NRMode*>( cMsg.content + sizeof(TRK100MsgHead) );
+    }
+
+    if ( RK100_OPT_RTN_OK == tMsgHead.wOptRtn )
+    {
+        m_pTPMoonCamCfg->CamD3NRMode = tCamD3NRMode;
     }
     
     PrtRkcMsg( RK100_EVT_SET_CAM_D3NR_ACK, emEventTypeScoketRecv, "wRtn:%d", tMsgHead.wOptRtn);
