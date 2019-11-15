@@ -44,7 +44,8 @@ enum EM_LOGIN__TYPE      //登陆类型
 	em_LOGIN_GRAP,		 //抢占
 	em_LOGIN_REFUSE,     //抢登被拒绝
 	em_LOGIN_EXCEPTION,  //登陆异常
-	em_LOGIN_BREAK		 //与服务器断开
+	em_LOGIN_BREAK,		 //与服务器断开
+    em_LOGIN_REBOOT      //重启服务器
 };
 
 

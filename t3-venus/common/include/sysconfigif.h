@@ -41,13 +41,25 @@ public:
 	 *  @return 成功返回0,失败返回非0错误码
 	 *  @remarks 
 	 */
-	virtual u16 UpdateEthnetCfg( const TTPEthnetInfo& cfg ) = 0;
+	virtual u16 UpdateEthnetCfg( const TRK100NetParam& cfg ) = 0;
 	/** 功能   设置LVDS波特率
 	 *  @param[in] emBaudRate 波特率
 	 *  @return 成功返回0,失败返回非0错误码
 	 *  @remarks 
 	 */
 	virtual u16 SetBaudRateCmd( EmTPLVDSBaud emBaudRate ) = 0;
+	/** 功能   获取网络配置
+	 *  @param[in] cfg 网络配置
+	 *  @return 成功返回0,失败返回非0错误码
+	 *  @remarks 
+	 */
+	virtual u16 GetNetWorkConfig() = 0;
+	/** 功能   获取网络配置内容
+	 *  @param[in] cfg 网络配置
+	 *  @return 成功返回0,失败返回非0错误码
+	 *  @remarks 
+	 */
+	virtual u16 GetNetWorkConfig(TRK100NetParam& tRK100NetParam) = 0;
 };
 
 #endif

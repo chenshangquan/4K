@@ -306,10 +306,22 @@ u16 CMoonlibCommonIF::SetImageAdjustCmd( EmTPImageAdjust emImageAdjust )
 	return re;
 }
 
-u16 CMoonlibCommonIF::UpdateEthnetCfg( const TTPEthnetInfo& tInfo )
+u16 CMoonlibCommonIF::UpdateEthnetCfg( const TRK100NetParam& tInfo )
 {
 	u16 re = MOONSESSION_MGR_PTR->GetSysConfigIF()->UpdateEthnetCfg( tInfo );
 	return re;	
+}
+
+u16 CMoonlibCommonIF::GetNetWorkConfig()
+{
+    u16 re = MOONSESSION_MGR_PTR->GetSysConfigIF()->GetNetWorkConfig();
+    return re;	
+}
+
+u16 CMoonlibCommonIF::GetNetWorkConfig( TRK100NetParam& tRK100NetParam )
+{
+    u16 re = MOONSESSION_MGR_PTR->GetSysConfigIF()->GetNetWorkConfig( tRK100NetParam );
+    return re;	
 }
 
 u16 CMoonlibCommonIF::CamPreSetSaveCmd( const TTPCamPre& tTPCamPre )

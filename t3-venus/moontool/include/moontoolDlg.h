@@ -108,6 +108,7 @@ public:
 	BOOL LoginGrab(u32 dwIP);
 	BOOL LoginLogoff();
 	BOOL LoginBreak();
+    BOOL LoginReboot();
 
 	BOOL ClearWarningText();
 

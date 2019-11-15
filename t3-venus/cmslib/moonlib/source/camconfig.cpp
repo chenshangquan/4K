@@ -109,6 +109,7 @@ void CCamConfig::BuildEventsMap()
     REG_PFUN( RK100_EVT_SET_CAM_D3NR_ACK, CCamConfig::OnCam3DNRInd );
     REG_PFUN( RK100_EVT_SET_CAM_ID_ACK, CCamConfig::OnCamParaSynchronizeInd );
     REG_PFUN( RK100_EVT_SET_CAM_Preset_PowOnRecall_ACK, CCamConfig::OnCamOrderPosSelInd );
+    REG_PFUN( RK100_EVT_REBOOT_ACK, CCamConfig::OnReBootRkRsp );
 
 }
 
@@ -237,7 +238,7 @@ void CCamConfig::OnMoonCamCfgNty( const CMessage& cMsg )
 
             if ( m_byCameraSel == byIndex )
             {
-                PostEvent( UI_MOONTOOL_CAMINFO_NTY, NULL, NULL );
+                PostEvent( UI_MOONTOOL_CAMINFO_NTY, m_byCameraSel, NULL );
 	        }
 
             PrtRkcMsg( RK100_EVT_LOGIN_ACK, emEventTypeScoketRecv, "MoonCamInfo Notify:\n \
@@ -738,13 +739,20 @@ u16 CCamConfig::SetCamZoomStopCmd(u8 byIndex)
     TRK100MsgHead tRK100MsgHead;//定义消息头结构体
     memset(&tRK100MsgHead,0,sizeof(TRK100MsgHead));
     //整型传数据集的转网络序
-    tRK100MsgHead.dwEvent = htonl(ev_TpCamSetZoonStop_Cmd);
-    tRK100MsgHead.wMsgLen = htons(sizeof(u8));
+    tRK100MsgHead.dwEvent = htonl(RK100_EVT_SET_CAM_ZOOM_VAL);
+    tRK100MsgHead.wMsgLen = htons(sizeof(TCamZoomVal));
     CRkMessage rkmsg;//定义消息
     rkmsg.SetBody(&tRK100MsgHead, sizeof(TRK100MsgHead));//添加头内容
-    rkmsg.CatBody(&byIndex, sizeof(u8));//添加消息体
+
+    TCamZoomVal tCamZoomVal;
+    ZeroMemory(&tCamZoomVal, sizeof(TCamZoomVal));
+    tCamZoomVal.InputVal = m_pTPMoonCamCfg->dwZoomPos;
+    tCamZoomVal.ZoomUpDownStopFlag = 1;
+
+    rkmsg.CatBody(&tCamZoomVal, sizeof(TCamZoomVal));//添加消息体
     
-    PrtRkcMsg( ev_TpCamSetZoonStop_Cmd, emEventTypeScoketSend , "byIndex: %d", byIndex);
+    PrtRkcMsg( RK100_EVT_SET_CAM_ZOOM_VAL, emEventTypeScoketSend , "CamZoomStop:[InputValFlag:%d,Val:%d,Up:%d,Down:%d,Stop:%d].",
+        tCamZoomVal.InputPreciseValFlag, tCamZoomVal.InputVal, tCamZoomVal.ZoomUpFlag, tCamZoomVal.ZoomDownFlag, tCamZoomVal.ZoomUpDownStopFlag);
     
     SOCKETWORK->SendDataPack(rkmsg);//消息发送
     return NOERROR;
@@ -1963,6 +1971,7 @@ u16 CCamConfig::CamRGainCmd( const u32& dwRGain )
     ZeroMemory(&tCamWBMode, sizeof(TCamWBMode));
     tCamWBMode.CamWBManuModeFlag = 1;
     tCamWBMode.RGainVal = dwRGain;
+    tCamWBMode.BGainVal = GetCamBGain();
     rkmsg.CatBody(&tCamWBMode, sizeof(TCamWBMode));//添加消息体
     
     PrtRkcMsg( RK100_EVT_SET_CAM_WB, emEventTypeScoketSend, "AutoMode:%d,ManuMode:%d,RGain:%d,BGain:%d",
@@ -2053,6 +2062,7 @@ u16 CCamConfig::CamBGainCmd( const u32& dwBGain )
     ZeroMemory(&tCamWBMode, sizeof(TCamWBMode));
     tCamWBMode.CamWBManuModeFlag = 1;
     tCamWBMode.BGainVal = dwBGain;
+    tCamWBMode.RGainVal = GetCamRGain();
     rkmsg.CatBody(&tCamWBMode, sizeof(TCamWBMode));//添加消息体
     
     PrtRkcMsg( RK100_EVT_SET_CAM_WB, emEventTypeScoketSend, "AutoMode:%d,ManuMode:%d,RGain:%d,BGain:%d",
@@ -2133,6 +2143,10 @@ u16 CCamConfig::CamImageParaCmd( EmTPImagePara emImagePara, const u32& dwImagePa
     TCamImagParam tCamImgParam;
     ZeroMemory(&tCamImgParam, sizeof(TCamImagParam));
     tCamImgParam = GetCamImagParam();
+    tCamImgParam.Gamma_opt_1_flag = 0;
+    tCamImgParam.Gamma_opt_2_flag = 0;
+    tCamImgParam.Gamma_opt_3_flag = 0;
+    
     if ( emImagePara == emBlight )
     {
         tCamImgParam.BrightVal = dwImagePara;
@@ -2147,11 +2161,11 @@ u16 CCamConfig::CamImageParaCmd( EmTPImagePara emImagePara, const u32& dwImagePa
     }
     else if ( emImagePara == emGama )
     {
-        if ( dwImagePara == 1 )
+        if ( dwImagePara == emGamma1 )
         {
             tCamImgParam.Gamma_opt_1_flag = 1;
         }
-        else if ( dwImagePara == 2 )
+        else if ( dwImagePara == emGamma2 )
         {
             tCamImgParam.Gamma_opt_2_flag = 1;
         }
@@ -2554,42 +2568,43 @@ u16 CCamConfig::Cam2DNRCmd( BOOL bIsOpen, EmTPReduNoise emTPReduNoise )
     if (bIsOpen)
     {
         tCamNRMode.D2NROnFlag = 1;
-        switch (emTPReduNoise)
-        {
-        case emLevelFist:
-            {
-                tCamNRMode.D2NR_level_1_Flag = 1;
-                break;
-            }
-        case emLevelSecond:
-            {
-                tCamNRMode.D2NR_level_2_Flag = 1;
-                break;
-            }
-        case emLevelThird:
-            {
-                tCamNRMode.D2NR_level_3_Flag = 1;
-                break;
-            }
-        case emLevelFourth:
-            {
-                tCamNRMode.D2NR_level_4_Flag = 1;
-                break;
-            }
-        case emLeVelFifth:
-            {
-                tCamNRMode.D2NR_level_5_Flag = 1;
-                break;
-            }
-        default:
-            {
-                break;
-            }
-        }
     }
     else
     {
         tCamNRMode.D2NROffFlag = 1;
+    }
+
+    switch (emTPReduNoise)
+    {
+    case emLevelFist:
+        {
+            tCamNRMode.D2NR_level_1_Flag = 1;
+            break;
+        }
+    case emLevelSecond:
+        {
+            tCamNRMode.D2NR_level_2_Flag = 1;
+            break;
+        }
+    case emLevelThird:
+        {
+            tCamNRMode.D2NR_level_3_Flag = 1;
+            break;
+        }
+    case emLevelFourth:
+        {
+            tCamNRMode.D2NR_level_4_Flag = 1;
+            break;
+        }
+    case emLeVelFifth:
+        {
+            tCamNRMode.D2NR_level_5_Flag = 1;
+            break;
+        }
+    default:
+        {
+            break;
+        }
     }
 
     rkmsg.CatBody(&tCamNRMode, sizeof(TCamD2NRMode));//添加消息体
@@ -2624,42 +2639,43 @@ u16 CCamConfig::Cam3DNRCmd( BOOL bIsOpen, EmTPReduNoise emTPReduNoise )
     if (bIsOpen)
     {
         tCamNRMode.D3NROnFlag = 1;
-        switch (emTPReduNoise)
-        {
-        case emLevelFist:
-            {
-                tCamNRMode.D3NR_level_1_Flag = 1;
-                break;
-            }
-        case emLevelSecond:
-            {
-                tCamNRMode.D3NR_level_2_Flag = 1;
-                break;
-            }
-        case emLevelThird:
-            {
-                tCamNRMode.D3NR_level_3_Flag = 1;
-                break;
-            }
-        case emLevelFourth:
-            {
-                tCamNRMode.D3NR_level_4_Flag = 1;
-                break;
-            }
-        case emLeVelFifth:
-            {
-                tCamNRMode.D3NR_level_5_Flag = 1;
-                break;
-            }
-        default:
-            {
-                break;
-            }
-        }
     }
     else
     {
         tCamNRMode.D3NROffFlag = 1;
+    }
+
+    switch (emTPReduNoise)
+    {
+    case emLevelFist:
+        {
+            tCamNRMode.D3NR_level_1_Flag = 1;
+            break;
+        }
+    case emLevelSecond:
+        {
+            tCamNRMode.D3NR_level_2_Flag = 1;
+            break;
+        }
+    case emLevelThird:
+        {
+            tCamNRMode.D3NR_level_3_Flag = 1;
+            break;
+        }
+    case emLevelFourth:
+        {
+            tCamNRMode.D3NR_level_4_Flag = 1;
+            break;
+        }
+    case emLeVelFifth:
+        {
+            tCamNRMode.D3NR_level_5_Flag = 1;
+            break;
+        }
+    default:
+        {
+            break;
+        }
     }
     
     rkmsg.CatBody(&tCamNRMode, sizeof(TCamD3NRMode));//添加消息体
@@ -2788,8 +2804,9 @@ u16 CCamConfig::CamOrderPosCheckCmd( const TCamPresetNumberList& tCamPreset )
     rkmsg.SetBody(&tRK100MsgHead, sizeof(TRK100MsgHead));//添加头内容
     rkmsg.CatBody(&tCamPreset, sizeof(TCamPresetNumberList));//添加消息体
     
-    PrtRkcMsg( RK100_EVT_SET_CAM_Preset_PowOnRecall, emEventTypeScoketSend, "LaseState:%d, PresetPos:%d",
-        tCamPreset.PresetLaststate, tCamPreset.PresetNumber1 );
+    PrtRkcMsg( RK100_EVT_SET_CAM_Preset_PowOnRecall, emEventTypeScoketSend, "PresetPos:[%d,%d,%d,%d,%d,%d,%d,%d]",
+        tCamPreset.PresetNumber1, tCamPreset.PresetNumber2, tCamPreset.PresetNumber3, tCamPreset.PresetNumber4,
+        tCamPreset.PresetNumber5, tCamPreset.PresetNumber6, tCamPreset.PresetNumber7, tCamPreset.PresetNumber8);
     
     SOCKETWORK->SendDataPack(rkmsg);//消息发送
     return NOERROR;
@@ -2834,15 +2851,17 @@ void CCamConfig::OnCamOrderPosSelInd( const CMessage& cMsg )
 //重启MOON
 u16 CCamConfig::RebootMoon( )
 {
-	/*CTpMsg *pcTpMsg = m_pSession->GetKdvMsgPtr();  
-    pcTpMsg->SetUserData( m_pSession->GetInst() );
-	
-    pcTpMsg->SetEvent( ev_tpMoonReboot_Cmd );
-	
-	u16 wRet = m_pSession->PostMsg(TYPE_TPMSG);
-	PrtMsg( ev_tpMoonReboot_Cmd, emEventTypemoontoolSend, "RebootMoon" );
-	return wRet;*/
-	return true;
+    TRK100MsgHead tRK100MsgHead;//定义消息头结构体
+    memset(&tRK100MsgHead,0,sizeof(TRK100MsgHead));
+    //整型传数据集的转网络序
+    tRK100MsgHead.dwEvent = htonl(RK100_EVT_REBOOT);
+    CRkMessage rkmsg;//定义消息
+    rkmsg.SetBody(&tRK100MsgHead, sizeof(TRK100MsgHead));//添加头内容
+    
+    PrtRkcMsg( RK100_EVT_REBOOT, emEventTypeScoketSend, "Reboot...");
+    
+    SOCKETWORK->SendDataPack(rkmsg);//消息发送
+    return NOERROR;
 }
 
 u16 CCamConfig::MoonCamResetCmd(u8 byIndex)
@@ -3482,4 +3501,23 @@ u16 CCamConfig::SetDelayCorrectCmd( u8 nPosition, u32 dwDelay )
 	
 	return wRet;*/
 	return true;
+}
+
+void CCamConfig::OnReBootRkRsp( const CMessage& cMsg )
+{
+    TRK100MsgHead tMsgHead = *reinterpret_cast<TRK100MsgHead*>( cMsg.content );
+    tMsgHead.dwEvent = ntohl(tMsgHead.dwEvent);
+    tMsgHead.dwHandle = ntohl(tMsgHead.dwHandle);
+    tMsgHead.dwProtocolVer = ntohl(tMsgHead.dwProtocolVer);
+    tMsgHead.dwRsvd = ntohl(tMsgHead.dwRsvd);
+    tMsgHead.dwSerial = ntohl(tMsgHead.dwSerial);
+    tMsgHead.nArgv = ntohl(tMsgHead.nArgv);
+    tMsgHead.wExtLen = ntohs(tMsgHead.wExtLen);
+    tMsgHead.wMsgLen = ntohs(tMsgHead.wMsgLen);
+    tMsgHead.wOptRtn = ntohs(tMsgHead.wOptRtn);
+    tMsgHead.wReserved1 = ntohs(tMsgHead.wReserved1);
+    
+    PrtRkcMsg( RK100_EVT_REBOOT_ACK, emEventTypeScoketRecv, "wOptRtn = %d", tMsgHead.wOptRtn);
+    
+    PostEvent(UI_RKC_REBOOT, WPARAM(RK100_OPT_RTN_OK == tMsgHead.wOptRtn) , (LPARAM)tMsgHead.wOptRtn );
 }

@@ -95,6 +95,8 @@ protected:
 	HRESULT OnCamImageAdjustInd( WPARAM wparam, LPARAM lparam );
 
 	HRESULT OnLvdsBaudRateInd( WPARAM wparam, LPARAM lparam );
+
+    HRESULT OnConnectRsp( WPARAM wparam, LPARAM lparam );
 private:	
 	/** 功能:  保存配置的按钮
 	*  @param[in] 
@@ -238,10 +240,6 @@ private:
 	EmTPMOONOutMode m_emMOONOutMode;
 	EmTPImageAdjust m_emImageAdjust;
 	EmTPLVDSBaud m_emBaudRate;
-
-	BOOL m_bCnsIp;
-	BOOL m_bSubMask;
-	BOOL m_bGateWay;
 };
 
 #endif // !defined(AFX_CFGSERVERLOGIC_H__B06B345C_CF30_42B5_9B64_5F72C61D6269__INCLUDED_)

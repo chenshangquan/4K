@@ -40,7 +40,12 @@ public:
 	*/
 	virtual u16 SetImageAdjustCmd( EmTPImageAdjust emImageAdjust );
 
-	virtual u16 UpdateEthnetCfg( const TTPEthnetInfo& cfg );
+	virtual u16 UpdateEthnetCfg( const TRK100NetParam& cfg );
+
+    //获取网络配置
+    virtual u16 GetNetWorkConfig();
+    //获取网络配置内容
+    virtual u16 GetNetWorkConfig(TRK100NetParam& tRK100NetParam);
 
 	virtual	u16 SetBaudRateCmd( EmTPLVDSBaud emBaudRate );
 
@@ -68,6 +73,8 @@ protected:
 	
 	void OnLVDBaudNty( const CMessage& cMsg );
 
+    void OnGetNetWorkConfigRsp( const CMessage& cMsg );
+
 private:
  
 	/**
@@ -81,6 +88,7 @@ private:
 private:
 	CRkcSession *m_pSession; 
 	TTPEthnetInfo m_tEthnetInfo;       //网络信息
+    TRK100NetParam          m_tRK100NetParam;           //网络参数
 /** @}*/ // 操作用户接口实现部分
 };
 

@@ -22,9 +22,6 @@ CSysCfgDlgLogic::CSysCfgDlgLogic()
 ,m_strAdjustGroup2("SysCfgDlg/AdjustGroup2")
 ,m_strComboBaudRate("SysCfgDlg/CombBaudRate")
 {
-	m_bCnsIp = FALSE;
-	m_bSubMask = FALSE;
-	m_bGateWay = FALSE;
 // 	m_emDVIOutPortType = TPMOON_DVI_MODE_HDMI;
 // 	m_emImageAdjust = emClosed;
 // 	m_emMOONOutMode = em_MoonOutMode_1080P_60fps;
@@ -73,13 +70,14 @@ void CSysCfgDlgLogic::RegMsg()
 {
 	CSysCfgDlgLogic *pThis = GetSingletonPtr();
 	REG_MSG_HANDLER( UI_MOONTOOL_VERINFO_NTY, CSysCfgDlgLogic::OnSoftWareVerInfoNty, pThis, CSysCfgDlgLogic );
-	REG_MSG_HANDLER( UI_MOONTOOL_CAMOUTPUT_INFO_NTY, CSysCfgDlgLogic::OnCamOutputInfoNty, pThis, CSysCfgDlgLogic );
-	REG_MSG_HANDLER( UI_MOONTOOL_IMAGE_ADJUST_NTY, CSysCfgDlgLogic::OnCamImageAdjustNty, pThis, CSysCfgDlgLogic );
+	//REG_MSG_HANDLER( UI_MOONTOOL_CAMOUTPUT_INFO_NTY, CSysCfgDlgLogic::OnCamOutputInfoNty, pThis, CSysCfgDlgLogic );
+	//REG_MSG_HANDLER( UI_MOONTOOL_IMAGE_ADJUST_NTY, CSysCfgDlgLogic::OnCamImageAdjustNty, pThis, CSysCfgDlgLogic );
 	REG_MSG_HANDLER( UI_MOONTOOL_ETHNETINFO_NOTIFY, CSysCfgDlgLogic::OnEthnetInfoNty, pThis, CSysCfgDlgLogic );
-	REG_MSG_HANDLER( UI_MOONTOOL_CAMOUTPUT_INFO_IND, CSysCfgDlgLogic::OnCamOutputInfoInd, pThis, CSysCfgDlgLogic );
-	REG_MSG_HANDLER( UI_MOONTOOL_IMAGE_ADJUST_IND, CSysCfgDlgLogic::OnCamImageAdjustInd, pThis, CSysCfgDlgLogic );
+	//REG_MSG_HANDLER( UI_MOONTOOL_CAMOUTPUT_INFO_IND, CSysCfgDlgLogic::OnCamOutputInfoInd, pThis, CSysCfgDlgLogic );
+	//REG_MSG_HANDLER( UI_MOONTOOL_IMAGE_ADJUST_IND, CSysCfgDlgLogic::OnCamImageAdjustInd, pThis, CSysCfgDlgLogic );
 //	REG_MSG_HANDLER( UI_MOONTOOL_LVDSBAUD_IND, CSysCfgDlgLogic::OnLvdsBaudRateInd, pThis, CSysCfgDlgLogic );
-
+    REG_MSG_HANDLER( UI_MOONTOOL_CONNECTED, CSysCfgDlgLogic::OnConnectRsp, pThis, CSysCfgDlgLogic );
+    REG_MSG_HANDLER( UI_RKC_NETWORK_REFLESH, CSysCfgDlgLogic::OnEthnetInfoNty, pThis, CSysCfgDlgLogic );
 }
 
 void CSysCfgDlgLogic::UnRegMsg()
@@ -91,17 +89,17 @@ void CSysCfgDlgLogic::RegCBFun()
 {
 	CSysCfgDlgLogic *pThis = GetSingletonPtr();
 	REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::InitWnd", CSysCfgDlgLogic::InitWnd, pThis, CSysCfgDlgLogic );
-	REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnHDMISelClick", CSysCfgDlgLogic::OnHDMISelClick, pThis, CSysCfgDlgLogic );
-	REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnDVISelClick", CSysCfgDlgLogic::OnDVISelClick,  pThis, CSysCfgDlgLogic );
-	REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnCombOutputStyleClick", CSysCfgDlgLogic::OnCombOutputStyleClick,  pThis, CSysCfgDlgLogic );
-	REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnNoTurnClick", CSysCfgDlgLogic::OnNoTurnClick,  pThis, CSysCfgDlgLogic );
-	REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnTurnClick", CSysCfgDlgLogic::OnTurnClick,  pThis, CSysCfgDlgLogic );
+	//REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnHDMISelClick", CSysCfgDlgLogic::OnHDMISelClick, pThis, CSysCfgDlgLogic );
+	//REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnDVISelClick", CSysCfgDlgLogic::OnDVISelClick,  pThis, CSysCfgDlgLogic );
+	//REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnCombOutputStyleClick", CSysCfgDlgLogic::OnCombOutputStyleClick,  pThis, CSysCfgDlgLogic );
+	//REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnNoTurnClick", CSysCfgDlgLogic::OnNoTurnClick,  pThis, CSysCfgDlgLogic );
+	//REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnTurnClick", CSysCfgDlgLogic::OnTurnClick,  pThis, CSysCfgDlgLogic );
 	REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnIPAddrChanged", CSysCfgDlgLogic::OnIPAddrChanged,  pThis, CSysCfgDlgLogic );
 	REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnSubMaskChanged", CSysCfgDlgLogic::OnSubMaskChanged,  pThis, CSysCfgDlgLogic );
 	REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnGatewayChanged", CSysCfgDlgLogic::OnGatewayChanged,  pThis, CSysCfgDlgLogic );
 	REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnBtnSave", CSysCfgDlgLogic::OnBtnSave,  pThis, CSysCfgDlgLogic );
 	REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnBtnCancel", CSysCfgDlgLogic::OnBtnCancel,  pThis, CSysCfgDlgLogic );
-	REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnCombBaudRateClick", CSysCfgDlgLogic::OnCombBaudRateClick,  pThis, CSysCfgDlgLogic );
+	//REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnCombBaudRateClick", CSysCfgDlgLogic::OnCombBaudRateClick,  pThis, CSysCfgDlgLogic );
 }
 
 void CSysCfgDlgLogic::UnRegFunc()
@@ -113,9 +111,6 @@ void CSysCfgDlgLogic::Clear()
 {
 	m_vctWndName.clear();
 	UpBtnState();
-	m_bCnsIp = FALSE;
-	m_bSubMask = FALSE;
-	m_bGateWay = FALSE;
 	memset(&m_emDVIOutPortType,0,sizeof(EmTPDVIOutPortType));
 	memset(&m_emMOONOutMode,0,sizeof(EmTPMOONOutMode));
 	memset(&m_emImageAdjust,0,sizeof(EmTPImageAdjust));
@@ -183,9 +178,9 @@ bool CSysCfgDlgLogic::OnBtnSave( const IArgs& args )
 bool CSysCfgDlgLogic::OnBtnCancel( const IArgs& args )
 {
 	//没发消息前接收的数据再设遍
-	SetOutPortType(m_emDVIOutPortType);
-	SetMoonOutMode(m_emMOONOutMode);
-	SetImageAdjust(m_emImageAdjust);
+	//SetOutPortType(m_emDVIOutPortType);
+	//SetMoonOutMode(m_emMOONOutMode);
+	//SetImageAdjust(m_emImageAdjust);
 	SetEthnetCfgData();
 	m_vctWndName.clear();
 	UpBtnState();
@@ -312,10 +307,13 @@ bool CSysCfgDlgLogic::OnIPAddrChanged( const IArgs& args )
 	{
 		return false;
 	}
-	TTPEthnetInfo tOldEthnetInfo;
-	MOONLIBDATAMGRPTR->GetEthnetCfg( tOldEthnetInfo );
+
+    TRK100NetParam tOldRK100NetParam;
+    ZeroMemory(&tOldRK100NetParam, sizeof(TRK100NetParam));
+    COMIFMGRPTR->GetNetWorkConfig(tOldRK100NetParam);
+
 	in_addr tAddr;
-	tAddr.S_un.S_addr = tOldEthnetInfo.dwIP;
+	tAddr.S_un.S_addr = tOldRK100NetParam.dwIP;
 	String strOldEthnetInfo = inet_ntoa(tAddr);
 	if ( "0.0.0.0" == strOldEthnetInfo )
 	{
@@ -329,7 +327,6 @@ bool CSysCfgDlgLogic::OnIPAddrChanged( const IArgs& args )
 	if ( strCaption != strOldEthnetInfo )
 	{						
 		bChange = true;
-	//	m_bCnsIp = TRUE;
 	}
 	
 	CheckData(m_strEdtIp,bChange);
@@ -342,10 +339,13 @@ bool CSysCfgDlgLogic::OnSubMaskChanged( const IArgs& args )
 	{
 		return false;
 	}
-	TTPEthnetInfo tOldEthnetInfo;
-	MOONLIBDATAMGRPTR->GetEthnetCfg( tOldEthnetInfo );
+
+    TRK100NetParam tOldRK100NetParam;
+    ZeroMemory(&tOldRK100NetParam, sizeof(TRK100NetParam));
+    COMIFMGRPTR->GetNetWorkConfig(tOldRK100NetParam);
+
 	in_addr tAddr;
-	tAddr.S_un.S_addr = tOldEthnetInfo.dwMask;
+	tAddr.S_un.S_addr = tOldRK100NetParam.dwSubMask;
 	String strOldEthnetInfo = inet_ntoa(tAddr);
 	if ( "0.0.0.0" == strOldEthnetInfo )
 	{
@@ -372,10 +372,13 @@ bool CSysCfgDlgLogic::OnGatewayChanged( const IArgs& args )
 	{
 		return false;
 	}
-	TTPEthnetInfo tOldEthnetInfo;
-	MOONLIBDATAMGRPTR->GetEthnetCfg( tOldEthnetInfo );
+
+    TRK100NetParam tOldRK100NetParam;
+    ZeroMemory(&tOldRK100NetParam, sizeof(TRK100NetParam));
+    COMIFMGRPTR->GetNetWorkConfig(tOldRK100NetParam);
+
 	in_addr tAddr;
-	tAddr.S_un.S_addr = tOldEthnetInfo.dwGateWay;
+	tAddr.S_un.S_addr = tOldRK100NetParam.dwGateway;
 	String strOldEthnetInfo = inet_ntoa(tAddr);
 	if ( "0.0.0.0" == strOldEthnetInfo )
 	{
@@ -454,6 +457,22 @@ HRESULT CSysCfgDlgLogic::OnCamImageAdjustInd( WPARAM wparam, LPARAM lparam )
 	SetImageAdjust(m_emImageAdjust);
 	
 	return NO_ERROR;	
+}
+
+HRESULT CSysCfgDlgLogic::OnConnectRsp( WPARAM wparam, LPARAM lparam )
+{
+    BOOL bIsLogin = (BOOL)wparam;
+    if ( TRUE == bIsLogin )
+    {
+        u16 wRet = COMIFMGRPTR->GetNetWorkConfig();
+        if (wRet != NO_ERROR)
+        {
+            WARNMESSAGE( "获取网络配置请求发送失败" );
+            return false;
+        }
+    }
+    
+    return NO_ERROR;	
 }
 
 void CSysCfgDlgLogic::SetMoonOutMode( EmTPMOONOutMode emMoonOutMode )
@@ -550,9 +569,8 @@ void CSysCfgDlgLogic::SetImageAdjust( EmTPImageAdjust emImageAdjust )
 HRESULT CSysCfgDlgLogic::OnEthnetInfoNty( WPARAM wparam, LPARAM lparam )
 {
 	SetEthnetCfgData();
-	m_bCnsIp = FALSE;
-	m_bSubMask = FALSE;
-	m_bGateWay = FALSE;
+    m_vctWndName.clear();
+	UpBtnState();
 	return NO_ERROR;	
 }
 
@@ -562,17 +580,20 @@ void CSysCfgDlgLogic::SetEthnetCfgData()
 	{
 		return;
 	}
-	TTPEthnetInfo tEthnetInfo;
-	MOONLIBDATAMGRPTR->GetEthnetCfg( tEthnetInfo );
+	//TTPEthnetInfo tEthnetInfo;
+	//MOONLIBDATAMGRPTR->GetEthnetCfg( tEthnetInfo );
+    TRK100NetParam tRK100NetParam;
+    memset(&tRK100NetParam, 0, sizeof(TRK100NetParam));
+    COMIFMGRPTR->GetNetWorkConfig(tRK100NetParam);
 	
 	Value_IpEditData valIp;
-	valIp.dwIP = ntohl(tEthnetInfo.dwIP);
+	valIp.dwIP = ntohl(tRK100NetParam.dwIP);
     UIFACTORYMGR_PTR->SetPropertyValue( valIp, m_strEdtIp, m_pWndTree ); 
 	
-	valIp.dwIP = ntohl(tEthnetInfo.dwMask);
+	valIp.dwIP = ntohl(tRK100NetParam.dwSubMask);
     UIFACTORYMGR_PTR->SetPropertyValue( valIp, m_strEdtSubMask, m_pWndTree ); 
 	
-	valIp.dwIP = ntohl(tEthnetInfo.dwGateWay);
+	valIp.dwIP = ntohl(tRK100NetParam.dwGateway);
     UIFACTORYMGR_PTR->SetPropertyValue( valIp, m_strEdtGateWay, m_pWndTree ); 	
 }
 
@@ -592,7 +613,7 @@ bool CSysCfgDlgLogic::SaveNet()
 	//MOONLIBDATAMGRPTR->GetEthnetCfg( tOldEthnetInfo );	
 	
 	//if ( htonl( valCNSIp.dwIP ) != tOldEthnetInfo.dwIP || htonl( valSubMask.dwIP ) != tOldEthnetInfo.dwMask
-	//	|| htonl( valGateway.dwIP ) != tOldEthnetInfo.dwGateWay || m_bCnsIp || m_bGateWay || m_bSubMask )
+	//	|| htonl( valGateway.dwIP ) != tOldEthnetInfo.dwGateWay )
 	{
 		//效验IP
 		String strCaption;
@@ -687,11 +708,11 @@ bool CSysCfgDlgLogic::SaveEthnetCfg( )
 	Value_IpEditData valGateway;
     UIFACTORYMGR_PTR->GetPropertyValue(valGateway, m_strEdtGateWay, m_pWndTree); 
 	
-	TTPEthnetInfo tEthnetInfo;
-	tEthnetInfo.bEnable = TRUE;
+	TRK100NetParam tEthnetInfo;
+    ZeroMemory(&tEthnetInfo, sizeof(TRK100NetParam));
 	tEthnetInfo.dwIP = htonl( valIp.dwIP );
-	tEthnetInfo.dwMask = htonl( valSubMask.dwIP );
-	tEthnetInfo.dwGateWay = htonl( valGateway.dwIP );
+	tEthnetInfo.dwSubMask = htonl( valSubMask.dwIP );
+	tEthnetInfo.dwGateway = htonl( valGateway.dwIP );
 	
 	u16 wRet = COMIFMGRPTR->UpdateEthnetCfg( tEthnetInfo );
 	if (wRet != NO_ERROR)

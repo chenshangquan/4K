@@ -101,6 +101,8 @@ protected:
 	HRESULT OnLoginTimeOut( WPARAM wparam, LPARAM lparam );	
 	
 	HRESULT OnListMenuShow( WPARAM wparam, LPARAM lparam );	
+
+    HRESULT OnReBoot( WPARAM wparam, LPARAM lparam );
 	
 private: 
 	/** 功能:  注销窗口,回到登录界面

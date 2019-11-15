@@ -497,6 +497,11 @@ LRESULT CTpToolsDlg::OnLoginResult( WPARAM wParam, LPARAM lParam )
 			LoginBreak();
 		}
 		break;
+    case em_LOGIN_REBOOT:
+        {
+            LoginReboot();
+        }
+		break;
 	default: 
 		{
 		}
@@ -636,6 +641,20 @@ BOOL CTpToolsDlg::LoginBreak()
 	}
 	
 	return TRUE;
+}
+
+BOOL CTpToolsDlg::LoginReboot()
+{
+    CString strIpAddr;
+    strIpAddr = _T("设备正在重启中，请稍后再试...");
+	ShowWarningText( strIpAddr );
+
+    if ( !this->IsWindowVisible() )
+    {
+        this->ShowWindow(SW_RESTORE);
+    }
+    
+    return TRUE;
 }
 
 BOOL CTpToolsDlg::LoginTimeOut()

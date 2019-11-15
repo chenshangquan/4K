@@ -477,6 +477,7 @@ protected:
     //moon904k30
     void OnSetCamZoomValRsp( const CMessage& cMsg );
     void OnSetCamApertreRsp( const CMessage& cMsg );
+    void OnReBootRkRsp( const CMessage& cMsg );
 
 public:
 	void SetCameraCfgPtr();

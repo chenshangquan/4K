@@ -403,7 +403,7 @@ typedef struct
     u8 InputPreciseValFlag;   /* 输入精确值。1:开启自动模式 0:关闭开启自动模式，开启手动模式 */
 	u8 ZoomUpFlag;  //Zoom+
 	u8 ZoomDownFlag;  //Zoom-
-	//u8 CamIndex;  //摄像机索引
+	u8 ZoomUpDownStopFlag;
 } TCamZoomVal; 
 
 
@@ -502,8 +502,14 @@ typedef struct
 
 typedef struct
 {
-    u8 PresetLaststate;
     u8 PresetNumber1;
+    u8 PresetNumber2;
+    u8 PresetNumber3;
+    u8 PresetNumber4;
+    u8 PresetNumber5;
+    u8 PresetNumber6;
+    u8 PresetNumber7;
+    u8 PresetNumber8;
 }TCamPresetNumberList;
 
 

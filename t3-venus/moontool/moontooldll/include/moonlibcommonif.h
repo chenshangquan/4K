@@ -274,7 +274,12 @@ public:
 	*  @return 成功返回0,失败返回非0错误码
 	*  @remarks 
 	*/
-	u16 UpdateEthnetCfg( const TTPEthnetInfo& tInfo );
+	u16 UpdateEthnetCfg( const TRK100NetParam& tInfo );
+
+    //获取网络配置
+    u16 GetNetWorkConfig();
+    //获取网络配置内容
+    u16 GetNetWorkConfig(TRK100NetParam& tRK100NetParam);
 
 	u16 CamPreSetSaveCmd( const TTPCamPre& tTPCamPre );
 

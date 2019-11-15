@@ -374,10 +374,16 @@ bool CCameraCtrlLogic::InitWnd(  const IArgs & arg )
 	}
     //开机预置位
     vecCamera.clear();
-    vecCamera.push_back("上一次状态");
     vecCamera.push_back("预置位1");
+    /*vecCamera.push_back("预置位2");
+    vecCamera.push_back("预置位3");
+    vecCamera.push_back("预置位4");
+    vecCamera.push_back("预置位5");
+    vecCamera.push_back("预置位6");
+    vecCamera.push_back("预置位7");
+    vecCamera.push_back("预置位8");*/
     UIFACTORYMGR_PTR->SetComboListData( m_strComboboxOrderPos, vecCamera, m_pWndTree );
-	UIFACTORYMGR_PTR->SetComboText( m_strComboboxOrderPos, _T("上一次状态"), m_pWndTree );
+	UIFACTORYMGR_PTR->SetComboText( m_strComboboxOrderPos, _T("预置位1"), m_pWndTree );
 
 	SetFocus(NULL);
 
@@ -605,7 +611,7 @@ bool CCameraCtrlLogic::OnComboboxGammaClick(const IArgs& args)
 		emH650Gamma = emGamma4;
 	}
 
-    u16 nRet = COMIFMGRPTR->CamImageParaCmd( emGama, emH650Gamma+1 );
+    u16 nRet = COMIFMGRPTR->CamImageParaCmd( emGama, emH650Gamma );
 	if(nRet != NO_ERROR)
 	{
 		WARNMESSAGE( "选择Gamma请求发送失败" );
@@ -632,9 +638,33 @@ bool CCameraCtrlLogic::OnComboboxOrderPosClick(const IArgs& args)
     {
         tCamPresetPos.PresetNumber1 = 1;
     }
-    else
+    else if( "预置位2" == strComboText )
     {
-        tCamPresetPos.PresetLaststate = 1;
+        tCamPresetPos.PresetNumber2 = 1;
+    }
+    else if( "预置位3" == strComboText )
+    {
+        tCamPresetPos.PresetNumber3 = 1;
+    }
+    else if( "预置位4" == strComboText )
+    {
+        tCamPresetPos.PresetNumber4 = 1;
+    }
+    else if( "预置位5" == strComboText )
+    {
+        tCamPresetPos.PresetNumber5 = 1;
+    }
+    else if( "预置位6" == strComboText )
+    {
+        tCamPresetPos.PresetNumber6 = 1;
+    }
+    else if( "预置位7" == strComboText )
+    {
+        tCamPresetPos.PresetNumber7 = 1;
+    }
+    else if( "预置位8" == strComboText )
+    {
+        tCamPresetPos.PresetNumber8 = 1;
     }
     
     u16 nRet = COMIFMGRPTR->CamOrderPosCheckCmd( tCamPresetPos );
@@ -717,10 +747,7 @@ bool CCameraCtrlLogic::OnLBtnDoubleDownZoomPlus( const IArgs& args )
 
 bool CCameraCtrlLogic::OnLBtnUpZoomPlus( const IArgs& args )
 {
-    if (m_emTPMechanism != emSonyFCBCS8230)
-    {
-        u16 nRet = COMIFMGRPTR->SetCamZoomStopCmd( m_byCamIndex );
-    }
+    u16 nRet = COMIFMGRPTR->SetCamZoomStopCmd( 0 );
 	
 	return true;
 }
@@ -769,11 +796,7 @@ bool CCameraCtrlLogic::OnLBtnDoubleDownZoomSub( const IArgs& args )
 
 bool CCameraCtrlLogic::OnLBtnUpZoomSub( const IArgs& args )
 {
-    if (m_emTPMechanism != emSonyFCBCS8230)
-    {
-        u16 nRet = COMIFMGRPTR->SetCamZoomStopCmd( m_byCamIndex );
-    }
-
+    u16 nRet = COMIFMGRPTR->SetCamZoomStopCmd( 1 );
 	return true;
 }
 
@@ -1448,36 +1471,13 @@ HRESULT CCameraCtrlLogic::OnCameraCfgNty( WPARAM wparam, LPARAM lparam )
 	    ResetNormal();
 	}
 
-	TTPMoonCamInfo tMoonCameraCfg;
-	MOONLIBDATAMGRPTR->GetCamCfg( tMoonCameraCfg );
-
-	//初次登陆赋值，一旦手动/自动被选中，点击选中的不发消息
-    m_emFocusMode = emAuto;
-    if (tMoonCameraCfg.FocusMode.ManualModeFlag == 1)
+    //机芯选择通知
+    u8 byCameraIndx = (u8)wparam;
+    u16 nRet = COMIFMGRPTR->CamSelCmd( byCameraIndx );
+    if ( nRet != NO_ERROR )
     {
-        m_emFocusMode = emManual;
-    }
-
-    m_emApertreMode = emAuto;
-    if (tMoonCameraCfg.IrisMode.IrisManuFlag == 1)
-    {
-        m_emApertreMode = emManual;
-    }
-
-    m_emExposureMode = emAuto;
-    if (tMoonCameraCfg.ExpMode.ExposAutoModeFlag == 0)
-    {
-        m_emExposureMode = emManual;
-    }
-
-    m_emWBMode = emAuto;
-    if (tMoonCameraCfg.WBMode.CamWBManuModeFlag == 1)
-    {
-        m_emWBMode = emManual;
-    }
-
-    //摄像机界面设置
-	SetCameraCfg( tMoonCameraCfg );
+        WARNMESSAGE( "选择摄像机请求发送失败" );
+	}
 
 	return S_OK;
 }
@@ -2402,7 +2402,8 @@ bool CCameraCtrlLogic::OnEdtZoomChange( const IArgs& args )
     CString str =  valueWindowCaption.strCaption.c_str();
     //str = OnlyFloat( valueWindowCaption.strCaption.c_str() );
 
-    if ( atoi(valueWindowCaption.strCaption.c_str()) > ZOOM_MAX_LIMIT )
+    //ZOOM范围为1~31424
+    /*if ( atoi(valueWindowCaption.strCaption.c_str()) > ZOOM_MAX_LIMIT )
     {
         str.Format("%d", ZOOM_MAX_LIMIT);
         UIFACTORYMGR_PTR->SetCaption( m_strEdtZoom, (String)str, m_pWndTree );
@@ -2411,7 +2412,7 @@ bool CCameraCtrlLogic::OnEdtZoomChange( const IArgs& args )
         {
             (( CEdit *) pWnd)->SetSel( -1 );		
 	    }
-    }
+    }*/
 
     if ( nChar == 0x0d )
     {
@@ -3808,9 +3809,7 @@ HRESULT CCameraCtrlLogic::OnSetCameraZoomInd( WPARAM wparam, LPARAM lparam )
 	}
 	else if ( m_emTPMechanism == emSonyFCBCS8230 )
     {
-        CString strCaption;
-        strCaption.Format( "%d", dwZoom );
-	    UIFACTORYMGR_PTR->SetCaption( m_strEdtZoom, (String)strCaption, m_pWndTree );
+        SetZoomValue(dwZoom);
     }
     else
 	{
@@ -3831,13 +3830,13 @@ HRESULT CCameraCtrlLogic::OnSetCameraZoomInd( WPARAM wparam, LPARAM lparam )
 
 void CCameraCtrlLogic::SetZoomValue( u32 dwZoom )
 {
-    if( dwZoom < 0 )
+    if( dwZoom < 1 )
     {
-        dwZoom = 0;
+        dwZoom = 1;
     }
-    else if( dwZoom > 31424 )
+    else if( dwZoom > ZOOM_MAX_LIMIT )
     {
-        dwZoom = 31424;
+        dwZoom = ZOOM_MAX_LIMIT;
     }
 
     CString strCaption;
@@ -3867,49 +3866,17 @@ void CCameraCtrlLogic::SetZoomCmd( CString str )
 	String strComboText = valueTransparentComboBoxText.strComboText;
 
 	u32 dwZoom = 0;
-	if( strComboText == "Sony")
-	{
-		float fZoom = StringToFloatThree( str );
+    dwZoom = atoi(LPCTSTR(str));
 
-		if ( fZoom > 10 )
-		{
-			fZoom = 10.00;
-		}
-		else if ( fZoom < 1)
-		{
-			fZoom = 1.00;
-		}
-
-		dwZoom = (fZoom+1.0e-6)*100;
-	}
-    else if ( strComboText == "SONY FCB-CS8230" )
+    //ZOOM调节范围为1~31424
+    if( dwZoom < 1 )
     {
-        dwZoom = atoi(LPCTSTR(str));
-
-        if( dwZoom < 0 )
-        {
-            dwZoom = 0;
-        }
-        else if( dwZoom > 31424 )
-        {
-            dwZoom = 31424;
-        }
+        dwZoom = 1;
     }
-	else
-	{
-		dwZoom = atoi(LPCTSTR(str));
-
-		if( dwZoom < 1 )
-		{
-			dwZoom = 1;
-		}
-		else if( dwZoom > 6775 )
-		{
-			dwZoom = 6775;
-		}
-
-		dwZoom += 199;
-	}
+    else if( dwZoom > ZOOM_MAX_LIMIT )
+    {
+        dwZoom = ZOOM_MAX_LIMIT;
+    }
 
     u16 nRet = NO_ERROR;
     if ( strComboText == "SONY FCB-CS8230" )
@@ -3990,10 +3957,11 @@ bool CCameraCtrlLogic::OnBtnSwitch2DNRClick(const IArgs& args)
 {
 	Value_SwitchState valueSwitchState;
 	UIFACTORYMGR_PTR->GetPropertyValue( valueSwitchState, m_strBtnSwitch2DNR, m_pWndTree );
+
+    EmTPReduNoise emTPReduNoise;
+    Get2DNRValue( emTPReduNoise );
 	if ( valueSwitchState.bState )
 	{
-		EmTPReduNoise emTPReduNoise;
-		Get2DNRValue( emTPReduNoise );
 		u16 nRet = COMIFMGRPTR->Cam2DNRCmd( TRUE, emTPReduNoise );
         if ( nRet != NO_ERROR )
         {
@@ -4002,7 +3970,7 @@ bool CCameraCtrlLogic::OnBtnSwitch2DNRClick(const IArgs& args)
 	}
 	else
 	{
-		u16 nRet = COMIFMGRPTR->Cam2DNRCmd( FALSE, emClose );
+		u16 nRet = COMIFMGRPTR->Cam2DNRCmd( FALSE, emTPReduNoise );
 		if ( nRet != NO_ERROR )
 		{
 			WARNMESSAGE( "关闭2D降噪请求发送失败" );
@@ -4016,10 +3984,11 @@ bool CCameraCtrlLogic::OnBtnSwitch3DNRClick(const IArgs& args)
 {
 	Value_SwitchState valueSwitchState;
 	UIFACTORYMGR_PTR->GetPropertyValue( valueSwitchState, m_strBtnSwitch3DNR, m_pWndTree );
+
+    EmTPReduNoise emTPReduNoise;
+    Get3DNRValue( emTPReduNoise );
 	if ( valueSwitchState.bState )
 	{
-		EmTPReduNoise emTPReduNoise;
-		Get3DNRValue( emTPReduNoise );
 		u16 nRet = COMIFMGRPTR->Cam3DNRCmd( TRUE, emTPReduNoise );
         if ( nRet != NO_ERROR )
         {
@@ -4028,7 +3997,7 @@ bool CCameraCtrlLogic::OnBtnSwitch3DNRClick(const IArgs& args)
 	}
 	else
 	{
-		u16 nRet = COMIFMGRPTR->Cam3DNRCmd( FALSE, emClose );
+		u16 nRet = COMIFMGRPTR->Cam3DNRCmd( FALSE, emTPReduNoise );
 		if ( nRet != NO_ERROR )
 		{
 			WARNMESSAGE( "关闭3D降噪请求发送失败" );
@@ -4652,19 +4621,19 @@ void CCameraCtrlLogic::SetGammaValue(EmH650Gamma emGamma)
 	
 	if( emGamma == emGamma1 )
 	{
-		SetGammaName(_T("0"));
+		SetGammaName(_T("1"));
 	}
 	else if( emGamma == emGamma2 )
 	{
-		SetGammaName(_T("1"));
+		SetGammaName(_T("2"));
 	}
 	else if( emGamma == emGamma3 )
 	{
-		SetGammaName(_T("2"));
+		SetGammaName(_T("3"));
 	}
 	else
 	{
-		SetGammaName(_T("3"));
+		SetGammaName(_T(""));
 	}
 }
 

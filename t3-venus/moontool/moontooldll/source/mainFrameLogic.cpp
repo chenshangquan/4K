@@ -97,6 +97,7 @@ void CMainFrameLogic::RegMsg()
 	REG_MSG_HANDLER( UI_MOONTOOL_CONNECTED, CMainFrameLogic::OnConnectRsp, m_pThis, CMainFrameLogic );
 	REG_MSG_HANDLER( UI_MOONTOOL_DISCONNECTED, CMainFrameLogic::OnDisConnect, m_pThis, CMainFrameLogic );
 	REG_MSG_HANDLER( UI_UMS_GRAB_LOGIN_NOTIFY, CMainFrameLogic::OnGrabLoginNty, m_pThis, CMainFrameLogic );
+    REG_MSG_HANDLER( UI_RKC_REBOOT, CMainFrameLogic::OnReBoot, m_pThis, CMainFrameLogic );
 	REG_MSG_HANDLER( UI_CNS_LOGIN_TIMEOUT, CMainFrameLogic::OnLoginTimeOut, m_pThis, CMainFrameLogic );
 	REG_MSG_HANDLER( UI_MOONTOOL_VERINFO_NTY, CMainFrameLogic::OnProductModelNty, m_pThis, CMainFrameLogic );
 
@@ -336,6 +337,16 @@ HRESULT CMainFrameLogic::OnGrabLoginNty( WPARAM wparam, LPARAM lparam )
 	UIDATAMGR_PTR->NotifyOuterWnd( WM_TPTOOL_LOGINRESULT , em_LOGIN_GRAP, (LPARAM)wparam );
 //	UIDATAMGR_PTR->NotifyOuterWnd( WM_TPTOOL_LOGOFF, 1, 0 );	
 	return S_OK;
+}
+
+HRESULT CMainFrameLogic::OnReBoot( WPARAM wparam, LPARAM lparam )
+{
+    COMIFMGRPTR->DisConnect();
+    UIFACTORYMGR_PTR->HideAllWindow();
+    LOGICMGR_PTR->DestroyLogic();
+    UIDATAMGR_PTR->NotifyOuterWnd( WM_TPTOOL_LOGINRESULT , em_LOGIN_REBOOT, NULL );
+	
+    return S_OK;
 }
 
 void CMainFrameLogic::HideAllWnd()

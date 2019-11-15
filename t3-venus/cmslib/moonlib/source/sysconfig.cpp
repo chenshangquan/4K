@@ -16,6 +16,7 @@ CSysConfig::CSysConfig( CRkcSession &cSession) : CSysConfigIF()
 {
 	m_pSession = &cSession;
     ZeroMemory(&m_tEthnetInfo, sizeof(TTPEthnetInfo));
+    memset(&m_tRK100NetParam, 0, sizeof(TRK100NetParam));
 
 	BuildEventsMap();
 } 
@@ -38,11 +39,15 @@ void CSysConfig::BuildEventsMap()
 	REG_PFUN(ev_TpMoonCfgEthnet_Ind, CSysConfig::OnEthnetInfoInd);
 	REG_PFUN(ev_TpSetLVDSBaud_Ind, CSysConfig::OnLVDBaudInd);
 	REG_PFUN( ev_TpSetLVDSBaud_Nty, CSysConfig::OnLVDBaudNty);
+
+    //MOON904K30
+    REG_PFUN( RK100_EVT_GET_NETPARAM_ACK, CSysConfig::OnGetNetWorkConfigRsp);
+    REG_PFUN( RK100_EVT_SET_NETPARAM_ACK, CSysConfig::OnEthnetInfoInd);
 }
 
 void CSysConfig::OnLinkBreak(const CMessage& cMsg)
 {
-
+    memset(&m_tRK100NetParam, 0, sizeof(TRK100NetParam));
 }
 
 void CSysConfig::DispEvent(const CMessage &cMsg)
@@ -180,16 +185,16 @@ void CSysConfig::OnEthnetInfoInd( const CMessage& cMsg )
 
 	if (tMsgHead.wMsgLen != 0)
 	{
-		m_tEthnetInfo = *reinterpret_cast<TTPEthnetInfo*>( cMsg.content + sizeof(TTPEthnetInfo) );
+		m_tRK100NetParam = *reinterpret_cast<TRK100NetParam*>( cMsg.content + sizeof(TRK100MsgHead) );
+        m_tRK100NetParam.dwGateway = ntohl(m_tRK100NetParam.dwGateway); 
+        m_tRK100NetParam.dwIP = ntohl(m_tRK100NetParam.dwIP);
+	    m_tRK100NetParam.dwSubMask = ntohl(m_tRK100NetParam.dwSubMask);
 	}
-	m_tEthnetInfo.dwGateWay = ntohl(m_tEthnetInfo.dwGateWay);
-	m_tEthnetInfo.dwIP = ntohl(m_tEthnetInfo.dwIP);
-	m_tEthnetInfo.dwMask = ntohl(m_tEthnetInfo.dwMask);
-
+	
 	in_addr tAddr;
-	tAddr.S_un.S_addr = m_tEthnetInfo.dwIP;
-	PrtRkcMsg( ev_TpMoonCfgEthnet_Ind, emEventTypeScoketRecv, "TTPEthnetInfo: Ip: %s", inet_ntoa(tAddr));
-	PostEvent( UI_MOONTOOL_ETHNETINFO_NOTIFY );
+	tAddr.S_un.S_addr = m_tRK100NetParam.dwIP;
+	PrtRkcMsg( RK100_EVT_SET_NETPARAM_ACK, emEventTypeScoketRecv, "TTPEthnetInfo: Ip: %s", inet_ntoa(tAddr));
+	PostEvent( UI_MOONTOOL_ETHNETINFO_NOTIFY, WPARAM(RK100_OPT_RTN_OK == tMsgHead.wOptRtn) );
 }
 
 const TTPEthnetInfo& CSysConfig::GetEthnetCfg() const
@@ -324,7 +329,7 @@ void CSysConfig::OnCamImageAdjustInd( const CMessage& cMsg )
 	PostEvent( UI_MOONTOOL_IMAGE_ADJUST_IND, (WPARAM)emImageAdjust, NULL );
 }
 
-u16 CSysConfig::UpdateEthnetCfg( const TTPEthnetInfo& cfg )
+u16 CSysConfig::UpdateEthnetCfg( const TRK100NetParam& cfg )
 {
 	/*CTpMsg *pcTpMsg = m_pSession->GetKdvMsgPtr();
 	pcTpMsg->SetUserData( m_pSession->GetInst() );
@@ -336,27 +341,42 @@ u16 CSysConfig::UpdateEthnetCfg( const TTPEthnetInfo& cfg )
 	tAddr.S_un.S_addr = cfg.dwIP;
 	PrtMsg( ev_TpMoonCfgEthnet_Cmd, emEventTypemoontoolSend, "MoonIP: %s", inet_ntoa(tAddr) );
 	return wRet;*/
-#if 0
 	TRK100MsgHead tRK100MsgHead;//定义消息头结构体
 	memset(&tRK100MsgHead,0,sizeof(TRK100MsgHead));
 	//整型传数据集的转网络序
-	tRK100MsgHead.dwEvent = htonl(ev_TpMoonCfgEthnet_Cmd);
-	tRK100MsgHead.wMsgLen = htons(sizeof(TTPEthnetInfo));
+	tRK100MsgHead.dwEvent = htonl(RK100_EVT_SET_NETPARAM);
+	tRK100MsgHead.wMsgLen = htons(sizeof(TRK100NetParam));
 	CRkMessage rkmsg;//定义消息
 	rkmsg.SetBody(&tRK100MsgHead, sizeof(TRK100MsgHead));//添加头内容
-	TTPEthnetInfo tTpEthnetInfo = cfg;
-	tTpEthnetInfo.dwGateWay = htonl(cfg.dwGateWay);
+	TRK100NetParam tTpEthnetInfo;
+    ZeroMemory(&tTpEthnetInfo, sizeof(TRK100NetParam));
+    tTpEthnetInfo = cfg;
+	tTpEthnetInfo.dwGateway = htonl(cfg.dwGateway);
 	tTpEthnetInfo.dwIP = htonl(cfg.dwIP);
-	tTpEthnetInfo.dwMask = htonl(cfg.dwMask);
-	rkmsg.CatBody(&tTpEthnetInfo, sizeof(TTPEthnetInfo));//添加消息体
+	tTpEthnetInfo.dwSubMask = htonl(cfg.dwSubMask);
+	rkmsg.CatBody(&tTpEthnetInfo, sizeof(TRK100NetParam));//添加消息体
 
 	in_addr tAddr;
 	tAddr.S_un.S_addr = cfg.dwIP;
-	PrtRkcMsg( ev_TpMoonCfgEthnet_Cmd, emEventTypeScoketSend , "MoonIP: %s", inet_ntoa(tAddr) );
+	PrtRkcMsg( RK100_EVT_SET_NETPARAM, emEventTypeScoketSend , "MoonIP: %s", inet_ntoa(tAddr) );
 
 	SOCKETWORK->SendDataPack(rkmsg);//消息发送
-#endif
-	return 1;
+	return NOERROR;
+}
+
+u16 CSysConfig::GetNetWorkConfig()
+{
+    TRK100MsgHead tRK100MsgHead;//定义消息头结构体
+    memset(&tRK100MsgHead,0,sizeof(TRK100MsgHead));
+    //整型传数据集的转网络序
+    tRK100MsgHead.dwEvent = htonl(RK100_EVT_GET_NETPARAM);
+    CRkMessage rkmsg;//定义消息
+    rkmsg.SetBody(&tRK100MsgHead, sizeof(TRK100MsgHead));//添加头内容
+    
+    PrtRkcMsg( RK100_EVT_GET_NETPARAM, emEventTypeScoketSend ,"获取网络配置");
+    
+    SOCKETWORK->SendDataPack(rkmsg);//消息发送
+    return NOERROR;
 }
 
 u16 CSysConfig::SetBaudRateCmd( EmTPLVDSBaud emBaudRate )
@@ -451,4 +471,38 @@ void CSysConfig::OnLVDBaudNty( const CMessage& cMsg )
 
 	PrtRkcMsg( ev_TpSetLVDSBaud_Nty, emEventTypeScoketRecv, "EmTPLVDSBaud:%d", emTpBaudRate);
 	//PostEvent( UI_MOONTOOL_LVDSBAUD_IND, (WPARAM)&emTpBaudRate, (LPARAM)&bOk );
+}
+
+void CSysConfig::OnGetNetWorkConfigRsp( const CMessage& cMsg )
+{
+    TRK100MsgHead tMsgHead = *reinterpret_cast<TRK100MsgHead*>( cMsg.content );
+    tMsgHead.dwEvent = ntohl(tMsgHead.dwEvent);
+    tMsgHead.dwHandle = ntohl(tMsgHead.dwHandle);
+    tMsgHead.dwProtocolVer = ntohl(tMsgHead.dwProtocolVer);
+    tMsgHead.dwRsvd = ntohl(tMsgHead.dwRsvd);
+    tMsgHead.dwSerial = ntohl(tMsgHead.dwSerial);
+    tMsgHead.nArgv = ntohl(tMsgHead.nArgv);
+    tMsgHead.wExtLen = ntohs(tMsgHead.wExtLen);
+    tMsgHead.wMsgLen = ntohs(tMsgHead.wMsgLen);
+    tMsgHead.wOptRtn = ntohs(tMsgHead.wOptRtn);
+    tMsgHead.wReserved1 = ntohs(tMsgHead.wReserved1);
+    
+    PrtRkcMsg( RK100_EVT_GET_NETPARAM_ACK, emEventTypeScoketRecv, "wOptRtn = %d", tMsgHead.wOptRtn);
+
+    if (tMsgHead.wMsgLen != 0)
+    {
+        m_tRK100NetParam = *reinterpret_cast<TRK100NetParam*>( cMsg.content + sizeof(TRK100MsgHead) );
+        m_tRK100NetParam.dwIP = ntohl(m_tRK100NetParam.dwIP);
+        m_tRK100NetParam.dwSubMask = ntohl(m_tRK100NetParam.dwSubMask);
+        m_tRK100NetParam.dwGateway = ntohl(m_tRK100NetParam.dwGateway);
+        m_tRK100NetParam.dwMqttIP = ntohl(m_tRK100NetParam.dwMqttIP);
+        m_tRK100NetParam.MqttPort = ntohs(m_tRK100NetParam.MqttPort);
+    }
+    PostEvent(UI_RKC_NETWORK_REFLESH, WPARAM(RK100_OPT_RTN_OK == tMsgHead.wOptRtn), (LPARAM)tMsgHead.wOptRtn );
+}
+
+u16 CSysConfig::GetNetWorkConfig(TRK100NetParam& tRK100NetParam)
+{
+    tRK100NetParam = m_tRK100NetParam;
+    return NOERROR;
 }
