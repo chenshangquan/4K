@@ -60,6 +60,9 @@ public:
 	*/	
 	virtual u16 SetOutputFormatCmd( const TPOutputFmt& tOutputFmt) = 0;
 
+    // 获取输出制式参数
+    virtual TPOutputFmt GetOutputFormat() = 0;
+
 	/** 
 	* 功能  视野设置
 	* @param [in] 	 EmZoom  分为:远，近

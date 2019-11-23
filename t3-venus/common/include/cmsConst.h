@@ -16,6 +16,7 @@
 #define _CMSCONST_20110423_H_
 
 #include "printctrl.h"  
+#include "rkcprintctrl.h"
 
 //------------------------------常量部分------begin-------------------------------
 #define ARRAY                          vector

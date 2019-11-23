@@ -185,6 +185,10 @@ private:
 
 	void SetEthnetCfgData();
 
+    void SetOutputFormat();
+
+    void SetOutputFormatCmd();
+
 	/** ¹¦ÄÜ:  ±£´æÍøÂçÅäÖÃ
 	*  @param[in] 
 	*  @return 

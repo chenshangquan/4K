@@ -11,7 +11,7 @@
 
 static UINT     g_nHeartBeatLostCount;                      //心跳包丢失个数
 static bool     g_bHeartBeatKeep;                           //
-#define         TIME_HEARTBEAT_INTERVAL        5000         //时间间隔
+#define         TIME_HEARTBEAT_INTERVAL        6000         //时间间隔
 
 bool     CSocketManager::m_bIsSocketOpen = false;    //Socket是否开启
 
@@ -22,7 +22,7 @@ UINT ThreadHeartBeat(LPVOID lpParam)
     while ( g_bHeartBeatKeep )
     {
         g_nHeartBeatLostCount++;
-        if (g_nHeartBeatLostCount > 2)//超过两次没响应则认为断链
+        if (g_nHeartBeatLostCount > 3)//超过三次没响应则认为断链
         {
             PrtRkcMsg( RK100_EVT_SET_HEART_BEAT, emEventTypeScoketRecv, "断链关闭...");
             SOCKETWORK->CloseSocket();

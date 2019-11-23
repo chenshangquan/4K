@@ -375,13 +375,13 @@ bool CCameraCtrlLogic::InitWnd(  const IArgs & arg )
     //开机预置位
     vecCamera.clear();
     vecCamera.push_back("预置位1");
-    /*vecCamera.push_back("预置位2");
+    vecCamera.push_back("预置位2");
     vecCamera.push_back("预置位3");
     vecCamera.push_back("预置位4");
     vecCamera.push_back("预置位5");
     vecCamera.push_back("预置位6");
     vecCamera.push_back("预置位7");
-    vecCamera.push_back("预置位8");*/
+    vecCamera.push_back("预置位8");
     UIFACTORYMGR_PTR->SetComboListData( m_strComboboxOrderPos, vecCamera, m_pWndTree );
 	UIFACTORYMGR_PTR->SetComboText( m_strComboboxOrderPos, _T("预置位1"), m_pWndTree );
 
@@ -802,7 +802,7 @@ bool CCameraCtrlLogic::OnLBtnUpZoomSub( const IArgs& args )
 
 bool CCameraCtrlLogic::OnBtnManuelFocusClick( const IArgs& args )
 {
-	//if( m_emFocusMode != emManual )
+	if( m_emFocusMode != emManual )
 	{
 		m_emFocusMode = emManual;
 		u16 nRet = COMIFMGRPTR->SetCamAutoFocusCmd(m_emFocusMode);
@@ -819,7 +819,7 @@ bool CCameraCtrlLogic::OnBtnManuelFocusClick( const IArgs& args )
 
 bool CCameraCtrlLogic::OnBtnAutoFocusClick( const IArgs& args )
 {
-	//if ( m_emFocusMode != emAuto )
+	if ( m_emFocusMode != emAuto )
 	{
 		m_emFocusMode = emAuto;
 		u16 nRet = COMIFMGRPTR->SetCamAutoFocusCmd(m_emFocusMode);
@@ -887,6 +887,12 @@ bool CCameraCtrlLogic::OnBtnSwitchManuelApertre( const IArgs& args )
         return false;
     }*/
 
+    if ( m_emApertreMode == emManual )
+    {
+        return false;
+    }
+    m_emApertreMode = emManual;
+
     UIFACTORYMGR_PTR->LoadScheme( _T("SchManuelApertre"), m_pWndTree );
 
     TIrisAutoManuMode tIrisAutoManuMode;
@@ -938,6 +944,12 @@ bool CCameraCtrlLogic::OnBtnSwitchAutoApertre( const IArgs& args )
     {
         return false;
     }*/
+
+    if ( m_emApertreMode == emAuto )
+    {
+        return false;
+    }
+    m_emApertreMode = emAuto;
 
     UIFACTORYMGR_PTR->LoadScheme( _T("SchAutoApertre"), m_pWndTree );
     
@@ -1017,6 +1029,12 @@ bool CCameraCtrlLogic::OnBtnSwitchManuelExposure( const IArgs& args )
     
     //if ( valueSwitchState.bState )
 
+    if ( m_emExposureMode == emManual )
+    {
+        return false;
+    }
+    m_emExposureMode = emManual;
+
     u16 nRet = COMIFMGRPTR->CamAutoExposureCmd( emManual );
     if ( nRet != NO_ERROR )
     {
@@ -1073,6 +1091,12 @@ bool CCameraCtrlLogic::OnBtnSwitchAutoExposure( const IArgs& args )
 	//Value_SwitchState valueSwitchState;
 	//UIFACTORYMGR_PTR->GetPropertyValue( valueSwitchState, m_strBtnSwitchAutoExposure, m_pWndTree );
 	//if ( valueSwitchState.bState )
+
+    if ( m_emExposureMode == emAuto )
+    {
+        return false;
+    }
+    m_emExposureMode = emAuto;
 
     u16 nRet = COMIFMGRPTR->CamAutoExposureCmd( emAuto );
     if ( nRet != NO_ERROR )
@@ -1164,7 +1188,7 @@ bool CCameraCtrlLogic::OnEdtExpGainChange( const IArgs& args )
     
     if ( nChar == 0x0d )
     {
-        SetExpGainValue(byExpGainValue);
+        //SetExpGainValue(byExpGainValue);
         SetFocus(NULL);
     }
     
@@ -1200,8 +1224,9 @@ bool CCameraCtrlLogic::OnBtnSwitchManuelWB( const IArgs& args )
     
     //Value_SwitchState valueSwitchState;
     //UIFACTORYMGR_PTR->GetPropertyValue( valueSwitchState, m_strBtnSwitchAutoWB, m_pWndTree );
-    
+    if ( m_emWBMode == emAuto )
     {
+        m_emWBMode = emManual;
         TCamWBMode tCamWBMode;
         ZeroMemory(&tCamWBMode, sizeof(TCamWBMode));
         tCamWBMode.CamWBManuModeFlag = 1;
@@ -1247,7 +1272,9 @@ bool CCameraCtrlLogic::OnBtnSwitchAutoWB( const IArgs& args )
 	//UIFACTORYMGR_PTR->GetPropertyValue( valueSwitchState, m_strBtnSwitchAutoWB, m_pWndTree );
 	
 	//if ( valueSwitchState.bState )
+    if ( m_emWBMode == emManual )
 	{
+        m_emWBMode = emAuto;
         TCamWBMode tCamWBMode;
         ZeroMemory(&tCamWBMode, sizeof(TCamWBMode));
         tCamWBMode.CamWBAutoModeFlag = 1;
@@ -1636,7 +1663,7 @@ HRESULT CCameraCtrlLogic::OnCameraOutputFormatRsp(WPARAM wparam, LPARAM lparam)
         WARNMESSAGE( _T("摄像机输出制式设置失败") );
     }
 
-    if (tOutputFmt->FMT1080_25fps_flag || tOutputFmt->FMT1080_50fps_flag ||
+    /*if (tOutputFmt->FMT1080_25fps_flag || tOutputFmt->FMT1080_50fps_flag ||
         tOutputFmt->FMT4K_25fps_flag || tOutputFmt->FMT720_50fps_flag)
     {
         m_bSourceCfg = 0;
@@ -1646,7 +1673,14 @@ HRESULT CCameraCtrlLogic::OnCameraOutputFormatRsp(WPARAM wparam, LPARAM lparam)
         m_bSourceCfg = 1;
     }
 
-    SetShutComboxData();
+    SetShutComboxData();*/
+
+    //输出制式修改需重启生效
+    u16 wRes = COMIFMGRPTR->RebootMoon();
+    if ( wRes != NO_ERROR )
+    {
+        WARNMESSAGE( "重启moon90请求发送失败" );
+    }
     
     return S_OK;
 }
@@ -2416,9 +2450,8 @@ bool CCameraCtrlLogic::OnEdtZoomChange( const IArgs& args )
 
     if ( nChar == 0x0d )
     {
-        SetZoomCmd(str);
+        //SetZoomCmd(str);
         SetFocus(NULL);
-        return true;
 	}
 
 	return true;
@@ -2976,6 +3009,10 @@ void CCameraCtrlLogic::SetShutSpdValue( TPSOrThShutter tTPShutSpd )
     {
         valueTransparentComboBoxText.strComboText = "1/30";
     }
+    else if ( tTPShutSpd.Shutter_50Sp )
+    {
+        valueTransparentComboBoxText.strComboText = "1/50";
+    }
     else if ( tTPShutSpd.Shutter_60Sp )
     {
         valueTransparentComboBoxText.strComboText = "1/60";
@@ -3055,6 +3092,10 @@ void CCameraCtrlLogic::SetTwShutterValue( TPFOrTwShutter tTPTwShutter )
     if ( tTPTwShutter.Shutter_25Spd )
     {
         valueTransparentComboBoxText.strComboText = "1/25";
+    }
+    else if (tTPTwShutter.Shutter_30Spd)
+    {
+        valueTransparentComboBoxText.strComboText = "1/30";
     }
     else if (tTPTwShutter.Shutter_50Spd)
     {
@@ -3460,46 +3501,6 @@ void CCameraCtrlLogic::SetOutputFormatValue( TPOutputFmt &tOutputFmt )
     {
         m_bSourceCfg = 1;
     }
-
-    String strCaption;
-    if ( tOutputFmt.FMT4K_30fps_flag == 1 )
-    {
-        strCaption  = _T("4K@30fps");
-    }
-    else if ( tOutputFmt.FMT4K_25fps_flag == 1 )
-    {
-        strCaption  = _T("4K@25fps");
-    }
-    else if ( tOutputFmt.FMT1080_60fps_flag == 1 )
-    {
-        strCaption  = _T("1080P@60fps");
-    }
-    else if ( tOutputFmt.FMT1080_50fps_flag == 1 )
-    {
-        strCaption  = _T("1080P@50fps");
-    }
-    else if ( tOutputFmt.FMT1080_30fps_flag == 1 )
-    {
-        strCaption  = _T("1080P@30fps");
-    }
-    else if ( tOutputFmt.FMT1080_25fps_flag == 1 )
-    {
-        strCaption  = _T("1080P@25fps");
-    }
-    else if ( tOutputFmt.FMT720_60fps_flag == 1 )
-    {
-        strCaption  = _T("720P@60fps");
-    }
-    else if ( tOutputFmt.FMT720_50fps_flag == 1 )
-    {
-        strCaption  = _T("720P@50fps");
-    }
-    else
-    {
-        strCaption = _T("");
-    }
-
-    UIFACTORYMGR_PTR->SetComboText( m_strComboboxOutputFormat, strCaption, m_pWndTree );
     
     SetShutComboxData();
 }
@@ -3803,27 +3804,14 @@ HRESULT CCameraCtrlLogic::OnSetCameraZoomInd( WPARAM wparam, LPARAM lparam )
 		WARNMESSAGE( "zoom设置失败");
 	}
 
-	if( m_emTPMechanism == emSony )
-	{
-		SetZoomValue((float)dwZoom/100);
-	}
-	else if ( m_emTPMechanism == emSonyFCBCS8230 )
-    {
-        SetZoomValue(dwZoom);
-    }
-    else
-	{
-        u32 dwZoomPos;
-        MOONLIBDATAMGRPTR->GetExtCamZoom( dwZoomPos );
-		SetH650ZoomValue( dwZoom, dwZoomPos );
-	}
-	
-	Window* pWnd = UIFACTORYMGR_PTR->GetWindowPtr( m_strEdtZoom, m_pWndTree );
+    SetZoomValue(dwZoom);
+
+	/*Window* pWnd = UIFACTORYMGR_PTR->GetWindowPtr( m_strEdtZoom, m_pWndTree );
 	if ( pWnd )
 	{
 		pWnd->ShowWindow(SW_HIDE);
 		pWnd->ShowWindow(SW_SHOW);
-	}
+	}*/  //会造成聚焦失败，无意义的改动
 	
 	return S_OK;
 }
@@ -4403,6 +4391,7 @@ void CCameraCtrlLogic::SetShutComboxData()
 		//vecShut.push_back( "1/8" );
 		//vecShut.push_back( "1/15" );
 		vecShut.push_back( "1/30" );
+        vecShut.push_back( "1/50" );
 		vecShut.push_back( "1/60" );
 		vecShut.push_back( "1/90" );
 		vecShut.push_back( "1/100" );
@@ -4428,6 +4417,7 @@ void CCameraCtrlLogic::SetShutComboxData()
 		//vecShut.push_back( "1/6" );
 		//vecShut.push_back( "1/12" );
 		vecShut.push_back( "1/25" );
+        vecShut.push_back( "1/30" );
 		vecShut.push_back( "1/50" );
 		vecShut.push_back( "1/60" );
 		vecShut.push_back( "1/100" );

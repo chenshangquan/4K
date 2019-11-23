@@ -188,6 +188,10 @@ enum EMRK100EvtId
     RK100_EVT_SET_CAM_ID                  = 2567,
     RK100_EVT_SET_CAM_ID_ACK                  = 2568,
 
+    //恢复默认
+    RK100_EVT_RECOVERY_DEFAULT_SET           = 2569,
+    RK100_EVT_RECOVERY_DEFAULT_SET_ACK       = 2570,
+
 };
 
 /* 事件处理返回值定义 */
@@ -345,6 +349,7 @@ typedef struct
 	u8 SixtyFpsModeFlag;
 	u8 ThirtyFpsModeFlag;
 	u8 Shutter_30Sp ;         // 1/30
+    u8 Shutter_50Sp ;         // 1/50
 	u8 Shutter_60Sp ;         // 1/60
 	u8 Shutter_90Sp ;         // 1/90
 	u8 Shutter_100Sp;         // 1/100(默认)
@@ -369,6 +374,7 @@ typedef struct
 	u8 FiftyFpsModeFlag;
 	u8 TenwFifFpsModeFlag;
 	u8 Shutter_25Spd ;         // 1/25
+    u8 Shutter_30Spd ;         // 1/30
 	u8 Shutter_50Spd ;         // 1/50
 	u8 Shutter_60Spd ;         // 1/60
 	u8 Shutter_100Spd;         // 1/100(默认)

@@ -71,6 +71,12 @@ u16 CMoonlibDataMgr::GetCamCfg( TTPMoonCamInfo &tMoonCameraCfg )const
 	return NO_ERROR;
 }
 
+u16 CMoonlibDataMgr::GetOutputFormat( TPOutputFmt &tPOutputFmt )const
+{
+    tPOutputFmt = MOONSESSION_MGR_PTR->GetCamConfigIF()->GetOutputFormat();
+    return NO_ERROR;
+}
+
 u16 CMoonlibDataMgr::GetCamZoom( u32& dwZoom )const
 {
 	dwZoom = MOONSESSION_MGR_PTR->GetCamConfigIF()->GetCamZoom();

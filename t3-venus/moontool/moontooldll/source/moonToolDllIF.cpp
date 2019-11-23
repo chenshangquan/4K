@@ -211,36 +211,36 @@ API void showver()
 
 API void prt()
 {
-    CPrintCtrl::GetPrintCtrl()->PrintAllMsg();
+    CRkcPrintCtrl::GetPrintCtrl()->PrintAllMsg();
 }
 
 
 API void prtlevel( u8 byLevel )
 {
-    CPrintCtrl::GetPrintCtrl()->PrintMsgLevel( byLevel );
+    CRkcPrintCtrl::GetPrintCtrl()->PrintMsgLevel( byLevel );
 }
 
 API void stopprt()
 {
-	CPrintCtrl::GetPrintCtrl()->StopPrint();
+	CRkcPrintCtrl::GetPrintCtrl()->StopPrint();
 }
 
 API void prtid( u32 msgID )
 {
-	CPrintCtrl::GetPrintCtrl()->SetPrintMsgID( msgID );
+	CRkcPrintCtrl::GetPrintCtrl()->SetPrintMsgID( msgID );
 }
 
 API void prtrange( u32 beginID, u32 endID )
 { 
-    CPrintCtrl::GetPrintCtrl()->SetPrintMsgRange( beginID, endID ); 
+    CRkcPrintCtrl::GetPrintCtrl()->SetPrintMsgRange( beginID, endID ); 
 }
 
 API void prtrecive( BOOL bPrint /*= TRUE */ )
 {
-    CPrintCtrl::GetPrintCtrl()->PrintEnterMsg( bPrint ); 
+    //CPrintCtrl::GetPrintCtrl()->PrintEnterMsg( bPrint ); 
 }
 
 API void prtsend( BOOL bPrint/* = TRUE */)
 {
-	CPrintCtrl::GetPrintCtrl()->PrintOutMsg( bPrint );
+	//CRkcPrintCtrl::GetPrintCtrl()->PrintOutMsg( bPrint );
 }

@@ -67,6 +67,7 @@
         
 <!--恢复默认、升级、重启按钮功能移至右上工具栏 CCameraLogic::OnBtnResumeClick -->
         <!-- 输出制式 -->
+        <!--
         <Window Type="TransStatic" Name="StcLineOutputFormat" Style="WS_CHILD|WS_CLIPSIBLINGS">
             <Property Name="WindowPos" Value="x:33 y:65" />
             <Property Name="WindowSize" Value="x:3 y:15" />
@@ -95,7 +96,9 @@
                 <Property Name="WindowVisible" Value="True" />
             </Scheme>
         </Window>
-        <!-- 输出制式 -->
+        -->
+        <!-- 输出制式具体设置 -->
+        <!--
         <Window Type="TransComboBox" Name="ComboboxOutputFormat" Style="WS_CHILD|WS_CLIPSIBLINGS">
             <Property Name="WindowPos" Value="x:102 y:55" />
             <Property Name="WindowSize" Value="x:200 y:32" />
@@ -116,6 +119,7 @@
                 <Property Name="WindowVisible" Value="True" />
             </Scheme>
         </Window>
+        -->
         <!-- 视野 -->
         <Window Type="TransStatic" Name="StcLineVisualField" Style="WS_CHILD|WS_CLIPSIBLINGS">
             <Property Name="WindowPos" Value="x:33 y:65" />
@@ -123,12 +127,12 @@
             <Property Name="WindowCaption" Value="" />
             <Property Name="WindowVisible" Value="True" />
             <Property Name="Image" Value="Camera\line.png" />
-            <Scheme Name="SchmCamNormal">
+            <!--Scheme Name="SchmCamNormal">
                 <Property Name="WindowPos" Value="x:33 y:65" />
             </Scheme>
             <Scheme Name="SchmMoon904K30">
                 <Property Name="WindowPos" Value="x:342 y:65" />
-            </Scheme>
+            </Scheme-->
         </Window>
         <Window Type="TransStatic" Name="StcVisualField" Style="WS_CHILD|WS_CLIPSIBLINGS">
             <Property Name="WindowPos" Value="x:39 y:66" />
@@ -138,12 +142,12 @@
             <Property Name="FontColor" Value="r:53 g:70 b:70" />
             <Property Name="FontSize" Value="9" />
             <Property Name="FontStyle" Value="1" />
-            <Scheme Name="SchmCamNormal">
+            <!--Scheme Name="SchmCamNormal">
                 <Property Name="WindowPos" Value="x:39 y:66" />
             </Scheme>
             <Scheme Name="SchmMoon904K30">
                 <Property Name="WindowPos" Value="x:348 y:66" />
-            </Scheme>
+            </Scheme-->
         </Window>
         <!-- 视野具体设置 -->
         <Window Type="TransButton" Name="BtnZoomPlus" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
@@ -156,12 +160,13 @@
             <Event Type="WM_LBUTTONDOWN" Value="CCameraCtrlLogic::OnLBtnDownZoomPlus" />
             <Event Type="WM_LBUTTONUP" Value="CCameraCtrlLogic::OnLBtnUpZoomPlus" />
             <Event Type="WM_LBUTTONDBLCLK" Value="CCameraCtrlLogic::OnLBtnDoubleDownZoomPlus" />
-            <Scheme Name="SchmCamNormal">
+            <Event Type="WM_KILL_FOCUS" Value="CCameraCtrlLogic::OnLBtnUpZoomPlus" />
+            <!--Scheme Name="SchmCamNormal">
                 <Property Name="WindowPos" Value="x:102 y:57" />
             </Scheme>
             <Scheme Name="SchmMoon904K30">
                 <Property Name="WindowPos" Value="x:411 y:57" />
-            </Scheme>
+            </Scheme-->
         </Window>
         <Window Type="TransButton" Name="BtnZoomSub" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
             <Property Name="WindowPos" Value="x:187 y:57" />
@@ -173,12 +178,12 @@
             <Event Type="WM_LBUTTONDOWN" Value="CCameraCtrlLogic::OnLBtnDownZoomSub" />
             <Event Type="WM_LBUTTONUP" Value="CCameraCtrlLogic::OnLBtnUpZoomSub" />
             <Event Type="WM_LBUTTONDBLCLK" Value="CCameraCtrlLogic::OnLBtnDoubleDownZoomSub" />
-            <Scheme Name="SchmCamNormal">
+            <!--Scheme Name="SchmCamNormal">
                 <Property Name="WindowPos" Value="x:187 y:57" />
             </Scheme>
             <Scheme Name="SchmMoon904K30">
                 <Property Name="WindowPos" Value="x:496 y:57" />
-            </Scheme>
+            </Scheme-->
         </Window>
         <Window Type="TransEdit" Name="EdtZoom" Style="WS_CHILD|ES_WANTRETURN|ES_NUMBER">
             <Property Name="WindowPos" Value="x:272 y:57" />
@@ -192,28 +197,12 @@
             <Property Name="LimitLength" Value="5" />
             <Event Type="WM_EDIT_ONCHAR" Value="CCameraCtrlLogic::OnEdtZoomChange" />
             <Event Type="WM_KILL_FOCUS" Value="CCameraCtrlLogic::OnEdtZoomKillFocus" />
-            <Scheme Name="SchmCamNormal">
+            <!--Scheme Name="SchmCamNormal">
                 <Property Name="WindowPos" Value="x:272 y:57" />
             </Scheme>
             <Scheme Name="SchmMoon904K30">
                 <Property Name="WindowPos" Value="x:581 y:57" />
-            </Scheme>
-        </Window>
-        <Window Type="TransStatic" Name="StcZoom" Style="WS_CHILD|WS_CLIPSIBLINGS">
-            <Property Name="WindowPos" Value="x:355 y:68" />
-            <Property Name="WindowSize" Value="x:200 y:14" />
-            <Property Name="WindowCaption" Value="3.40" />
-            <Property Name="WindowVisible" Value="True" />
-            <Property Name="FontColor" Value="r:53 g:70 b:70" />
-            <Property Name="FontSize" Value="9" />
-            <Scheme Name="SchmCamNormal">
-                <Property Name="WindowVisible" Value="True" />
-                <!--Property Name="WindowPos" Value="x:355 y:68" /-->
-            </Scheme>
-            <Scheme Name="SchmMoon904K30">
-                <Property Name="WindowVisible" Value="False" />
-                <!--Property Name="WindowPos" Value="x:664 y:68" /-->
-            </Scheme>
+            </Scheme-->
         </Window>
         <!-- 聚焦 -->
         <Window Type="TransStatic" Name="StcLineFocus" Style="WS_CHILD|WS_CLIPSIBLINGS">
@@ -673,6 +662,7 @@
             <Property Name="WindowPos" Value="x:644 y:183" />
             <Property Name="WindowSize" Value="x:68 y:32" />
             <Property Name="WindowCaption" Value="" />
+            <Property Name="WindowEnable" Value="false" />
             <Property Name="Image" Value="Camera\Edit" />
             <Property Name="WindowVisible" Value="False" />
             <Property Name="FontColor" Value="r:15 g:79 b:81" />
@@ -1280,7 +1270,7 @@
         </Window>
         <!-- 色调 -->
         <Window Type="TransStatic" Name="StcTone" Style="WS_CHILD|WS_CLIPSIBLINGS">
-            <Property Name="WindowPos" Value="x:468 y:275" />
+            <Property Name="WindowPos" Value="x:102 y:275" />
             <Property Name="WindowSize" Value="x:60 y:14" />
             <Property Name="WindowCaption" Value="色调：" />
             <Property Name="WindowVisible" Value="False" />
@@ -1293,14 +1283,14 @@
                 <Property Name="WindowVisible" Value="True" />
             </Scheme>
             <Scheme Name="SchAutoWB">
-                <Property Name="WindowPos" Value="x:468 y:275" />
+                <Property Name="WindowPos" Value="x:102 y:275" />
             </Scheme>
             <Scheme Name="SchManuelWB">
-                <Property Name="WindowPos" Value="x:468 y:317" />
+                <Property Name="WindowPos" Value="x:102 y:317" />
             </Scheme>
         </Window>
         <Window Type="CTransparentSliderWnd" Name="SliderHue" Style="WS_CHILD|WS_CLIPSIBLINGS">
-            <Property Name="WindowPos" Value="x:528 y:269" />
+            <Property Name="WindowPos" Value="x:162 y:269" />
             <Property Name="WindowSize" Value="x:196 y:13" />
             <Property Name="WindowVisible" Value="False" />
             <Property Name="Image" Value="Camera/slider" />
@@ -1314,14 +1304,14 @@
                 <Property Name="WindowVisible" Value="True" />
             </Scheme>
             <Scheme Name="SchAutoWB">
-                <Property Name="WindowPos" Value="x:528 y:269" />
+                <Property Name="WindowPos" Value="x:162 y:269" />
             </Scheme>
             <Scheme Name="SchManuelWB">
-                <Property Name="WindowPos" Value="x:528 y:311" />
+                <Property Name="WindowPos" Value="x:162 y:311" />
             </Scheme>
         </Window>
         <Window Type="TransEdit" Name="EdtHue" Style="WS_CHILD|WS_TABSTOP">
-            <Property Name="WindowPos" Value="x:731 y:265" />
+            <Property Name="WindowPos" Value="x:365 y:265" />
             <Property Name="WindowSize" Value="x:54 y:32" />
             <Property Name="WindowCaption" Value="0" />
             <Property Name="Image" Value="Camera\Edit" />
@@ -1339,10 +1329,10 @@
                 <Property Name="WindowVisible" Value="True" />
             </Scheme>
             <Scheme Name="SchAutoWB">
-                <Property Name="WindowPos" Value="x:731 y:265" />
+                <Property Name="WindowPos" Value="x:365 y:265" />
             </Scheme>
             <Scheme Name="SchManuelWB">
-                <Property Name="WindowPos" Value="x:731 y:307" />
+                <Property Name="WindowPos" Value="x:365 y:307" />
             </Scheme>
         </Window>
         <!-- 对比度调节 -->
@@ -1396,7 +1386,7 @@
         </Window>
         <!-- 饱和度调节 -->
         <Window Type="TransStatic" Name="StcSaturat" Style="WS_CHILD|WS_CLIPSIBLINGS">
-            <Property Name="WindowPos" Value="x:468 y:320" />
+            <Property Name="WindowPos" Value="x:468 y:275" />
             <Property Name="WindowSize" Value="x:60 y:14" />
             <Property Name="WindowCaption" Value="饱和度：" />
             <Property Name="WindowVisible" Value="True" />
@@ -1406,17 +1396,17 @@
                 <Property Name="WindowPos" Value="x:468 y:320" />
             </Scheme>
             <Scheme Name="SchmMoon904K30">
-                <Property Name="WindowPos" Value="x:102 y:317" />
+                <Property Name="WindowPos" Value="x:468 y:275" />
             </Scheme>
             <Scheme Name="SchAutoWB">
-                <Property Name="WindowPos" Value="x:102 y:317" />
+                <Property Name="WindowPos" Value="x:468 y:275" />
             </Scheme>
             <Scheme Name="SchManuelWB">
-                <Property Name="WindowPos" Value="x:102 y:359" />
+                <Property Name="WindowPos" Value="x:468 y:317" />
             </Scheme>
         </Window>
         <Window Type="CTransparentSliderWnd" Name="SliderSaturat" Style="WS_CHILD|WS_CLIPSIBLINGS">
-            <Property Name="WindowPos" Value="x:528 y:314" />
+            <Property Name="WindowPos" Value="x:528 y:269" />
             <Property Name="WindowSize" Value="x:196 y:13" />
             <Property Name="WindowVisible" Value="True" />
             <Property Name="Image" Value="Camera/slider" />
@@ -1427,17 +1417,17 @@
                 <Property Name="WindowPos" Value="x:528 y:314" />
             </Scheme>
             <Scheme Name="SchmMoon904K30">
-                <Property Name="WindowPos" Value="x:162 y:311" />
+                <Property Name="WindowPos" Value="x:528 y:269" />
             </Scheme>
             <Scheme Name="SchAutoWB">
-                <Property Name="WindowPos" Value="x:162 y:311" />
+                <Property Name="WindowPos" Value="x:528 y:269" />
             </Scheme>
             <Scheme Name="SchManuelWB">
-                <Property Name="WindowPos" Value="x:162 y:353" />
+                <Property Name="WindowPos" Value="x:528 y:311" />
             </Scheme>
         </Window>
         <Window Type="TransEdit" Name="EdtSaturat" Style="WS_CHILD|WS_TABSTOP|ES_NUMBER">
-            <Property Name="WindowPos" Value="x:731 y:310" />
+            <Property Name="WindowPos" Value="x:731 y:265" />
             <Property Name="WindowSize" Value="x:54 y:32" />
             <Property Name="WindowCaption" Value="0" />
             <Property Name="Image" Value="Camera\Edit" />
@@ -1452,13 +1442,13 @@
                 <Property Name="WindowPos" Value="x:731 y:310" />
             </Scheme>
             <Scheme Name="SchmMoon904K30">
-                <Property Name="WindowPos" Value="x:365 y:307" />
+                <Property Name="WindowPos" Value="x:731 y:265" />
             </Scheme>
             <Scheme Name="SchAutoWB">
-                <Property Name="WindowPos" Value="x:365 y:307" />
+                <Property Name="WindowPos" Value="x:731 y:265" />
             </Scheme>
             <Scheme Name="SchManuelWB">
-                <Property Name="WindowPos" Value="x:365 y:349" />
+                <Property Name="WindowPos" Value="x:731 y:307" />
             </Scheme>
         </Window>
         <!-- 色度（锐度）调节 -->
@@ -1529,6 +1519,7 @@
             </Scheme>
         </Window>
         <!-- 亮度调节 -->
+        <!--
         <Window Type="TransStatic" Name="StcBright" Style="WS_CHILD|WS_CLIPSIBLINGS">
             <Property Name="WindowPos" Value="x:468 y:365" />
             <Property Name="WindowSize" Value="x:60 y:14" />
@@ -1595,6 +1586,7 @@
                 <Property Name="WindowPos" Value="x:365 y:307" />
             </Scheme>
         </Window>
+        -->
         <!-- 伽码调节 -->
         <Window Type="TransStatic" Name="StcLineGamma" Style="WS_CHILD|WS_CLIPSIBLINGS">
             <Property Name="WindowPos" Value="x:33 y:410" />
@@ -1606,13 +1598,13 @@
                 <Property Name="WindowPos" Value="x:33 y:410" />
             </Scheme>
             <Scheme Name="SchmMoon904K30">
-                <Property Name="WindowPos" Value="x:465 y:316" />
+                <Property Name="WindowPos" Value="x:105 y:316" />
             </Scheme>
             <Scheme Name="SchAutoWB">
-                <Property Name="WindowPos" Value="x:465 y:316" />
+                <Property Name="WindowPos" Value="x:105 y:316" />
             </Scheme>
             <Scheme Name="SchManuelWB">
-                <Property Name="WindowPos" Value="x:465 y:358" />
+                <Property Name="WindowPos" Value="x:105 y:358" />
             </Scheme>
         </Window>
         <Window Type="TransStatic" Name="StcGamma" Style="WS_CHILD|WS_CLIPSIBLINGS">
@@ -1627,13 +1619,13 @@
                 <Property Name="WindowPos" Value="x:39 y:410" />
             </Scheme>
             <Scheme Name="SchmMoon904K30">
-                <Property Name="WindowPos" Value="x:471 y:317" />
+                <Property Name="WindowPos" Value="x:111 y:317" />
             </Scheme>
             <Scheme Name="SchAutoWB">
-                <Property Name="WindowPos" Value="x:471 y:317" />
+                <Property Name="WindowPos" Value="x:111 y:317" />
             </Scheme>
             <Scheme Name="SchManuelWB">
-                <Property Name="WindowPos" Value="x:471 y:359" />
+                <Property Name="WindowPos" Value="x:111 y:359" />
             </Scheme>
         </Window>
         <!-- 伽码具体设置 -->
@@ -1654,13 +1646,13 @@
                 <Property Name="WindowPos" Value="x:82 y:400" />
             </Scheme>
             <Scheme Name="SchmMoon904K30">
-                <Property Name="WindowPos" Value="x:514 y:307" />
+                <Property Name="WindowPos" Value="x:154 y:307" />
             </Scheme>
             <Scheme Name="SchAutoWB">
-                <Property Name="WindowPos" Value="x:514 y:307" />
+                <Property Name="WindowPos" Value="x:154 y:307" />
             </Scheme>
             <Scheme Name="SchManuelWB">
-                <Property Name="WindowPos" Value="x:514 y:349" />
+                <Property Name="WindowPos" Value="x:154 y:349" />
             </Scheme>
         </Window>
         

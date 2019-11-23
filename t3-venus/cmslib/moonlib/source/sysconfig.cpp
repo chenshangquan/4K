@@ -193,7 +193,7 @@ void CSysConfig::OnEthnetInfoInd( const CMessage& cMsg )
 	
 	in_addr tAddr;
 	tAddr.S_un.S_addr = m_tRK100NetParam.dwIP;
-	PrtRkcMsg( RK100_EVT_SET_NETPARAM_ACK, emEventTypeScoketRecv, "TTPEthnetInfo: Ip: %s", inet_ntoa(tAddr));
+	PrtRkcMsg( RK100_EVT_SET_NETPARAM_ACK, emEventTypeScoketRecv, "TRK100NetParam: [wRtn:%d, IP:%s]", tMsgHead.wOptRtn, inet_ntoa(tAddr));
 	PostEvent( UI_MOONTOOL_ETHNETINFO_NOTIFY, WPARAM(RK100_OPT_RTN_OK == tMsgHead.wOptRtn) );
 }
 

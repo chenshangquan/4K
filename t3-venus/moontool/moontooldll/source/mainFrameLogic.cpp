@@ -380,7 +380,10 @@ bool CMainFrameLogic::OnBtnRestore( const IArgs& args )
 		return false;
 	}
 
-	u16 nRet = COMIFMGRPTR->MoonCamResetCmd( m_byIndex );
+    u8 byCameraIndex = 0;
+	MOONLIBDATAMGRPTR->GetCamSel( byCameraIndex );
+
+	u16 nRet = COMIFMGRPTR->MoonCamResetCmd( byCameraIndex );
 	if ( nRet != NO_ERROR )
 	{
 		WARNMESSAGE( "ª÷∏¥ƒ¨»œ«Î«Û∑¢ÀÕ ß∞‹" );

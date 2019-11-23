@@ -11,7 +11,7 @@
 //////////////////////////////////////////////////////////////////////
 
 CSysCfgDlgLogic::CSysCfgDlgLogic()	 
-:m_strCombOutputStyle("SysCfgDlg/CombOutputStyle")
+:m_strCombOutputStyle("SysCfgDlg/ComboboxOutputFormat")
 ,m_strSoftWareInfo("SysCfgDlg/StcSoftWareInfo")
 ,m_strEdtIp("SysCfgDlg/StcIPAddrEdit")
 ,m_strEdtSubMask("SysCfgDlg/StcSubMaskEdit")
@@ -41,14 +41,16 @@ bool CSysCfgDlgLogic::InitWnd( const IArgs & arg )
 
 	//设置输出制式下拉框数据
 	std::vector<CString> vecOutputStyle;
-	vecOutputStyle.push_back("1080P@25fps");
-	vecOutputStyle.push_back("1080P@30fps");
-	vecOutputStyle.push_back("1080P@50fps");
-	vecOutputStyle.push_back("1080P@60fps");
-	vecOutputStyle.push_back("720P@50fps");
-	vecOutputStyle.push_back("720P@60fps");
+    vecOutputStyle.push_back("4K@25fps");
+    vecOutputStyle.push_back("4K@30fps");
+    vecOutputStyle.push_back("1080P@25fps");
+    vecOutputStyle.push_back("1080P@30fps");
+    vecOutputStyle.push_back("1080P@50fps");
+    vecOutputStyle.push_back("1080P@60fps");
+    vecOutputStyle.push_back("720P@50fps");
+    vecOutputStyle.push_back("720P@60fps");
 	UIFACTORYMGR_PTR->SetComboListData( m_strCombOutputStyle, vecOutputStyle, m_pWndTree );
-	UIFACTORYMGR_PTR->SetComboText( m_strCombOutputStyle, _T("1080P@60fps"), m_pWndTree );
+	UIFACTORYMGR_PTR->SetComboText( m_strCombOutputStyle, _T("4K@30fps"), m_pWndTree );
 
 	std::vector<CString> vecRaudRate;
 	vecRaudRate.push_back(TransRaudRateTypeToStr(em_LVDSBaud_9600bps).c_str());
@@ -78,6 +80,7 @@ void CSysCfgDlgLogic::RegMsg()
 //	REG_MSG_HANDLER( UI_MOONTOOL_LVDSBAUD_IND, CSysCfgDlgLogic::OnLvdsBaudRateInd, pThis, CSysCfgDlgLogic );
     REG_MSG_HANDLER( UI_MOONTOOL_CONNECTED, CSysCfgDlgLogic::OnConnectRsp, pThis, CSysCfgDlgLogic );
     REG_MSG_HANDLER( UI_RKC_NETWORK_REFLESH, CSysCfgDlgLogic::OnEthnetInfoNty, pThis, CSysCfgDlgLogic );
+    REG_MSG_HANDLER( UI_MOONTOOL_CamParamSync_IND, CSysCfgDlgLogic::OnCamOutputInfoNty, pThis, CSysCfgDlgLogic );
 }
 
 void CSysCfgDlgLogic::UnRegMsg()
@@ -91,7 +94,7 @@ void CSysCfgDlgLogic::RegCBFun()
 	REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::InitWnd", CSysCfgDlgLogic::InitWnd, pThis, CSysCfgDlgLogic );
 	//REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnHDMISelClick", CSysCfgDlgLogic::OnHDMISelClick, pThis, CSysCfgDlgLogic );
 	//REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnDVISelClick", CSysCfgDlgLogic::OnDVISelClick,  pThis, CSysCfgDlgLogic );
-	//REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnCombOutputStyleClick", CSysCfgDlgLogic::OnCombOutputStyleClick,  pThis, CSysCfgDlgLogic );
+	REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnCombOutputStyleClick", CSysCfgDlgLogic::OnCombOutputStyleClick,  pThis, CSysCfgDlgLogic );
 	//REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnNoTurnClick", CSysCfgDlgLogic::OnNoTurnClick,  pThis, CSysCfgDlgLogic );
 	//REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnTurnClick", CSysCfgDlgLogic::OnTurnClick,  pThis, CSysCfgDlgLogic );
 	REG_GOBAL_MEMBER_FUNC( "CSysCfgDlgLogic::OnIPAddrChanged", CSysCfgDlgLogic::OnIPAddrChanged,  pThis, CSysCfgDlgLogic );
@@ -242,7 +245,7 @@ bool CSysCfgDlgLogic::OnDVISelClick( const IArgs& args )
 
 bool CSysCfgDlgLogic::OnCombOutputStyleClick( const IArgs& args )
 {
-	EmTPMOONOutMode emMoonOutMode;
+	/*EmTPMOONOutMode emMoonOutMode;
 	GetMoonOutMode(emMoonOutMode);
 	bool bChange = false;
 	if ( emMoonOutMode != m_emMOONOutMode )
@@ -250,7 +253,25 @@ bool CSysCfgDlgLogic::OnCombOutputStyleClick( const IArgs& args )
 		bChange = true;
 	}
 	CheckData( m_strCombOutputStyle, bChange );
-	return true;	
+	return true;*/
+    if ( m_pWndTree == NULL )
+    {
+        return false;
+    }
+
+    //输出制式修改，需要重启
+    MSGBOX_RET nMsgBoxRet = MSGBOX_CANCEL;
+    MSG_BOX( nMsgBoxRet, "输出制式修改需重启生效，是否继续？" );	
+    if ( MSGBOX_OK == nMsgBoxRet )
+    {
+        SetOutputFormatCmd();
+    }
+    else
+    {
+        SetOutputFormat();
+	}
+
+	return true;
 }
 
 bool CSysCfgDlgLogic::OnNoTurnClick( const IArgs& args )
@@ -409,11 +430,13 @@ HRESULT CSysCfgDlgLogic::OnSoftWareVerInfoNty( WPARAM wparam, LPARAM lparam )
 //初次登陆参数设置
 HRESULT CSysCfgDlgLogic::OnCamOutputInfoNty( WPARAM wparam, LPARAM lparam )
 {
-	m_emDVIOutPortType = static_cast<EmTPDVIOutPortType>(wparam);
+	/*m_emDVIOutPortType = static_cast<EmTPDVIOutPortType>(wparam);
 	m_emMOONOutMode =  static_cast<EmTPMOONOutMode>(lparam);
 	SetOutPortType(m_emDVIOutPortType);
 	SetMoonOutMode(m_emMOONOutMode);
-	return NO_ERROR;	
+	return NO_ERROR;*/
+    SetOutputFormat();
+    return NO_ERROR;
 }
 
 //后续保存操作参数设置
@@ -568,9 +591,32 @@ void CSysCfgDlgLogic::SetImageAdjust( EmTPImageAdjust emImageAdjust )
 
 HRESULT CSysCfgDlgLogic::OnEthnetInfoNty( WPARAM wparam, LPARAM lparam )
 {
+    BOOL bSuccess = (BOOL)wparam;
+    if (!bSuccess)
+    {
+        WARNMESSAGE( "设置网络配置失败" );
+        return false;
+    }
+
 	SetEthnetCfgData();
     m_vctWndName.clear();
 	UpBtnState();
+
+    //网络设置更改需重启生效
+    MSGBOX_RET nMsgBoxRet = MSGBOX_CANCEL;
+    MSG_BOX( nMsgBoxRet, "网络配置已修改，需重启服务器生效，是否立即重启？" );	
+    if ( MSGBOX_OK == nMsgBoxRet )
+    {
+        u16 wRes = COMIFMGRPTR->RebootMoon();
+        if ( wRes != NO_ERROR )
+        {
+            WARNMESSAGE( "重启moon90请求发送失败" );
+        }	 
+    }
+    else
+    {	
+	}
+
 	return NO_ERROR;	
 }
 
@@ -847,4 +893,98 @@ EmTPLVDSBaud CSysCfgDlgLogic::TransRaudRateStrToType( string strBaudRate )
 	}
 
 	return emLvdBaudRate;
+}
+
+void CSysCfgDlgLogic::SetOutputFormat()
+{
+    TPOutputFmt tOutputFmt;
+    MOONLIBDATAMGRPTR->GetOutputFormat(tOutputFmt);
+    
+    String strCaption;
+    if ( tOutputFmt.FMT4K_30fps_flag == 1 )
+    {
+        strCaption  = _T("4K@30fps");
+    }
+    else if ( tOutputFmt.FMT4K_25fps_flag == 1 )
+    {
+        strCaption  = _T("4K@25fps");
+    }
+    else if ( tOutputFmt.FMT1080_60fps_flag == 1 )
+    {
+        strCaption  = _T("1080P@60fps");
+    }
+    else if ( tOutputFmt.FMT1080_50fps_flag == 1 )
+    {
+        strCaption  = _T("1080P@50fps");
+    }
+    else if ( tOutputFmt.FMT1080_30fps_flag == 1 )
+    {
+        strCaption  = _T("1080P@30fps");
+    }
+    else if ( tOutputFmt.FMT1080_25fps_flag == 1 )
+    {
+        strCaption  = _T("1080P@25fps");
+    }
+    else if ( tOutputFmt.FMT720_60fps_flag == 1 )
+    {
+        strCaption  = _T("720P@60fps");
+    }
+    else if ( tOutputFmt.FMT720_50fps_flag == 1 )
+    {
+        strCaption  = _T("720P@50fps");
+    }
+    else
+    {
+        strCaption = _T("");
+    }
+    
+    UIFACTORYMGR_PTR->SetComboText( m_strCombOutputStyle, strCaption, m_pWndTree );
+}
+
+void CSysCfgDlgLogic::SetOutputFormatCmd()
+{
+    Value_TransparentComboBoxText valueTransparentComboBoxText;
+    UIFACTORYMGR_PTR->GetPropertyValue( valueTransparentComboBoxText, m_strCombOutputStyle, m_pWndTree );
+    
+    TPOutputFmt tpOutputFmt;
+    ZeroMemory(&tpOutputFmt, sizeof(TPOutputFmt));
+    String strComboText = valueTransparentComboBoxText.strComboText;
+    if ( strComboText == "4K@25fps" )
+    {
+        tpOutputFmt.FMT4K_25fps_flag = 1;
+    }
+    else if ( strComboText == "4K@30fps" )
+    {
+        tpOutputFmt.FMT4K_30fps_flag = 1;
+    }
+    else if ( strComboText == "1080P@25fps" )
+    {
+        tpOutputFmt.FMT1080_25fps_flag = 1;
+    }
+    else if ( strComboText == "1080P@30fps" )
+    {
+        tpOutputFmt.FMT1080_30fps_flag = 1;
+    }
+    else if ( strComboText == "1080P@50fps" )
+    {
+        tpOutputFmt.FMT1080_50fps_flag = 1;
+    }
+    else if ( strComboText == "1080P@60fps" )
+    {
+        tpOutputFmt.FMT1080_60fps_flag = 1;
+    }
+    else if ( strComboText == "720P@50fps" )
+    {
+        tpOutputFmt.FMT720_50fps_flag = 1;
+    }
+    else if ( strComboText == "720P@60fps" )
+    {
+        tpOutputFmt.FMT720_60fps_flag = 1;
+    }
+    
+    u16 nRet = COMIFMGRPTR->SetOutputFormatCmd( tpOutputFmt );
+    if ( nRet != NO_ERROR )
+    {
+        WARNMESSAGE( "选择输出制式请求发送失败" );
+    }
 }

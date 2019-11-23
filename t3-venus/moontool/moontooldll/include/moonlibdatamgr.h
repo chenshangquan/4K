@@ -51,6 +51,9 @@ public:
 	*/	
 	u16 GetCamCfg( TTPMoonCamInfo &tMoonCameraCfg )const;
 
+    // 获取输出制式参数
+    u16 GetOutputFormat( TPOutputFmt &tPOutputFmt )const;
+
 	u16 GetCamZoom( u32& dwZoom )const;
 
 	u16 GetExtCamZoom( u32& dwZoomPos )const;

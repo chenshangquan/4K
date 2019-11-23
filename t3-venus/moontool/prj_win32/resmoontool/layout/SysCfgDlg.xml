@@ -13,6 +13,7 @@
       <Property Name="WindowVisible" Value="false" />
     </Scheme>
 
+    <!-- 版本信息 -->
     <Window Type="TransStatic" Name="StcVerInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
       <Property Name="WindowPos" Value="x:46 y:32" />
       <Property Name="WindowSize" Value="x:64 y:14" />
@@ -67,6 +68,50 @@
       <Property Name="WindowVisible" Value="True" />
       <Property Name="FontColor" Value="r:53 g:70 b:70" />
       <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <!-- 输出制式 -->
+    <Window Type="TransStatic" Name="StcOutputFmt" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:46 y:124" />
+      <Property Name="WindowSize" Value="x:76 y:14" />
+      <Property Name="WindowCaption" Value="输出制式" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontColor" Value="r:53 g:70 b:70" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="FontStyle" Value="1" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransStatic" Name="StcOutputFmtLine" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:173 y:130" />
+      <Property Name="WindowSize" Value="x:501 y:1" />
+      <Property Name="WindowCaption" Value="" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="Image" Value="mixline.png" />
+    </Window>
+    
+    <Window Type="TransStatic" Name="StcOutputFormat" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:73 y:149" />
+        <Property Name="WindowSize" Value="x:76 y:14" />
+        <Property Name="WindowCaption" Value="输出制式：" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="FontColor" Value="r:53 g:70 b:70" />
+        <Property Name="FontSize" Value="9" />
+    </Window>
+
+    <Window Type="TransComboBox" Name="ComboboxOutputFormat" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <Property Name="WindowPos" Value="x:166 y:138" />
+        <Property Name="WindowSize" Value="x:200 y:32" />
+        <Property Name="WindowVisible" Value="true" />
+        <Property Name="IsIPStyle" Value="False" />
+        <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
+        <Property Name="Image" Value="ComboboxCommon" />
+        <Property Name="FontSize" Value="9" />
+        <Property Name="EditEdgeHeight" Value="6" />            
+        <Property Name="DropListHeight" Value="212" />
+        <Property Name="ComboShowIcon" Value="False" />
+        <Property Name="ReadOnly" Value="True" />
+        <Event Type="WM_CLICK_COMBOLIST" Value="CSysCfgDlgLogic::OnCombOutputStyleClick" />
     </Window>
 
     <!--
@@ -233,7 +278,7 @@
     </Window>-->
 
     <Window Type="TransStatic" Name="StcIPInfo" Style="WS_CHILD|WS_CLIPSIBLINGS">
-            <Property Name="WindowPos" Value="x:46 y:124" />
+      <Property Name="WindowPos" Value="x:46 y:184" />
       <Property Name="WindowSize" Value="x:76 y:14" />
       <Property Name="WindowCaption" Value="IP信息" />
       <Property Name="WindowVisible" Value="True" />
@@ -244,7 +289,7 @@
     </Window>
 
     <Window Type="TransStatic" Name="StcIPCfgLine" Style="WS_CHILD|WS_CLIPSIBLINGS">
-			<Property Name="WindowPos" Value="x:173 y:130" />
+      <Property Name="WindowPos" Value="x:173 y:190" />
       <Property Name="WindowSize" Value="x:501 y:1" />
       <Property Name="WindowCaption" Value="" />
       <Property Name="WindowVisible" Value="True" />
@@ -252,7 +297,7 @@
     </Window>
 
     <Window Type="TransStatic" Name="StcIPAddress" Style="WS_CHILD|WS_CLIPSIBLINGS">
-            <Property Name="WindowPos" Value="x:73 y:149" />
+      <Property Name="WindowPos" Value="x:73 y:209" />
       <Property Name="WindowSize" Value="x:76 y:14" />
       <Property Name="WindowCaption" Value="IP地址：" />
       <Property Name="WindowVisible" Value="True" />
@@ -261,7 +306,7 @@
     </Window>
 
     <Window Type="TransIPEdit" Name="StcIPAddrEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
-		  <Property Name="WindowPos" Value="x:166 y:138" />
+      <Property Name="WindowPos" Value="x:166 y:198" />
       <Property Name="WindowSize" Value="x:170 y:32" />
       <Property Name="WindowCaption" Value="" />
       <Property Name="WindowVisible" Value="true" />
@@ -274,7 +319,7 @@
     </Window>
 
     <Window Type="TransStatic" Name="StcSubMask" Style="WS_CHILD|WS_CLIPSIBLINGS">
-            <Property Name="WindowPos" Value="x:73 y:192" />
+      <Property Name="WindowPos" Value="x:73 y:252" />
       <Property Name="WindowSize" Value="x:76 y:14" />
       <Property Name="WindowCaption" Value="子网掩码：" />
       <Property Name="WindowVisible" Value="True" />
@@ -283,7 +328,7 @@
     </Window>
 
     <Window Type="TransIPEdit" Name="StcSubMaskEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
-		  <Property Name="WindowPos" Value="x:166 y:180" />
+      <Property Name="WindowPos" Value="x:166 y:240" />
       <Property Name="WindowSize" Value="x:170 y:32" />
       <Property Name="WindowCaption" Value="" />
       <Property Name="WindowVisible" Value="true" />
@@ -296,7 +341,7 @@
     </Window>
 
     <Window Type="TransStatic" Name="StcGateway" Style="WS_CHILD|WS_CLIPSIBLINGS">
-            <Property Name="WindowPos" Value="x:73 y:235" />
+      <Property Name="WindowPos" Value="x:73 y:295" />
       <Property Name="WindowSize" Value="x:76 y:14" />
       <Property Name="WindowCaption" Value="默认网关：" />
       <Property Name="WindowVisible" Value="True" />
@@ -305,7 +350,7 @@
     </Window>
 
     <Window Type="TransIPEdit" Name="StcGatewayEdit" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
-		  <Property Name="WindowPos" Value="x:166 y:222" />
+      <Property Name="WindowPos" Value="x:166 y:282" />
       <Property Name="WindowSize" Value="x:170 y:32" />
       <Property Name="WindowCaption" Value="" />
       <Property Name="WindowVisible" Value="true" />

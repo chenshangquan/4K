@@ -202,8 +202,7 @@ CString CRkcPrintCtrl::GetEventDescribe( u16 wEvent )
 
 void CRkcPrintCtrl::PrintAllMsg()
 {
-    //m_bPrintAllMsg = TRUE;
-    m_bayPrintLevel = 2;
+    m_bPrintAllMsg = TRUE;
 }
 
 void CRkcPrintCtrl::PrintMsgLevel( u8 abyLevel )

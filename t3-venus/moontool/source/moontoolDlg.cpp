@@ -612,7 +612,8 @@ BOOL CTpToolsDlg::LoginGrab(u32 dwIP)
 	strIP = inet_ntoa(addrIPAddr);
 	
 	CString strIpAddr;
-	strIpAddr.Format( "您已经被[%s]强制下线，该账户已在另一个地方登录", strIP );
+	//strIpAddr.Format( "您已经被[%s]强制下线，该账户已在另一个地方登录", strIP );
+    strIpAddr.Format( "您已经被强制下线，该账户已在另一个地方登录" );  //暂不支持IP通知
 	ShowWarningText( strIpAddr );
 	
 	if ( !this->IsWindowVisible() )
@@ -645,9 +646,9 @@ BOOL CTpToolsDlg::LoginBreak()
 
 BOOL CTpToolsDlg::LoginReboot()
 {
-    CString strIpAddr;
+    /*CString strIpAddr;
     strIpAddr = _T("设备正在重启中，请稍后再试...");
-	ShowWarningText( strIpAddr );
+	ShowWarningText( strIpAddr );*/
 
     if ( !this->IsWindowVisible() )
     {
