@@ -662,13 +662,13 @@
             <Property Name="WindowPos" Value="x:644 y:183" />
             <Property Name="WindowSize" Value="x:68 y:32" />
             <Property Name="WindowCaption" Value="" />
-            <Property Name="WindowEnable" Value="false" />
+            <Property Name="WindowEnable" Value="true" />
             <Property Name="Image" Value="Camera\Edit" />
             <Property Name="WindowVisible" Value="False" />
             <Property Name="FontColor" Value="r:15 g:79 b:81" />
             <Property Name="FontSize" Value="9" />
             <Property Name="Alignment" Value="1" />
-            <Property Name="LimitLength" Value="5" />
+            <Property Name="LimitLength" Value="2" />
             <Event Type="WM_EDIT_ONCHAR" Value="CCameraCtrlLogic::OnEdtExpGainChange" />
             <Event Type="WM_KILL_FOCUS" Value="CCameraCtrlLogic::OnEdtExpGainKillFocus" />
             <Scheme Name="SchAutoExposure">
@@ -947,6 +947,7 @@
             </Scheme>
         </Window>
         <!-- 开机调用预置位 -->
+        <!--
         <Window Type="TransStatic" Name="StcLineOrderPos" Style="WS_CHILD|WS_CLIPSIBLINGS" >
             <Property Name="WindowPos" Value="x:432 y:223" />
             <Property Name="WindowSize" Value="x:3 y:15" />
@@ -987,7 +988,9 @@
                 <Property Name="WindowPos" Value="x:39 y:443" />
             </Scheme>
         </Window>
+        -->
         <!--效果图内分两排显示-->
+        <!--
         <Window Type="TransStatic" Name="StcOrderPos1" Style="WS_CHILD|WS_CLIPSIBLINGS">
             <Property Name="WindowPos" Value="x:438 y:243" />
             <Property Name="WindowSize" Value="x:200 y:14" />
@@ -1035,6 +1038,7 @@
                 <Property Name="WindowPos" Value="x:102 y:437" />
             </Scheme>
         </Window>
+        -->
         <!-- 2D降噪 -->
         <Window Type="TransStatic" Name="StcLine2DNR" Style="WS_CHILD|WS_CLIPSIBLINGS">
             <Property Name="WindowPos" Value="x:33 y:273" />
@@ -1708,7 +1712,26 @@
                 <Property Name="WindowVisible" Value="False" />
             </Scheme>
         </Window>
+        <!-- 导入 -->
+        <Window Type="TransButton" Name="BtnImport" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:520 y:453" />
+            <Property Name="WindowSize" Value="x:86 y:38" />
+            <Property Name="WindowCaption" Value="导入" />
+            <Property Name="WindowVisible" Value="true" />
+            <Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnImport" />
+            <Property Name="Image" Value="btnImport" />
+        </Window>
+        <!-- 导出 -->
+        <Window Type="TransButton" Name="BtnExport" Style="WS_CHILD|WS_CLIPSIBLINGS">
+            <Property Name="WindowPos" Value="x:620 y:453" />
+            <Property Name="WindowSize" Value="x:86 y:38" />
+            <Property Name="WindowCaption" Value="导出" />
+            <Property Name="WindowVisible" Value="true" />
+            <Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnExport" />
+            <Property Name="Image" Value="btnExport" />
+        </Window>
         <!-- 预置位列表 -->
+        <!--
         <Window Type="TransButton" Name="BtnOrderPosList" Style="WS_CHILD|WS_CLIPSIBLINGS">
             <Property Name="WindowPos" Value="x:620 y:453" />
             <Property Name="WindowSize" Value="x:86 y:38" />
@@ -1717,6 +1740,7 @@
             <Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnOrderPosList" />
             <Property Name="Image" Value="btnOrderPosList" />
         </Window>
+        -->
         <!-- 保存预置位 -->
         <Window Type="TransButton" Name="BtnSaveOrderPos" Style="WS_CHILD|WS_CLIPSIBLINGS">
             <Property Name="WindowPos" Value="x:720 y:453" />

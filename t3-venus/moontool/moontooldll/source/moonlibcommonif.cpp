@@ -282,6 +282,12 @@ u16 CMoonlibCommonIF::CamOrderPosCheckCmd( const TCamPresetNumberList& tCamPrese
 	return re;
 }
 
+u16 CMoonlibCommonIF::CamPreSet1SaveCmd()
+{	
+    u16 re = MOONSESSION_MGR_PTR->GetCamConfigIF()->CamPreSet1SaveCmd();
+    return re;
+}
+
 u16 CMoonlibCommonIF::RebootMoon()
 {
 	u16 re = MOONSESSION_MGR_PTR->GetCamConfigIF()->RebootMoon();

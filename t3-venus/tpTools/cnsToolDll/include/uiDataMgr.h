@@ -331,7 +331,7 @@ extern const  string g_strShmHide ; //Òþ²Ø·½°¸, ËùÓÐµ÷ÓÃ¸Ã·½°¸µÄ´°¿ÚÐèÒª½«xmlµÄ·
 #define  CNSSNAPSHOT_FILE_NAME2		"snapshot1.jpg"
 #define  CNSSNAPSHOT_FILE_NAME3		"snapshot2.jpg"
 #define  CNSUPGRADE_NAME			"T300E.bin"
-#define  CNSUPGRADE_NAME_Y			"T300E-y.bin"
+//#define  CNSUPGRADE_NAME_Y			"T300E-y.bin"
 #define  CNSUPGRADE_NAME_4K			"T300E-4K.bin"
 
 #define  CAPTURE_FILE_MAX_SIZE      199*1024*1024

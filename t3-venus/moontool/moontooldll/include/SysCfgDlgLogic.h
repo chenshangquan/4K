@@ -90,6 +90,8 @@ protected:
 
 	HRESULT OnEthnetInfoNty( WPARAM wparam, LPARAM lparam );
 
+    HRESULT OnEthnetInfoReflesh( WPARAM wparam, LPARAM lparam );
+
 	HRESULT OnCamOutputInfoInd( WPARAM wparam, LPARAM lparam );
 	
 	HRESULT OnCamImageAdjustInd( WPARAM wparam, LPARAM lparam );
@@ -97,6 +99,8 @@ protected:
 	HRESULT OnLvdsBaudRateInd( WPARAM wparam, LPARAM lparam );
 
     HRESULT OnConnectRsp( WPARAM wparam, LPARAM lparam );
+
+    HRESULT OnSetDefaultParamRsp( WPARAM wparam, LPARAM lparam );
 private:	
 	/** 功能:  保存配置的按钮
 	*  @param[in] 

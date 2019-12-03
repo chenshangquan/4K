@@ -9,11 +9,41 @@
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
-static UINT g_nTransTime = 0;
+static UINT     g_nTransTimeID = 0;                   //timer 的id,用于传输超时
+static UINT     g_nUpLoadProcess;                     //上传进度
+static UINT     g_nUpLoadProcessTimerID;              //timer 的id,用于控制显示时间
+static UINT     g_nTftpOpenTimerID;                   //timer 的id,用于Tftp开启后的延迟上传
+#define         TIME_UPLOAD        1000               //定时器时间间隔
+#define         TIME_TFTP          2000               //TFTP定时器时间间隔
+#define         TFTP_UPLOAD_TIMEOUT     30000         //TFTP upload timeout
+#define         SET_ALL_CAM_CFG_COUNT   60            //TFTP upload timeout
+
+#define RKC_UPDATEFILE_TYPE        "lpc1837_app"
+#define RKC_UPDATEFILE_NAME        "moon904k30.bin"
+
+VOID  CALLBACK  CUploadTimerFun(  HWND   hwnd,   UINT   uMsg, UINT_PTR  idEvent, DWORD   dwTime  )
+{
+    if ( idEvent == g_nUpLoadProcessTimerID )
+    {
+        CString strtmp = _T("");
+        if (g_nUpLoadProcess < 90)
+        {
+            g_nUpLoadProcess += 10;
+        }
+        CImpCommonDlgLogic::GetSingletonPtr()->UpdateUploadProgress(g_nUpLoadProcess);
+    }
+    else if (idEvent == g_nTftpOpenTimerID)
+    {
+        KillTimer( NULL, g_nTftpOpenTimerID );
+        g_nTftpOpenTimerID = 0;
+        CImpCommonDlgLogic::GetSingletonPtr()->SendUpdateFirst();
+    }
+}
 
 VOID  CALLBACK  CWaitTimerFun( HWND hwnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime )
 {   
-	BOOL bOk = KillTimer( NULL, g_nTransTime );	//关掉定时器
+	BOOL bOk = KillTimer( NULL, g_nTransTimeID );	//关掉定时器
+#if 0  //FTP
 	if ( IMPCOMMONLOGICRPTR->GetFtpStatus() != emFtpEnd )
 	{
 		if ( IMPCOMMONLOGICRPTR->GetTimeOutCount() >= 5 )
@@ -25,6 +55,31 @@ VOID  CALLBACK  CWaitTimerFun( HWND hwnd, UINT uMsg, UINT_PTR idEvent, DWORD dwT
 			IMPCOMMONLOGICRPTR->SetTimeOutCount();
 		}
 	}
+#else  //TFTP
+    IMPCOMMONLOGICRPTR->ClearTransFile();
+#endif
+}
+
+VOID  CALLBACK  CWaitFunc( HWND hwnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime )
+{
+    BOOL bRet = TRUE;
+    MOONLIBDATAMGRPTR->GetCurStatus(bRet);
+    if (!bRet)
+    {
+        BOOL bOk = KillTimer( NULL, g_nTransTimeID );	//关掉定时器
+        IMPCOMMONLOGICRPTR->SetAllCamCfgEnd();
+    }
+    else
+    {
+        IMPCOMMONLOGICRPTR->SetTimeOutCount();
+    }
+
+    //配置文件参数设置，30s超时
+    if ( IMPCOMMONLOGICRPTR->GetTimeOutCount() >= SET_ALL_CAM_CFG_COUNT )
+    {
+        BOOL bOk = KillTimer( NULL, g_nTransTimeID );	//关掉定时器
+        IMPCOMMONLOGICRPTR->SetAllCamCfgEnd();
+    }
 }
 
 CImpCommonDlgLogic::CImpCommonDlgLogic()
@@ -37,6 +92,12 @@ CImpCommonDlgLogic::CImpCommonDlgLogic()
 	m_emFileFtpStatus = emFtpEnd;
 	m_dwTotalFileSize = 0;
 	m_dwCurSevr = 0;
+    m_strTftpFilePath = _T("");
+
+    g_nTransTimeID = 0;
+    g_nUpLoadProcess = 0;
+    g_nUpLoadProcessTimerID = 0;
+    g_nTftpOpenTimerID = 0;
 }
 
 CImpCommonDlgLogic::~CImpCommonDlgLogic()
@@ -62,6 +123,9 @@ void CImpCommonDlgLogic::RegMsg()
 {
 	REG_MSG_HANDLER( UI_MOONTOOL_UPGRADE_IND, CImpCommonDlgLogic::OnCameraUpgradeInd, IMPCOMMONLOGICRPTR, CImpCommonDlgLogic );	
 	REG_MSG_HANDLER( UI_CAMMECHANISM_UPGRADE_IND, CImpCommonDlgLogic::OnCamMechanismUpgradeInd, IMPCOMMONLOGICRPTR, CImpCommonDlgLogic );
+    REG_MSG_HANDLER( UI_RKC_UPDATE_FIRST_ACK, CImpCommonDlgLogic::OnRkcUpdateFirstAck, IMPCOMMONLOGICRPTR, CImpCommonDlgLogic );
+    REG_MSG_HANDLER( UI_RKC_UPDATE_FIRST_NTY, CImpCommonDlgLogic::OnRkcUpdateFirstNty, IMPCOMMONLOGICRPTR, CImpCommonDlgLogic );
+    REG_MSG_HANDLER( UI_RKC_UPDATE_SECOND_NTY, CImpCommonDlgLogic::OnRkcUpdateSecondNty, IMPCOMMONLOGICRPTR, CImpCommonDlgLogic );
 }
 
 void CImpCommonDlgLogic::UnRegMsg()
@@ -73,7 +137,8 @@ void CImpCommonDlgLogic::RegCBFun()
 {
 	REG_GOBAL_MEMBER_FUNC( "CImpCommonDlgLogic::InitWnd", CImpCommonDlgLogic::InitWnd, IMPCOMMONLOGICRPTR, CImpCommonDlgLogic);
 	REG_GOBAL_MEMBER_FUNC( "CImpCommonDlgLogic::OnBtnClose", CImpCommonDlgLogic::OnBtnClose, IMPCOMMONLOGICRPTR, CImpCommonDlgLogic ); 
-	REG_GOBAL_MEMBER_FUNC( "CImpCommonDlgLogic::OnBtnImportCamCfg", CImpCommonDlgLogic::OnBtnImportCamCfg, IMPCOMMONLOGICRPTR, CImpCommonDlgLogic ); 
+	REG_GOBAL_MEMBER_FUNC( "CImpCommonDlgLogic::OnBtnoCamCfg", CImpCommonDlgLogic::OnBtnImportCamCfg, IMPCOMMONLOGICRPTR, CImpCommonDlgLogic ); 
+    REG_GOBAL_MEMBER_FUNC( "CImpCommonDlgLogic::OnBtnImportAllCamInfo", CImpCommonDlgLogic::OnBtnImportAllCamInfo, IMPCOMMONLOGICRPTR, CImpCommonDlgLogic );
 	REG_GOBAL_MEMBER_FUNC( "CImpCommonDlgLogic::OnBtnUpgradeMoon", CImpCommonDlgLogic::OnBtnUpgradeMoon, IMPCOMMONLOGICRPTR, CImpCommonDlgLogic );
 	REG_GOBAL_MEMBER_FUNC( "CImpCommonDlgLogic::OnBtnUpgradeMechanism", CImpCommonDlgLogic::OnBtnUpgradeMechanism, IMPCOMMONLOGICRPTR, CImpCommonDlgLogic );
 	REG_DEFAULT_WINDOW_MSG( WM_CNSTOOL_UPLODEPROGRESS );
@@ -89,7 +154,7 @@ void CImpCommonDlgLogic::UnRegFunc()
 
 void CImpCommonDlgLogic::Clear()
 {
-	BOOL bOk = KillTimer(NULL,g_nTransTime);	//关掉定时器
+	BOOL bOk = KillTimer(NULL,g_nTransTimeID);	//关掉定时器
 	CleanTransfer();
 	
 	s32 nResult = 0;
@@ -156,7 +221,7 @@ bool CImpCommonDlgLogic::OnUploadProgress( const IArgs & arg )
 	case emFtpEnd:
 		{
 			m_nCount = 0;
-			BOOL bOk = KillTimer( NULL, g_nTransTime );	//关掉定时器
+			BOOL bOk = KillTimer( NULL, g_nTransTimeID );	//关掉定时器
 			DWORD dwSuccess = static_cast<DWORD>(msg.lParam);     //FTP接口0为成功  默认失败
 			if ( 0 == dwSuccess )
 			{
@@ -292,7 +357,8 @@ bool CImpCommonDlgLogic::OnBtnImportScan( const IArgs & arg )
 	if ( "软件升级" == strCaption )
 	{
 		strFile = /*CNSUPGRADE_FILE_NAME*//*"moon90.bin.gz"*/"";	//定义一个宏,内容是T300升级文件名,因为有2种,暂不做限制
-		strFilter = "Moon90升级文件(moon90.bin;moon90.bin.gz)|moon90.bin;moon90.bin.gz||";
+		//strFilter = "Moon90升级文件(moon90.bin;moon90.bin.gz)|moon90.bin;moon90.bin.gz||";
+        strFilter = "Moon90升级文件(moon904k30.bin)|moon904k30.bin||";
 	}
 
 	if( "机芯升级" == strCaption )
@@ -306,6 +372,12 @@ bool CImpCommonDlgLogic::OnBtnImportScan( const IArgs & arg )
 		strFile = MOONCAMERA_FILE_NAME;  //定义一个宏,内容是摄像机文件名
 		strFilter = "预置位配置文件(mooncfg.ini)|mooncfg.ini||"; 
 	}
+
+    if ( "导入参数" == strCaption )
+    {
+        strFile = MOONCAMERA_FILE_NAME;  //定义一个宏,内容是摄像机文件名
+        strFilter = "界面参数配置文件(mooncfg.ini)|mooncfg.ini||"; 
+	}
 	
 	String strImpFileFullPath;
 	UIDATAMGR_PTR->OpenFileDialog( strFilter, strFile, strImpFileFullPath, m_strImpFileName );
@@ -317,6 +389,13 @@ bool CImpCommonDlgLogic::OnBtnImportScan( const IArgs & arg )
 	{
 		return false;
 	}
+
+    //软件升级，需打开tftp服务并通知SvrIP及文件大小给对端
+    if ( "软件升级" == strCaption )
+    {
+        OnUpLoadFileFirst();
+    }
+
 	//更新添加的文件到文件列表
 	UIFACTORYMGR_PTR->SetCaption( "UpgradeDlg/StcUpSerName", m_strImpFileName, m_pWndTree );
 	s64 nSize = UIDATAMGR_PTR->GetFileSize(strImpFileFullPath);
@@ -356,6 +435,146 @@ bool CImpCommonDlgLogic::OnBtnImportScan( const IArgs & arg )
 	return true;
 }
 
+bool CImpCommonDlgLogic::OnUpLoadFileFirst()
+{
+    String strImpFileFullPath;
+    UIFACTORYMGR_PTR->GetCaption( m_strEdtSaveFolder, strImpFileFullPath, m_pWndTree );
+    m_strTftpFilePath = strImpFileFullPath.c_str();
+    if (strImpFileFullPath == "")
+    {
+        MSG_BOX_OK(_T("还没选择文件路径"));
+        return false;
+    }
+
+    //开启tftp
+    MOONSESSION_MGR_PTR->GetSysCtrlIF()->KillTftpProcess();//先关闭TFTP进程
+    if (!MOONSESSION_MGR_PTR->GetSysCtrlIF()->OpenTftp())
+    {
+        MSG_BOX_OK(_T("TFTP服务器开启失败"));
+        return false;
+    }
+    //设置tftp路径
+    string strFileDir = strImpFileFullPath;
+    int nIndex = strFileDir.find_last_of('\\');
+    if (nIndex > 0 && nIndex < strlen(strFileDir.c_str()))
+    {
+        strFileDir = strFileDir.substr(0, nIndex);
+    }
+    if (!MOONSESSION_MGR_PTR->GetSysCtrlIF()->SetTftpPath(strFileDir.c_str()))
+    {
+        MSG_BOX_OK(_T("设置Tftp文件路径失败"));
+        return false;
+    }
+
+    //禁用浏览、导入
+    //UIFACTORYMGR_PTR->EnableWindow( "BtnImpCommonFolderScan", FALSE, m_pWndTree );
+    UIFACTORYMGR_PTR->EnableWindow( "BtnImpCommonExport", FALSE, m_pWndTree );
+    g_nTftpOpenTimerID = SetTimer( NULL, 0, TIME_TFTP, CUploadTimerFun );
+    return true;
+}
+
+void CImpCommonDlgLogic::SendUpdateFirst()
+{
+    //bin包大小
+    unsigned int nFileSize = 0;
+    nFileSize = UIDATAMGR_PTR->GetFileSize(m_strTftpFilePath.GetBuffer(0));
+
+    //数据发送
+    TRK100TftpFwUpdate tRK100TftpFwUpdate;
+    memset(&tRK100TftpFwUpdate, 0, sizeof(TRK100TftpFwUpdate));
+    tRK100TftpFwUpdate.dwTftpSvrIp = UIDATAMGR_PTR->GetLocalIP();
+    tRK100TftpFwUpdate.dwFileSize = nFileSize;
+    strncpy(tRK100TftpFwUpdate.szFwTypeName , RKC_UPDATEFILE_TYPE, sizeof(RKC_UPDATEFILE_TYPE) );
+    strncpy(tRK100TftpFwUpdate.szFileFullName , RKC_UPDATEFILE_NAME, sizeof(RKC_UPDATEFILE_NAME) );
+    tRK100TftpFwUpdate.byChkSumValid = 0;
+    MOONSESSION_MGR_PTR->GetSysCtrlIF()->SetFtpUpdateFirst(tRK100TftpFwUpdate);
+}
+
+void CImpCommonDlgLogic::UpdateUploadProgress(u32 dwPos)
+{
+    float fCurrTransProgress = (float)dwPos/100*100;
+    if ( dwPos <= 100 )
+    {
+        m_valProgress.nPos = (u32)fCurrTransProgress;
+        UIFACTORYMGR_PTR->SetPropertyValue( m_valProgress, m_strProgressImp, m_pWndTree );
+    }
+}
+
+HRESULT CImpCommonDlgLogic::OnRkcUpdateFirstAck( WPARAM wparam, LPARAM lparam )
+{
+    bool bSuccess = (bool)wparam;
+    EMRK100OptRtn emErr = (EMRK100OptRtn)lparam;
+    if (bSuccess)
+    {
+    }
+    else
+    {
+        WARNMESSAGE(_T("Tftp first send error."));
+    }
+
+    return S_OK;
+}
+
+HRESULT CImpCommonDlgLogic::OnRkcUpdateFirstNty( WPARAM wparam, LPARAM lparam )
+{
+    bool bSuccess = (bool)wparam;
+    EMRK100OptRtn emErr = (EMRK100OptRtn)lparam;
+    if (bSuccess)
+    {
+    }
+    else
+    {
+        MOONSESSION_MGR_PTR->GetSysCtrlIF()->KillTftpProcess();
+        WARNMESSAGE(_T("UpLoad first message failed."));
+    }
+
+    //导入按钮使能
+    UIFACTORYMGR_PTR->EnableWindow( "BtnImpCommonExport", TRUE, m_pWndTree );
+    
+    return S_OK;
+}
+
+HRESULT CImpCommonDlgLogic::OnRkcUpdateSecondNty( WPARAM wparam, LPARAM lparam )
+{
+    MOONSESSION_MGR_PTR->GetSysCtrlIF()->KillTftpProcess();
+
+    //关掉定时器
+    KillTimer( NULL, g_nTransTimeID );
+    KillTimer( NULL, g_nUpLoadProcessTimerID );
+
+    //TFTP上传文件已超时，不再响应此消息
+    if ( g_nUpLoadProcess == 0)
+    {
+        return S_FALSE;
+    }
+
+    m_nCount = 0;
+    g_nUpLoadProcess = 0;
+
+    bool bSuccess = (bool)wparam;
+    EMRK100OptRtn emErr = (EMRK100OptRtn)lparam;
+    if (bSuccess)
+    {
+        //tftp进度条完成上传
+        UpdateUploadProgress(100);
+        UIFACTORYMGR_PTR->LoadScheme( "SchmTransferEnd", m_pWndTree );
+        MSG_BOX_OK( _T("设备升级成功，即将进入重启，请勿断电！") );
+        u16 wRet = COMIFMGRPTR->RebootMoon();
+        if ( wRet != NO_ERROR )
+        {
+            WARNMESSAGE( "重启moon90请求发送失败" );
+        }
+    }
+    else
+    {
+        WARNMESSAGE(_T("UpLoad failed."));
+        UIFACTORYMGR_PTR->LoadScheme( "SchmTransferEnd", m_pWndTree );
+        UIFACTORYMGR_PTR->LoadScheme( "SchmTransferBeg", m_pWndTree, m_strProgressImp );
+    }
+    
+    return S_OK;
+}
+
 bool CImpCommonDlgLogic::OnFolderEditChange( const IArgs & arg )
 {
 	UIFACTORYMGR_PTR->LoadScheme( "SchmImpCommonClean", m_pWndTree, m_strProgressImp );
@@ -365,6 +584,7 @@ bool CImpCommonDlgLogic::OnFolderEditChange( const IArgs & arg )
 
 bool CImpCommonDlgLogic::OnBtnUpgradeMoon( const IArgs & arg )
 {
+#if 0  //FTP
 	Value_WindowCaption valFolderName;
 	UIFACTORYMGR_PTR->GetPropertyValue( valFolderName, m_strEdtSaveFolder, m_pWndTree );
 	
@@ -372,7 +592,16 @@ bool CImpCommonDlgLogic::OnBtnUpgradeMoon( const IArgs & arg )
 	strFileFullPath = valFolderName.strCaption.c_str();
 	
 	UploadCore( /*CNSUPGRADE_FILE_PATH*/UPDATEFILE_PATH_NAME, strFileFullPath, /*CNSUPGRADE_FILE_NAME*/m_strImpFileName );  //参数需要重新设置
-	
+#else  //TFTP
+    UIFACTORYMGR_PTR->LoadScheme( "SchmTransferBeg", m_pWndTree );
+    //开始定时器 到达时间后关闭窗口
+    g_nUpLoadProcess = 0;
+    g_nUpLoadProcessTimerID = SetTimer( NULL, 0, TIME_UPLOAD, CUploadTimerFun );
+    //开始上传
+    MOONSESSION_MGR_PTR->GetSysCtrlIF()->SetFtpUpdateSecond();
+    //TFTP upload timeout
+    g_nTransTimeID = SetTimer( NULL, 0, TFTP_UPLOAD_TIMEOUT, CWaitTimerFun );
+#endif
 	return true;
 }
 
@@ -440,7 +669,7 @@ BOOL CImpCommonDlgLogic::UploadCore( const String& strRemotePath, const String& 
 		}
 		//设置定时器 时间间隔30s
 		m_nCount = 0;
-		g_nTransTime = SetTimer( NULL, 0, 10000, CWaitTimerFun );
+		g_nTransTimeID = SetTimer( NULL, 0, 10000, CWaitTimerFun );
 	}
 	
 	return TRUE;
@@ -452,6 +681,20 @@ void CImpCommonDlgLogic::CleanTransfer()
 	{
 		m_cFtp.EndFtpFile();
 	}
+
+    String strCaption;
+	UIFACTORYMGR_PTR->GetCaption( "ImpCommonDlg/StcImpCommonCap", strCaption, NULL );
+    if ( "软件升级" == strCaption )
+    {
+        MOONSESSION_MGR_PTR->GetSysCtrlIF()->KillTftpProcess();
+    }
+
+    //关掉定时器
+    KillTimer( NULL, g_nTransTimeID );
+    KillTimer( NULL, g_nUpLoadProcessTimerID );
+    
+    m_nCount = 0;
+    g_nUpLoadProcess = 0;
 	
 	m_emFileFtpStatus = emFtpEnd;
 	m_dwTotalFileSize = 0;
@@ -496,8 +739,24 @@ bool CImpCommonDlgLogic::OnBtnImportCamCfg( const IArgs & arg )
 	return true;
 }
 
+bool CImpCommonDlgLogic::OnBtnImportAllCamInfo( const IArgs & arg )
+{
+    Value_WindowCaption valFolderName;
+    UIFACTORYMGR_PTR->GetPropertyValue( valFolderName, m_strEdtSaveFolder, m_pWndTree );
+    
+    String strFileFullPath;
+    strFileFullPath = valFolderName.strCaption.c_str();
+    
+    m_dwTotalFileSize = 3*sizeof(TTPMoonCamInfo);
+    UIFACTORYMGR_PTR->LoadScheme( "SchmTransferBeg", m_pWndTree );
+    ReadFromCfgFile(strFileFullPath);
+
+    return true;
+}
+
 void CImpCommonDlgLogic::ClearTransFile()
 {
+#if 0  //FTP
 	if ( m_cFtp.GetIsRenameTransFile() && m_emFileFtpStatus == emFtpTransfer )
 	{
 		String strCurTransRemoteTempFileFullPath;
@@ -505,11 +764,20 @@ void CImpCommonDlgLogic::ClearTransFile()
 		m_cFtp.DeleteFile(strCurTransRemoteTempFileFullPath.c_str());
 	}
 	m_nCount = 0;
-	KillTimer( NULL, g_nTransTime );	//关掉定时器	
+	KillTimer( NULL, g_nTransTimeID );	//关掉定时器	
 	MSG_BOX_OK("导入文件出错，错误原因：超时");
 	UIFACTORYMGR_PTR->LoadScheme( "SchmTransferEnd", m_pWndTree );
 	UIFACTORYMGR_PTR->LoadScheme( "SchmTransferBeg", m_pWndTree, m_strProgressImp );
 	m_cFtp.EndFtpFile();
+#else  //TFTP
+    KillTimer( NULL, g_nTransTimeID );	//关掉定时器
+    KillTimer( NULL, g_nUpLoadProcessTimerID );
+    m_nCount = 0;
+    g_nUpLoadProcess = 0;
+	MSG_BOX_OK("导入文件出错，错误原因：超时");
+    UIFACTORYMGR_PTR->LoadScheme( "SchmImpCommonClean", m_pWndTree );
+    UIFACTORYMGR_PTR->LoadScheme( "SchmTransferBeg", m_pWndTree, m_strProgressImp );
+#endif
 }
 
 HRESULT CImpCommonDlgLogic::OnCameraUpgradeInd( WPARAM wparam, LPARAM lparam )
@@ -590,4 +858,117 @@ void CImpCommonDlgLogic::SetTimeOutCount()
 u32 CImpCommonDlgLogic::GetTimeOutCount()
 {
 	return m_nCount;
+}
+
+void HexStrToByte(const char* source, unsigned char* dest, int sourceLen)
+{
+    short i;
+    unsigned char highByte, lowByte;
+    
+    for (i = 0; i < sourceLen; i += 2)
+    {
+        highByte = toupper(source[i]);
+        lowByte = toupper(source[i + 1]);
+        
+        if (highByte > 0x39)
+            highByte -= 0x37;
+        else
+            highByte -= 0x30;
+        
+        if (lowByte > 0x39)
+            lowByte -= 0x37;
+        else
+            lowByte -= 0x30;
+        
+        dest[i / 2] = (highByte << 4) | lowByte;
+    }
+    return;
+}
+
+void CImpCommonDlgLogic::ReadFromCfgFile(String strPath)
+{
+    if ( !UIDATAMGR_PTR->IsFileExist( strPath.c_str() ) )
+    {
+        MSG_BOX_OK("指定文件不存在，无法导入!");
+        UIFACTORYMGR_PTR->LoadScheme( "SchmImpCommonClean", m_pWndTree );
+        return;
+    }
+    
+    if ( !UIDATAMGR_PTR->CheckTransferFile( strPath, MOONCAMERA_FILE_NAME ) )
+    {
+        UIFACTORYMGR_PTR->LoadScheme( "SchmImpCommonClean", m_pWndTree );
+        return;
+	}
+
+    TTPMoonCamInfo tCamInfo[3] = {0};
+    String strCamID = _T("");
+    u32 dwReadSize = 0;
+    BOOL bRet = FALSE;
+    s8 achNum[8] = {0};
+    s8 achBuffer[2*sizeof(TTPMoonCamInfo)+1] = {0};
+    
+    for (u8 byIndex = 0; byIndex < 3; byIndex++)
+    {
+        strCamID = _T("Camera");
+        ZeroMemory(achBuffer, 2*sizeof(TTPMoonCamInfo)+1);
+
+        itoa(byIndex+1, achNum, 10);
+        strCamID += achNum;
+        GetPrivateProfileString(strCamID.c_str(), "Param", "", achBuffer, 2*sizeof(TTPMoonCamInfo), strPath.c_str());
+        if (strlen(achBuffer) != 0)
+        {
+            HexStrToByte(achBuffer, (u8*)&tCamInfo[byIndex], strlen(achBuffer));
+            dwReadSize += sizeof(TTPMoonCamInfo);
+            bRet = ReadProgressPos(dwReadSize);
+        }
+    }
+
+    if (!bRet)
+    {
+        MSG_BOX_OK("导入文件异常，非所有参数均正确导入！");
+        UIFACTORYMGR_PTR->LoadScheme( "SchmTransferEnd", m_pWndTree );
+        UIFACTORYMGR_PTR->LoadScheme( "SchmTransferBeg", m_pWndTree, m_strProgressImp );
+    }
+    else
+    {
+        MSG_BOX_OK( "导入配置文件成功！当前摄像机参数将被重置"  );
+        MOONLIBDATAMGRPTR->SetAllCamCfg(tCamInfo);
+        m_nCount = 0;
+        g_nTransTimeID = SetTimer( NULL, 0, 500, CWaitFunc );
+    }
+}
+
+void CImpCommonDlgLogic::SetAllCamCfgEnd()
+{
+    UIFACTORYMGR_PTR->LoadScheme( "SchmTransferEnd", m_pWndTree );
+    if ( m_nCount >= SET_ALL_CAM_CFG_COUNT )
+    {
+        MSG_BOX_OK( "摄像机参数设置超时，请检查配置文件是否异常！" );
+    }
+    else
+    {
+        MSG_BOX_OK( "摄像机参数已被重置！" );
+    }
+
+    m_nCount = 0;
+}
+
+BOOL CImpCommonDlgLogic::ReadProgressPos(u32 dwReadSize)
+{
+    if ( m_dwTotalFileSize != 0 )
+    {   
+        float fCurrTransProgress = (float)dwReadSize/m_dwTotalFileSize*100;
+        if ( dwReadSize <= m_dwTotalFileSize )
+        {	
+            m_valProgress.nPos = (u32)fCurrTransProgress;
+            UIFACTORYMGR_PTR->SetPropertyValue( m_valProgress, m_strProgressImp, m_pWndTree );
+        }
+
+        if ( dwReadSize == m_dwTotalFileSize )
+        {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
 }

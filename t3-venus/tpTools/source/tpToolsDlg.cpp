@@ -761,8 +761,10 @@ BOOL CTpToolsDlg::ReadIpAddr()
     }
 	
     TiXmlElement* tiRootElement = doc.RootElement();  
-    TiXmlElement* tiHeadElement = tiRootElement->FirstChildElement();
-    TiXmlElement* tiElement = tiHeadElement->FirstChildElement(); 
+    TiXmlElement* tiHeadElement = NULL;
+	if (tiRootElement) tiHeadElement = tiRootElement->FirstChildElement();
+    TiXmlElement* tiElement = NULL;
+	if (tiHeadElement) tiElement = tiHeadElement->FirstChildElement(); 
 	if ( (NULL == tiRootElement) || (NULL == tiHeadElement) || (NULL == tiElement) )
 	{
 		return FALSE;

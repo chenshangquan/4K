@@ -41,7 +41,8 @@ void CExpCommonDlgLogic::RegCBFun()
 {
 	REG_GOBAL_MEMBER_FUNC( "CExpCommonDlgLogic::InitWnd", CExpCommonDlgLogic::InitWnd, EXPCOMMONLOGICRPTR, CExpCommonDlgLogic);
 	REG_GOBAL_MEMBER_FUNC( "CExpCommonDlgLogic::OnBtnClose", CExpCommonDlgLogic::OnBtnClose, EXPCOMMONLOGICRPTR, CExpCommonDlgLogic ); 
-	REG_GOBAL_MEMBER_FUNC( "CExpCommonDlgLogic::OnBtnExportCameraCfg", CExpCommonDlgLogic::OnBtnExportCameraCfg, EXPCOMMONLOGICRPTR, CExpCommonDlgLogic ); 
+	REG_GOBAL_MEMBER_FUNC( "CExpCommonDlgLogic::OnBtnExportCameraCfg", CExpCommonDlgLogic::OnBtnExportCameraCfg, EXPCOMMONLOGICRPTR, CExpCommonDlgLogic );
+    REG_GOBAL_MEMBER_FUNC( "CExpCommonDlgLogic::OnBtnExportAllCamInfo", CExpCommonDlgLogic::OnBtnExportAllCamInfo, EXPCOMMONLOGICRPTR, CExpCommonDlgLogic ); 
 	REG_DEFAULT_WINDOW_MSG( WM_CNSTOOL_FTPLOGPROGRESS );
 	REG_GOBAL_MEMBER_FUNC( "CExpCommonDlgLogic::OnDownloadProgress", CExpCommonDlgLogic::OnDownloadProgress, EXPCOMMONLOGICRPTR, CExpCommonDlgLogic );
 	REG_GOBAL_MEMBER_FUNC( "CExpCommonDlgLogic::OnBtnExportScan", CExpCommonDlgLogic::OnBtnExportScan, EXPCOMMONLOGICRPTR, CExpCommonDlgLogic ); 
@@ -111,11 +112,46 @@ bool CExpCommonDlgLogic::OnBtnExportCameraCfg( const IArgs & arg )
 	return true;
 }
 
+bool CExpCommonDlgLogic::OnBtnExportAllCamInfo( const IArgs & arg )
+{
+    Value_WindowCaption valFolderName;
+    UIFACTORYMGR_PTR->GetPropertyValue( valFolderName, m_strEdtSaveFolder, m_pWndTree );
+    
+    String strSavePath;
+	strSavePath = valFolderName.strCaption.c_str();
+
+    if ( UIDATAMGR_PTR->IsFileExist( strSavePath.c_str() ) )
+    {
+        MSGBOX_RET nResult = MSGBOX_OK;
+        MSG_BOX( nResult, "导出文件已存在，是否覆盖？");
+        if (nResult != MSGBOX_OK)
+        {
+            return FALSE;
+        }
+	}
+
+    if ( !UIDATAMGR_PTR->RecusionMkDir(UIDATAMGR_PTR->GetFileFolderPath(strSavePath).c_str()) )
+    {
+        MSG_BOX_OK("目录创建失败，无法导出！");
+        return FALSE;
+	}
+
+    //开始写入文件
+    UIFACTORYMGR_PTR->LoadScheme( "SchmTransferBeg", m_pWndTree );
+    /*m_dwTotalFileSize = 3*( sizeof(TCamID)+sizeof(TPOutputFmt)+sizeof(u32)+sizeof(TCamFocusAutoManualMode)+
+        sizeof(TIrisAutoManuMode)+sizeof(TExposAutoMode)+sizeof(TShutterMode)+sizeof(TGainMode)+sizeof(TCamWBMode)+
+        sizeof(TCamImagParam)+sizeof(TCamD2NRMode)+sizeof(TCamD3NRMode) );*/
+    m_dwTotalFileSize = 3*sizeof(TTPMoonCamInfo);
+    WriteToCfgFile(strSavePath);
+    
+    return true;
+}
+
 bool CExpCommonDlgLogic::OnDownloadProgress( const IArgs & arg )
 {
 	Args_WindowMsg WinMsg = *dynamic_cast<const Args_WindowMsg*>(&arg);
 	WindowMsg msg = WinMsg.m_Msg;
-	
+	 
 	m_emFileFtpStatus = static_cast<EmFtpStatus>(msg.wParam);
 	
 	switch( m_emFileFtpStatus )
@@ -255,6 +291,11 @@ bool CExpCommonDlgLogic::OnBtnExportScan( const IArgs & arg )
 		strFile+= MOONCAMERA_FILE_NAME;  
 		strFilter = "预置位配置文件(mooncfg.ini)|mooncfg.ini||";
 	}
+    else if ( "导出参数" == strCaption )
+    {
+        strFile+= MOONCAMERA_FILE_NAME;  
+		strFilter = "界面参数配置文件(mooncfg.ini)|mooncfg.ini||";
+    }
 /*	HWND hWnd = m_pWnd->GetSafeHwnd();*/
     String strExpFileFullPath;
 	String strExpFileName;
@@ -391,4 +432,78 @@ BOOL CExpCommonDlgLogic::DownloadCore( const String& strFilePath, const String& 
 	}
 	
 	return TRUE;
+}
+
+void CExpCommonDlgLogic::WriteToCfgFile(String strPath)
+{
+    TTPMoonCamInfo *patCamInfo[3] = {NULL, NULL, NULL};
+    MOONLIBDATAMGRPTR->GetAllCamCfg( patCamInfo );
+    
+    String strCamID = _T("Camera1");
+    u32 dwWroteSize = 0;
+    BOOL bRet = FALSE;
+    s8 achTemp[8] = {0};
+    //s8 byBuffer[MAX_PATH] = {0};
+    String strParam = _T("");
+    for(u8 byIndex = 0; byIndex < 3; byIndex++)
+    {
+        //机芯ID
+        if (patCamInfo[byIndex]->TCamIDIndex.CamNum1Flag == 1)
+        {
+            strCamID = "Camera1";
+        }
+        else if (patCamInfo[byIndex]->TCamIDIndex.CamNum2Flag == 1)
+        {
+            strCamID = "Camera2";
+        }
+        else if (patCamInfo[byIndex]->TCamIDIndex.CamNum3Flag == 1)
+        {
+            strCamID = "Camera3";
+        }
+        else
+        {
+            strCamID = "";
+        }
+
+        //单机芯所有配置写入配置文件
+        if ( strCamID != "" )
+        {
+            strParam = _T("");
+            for (s32 nPos = 0; nPos < sizeof(TTPMoonCamInfo); nPos++)
+            {
+                sprintf( achTemp, "%02x", *((u8*)(patCamInfo[byIndex])+nPos) );
+                strParam.append(achTemp);
+            }
+            
+            if ( WritePrivateProfileString(strCamID.c_str(), _T("Param"), strParam.c_str(), strPath.c_str()) )
+            {
+                dwWroteSize += sizeof(TTPMoonCamInfo);
+                bRet = WriteProgressPos(dwWroteSize);
+            }
+        }
+    }
+    
+    if (!bRet)
+    {
+        MSG_BOX_OK("导出文件异常，非所有参数均正确导出！");
+        UIFACTORYMGR_PTR->LoadScheme( "SchmTransferBreak", m_pWndTree );
+    }
+}
+
+BOOL CExpCommonDlgLogic::WriteProgressPos(u32 dwWroteSize)
+{
+    float fCurrTransProgress = (float)dwWroteSize/m_dwTotalFileSize*100;
+    if ( dwWroteSize <= m_dwTotalFileSize )
+    {	
+        m_valProgress.nPos = (u32)fCurrTransProgress;
+        UIFACTORYMGR_PTR->SetPropertyValue( m_valProgress, m_strProgressExp, m_pWndTree );
+    }
+
+    if ( dwWroteSize == m_dwTotalFileSize )
+    {
+        MSG_BOX_OK("导出配置文件成功！");
+        UIFACTORYMGR_PTR->LoadScheme( "SchmTransferEnd", m_pWndTree );
+        return TRUE;
+    }
+    return FALSE;
 }

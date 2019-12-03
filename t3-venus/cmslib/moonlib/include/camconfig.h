@@ -11,6 +11,8 @@
 
 #include "rkcSession.h"
 
+#define DELAY_SEND_CMD     200  //输入指令间隔
+
 class CCamConfig : public CCamConfigIF 
 {
 	friend class CRkcSession;
@@ -99,6 +101,27 @@ public:
 	* @remarks 
 	*/	
 	virtual TTPMoonCamInfo GetCamCfg();
+    /** 
+	* 功能  	设置当前所有机芯配置
+	* @param [in] 	 
+	* @return  
+	* @remarks 
+	*/
+    virtual void SetAllCamCfg(TTPMoonCamInfo tCamInfo[]);
+    /** 
+	* 功能  	获取当前所有机芯配置
+	* @param [in] 	 
+	* @return  
+	* @remarks 
+	*/
+    virtual void GetAllCamCfg(TTPMoonCamInfo* ptCamInfo[]);
+    /** 
+	* 功能  	获取当前界面状态
+	* @param [in] 	 
+	* @return  
+	* @remarks 
+	*/
+    virtual BOOL GetCurStatus();
 
 	/** 
 	* 功能  	获取被选中的摄像机
@@ -157,6 +180,8 @@ public:
 	virtual u16 CamShutSpdCmd( const EmTPSOrThShutter& emShutSpd );
 
 	virtual u16 CamTwShutSpdCmd( const EmTPFOrTwShutter& emTwShutter );
+
+    u16 SetCamShutterCmd( const TShutterMode& tShutterMode );
 
 	/** 
 	* 功能  界面获取快门参数接口
@@ -288,6 +313,14 @@ public:
 	virtual u16 Cam3DNRCmd( BOOL bIsOpen, EmTPReduNoise emTPReduNoise );
 
     virtual u16 CamOrderPosCheckCmd( const TCamPresetNumberList& tCamPreset );
+
+    /** 
+	* 功能  	预置位1保存
+	* @param [in] 	 
+	* @return  
+	* @remarks 
+	*/
+    virtual u16 CamPreSet1SaveCmd();
 
 	/** 
 	* 功能  获取电视机配置
@@ -481,10 +514,12 @@ protected:
     void OnSetCamZoomValRsp( const CMessage& cMsg );
     void OnSetCamApertreRsp( const CMessage& cMsg );
     void OnReBootRkRsp( const CMessage& cMsg );
+    void OnCamPreSet1SaveRsp( const CMessage& cMsg );
 
 public:
 	void SetCameraCfgPtr();
 	void SetCameraParamSync();
+    void AllCamCfgCmdSend();
 
 private:
 	CRkcSession        *m_pSession;
@@ -499,6 +534,7 @@ private:
 
 	TTPCamPre       m_atTPCamPre[MAX_CAMERA_Pre_NUM];   //显示器信息 
     EmTPMechanism  m_emTPMechanism;  //机芯类型
+    BOOL           m_bSetAllCamCfg;  //是否在设置界面参数
 };
 
 #endif // !defined(AFX_CNCCONFIG_H__40492EAF_0B43_4101_A0B9_FDD4C21B1D4A__INCLUDED_)

@@ -27,6 +27,9 @@
 				    <Scheme Name="SchExportOrderList">			    	
 							<Property Name="WindowCaption" Value="导出" />  	  
 				    </Scheme>					    		   		    
+                    <Scheme Name="SchExportAllCamInfo">			    	
+                        <Property Name="WindowCaption" Value="导出参数" />  	  
+                    </Scheme>
 		    </Window>
 		  
 			  <Window Type="TransButton" Name="BtnExpCommonDlgClose" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
@@ -115,6 +118,10 @@
 				  		<Property Name="Image" Value="impexpCommonDlg/btnExport" />  					    	
 			      	<Event Type="WM_BUTTON_CLICK" Value="CExpCommonDlgLogic::OnBtnExportCameraCfg" />
 				    </Scheme>				    				    
+                    <Scheme Name="SchExportAllCamInfo">
+                        <Property Name="Image" Value="impexpCommonDlg/btnExport" />  					    	
+                        <Event Type="WM_BUTTON_CLICK" Value="CExpCommonDlgLogic::OnBtnExportAllCamInfo" />
+                    </Scheme>
 					  <Scheme Name="SchmExpCommonClean">
 						 	<Property Name="WindowEnable" Value="True" />    		    	
 				   	</Scheme>		 	            

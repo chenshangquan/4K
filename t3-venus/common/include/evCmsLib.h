@@ -3914,6 +3914,14 @@ enum EmUiMoontoolMsg
 	ev_UISetDelayCorrectNty,
 #define	UI_SETDELAYCORRECT_NTY  ev_UISetDelayCorrectNty
 
+    /************************************************************************/
+	/** 预置位1保存结果通知界面 
+	wparam 
+	lparam*/
+	/************************************************************************/
+	ev_UICameraPreset1SaveRsp,
+#define	UI_CAMERA_PRESET1_SAVE_RSP  ev_UICameraPreset1SaveRsp
+
 };
 //* @}*/
 #endif 

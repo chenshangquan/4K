@@ -42,16 +42,21 @@ public:
 	*   获得登录的消息反馈内容
 	*/ 
     virtual u16 GetLoginBackInfo(TRK100MsgHead& tRK100MsgHead) = 0;
+
+    //升级
+    virtual u16 SetFtpUpdateFirst(TRK100TftpFwUpdate tRK100TftpFwUpdate) = 0;
+    virtual u16 SetFtpUpdateSecond();
+    //获取升级内容
+    virtual u16 GetUpdateConfig(TRK100UpdateHead& tRK100UpdateHead) = 0;
+
     /**
 	*   TFTP相关
 	*/ 
-#if 0
     virtual bool OpenTftp() = 0;
     virtual bool CloseTftp() = 0;
     virtual bool SetTftpPath(const s8 *pchPath) = 0;
     virtual bool SetDhcpBootFile(const s8 *pchPath) = 0;
     virtual bool KillTftpProcess() = 0;
-#endif	
 };
 
 #endif __RKCSYSCTRLIF_H__

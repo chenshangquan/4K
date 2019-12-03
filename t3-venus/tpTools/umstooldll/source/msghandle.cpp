@@ -140,7 +140,7 @@ LRESULT CMsgHandle::SendMessage( u32 dwMessage, WPARAM wParam, LPARAM lParam )
 		Init();
 	}
  
-	return ::SendMessage( m_pMySelf->GetSafeHwnd(), dwMessage, wParam, lParam );
+	return (m_pMySelf != NULL ? ::SendMessage( m_pMySelf->GetSafeHwnd(), dwMessage, wParam, lParam ) : NULL);
 	 
  
 }

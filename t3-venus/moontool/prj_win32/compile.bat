@@ -28,6 +28,8 @@ copy /Y release\moontool.exe ..\..\..\10-common\version\release\win32\moontool\m
 
 copy /Y release\moonToolDll.dll ..\..\..\10-common\version\release\win32\moontool\moonToolDll.dll
 
+copy /Y ..\..\producetest2\prj_win32\tftp\release\tftp.exe ..\..\..\10-common\version\release\win32\moontool\tftp.exe
+
 if not exist "..\..\..\10-common\version\release\win32\moontool\resmoontool" (
 	mkdir "..\..\..\10-common\version\release\win32\moontool\resmoontool"
 )

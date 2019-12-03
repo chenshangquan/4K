@@ -53,7 +53,7 @@ void CSetContrastAreaLogic::RegMsg()
 	REG_MSG_HANDLER( UI_MoonTool_ShowRectRegion_IND, CSetContrastAreaLogic::OnShowRectRegionInd, pThis, CSetContrastAreaLogic );
 	REG_MSG_HANDLER( UI_MOONTOOL_CAMOUTPUT_INFO_NTY, CSetContrastAreaLogic::OnCamOutputInfoNty, pThis, CSetContrastAreaLogic );
 	REG_MSG_HANDLER( UI_MOONTOOL_CAMOUTPUT_INFO_IND, CSetContrastAreaLogic::OnCamOutputInfoInd, pThis, CSetContrastAreaLogic );
-	REG_MSG_HANDLER( UI_MoonSecDefault_Nty, CSetContrastAreaLogic::OnSetDefaultParamNty, pThis, CSetContrastAreaLogic );
+	//REG_MSG_HANDLER( UI_MoonSecDefault_Nty, CSetContrastAreaLogic::OnSetDefaultParamNty, pThis, CSetContrastAreaLogic );
 	REG_MSG_HANDLER( UI_MoonTool_ColorSwitch_IND, CSetContrastAreaLogic::OnSetOnColorSwitchInd, pThis, CSetContrastAreaLogic );
 
 }

@@ -527,9 +527,11 @@ void CCfgDemonStrationDlg::SoftDemoStrationData( vector<Value_DisplaySrc::TDispl
         SwapDemoSourceData(0,emVgaTypeFullScreenCamera,vecTDisplaySource);
         SwapDemoSourceData(1,emVgaTypeDocCamera,vecTDisplaySource);
         SwapDemoSourceData(2,emVgaType001,vecTDisplaySource);
-        SwapDemoSourceData(3,emVgaType002,vecTDisplaySource);
+        //SwapDemoSourceData(3,emVgaType002,vecTDisplaySource);
+        //去除演示源2和3
         if (vecTDisplaySource.size() == 5)
         {
+            vecTDisplaySource.pop_back();
             vecTDisplaySource.pop_back();
         }  
     }

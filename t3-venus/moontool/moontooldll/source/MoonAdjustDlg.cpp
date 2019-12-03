@@ -81,7 +81,7 @@ void CMoonAdjustDlg::RegMsg()
 	//REG_MSG_HANDLER( UI_MOONTOOL_CAMINFO_NTY, CMoonAdjustDlg::OnTralCorParamInd, pThis, CMoonAdjustDlg );
 	REG_MSG_HANDLER( UI_SecBoundary_Nty, CMoonAdjustDlg::OnSecBoundaryNty, pThis, CMoonAdjustDlg );
 	REG_MSG_HANDLER( UI_CHANGESIDERGB_NTY, CMoonAdjustDlg::OnSetChangeSideRGBNty, pThis, CMoonAdjustDlg );
-	REG_MSG_HANDLER( UI_MoonSecDefault_Nty, CMoonAdjustDlg::OnSetDefaultParamNty, pThis, CMoonAdjustDlg );
+	//REG_MSG_HANDLER( UI_MoonSecDefault_Nty, CMoonAdjustDlg::OnSetDefaultParamNty, pThis, CMoonAdjustDlg );
 	REG_MSG_HANDLER( UI_MoonTool_ReferenceLine_IND, CMoonAdjustDlg::OnReferenceLineInd, pThis, CMoonAdjustDlg );
 	REG_MSG_HANDLER( UI_MoonTool_HorizontalFlip_IND, CMoonAdjustDlg::OnHorizontalFlipInd, pThis, CMoonAdjustDlg );
 	REG_MSG_HANDLER( UI_MoonTool_TrapezoidalCor_IND, CMoonAdjustDlg::OnTrapezoidalCorInd, pThis, CMoonAdjustDlg );

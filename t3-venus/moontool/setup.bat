@@ -26,6 +26,8 @@ copy /Y ..\..\10-common\version\release\win32\moontool\moontool.map "setup files
 
 copy /Y ..\..\10-common\version\release\win32\moontool\moontooldll.dll "setup files\moontooldll.dll"
 
+copy /Y ..\..\10-common\version\release\win32\moontool\tftp.exe "setup files\tftp.exe"
+
 xcopy "..\..\10-common\version\release\win32\moontool\resmoontool\*.*" "setup files\resmoontool\" /s /y /h  
 xcopy "..\..\10-common\version\release\win32\moontool\res\*.*" "setup files\res\" /s /y /h
 

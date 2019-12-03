@@ -41,7 +41,7 @@ RSC=rc.exe
 # PROP Intermediate_Dir "Release"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /W3 /GR /GX /O2 /I ".\\" /I "..\include" /I "..\..\..\..\10-common\include\platform" /I "..\..\..\..\10-common\include\system1" /I "..\..\..\..\10-common\include\nms1" /I "..\..\..\..\10-common\include\snmp" /I "..\..\..\..\10-common\include\protocol" /I "..\..\..\..\10-common\include\tp2" /I "..\..\..\common\include" /I "..\..\..\common\include\rk100_tp" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /YX /FD /c
+# ADD CPP /nologo /MD /W3 /GR /GX /O2 /I ".\\" /I "..\include" /I "..\include\tftp" /I "..\..\..\..\10-common\include\platform" /I "..\..\..\..\10-common\include\system1" /I "..\..\..\..\10-common\include\nms1" /I "..\..\..\..\10-common\include\snmp" /I "..\..\..\..\10-common\include\protocol" /I "..\..\..\..\10-common\include\tp2" /I "..\..\..\common\include" /I "..\..\..\common\include\rk100_tp" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /YX /FD /c
 # ADD BASE RSC /l 0x804 /d "NDEBUG" /d "_AFXDLL"
 # ADD RSC /l 0x804 /d "NDEBUG" /d "_AFXDLL"
 BSC32=bscmake.exe
@@ -97,6 +97,14 @@ SOURCE=..\source\rkcsysctrl.cpp
 # Begin Source File
 
 SOURCE=..\source\sysconfig.cpp
+# End Source File
+# End Group
+# Begin Group "tftp_cpp"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\source\tftp\Tftp.cpp
 # End Source File
 # End Group
 # Begin Source File
@@ -206,6 +214,14 @@ SOURCE=..\..\..\common\include\rkcstruct.h
 # Begin Source File
 
 SOURCE=..\..\..\common\include\sysconfigif.h
+# End Source File
+# End Group
+# Begin Group "tftp_h"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\include\tftp\Tftp.h
 # End Source File
 # End Group
 # Begin Source File

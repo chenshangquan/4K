@@ -30,6 +30,7 @@ CCamConfig::CCamConfig(CRkcSession &cSession) : CCamConfigIF()
 	m_byCameraSel = 0;
 	m_byCameraSyncSel = 0;
     m_emTPMechanism = emSonyFCBCS8230;
+    m_bSetAllCamCfg = FALSE;
 
     memset( &m_tCnCameraCfg1, 0, sizeof(TTPMoonCamInfo) );
     memset( &m_tCnCameraCfg2, 0, sizeof(TTPMoonCamInfo) );
@@ -123,6 +124,7 @@ void CCamConfig::BuildEventsMap()
     REG_PFUN( RK100_EVT_SET_CAM_Preset_PowOnRecall_ACK, CCamConfig::OnCamOrderPosSelInd );
     REG_PFUN( RK100_EVT_REBOOT_ACK, CCamConfig::OnReBootRkRsp );
     REG_PFUN( RK100_EVT_RECOVERY_DEFAULT_SET_ACK, CCamConfig::OnCamParamDefaultInd );
+    REG_PFUN( RK100_EVT_SET_CAM_Preset_Save_ACK, CCamConfig::OnCamPreSet1SaveRsp );
 
 }
 
@@ -229,20 +231,21 @@ void CCamConfig::OnMoonCamCfgNty( const CMessage& cMsg )
         {
             tTPMoonCamInfo = *reinterpret_cast<TTPMoonCamInfo*>( cMsg.content + sizeof(TRK100MsgHead) + nIndex*sizeof(TTPMoonCamInfo) );
 
+            //机芯控制逻辑界面映射：1->2, 2->3, 3->1
             if ( tTPMoonCamInfo.TCamIDIndex.CamNum1Flag == 1 )
             {
                 m_tCnCameraCfg1 = tTPMoonCamInfo;
-                byIndex = 0;
+                byIndex = 2;
             }
             else if ( tTPMoonCamInfo.TCamIDIndex.CamNum2Flag == 1 )
             {
                 m_tCnCameraCfg2 = tTPMoonCamInfo;
-                byIndex = 1;
+                byIndex = 0;
             }
             else if ( tTPMoonCamInfo.TCamIDIndex.CamNum3Flag == 1 )
             {
                 m_tCnCameraCfg3 = tTPMoonCamInfo;
-                byIndex = 2;
+                byIndex = 1;
             }
             else
             {
@@ -282,11 +285,21 @@ tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_300Spd, tTPMoonCamInfo.Shut
 tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_1000Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_1250Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_1750Spd,
 tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_2500Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_3500Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_6000Spd,
 tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_10000Spd);
-            
+            PrtRkcMsg( RK100_EVT_LOGIN_ACK, emEventTypeScoketRecv, "\n \
+<Focus:[Auto:%d,Manual:%d]>\n \
+<AutoExposureMode:%d>\n \
+<D2NRMode:[On:%d,Off:%d],level:[%d,%d,%d,%d,%d]>\n \
+<D3NRMode:[On:%d,Off:%d],level:[%d,%d,%d,%d,%d]>",
+tTPMoonCamInfo.FocusMode.AutoModeFlag, tTPMoonCamInfo.FocusMode.ManualModeFlag, tTPMoonCamInfo.ExpMode.ExposAutoModeFlag,
+tTPMoonCamInfo.CamD2NRMode.D2NROnFlag, tTPMoonCamInfo.CamD2NRMode.D2NROffFlag, tTPMoonCamInfo.CamD2NRMode.D2NR_level_1_Flag, tTPMoonCamInfo.CamD2NRMode.D2NR_level_2_Flag,
+tTPMoonCamInfo.CamD2NRMode.D2NR_level_3_Flag, tTPMoonCamInfo.CamD2NRMode.D2NR_level_4_Flag, tTPMoonCamInfo.CamD2NRMode.D2NR_level_5_Flag,
+tTPMoonCamInfo.CamD3NRMode.D3NROnFlag, tTPMoonCamInfo.CamD3NRMode.D3NROffFlag, tTPMoonCamInfo.CamD3NRMode.D3NR_level_1_Flag, tTPMoonCamInfo.CamD3NRMode.D3NR_level_2_Flag,
+tTPMoonCamInfo.CamD3NRMode.D3NR_level_3_Flag, tTPMoonCamInfo.CamD3NRMode.D3NR_level_4_Flag, tTPMoonCamInfo.CamD3NRMode.D3NR_level_5_Flag );
+
             byIndex = 0xff;
             ZeroMemory(&tTPMoonCamInfo, sizeof(TTPMoonCamInfo));
         }
-	}   
+	}
 }
 
 void CCamConfig::OnCamSelNty( const CMessage& cMsg )
@@ -340,17 +353,19 @@ u16 CCamConfig::CamSelCmd( const u8& byCameraIndx )
 
     TCamID tCamID;
     ZeroMemory(&tCamID, sizeof(TCamID));
+
+    //机芯控制逻辑界面映射：1->2, 2->3, 3->1
     if ( byCameraIndx == 0 )
-    {
-        tCamID.CamNum1Flag = 1;
-    }
-    else if ( byCameraIndx == 1 )
     {
         tCamID.CamNum2Flag = 1;
     }
-    else
+    else if ( byCameraIndx == 1 )
     {
         tCamID.CamNum3Flag = 1;
+    }
+    else if ( byCameraIndx == 2 )
+    {
+        tCamID.CamNum1Flag = 1;
     }
 
     rkmsg.CatBody(&tCamID, sizeof(TCamID));//添加消息体
@@ -413,17 +428,18 @@ u16 CCamConfig::SetMoonCamCfgSyncCmd(const u8& byCameraIndx)
     TCamID tCamID;
     ZeroMemory(&tCamID, sizeof(TCamID));
     tCamID.SyncFlag = 1;
+    //机芯控制逻辑界面映射：1->2, 2->3, 3->1
     if ( byCameraIndx == 0 )
-    {
-        tCamID.CamNum1Flag = 1;
-    }
-    else if ( byCameraIndx == 1 )
     {
         tCamID.CamNum2Flag = 1;
     }
-    else
+    else if ( byCameraIndx == 1 )
     {
         tCamID.CamNum3Flag = 1;
+    }
+    else
+    {
+        tCamID.CamNum1Flag = 1;
     }
 
     rkmsg.CatBody(&tCamID, sizeof(TCamID));//添加消息体
@@ -463,17 +479,18 @@ void CCamConfig::OnCamParaSynchronizeInd(const CMessage& cMsg)
         tCamID = *reinterpret_cast<TCamID*>( cMsg.content + sizeof(TRK100MsgHead) );
     }
 
+    //机芯控制逻辑界面映射：1->2, 2->3, 3->1
     if ( tCamID.CamNum1Flag == 1 )
     {
-        m_byCameraSel = 0;
+        m_byCameraSel = 2;
     }
     else if ( tCamID.CamNum2Flag == 1 )
     {
-        m_byCameraSel = 1;
+        m_byCameraSel = 0;
     }
     else if ( tCamID.CamNum3Flag == 1 )
     {
-        m_byCameraSel = 2;
+        m_byCameraSel = 1;
     }
     else
     {
@@ -495,6 +512,27 @@ TTPMoonCamInfo CCamConfig::GetCamCfg()
 	return *m_pTPMoonCamCfg;
 }
 
+void CCamConfig::SetAllCamCfg(TTPMoonCamInfo tCamInfo[])
+{
+    m_tCnCameraCfg1 = tCamInfo[0];
+    m_tCnCameraCfg2 = tCamInfo[1];
+    m_tCnCameraCfg3 = tCamInfo[2];
+    m_bSetAllCamCfg = TRUE;
+    AllCamCfgCmdSend();
+}
+
+void CCamConfig::GetAllCamCfg(TTPMoonCamInfo* ptCamInfo[])
+{
+    ptCamInfo[0] = &m_tCnCameraCfg1;
+    ptCamInfo[1] = &m_tCnCameraCfg2;
+    ptCamInfo[2] = &m_tCnCameraCfg3;
+}
+
+BOOL CCamConfig::GetCurStatus()
+{
+    return m_bSetAllCamCfg;
+}
+
 u8 CCamConfig::GetCamSel()const
 {
 	return m_byCameraSel;
@@ -502,21 +540,22 @@ u8 CCamConfig::GetCamSel()const
 
 void CCamConfig::SetCameraCfgPtr()
 {
+    //机芯控制逻辑界面映射：1->2, 2->3, 3->1
 	switch ( m_byCameraSel )
 	{
 	case 0:
 		{
-			m_pTPMoonCamCfg = &m_tCnCameraCfg1;
+			m_pTPMoonCamCfg = &m_tCnCameraCfg2;
 			break;
 		}
 	case 1:
 		{
-			m_pTPMoonCamCfg = &m_tCnCameraCfg2;
+			m_pTPMoonCamCfg = &m_tCnCameraCfg3;
 			break;
 		}
 	case 2:
 		{
-			m_pTPMoonCamCfg = &m_tCnCameraCfg3;
+			m_pTPMoonCamCfg = &m_tCnCameraCfg1;
 			break;
 		}
 	default:
@@ -528,26 +567,38 @@ void CCamConfig::SetCameraCfgPtr()
 
 void CCamConfig::SetCameraParamSync()
 {
-	if( m_byCameraSyncSel == 0 )
-	{
-		m_tCnCameraCfg2 = m_tCnCameraCfg1;
-		m_tCnCameraCfg3 = m_tCnCameraCfg1;
-		//m_tCnCameraCfg2.byIndex = 1;
-		//m_tCnCameraCfg3.byIndex = 2;
-	}
-	else if( m_byCameraSyncSel == 1 )
+    //机芯控制逻辑界面映射：1->2, 2->3, 3->1
+    TCamID tCamID;
+    ZeroMemory(&tCamID, sizeof(TCamID));
+	if( m_byCameraSel == 0 )
 	{
 		m_tCnCameraCfg1 = m_tCnCameraCfg2;
+        m_tCnCameraCfg1.TCamIDIndex = tCamID;
+        m_tCnCameraCfg1.TCamIDIndex.CamNum1Flag = 1;
+
 		m_tCnCameraCfg3 = m_tCnCameraCfg2;
-		//m_tCnCameraCfg1.byIndex = 0;
-		//m_tCnCameraCfg3.byIndex = 2;
+        m_tCnCameraCfg3.TCamIDIndex = tCamID;
+        m_tCnCameraCfg3.TCamIDIndex.CamNum3Flag = 1;
+	}
+	else if( m_byCameraSel == 1 )
+	{
+		m_tCnCameraCfg1 = m_tCnCameraCfg3;
+        m_tCnCameraCfg1.TCamIDIndex = tCamID;
+        m_tCnCameraCfg1.TCamIDIndex.CamNum1Flag = 1;
+
+		m_tCnCameraCfg2 = m_tCnCameraCfg3;
+        m_tCnCameraCfg2.TCamIDIndex = tCamID;
+        m_tCnCameraCfg2.TCamIDIndex.CamNum2Flag = 1;
 	}
 	else
 	{
-		m_tCnCameraCfg1 = m_tCnCameraCfg3;
-		m_tCnCameraCfg2 = m_tCnCameraCfg3;
-		//m_tCnCameraCfg1.byIndex = 0;
-		//m_tCnCameraCfg2.byIndex = 1;
+		m_tCnCameraCfg3 = m_tCnCameraCfg1;
+        m_tCnCameraCfg3.TCamIDIndex = tCamID;
+        m_tCnCameraCfg3.TCamIDIndex.CamNum3Flag = 1;
+
+		m_tCnCameraCfg2 = m_tCnCameraCfg1;
+		m_tCnCameraCfg2.TCamIDIndex = tCamID;
+        m_tCnCameraCfg2.TCamIDIndex.CamNum2Flag = 1;
 	}
 }
 
@@ -1081,11 +1132,13 @@ void CCamConfig::OnCamAutoFocusInd(const CMessage& cMsg)
         if (tCamFocusAutoManualMode.AutoModeFlag)
         {
             m_pTPMoonCamCfg->FocusMode.AutoModeFlag = 1;
+            m_pTPMoonCamCfg->FocusMode.ManualModeFlag = 0;
             emFocusMode = emAuto;
         }
         else
         {
             m_pTPMoonCamCfg->FocusMode.ManualModeFlag = 1;
+            m_pTPMoonCamCfg->FocusMode.AutoModeFlag = 0;
             emFocusMode = emManual;
         }
     }
@@ -1339,7 +1392,8 @@ void CCamConfig::OnSetCamApertreRsp( const CMessage& cMsg )
         }
     }
     
-    PrtRkcMsg( RK100_EVT_SET_CAM_IRIS_ACK, emEventTypeScoketRecv, "wRtn:%d", tMsgHead.wOptRtn);
+    PrtRkcMsg( RK100_EVT_SET_CAM_IRIS_ACK, emEventTypeScoketRecv, "wRtn:%d, AutoFlag:%d, ManuFlag:%d",
+        tMsgHead.wOptRtn, tIrisAutoManuMode.IrisAutoFlag, tIrisAutoManuMode.IrisManuFlag);
     PostEvent( UI_MOONTOOL_CAMERA_APERTRE_RSP, NULL, (LPARAM)tMsgHead.wOptRtn );
 }
 
@@ -1545,6 +1599,11 @@ u16 CCamConfig::CamShutSpdCmd( const EmTPSOrThShutter& emShutSpd )
             tShutterMode.SixtyOrThirtyMode.Shutter_30Sp = 1;
             break;
         }
+    case em_Shutter_50Sp:
+        {
+            tShutterMode.SixtyOrThirtyMode.Shutter_50Sp = 1;
+            break;
+        }
     case em_Shutter_60Sp:
         {
             tShutterMode.SixtyOrThirtyMode.Shutter_60Sp = 1;
@@ -1663,6 +1722,11 @@ u16 CCamConfig::CamTwShutSpdCmd( const EmTPFOrTwShutter& emTwShutter )
             tShutterMode.FiftyOrTwentyMode.Shutter_25Spd = 1;
             break;
         }
+    case em_Shutter_30Spd:
+        {
+            tShutterMode.FiftyOrTwentyMode.Shutter_30Spd = 1;
+            break;
+        }
     case em_Shutter_50Spd:
         {
             tShutterMode.FiftyOrTwentyMode.Shutter_50Spd = 1;
@@ -1754,6 +1818,39 @@ u16 CCamConfig::CamTwShutSpdCmd( const EmTPFOrTwShutter& emTwShutter )
     return NOERROR;
 }
 
+u16 CCamConfig::SetCamShutterCmd( const TShutterMode& tShutterMode )
+{
+	TRK100MsgHead tRK100MsgHead;//定义消息头结构体
+    memset(&tRK100MsgHead,0,sizeof(TRK100MsgHead));
+    //整型传数据集的转网络序
+    tRK100MsgHead.dwEvent = htonl(RK100_EVT_SET_CAM_SHUTTER);
+    tRK100MsgHead.wMsgLen = htons(sizeof(TShutterMode));
+    CRkMessage rkmsg;//定义消息
+    rkmsg.SetBody(&tRK100MsgHead, sizeof(TRK100MsgHead));//添加头内容
+    rkmsg.CatBody(&tShutterMode, sizeof(TShutterMode));//添加消息体
+    PrtRkcMsg( RK100_EVT_SET_CAM_SHUTTER, emEventTypeScoketSend, "SetCamShutterCmd");
+    PrtRkcMsg( RK100_EVT_SET_CAM_SHUTTER, emEventTypeScoketRecv, "\n \
+<[Sixty:%d, Thirty:%d], [%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d]>\n \
+<[Fifty:%d, TenwFif:%d], [%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d]>",
+tShutterMode.SixtyOrThirtyMode.SixtyFpsModeFlag, tShutterMode.SixtyOrThirtyMode.ThirtyFpsModeFlag, tShutterMode.SixtyOrThirtyMode.Shutter_30Sp,
+tShutterMode.SixtyOrThirtyMode.Shutter_50Sp, tShutterMode.SixtyOrThirtyMode.Shutter_60Sp, tShutterMode.SixtyOrThirtyMode.Shutter_90Sp,
+tShutterMode.SixtyOrThirtyMode.Shutter_100Sp, tShutterMode.SixtyOrThirtyMode.Shutter_125Sp, tShutterMode.SixtyOrThirtyMode.Shutter_180Sp,
+tShutterMode.SixtyOrThirtyMode.Shutter_250Sp,tShutterMode.SixtyOrThirtyMode.Shutter_350Sp, tShutterMode.SixtyOrThirtyMode.Shutter_500Sp,
+tShutterMode.SixtyOrThirtyMode.Shutter_725Sp,tShutterMode.SixtyOrThirtyMode.Shutter_1000Sp, tShutterMode.SixtyOrThirtyMode.Shutter_1500Sp,
+tShutterMode.SixtyOrThirtyMode.Shutter_2000Sp, tShutterMode.SixtyOrThirtyMode.Shutter_3000Sp, tShutterMode.SixtyOrThirtyMode.Shutter_4000Sp,
+tShutterMode.SixtyOrThirtyMode.Shutter_6000Sp, tShutterMode.SixtyOrThirtyMode.Shutter_10000Sp, tShutterMode.FiftyOrTwentyMode.FiftyFpsModeFlag,
+tShutterMode.FiftyOrTwentyMode.TenwFifFpsModeFlag, tShutterMode.FiftyOrTwentyMode.Shutter_25Spd, tShutterMode.FiftyOrTwentyMode.Shutter_30Spd,
+tShutterMode.FiftyOrTwentyMode.Shutter_50Spd, tShutterMode.FiftyOrTwentyMode.Shutter_60Spd, tShutterMode.FiftyOrTwentyMode.Shutter_100Spd,
+tShutterMode.FiftyOrTwentyMode.Shutter_120Spd, tShutterMode.FiftyOrTwentyMode.Shutter_150Spd, tShutterMode.FiftyOrTwentyMode.Shutter_215Spd,
+tShutterMode.FiftyOrTwentyMode.Shutter_300Spd, tShutterMode.FiftyOrTwentyMode.Shutter_425Spd, tShutterMode.FiftyOrTwentyMode.Shutter_600Spd,
+tShutterMode.FiftyOrTwentyMode.Shutter_1000Spd, tShutterMode.FiftyOrTwentyMode.Shutter_1250Spd, tShutterMode.FiftyOrTwentyMode.Shutter_1750Spd,
+tShutterMode.FiftyOrTwentyMode.Shutter_2500Spd, tShutterMode.FiftyOrTwentyMode.Shutter_3500Spd, tShutterMode.FiftyOrTwentyMode.Shutter_6000Spd,
+tShutterMode.FiftyOrTwentyMode.Shutter_10000Spd);
+    
+    SOCKETWORK->SendDataPack(rkmsg);//消息发送
+    return NOERROR;
+}
+
 TPSOrThShutter CCamConfig::GetCamShutSpd()
 {
 	if (m_pTPMoonCamCfg == NULL)
@@ -1812,6 +1909,23 @@ void CCamConfig::OnCamShutSpdCInd(const CMessage& cMsg)
     }
     
     PrtRkcMsg( RK100_EVT_SET_CAM_SHUTTER_ACK, emEventTypeScoketRecv, "CamShutterRsp :%d", tMsgHead.wOptRtn);
+    PrtRkcMsg( RK100_EVT_SET_CAM_SHUTTER_ACK, emEventTypeScoketRecv, "\n \
+<[Sixty:%d, Thirty:%d], [%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d]>\n \
+<[Fifty:%d, TenwFif:%d], [%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d]>",
+tShutterMode.SixtyOrThirtyMode.SixtyFpsModeFlag, tShutterMode.SixtyOrThirtyMode.ThirtyFpsModeFlag, tShutterMode.SixtyOrThirtyMode.Shutter_30Sp,
+tShutterMode.SixtyOrThirtyMode.Shutter_50Sp, tShutterMode.SixtyOrThirtyMode.Shutter_60Sp, tShutterMode.SixtyOrThirtyMode.Shutter_90Sp,
+tShutterMode.SixtyOrThirtyMode.Shutter_100Sp, tShutterMode.SixtyOrThirtyMode.Shutter_125Sp, tShutterMode.SixtyOrThirtyMode.Shutter_180Sp,
+tShutterMode.SixtyOrThirtyMode.Shutter_250Sp,tShutterMode.SixtyOrThirtyMode.Shutter_350Sp, tShutterMode.SixtyOrThirtyMode.Shutter_500Sp,
+tShutterMode.SixtyOrThirtyMode.Shutter_725Sp,tShutterMode.SixtyOrThirtyMode.Shutter_1000Sp, tShutterMode.SixtyOrThirtyMode.Shutter_1500Sp,
+tShutterMode.SixtyOrThirtyMode.Shutter_2000Sp, tShutterMode.SixtyOrThirtyMode.Shutter_3000Sp, tShutterMode.SixtyOrThirtyMode.Shutter_4000Sp,
+tShutterMode.SixtyOrThirtyMode.Shutter_6000Sp, tShutterMode.SixtyOrThirtyMode.Shutter_10000Sp, tShutterMode.FiftyOrTwentyMode.FiftyFpsModeFlag,
+tShutterMode.FiftyOrTwentyMode.TenwFifFpsModeFlag, tShutterMode.FiftyOrTwentyMode.Shutter_25Spd, tShutterMode.FiftyOrTwentyMode.Shutter_30Spd,
+tShutterMode.FiftyOrTwentyMode.Shutter_50Spd, tShutterMode.FiftyOrTwentyMode.Shutter_60Spd, tShutterMode.FiftyOrTwentyMode.Shutter_100Spd,
+tShutterMode.FiftyOrTwentyMode.Shutter_120Spd, tShutterMode.FiftyOrTwentyMode.Shutter_150Spd, tShutterMode.FiftyOrTwentyMode.Shutter_215Spd,
+tShutterMode.FiftyOrTwentyMode.Shutter_300Spd, tShutterMode.FiftyOrTwentyMode.Shutter_425Spd, tShutterMode.FiftyOrTwentyMode.Shutter_600Spd,
+tShutterMode.FiftyOrTwentyMode.Shutter_1000Spd, tShutterMode.FiftyOrTwentyMode.Shutter_1250Spd, tShutterMode.FiftyOrTwentyMode.Shutter_1750Spd,
+tShutterMode.FiftyOrTwentyMode.Shutter_2500Spd, tShutterMode.FiftyOrTwentyMode.Shutter_3500Spd, tShutterMode.FiftyOrTwentyMode.Shutter_6000Spd,
+tShutterMode.FiftyOrTwentyMode.Shutter_10000Spd);
     PostEvent( UI_MOONTOOL_CAMERA_SHUT_SPD_IND, NULL, (LPARAM)tMsgHead.wOptRtn );
 }
 
@@ -2200,9 +2314,6 @@ u16 CCamConfig::CamImageParaCmd( EmTPImagePara emImagePara, const u32& dwImagePa
     TCamImagParam tCamImgParam;
     ZeroMemory(&tCamImgParam, sizeof(TCamImagParam));
     tCamImgParam = GetCamImagParam();
-    tCamImgParam.Gamma_opt_1_flag = 0;
-    tCamImgParam.Gamma_opt_2_flag = 0;
-    tCamImgParam.Gamma_opt_3_flag = 0;
     
     if ( emImagePara == emBlight )
     {
@@ -2226,7 +2337,7 @@ u16 CCamConfig::CamImageParaCmd( EmTPImagePara emImagePara, const u32& dwImagePa
         {
             tCamImgParam.Gamma_opt_2_flag = 1;
         }
-        else
+        else if ( dwImagePara == emGamma3 )
         {
             tCamImgParam.Gamma_opt_3_flag = 1;
         }
@@ -2836,9 +2947,15 @@ void CCamConfig::OnCam3DNRInd(const CMessage& cMsg)
     {
         m_pTPMoonCamCfg->CamD3NRMode = tCamD3NRMode;
     }
-    
+
     PrtRkcMsg( RK100_EVT_SET_CAM_D3NR_ACK, emEventTypeScoketRecv, "wRtn:%d", tMsgHead.wOptRtn);
     PostEvent( UI_MOONTOOL_CAMERA_3DNR_IND, (WPARAM)tCamD3NRMode.D3NROnFlag, (LPARAM)tMsgHead.wOptRtn );
+
+    //导入界面参数，最后一参数设置完成
+    if ( m_bSetAllCamCfg && m_byCameraSel == 0 )
+    {
+        m_bSetAllCamCfg = FALSE;
+    }
 }
 
 //预置位
@@ -2903,6 +3020,40 @@ void CCamConfig::OnCamOrderPosSelInd( const CMessage& cMsg )
     }
     
     PrtRkcMsg( RK100_EVT_SET_CAM_Preset_PowOnRecall_ACK, emEventTypeScoketRecv, "wRtn:%d", tMsgHead.wOptRtn);
+}
+
+//预置位1保存
+u16 CCamConfig::CamPreSet1SaveCmd()
+{
+    TRK100MsgHead tRK100MsgHead;//定义消息头结构体
+    memset(&tRK100MsgHead,0,sizeof(TRK100MsgHead));
+    //整型传数据集的转网络序
+    tRK100MsgHead.dwEvent = htonl(RK100_EVT_SET_CAM_Preset_Save);
+    CRkMessage rkmsg;//定义消息
+    rkmsg.SetBody(&tRK100MsgHead, sizeof(TRK100MsgHead));//添加头内容
+    
+    PrtRkcMsg( RK100_EVT_SET_CAM_Preset_Save, emEventTypeScoketSend, "CamPreset Save.");
+    
+    SOCKETWORK->SendDataPack(rkmsg);//消息发送
+    return NOERROR;
+}
+
+void CCamConfig::OnCamPreSet1SaveRsp( const CMessage& cMsg )
+{
+    TRK100MsgHead tMsgHead = *reinterpret_cast<TRK100MsgHead*>( cMsg.content );
+    tMsgHead.dwEvent = ntohl(tMsgHead.dwEvent);
+    tMsgHead.dwHandle = ntohl(tMsgHead.dwHandle);
+    tMsgHead.dwProtocolVer = ntohl(tMsgHead.dwProtocolVer);
+    tMsgHead.dwRsvd = ntohl(tMsgHead.dwRsvd);
+    tMsgHead.dwSerial = ntohl(tMsgHead.dwSerial);
+    tMsgHead.nArgv = ntohl(tMsgHead.nArgv);
+    tMsgHead.wExtLen = ntohs(tMsgHead.wExtLen);
+    tMsgHead.wMsgLen = ntohs(tMsgHead.wMsgLen);
+    tMsgHead.wOptRtn = ntohs(tMsgHead.wOptRtn);
+    tMsgHead.wReserved1 = ntohs(tMsgHead.wReserved1);
+    
+    PrtRkcMsg( RK100_EVT_SET_CAM_Preset_Save_ACK, emEventTypeScoketRecv, "wRtn:%d", tMsgHead.wOptRtn);
+    PostEvent( UI_CAMERA_PRESET1_SAVE_RSP, (WPARAM)(RK100_OPT_RTN_OK == tMsgHead.wOptRtn), (LPARAM)tMsgHead.wOptRtn );
 }
 
 //重启MOON
@@ -3115,34 +3266,28 @@ void CCamConfig::OnCamParamDefaultInd( const CMessage& cMsg )
     tMsgHead.wReserved1 = ntohs(tMsgHead.wReserved1);
     
     TTPMoonCamInfo tTPMoonCamInfo;
+    TRK100NetParam tNetParam;
     ZeroMemory(&tTPMoonCamInfo, sizeof(TTPMoonCamInfo));
-    if (tMsgHead.wMsgLen != 0)
+    ZeroMemory(&tNetParam, sizeof(TRK100NetParam));
+
+    if (tMsgHead.wMsgLen != 0 && tMsgHead.wOptRtn == RK100_OPT_RTN_OK)
     {
         tTPMoonCamInfo = *reinterpret_cast<TTPMoonCamInfo*>( cMsg.content + sizeof(TRK100MsgHead) );
 
-        /*if ( tTPMoonCamInfo.TCamIDIndex.CamNum1Flag == 1 )
-        {
-            m_tCnCameraCfg1 = tTPMoonCamInfo;
-        }
-        else if ( tTPMoonCamInfo.TCamIDIndex.CamNum2Flag == 1 )
-        {
-            m_tCnCameraCfg2 = tTPMoonCamInfo;
-        }
-        else if ( tTPMoonCamInfo.TCamIDIndex.CamNum3Flag == 1 )
-        {
-            m_tCnCameraCfg3 = tTPMoonCamInfo;
-        }
-        else
-        {
-        }*/
-
         //恢复默认：三个机芯一同恢复为默认参数
-        if ( tMsgHead.wOptRtn == RK100_OPT_RTN_OK )
-        {
-            m_tCnCameraCfg1 = tTPMoonCamInfo;
-            m_tCnCameraCfg2 = tTPMoonCamInfo;
-            m_tCnCameraCfg3 = tTPMoonCamInfo;
-        }
+        TCamID tCamID;
+        ZeroMemory(&tCamID, sizeof(TCamID));
+        m_tCnCameraCfg1 = tTPMoonCamInfo;
+        m_tCnCameraCfg1.TCamIDIndex = tCamID;
+        m_tCnCameraCfg1.TCamIDIndex.CamNum1Flag = 1;
+
+        m_tCnCameraCfg2 = tTPMoonCamInfo;
+        m_tCnCameraCfg2.TCamIDIndex = tCamID;
+        m_tCnCameraCfg2.TCamIDIndex.CamNum2Flag = 1;
+
+        m_tCnCameraCfg3 = tTPMoonCamInfo;
+        m_tCnCameraCfg3.TCamIDIndex = tCamID;
+        m_tCnCameraCfg3.TCamIDIndex.CamNum3Flag = 1;
 
         PostEvent( UI_MOONTOOL_CAMINFO_NTY, m_byCameraSel, NULL );
 
@@ -3174,9 +3319,30 @@ tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_300Spd, tTPMoonCamInfo.Shut
 tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_1000Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_1250Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_1750Spd,
 tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_2500Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_3500Spd, tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_6000Spd,
 tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_10000Spd);
+
+        /*tNetParam = *reinterpret_cast<TRK100NetParam*>( cMsg.content + sizeof(TRK100MsgHead) + sizeof(TTPMoonCamInfo) );
+        tNetParam.dwIP = ntohl(tNetParam.dwIP);
+        tNetParam.dwSubMask = ntohl(tNetParam.dwSubMask);
+        tNetParam.dwGateway = ntohl(tNetParam.dwGateway);
+        tNetParam.dwMqttIP = ntohl(tNetParam.dwMqttIP);
+        tNetParam.MqttPort = ntohs(tNetParam.MqttPort);
+
+        in_addr tAddr;
+        tAddr.S_un.S_addr = tNetParam.dwIP;
+        PrtRkcMsg( RK100_EVT_RECOVERY_DEFAULT_SET_ACK, emEventTypeScoketRecv, "NetParam[IP:%s]", inet_ntoa(tAddr));
+        tAddr.S_un.S_addr = tNetParam.dwSubMask;
+        PrtRkcMsg( RK100_EVT_RECOVERY_DEFAULT_SET_ACK, emEventTypeScoketRecv, "NetParam[SubMask:%s]", inet_ntoa(tAddr));
+        tAddr.S_un.S_addr = tNetParam.dwGateway;
+        PrtRkcMsg( RK100_EVT_RECOVERY_DEFAULT_SET_ACK, emEventTypeScoketRecv, "NetParam[Gateway:%s]", inet_ntoa(tAddr));*/
+
+        //网络设置恢复为默认值
+        tNetParam.dwIP = inet_addr("192.169.0.100");
+        tNetParam.dwSubMask = inet_addr("255.255.255.0");
+        tNetParam.dwGateway = inet_addr("192.169.1.1");
     }
     
     PrtRkcMsg( RK100_EVT_RECOVERY_DEFAULT_SET_ACK, emEventTypeScoketRecv, "wRtn:%d", tMsgHead.wOptRtn);
+    PostEvent( UI_MoonSecDefault_Nty, (WPARAM)(RK100_OPT_RTN_OK== tMsgHead.wOptRtn), (LPARAM)&tNetParam );
 }
 
 
@@ -3666,4 +3832,141 @@ void CCamConfig::OnReBootRkRsp( const CMessage& cMsg )
     PrtRkcMsg( RK100_EVT_REBOOT_ACK, emEventTypeScoketRecv, "wOptRtn = %d", tMsgHead.wOptRtn);
     
     PostEvent(UI_RKC_REBOOT, WPARAM(RK100_OPT_RTN_OK == tMsgHead.wOptRtn) , (LPARAM)tMsgHead.wOptRtn );
+}
+
+void CCamConfig::AllCamCfgCmdSend()
+{
+    TTPMoonCamInfo *ptCurCamInfo = NULL ;
+    //分别对机芯3，2，1进行参数设置
+    for (s8 byIndex = 2; byIndex >= 0 ; byIndex--)
+    {
+        //机芯选择
+        CamSelCmd(byIndex);
+        Sleep(DELAY_SEND_CMD);
+        //机芯控制逻辑界面映射：1->2, 2->3, 3->1
+        if ( byIndex == 2 )
+        {
+            ptCurCamInfo = &m_tCnCameraCfg1;
+        }
+        else if (byIndex == 1)
+        {
+            ptCurCamInfo = &m_tCnCameraCfg3;
+        }
+        else
+        {
+            ptCurCamInfo = &m_tCnCameraCfg2;
+        }
+        //ZOOM值设置
+        TCamZoomVal tCamZoomVal;
+        ZeroMemory(&tCamZoomVal, sizeof(TCamZoomVal));
+        tCamZoomVal.InputPreciseValFlag = 1;
+        tCamZoomVal.InputVal = ptCurCamInfo->dwZoomPos;
+        SetCamZoomValCmd(tCamZoomVal);
+        //聚焦模式设置
+        if (ptCurCamInfo->FocusMode.AutoModeFlag == 1)
+        {
+            SetCamAutoFocusCmd(emAuto);
+        }
+        else
+        {
+            SetCamAutoFocusCmd(emManual);
+        }
+      
+        //光圈模式设置
+        SetCamApertreCmd( ptCurCamInfo->IrisMode );
+        //曝光模式设置
+        if (ptCurCamInfo->ExpMode.ExposAutoModeFlag == 1)
+        {
+            CamAutoExposureCmd( emAuto );
+        }
+        else
+        {
+            CamAutoExposureCmd( emManual );
+            //快门设置
+            SetCamShutterCmd( ptCurCamInfo->ShutterMode );
+            //增益设置
+            SetCamGainCmd( ptCurCamInfo->GainMode );
+        }
+        //白平衡设置
+        CamAutoWBCmd( ptCurCamInfo->WBMode );
+        //图像参数
+        CamImageParaCmd( emHue, ptCurCamInfo->CamImagParam.ColorHueVal );
+        CamImageParaCmd( emSaturat, ptCurCamInfo->CamImagParam.ColorGainVal );
+        if ( ptCurCamInfo->CamImagParam.Gamma_opt_1_flag == 1 )
+        {
+            CamImageParaCmd( emGama, emGamma1);
+        }
+        else if ( ptCurCamInfo->CamImagParam.Gamma_opt_2_flag == 1 )
+        {
+            CamImageParaCmd( emGama, emGamma2);
+        }
+        else if (  ptCurCamInfo->CamImagParam.Gamma_opt_3_flag == 1 )
+        {
+            CamImageParaCmd( emGama, emGamma3);
+        }
+        //2D降噪设置
+        if ( ptCurCamInfo->CamD2NRMode.D2NROnFlag == 1 )
+        {
+            if ( ptCurCamInfo->CamD2NRMode.D2NR_level_1_Flag == 1 )
+            {
+                Cam2DNRCmd( TRUE, emLevelFist );
+            }
+            else if ( ptCurCamInfo->CamD2NRMode.D2NR_level_2_Flag == 1 )
+            {
+                Cam2DNRCmd( TRUE, emLevelSecond );
+            }
+            else if ( ptCurCamInfo->CamD2NRMode.D2NR_level_3_Flag == 1 )
+            {
+                Cam2DNRCmd( TRUE, emLevelThird );
+            }
+            else if ( ptCurCamInfo->CamD2NRMode.D2NR_level_4_Flag == 1 )
+            {
+                Cam2DNRCmd( TRUE, emLevelFourth );
+            }
+            else if ( ptCurCamInfo->CamD2NRMode.D2NR_level_5_Flag == 1 )
+            {
+                Cam2DNRCmd( TRUE, emLeVelFifth );
+            }
+            else
+            {
+                Cam2DNRCmd( TRUE, emClose );
+            }
+        }
+        else
+        {
+            Cam2DNRCmd( FALSE, emClose );
+        }
+        //3D降噪设置
+        if ( ptCurCamInfo->CamD3NRMode.D3NROnFlag == 1 )
+        {
+            if ( ptCurCamInfo->CamD3NRMode.D3NR_level_1_Flag == 1 )
+            {
+                Cam3DNRCmd( TRUE, emLevelFist );
+            }
+            else if ( ptCurCamInfo->CamD3NRMode.D3NR_level_2_Flag == 1 )
+            {
+                Cam3DNRCmd( TRUE, emLevelSecond );
+            }
+            else if ( ptCurCamInfo->CamD3NRMode.D3NR_level_3_Flag == 1 )
+            {
+                Cam3DNRCmd( TRUE, emLevelThird );
+            }
+            else if ( ptCurCamInfo->CamD3NRMode.D3NR_level_4_Flag == 1 )
+            {
+                Cam3DNRCmd( TRUE, emLevelFourth );
+            }
+            else if ( ptCurCamInfo->CamD3NRMode.D3NR_level_5_Flag == 1 )
+            {
+                Cam3DNRCmd( TRUE, emLeVelFifth );
+            }
+            else
+            {
+                Cam3DNRCmd( TRUE, emClose );
+            }
+        }
+        else
+        {
+            Cam3DNRCmd( FALSE, emClose );
+        }
+    }
 }

@@ -316,11 +316,11 @@ bool CImpCommonDlgLogic::OnBtnImportScan( const IArgs & arg )
 	if ( "升级" == strCaption )
 	{
 		strFile = CNSUPGRADE_NAME;
-		strFile = strFile + ";" + CNSUPGRADE_NAME_Y;	//定义一个宏,内容是T300升级文件名,因为有2种,暂不做限制
+		//strFile = strFile + ";" + CNSUPGRADE_NAME_Y;	//定义一个宏,内容是T300升级文件名,因为有2种,暂不做限制
 		strFile = strFile + ";" + CNSUPGRADE_NAME_4K;
 		
 		strDefFileNameGz =CNSUPGRADE_NAME;
-		strDefFileNameGz = strDefFileNameGz + ".gz;" + CNSUPGRADE_NAME_Y + ".gz;" + CNSUPGRADE_NAME_4K + ".gz";// 
+		strDefFileNameGz = strDefFileNameGz + ".gz;" /*+ CNSUPGRADE_NAME_Y + ".gz;"*/ + CNSUPGRADE_NAME_4K + ".gz";// 
 
 		strFilter.Format("升级文件(%s;%s)|%s;%s||",strFile.c_str(),strDefFileNameGz.c_str(),strFile.c_str(),strDefFileNameGz.c_str());
 	}
@@ -493,8 +493,8 @@ bool CImpCommonDlgLogic::OnBtnUpgradeCns( const IArgs & arg )
 
 	strFile = CNSUPGRADE_NAME;
 	strDefFileNameGz =strFile + ".gz";// 
-	strFileY = CNSUPGRADE_NAME_Y;
-	strDefFileYNameGz =strFileY + ".gz";// 
+// 	strFileY = CNSUPGRADE_NAME_Y;
+// 	strDefFileYNameGz =strFileY + ".gz";// 
 	strFile4K = CNSUPGRADE_NAME_4K;
 	strDefFile4KNameGz =strFile4K + ".gz";// 
 
@@ -505,7 +505,7 @@ bool CImpCommonDlgLogic::OnBtnUpgradeCns( const IArgs & arg )
 		CString CLog = "";
 		CLog.Format("非法的升级文件，待升级文件必须为：%s ; %s.gz 或 %s ; %s.gz 或 %s ; %s.gz!", 
 														CNSUPGRADE_NAME,CNSUPGRADE_NAME,
-														CNSUPGRADE_NAME_Y,CNSUPGRADE_NAME_Y,
+														/*CNSUPGRADE_NAME_Y,CNSUPGRADE_NAME_Y,*/
 														CNSUPGRADE_NAME_4K,CNSUPGRADE_NAME_4K);
 		MSG_BOX_OK(CLog.GetBuffer(CLog.GetLength()-1));
 		return false;

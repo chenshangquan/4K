@@ -30,7 +30,7 @@ class CAddrMsgDriver
 {
 public:
     CAddrMsgDriver();
-    ~CAddrMsgDriver();
+    virtual ~CAddrMsgDriver();
     // 获取内嵌的窗口句柄
     HWND GetOspRecvWindow(){ return m_hWndOsp;};
     // 得到发送消息指针

@@ -71,6 +71,13 @@ protected:
 	*/
 	bool OnBtnExportCameraCfg( const IArgs & arg );	
 
+    /**	 
+	* 功能: 导出所有机芯配置
+	* @return   bool
+	* @remarks  
+	*/
+	bool OnBtnExportAllCamInfo( const IArgs & arg );
+
 protected: 
 	virtual void RegMsg(); 
 	virtual void UnRegMsg();
@@ -118,7 +125,16 @@ private:
 	* @return   bool
 	* @remarks  
 	*/
-	BOOL DownloadCore(const String& strFilePath, const String& strCheckFileName); 
+	BOOL DownloadCore(const String& strFilePath, const String& strCheckFileName);
+    
+    /**	 
+	* 功能: 写入配置文件
+	* @return   bool
+	* @remarks  
+	*/
+	void WriteToCfgFile(String strPath);
+
+    BOOL WriteProgressPos(u32 dwWroteSize);
 
 private:
 	const String m_strEdtSaveFolder;

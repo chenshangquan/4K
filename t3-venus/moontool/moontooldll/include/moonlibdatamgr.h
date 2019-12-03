@@ -51,6 +51,24 @@ public:
 	*/	
 	u16 GetCamCfg( TTPMoonCamInfo &tMoonCameraCfg )const;
 
+    /** 
+	* 功能  设置所有机芯参数
+	* @param [in] 	 
+	* @return  
+	* @remarks 
+	*/	
+	u16 SetAllCamCfg( TTPMoonCamInfo tCamInfo[] )const;
+
+    /** 
+	* 功能  获取所有机芯参数
+	* @param [in] 	 
+	* @return  
+	* @remarks 
+	*/	
+	u16 GetAllCamCfg( TTPMoonCamInfo* ptCamInfo[] )const;
+
+    u16 GetCurStatus( BOOL& bSetAllCamCfg )const;
+
     // 获取输出制式参数
     u16 GetOutputFormat( TPOutputFmt &tPOutputFmt )const;
 

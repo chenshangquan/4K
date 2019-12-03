@@ -71,6 +71,24 @@ u16 CMoonlibDataMgr::GetCamCfg( TTPMoonCamInfo &tMoonCameraCfg )const
 	return NO_ERROR;
 }
 
+u16 CMoonlibDataMgr::SetAllCamCfg( TTPMoonCamInfo tCamInfo[] )const
+{
+    MOONSESSION_MGR_PTR->GetCamConfigIF()->SetAllCamCfg(tCamInfo);
+    return NO_ERROR;
+}
+
+u16 CMoonlibDataMgr::GetCurStatus( BOOL& bSetAllCamCfg )const
+{
+    bSetAllCamCfg = MOONSESSION_MGR_PTR->GetCamConfigIF()->GetCurStatus();
+    return NO_ERROR;
+}
+
+u16 CMoonlibDataMgr::GetAllCamCfg( TTPMoonCamInfo* ptCamInfo[] )const
+{
+    MOONSESSION_MGR_PTR->GetCamConfigIF()->GetAllCamCfg(ptCamInfo);
+    return NO_ERROR;
+}
+
 u16 CMoonlibDataMgr::GetOutputFormat( TPOutputFmt &tPOutputFmt )const
 {
     tPOutputFmt = MOONSESSION_MGR_PTR->GetCamConfigIF()->GetOutputFormat();

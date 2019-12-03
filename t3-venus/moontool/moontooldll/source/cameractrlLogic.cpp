@@ -131,7 +131,8 @@ void CCameraCtrlLogic::RegMsg()
 	REG_MSG_HANDLER( UI_MOONTOOL_CAMOUTPUT_INFO_IND, CCameraCtrlLogic::OnCamOutputInfoInd, CAMERALOGICRPTR, CCameraCtrlLogic );
 	REG_MSG_HANDLER( UI_MOONTOOL_SET_CAMERA_ZOOM_IND, CCameraCtrlLogic::OnSetCameraZoomInd, CAMERALOGICRPTR, CCameraCtrlLogic );
 //	REG_MSG_HANDLER( UI_MOONTOOL_CAMERA_DISTORTPARAM_IND, CCameraCtrlLogic::OnSetCamDistortParamInd, CAMERALOGICRPTR, CCameraCtrlLogic );
-	REG_MSG_HANDLER( UI_MOONTOOL_CAMERA_AUTO_FOCUS_IND, CCameraCtrlLogic::OnSetCamAutoFocusInd, CAMERALOGICRPTR, CCameraCtrlLogic )
+	REG_MSG_HANDLER( UI_MOONTOOL_CAMERA_AUTO_FOCUS_IND, CCameraCtrlLogic::OnSetCamAutoFocusInd, CAMERALOGICRPTR, CCameraCtrlLogic );
+    REG_MSG_HANDLER( UI_CAMERA_PRESET1_SAVE_RSP, CCameraCtrlLogic::OnCamPreSet1SaveRsp, CAMERALOGICRPTR, CCameraCtrlLogic );
 		
 }
 
@@ -228,7 +229,9 @@ void CCameraCtrlLogic::RegCBFun()
     //伽马
 	REG_GOBAL_MEMBER_FUNC( "CCameraCtrlLogic::OnComboboxGammaClick", CCameraCtrlLogic::OnComboboxGammaClick, CAMERALOGICRPTR, CCameraCtrlLogic );
     REG_GOBAL_MEMBER_FUNC( "CCameraCtrlLogic::OnComboboxOrderPosClick", CCameraCtrlLogic::OnComboboxOrderPosClick, CAMERALOGICRPTR, CCameraCtrlLogic );
-
+    //导入/导出
+    REG_GOBAL_MEMBER_FUNC( "CCameraCtrlLogic::OnBtnImport", CCameraCtrlLogic::OnBtnImport, CAMERALOGICRPTR, CCameraCtrlLogic );
+	REG_GOBAL_MEMBER_FUNC( "CCameraCtrlLogic::OnBtnExport", CCameraCtrlLogic::OnBtnExport, CAMERALOGICRPTR, CCameraCtrlLogic );
 }
 
 void CCameraCtrlLogic::UnRegFunc()
@@ -375,13 +378,13 @@ bool CCameraCtrlLogic::InitWnd(  const IArgs & arg )
     //开机预置位
     vecCamera.clear();
     vecCamera.push_back("预置位1");
-    vecCamera.push_back("预置位2");
+    /*vecCamera.push_back("预置位2");
     vecCamera.push_back("预置位3");
     vecCamera.push_back("预置位4");
     vecCamera.push_back("预置位5");
     vecCamera.push_back("预置位6");
     vecCamera.push_back("预置位7");
-    vecCamera.push_back("预置位8");
+    vecCamera.push_back("预置位8");*/
     UIFACTORYMGR_PTR->SetComboListData( m_strComboboxOrderPos, vecCamera, m_pWndTree );
 	UIFACTORYMGR_PTR->SetComboText( m_strComboboxOrderPos, _T("预置位1"), m_pWndTree );
 
@@ -521,8 +524,12 @@ bool CCameraCtrlLogic::OnBtnSyncClick(const IArgs& args)
 	if( nRet != NO_ERROR )
 	{
 		WARNMESSAGE( "同步摄像机机芯请求发送失败" );
-	}
-	
+    }
+    else
+    {
+        MSG_BOX_ONLY_READ(_T("机芯参数同步中..."));
+    }
+
 	return true;
 }
 
@@ -1168,27 +1175,9 @@ bool CCameraCtrlLogic::OnEdtExpGainChange( const IArgs& args )
     {
         nChar = pMsg->m_Msg.wParam;
     }
-    
-    Value_WindowCaption valueWindowCaption;
-    UIFACTORYMGR_PTR->GetPropertyValue( valueWindowCaption, m_strEdtExpGain, m_pWndTree );
-    
-    CString str =  valueWindowCaption.strCaption.c_str();
-    u8 byExpGainValue = atoi(valueWindowCaption.strCaption.c_str());
-    byExpGainValue = byExpGainValue/3*3; //步进值为3的倍数
-    if ( byExpGainValue > 45 )
-    {
-        str.Format("%d", 45);
-        UIFACTORYMGR_PTR->SetCaption( m_strEdtExpGain, (String)str, m_pWndTree );
-        Window* pWnd = UIFACTORYMGR_PTR->GetWindowPtr( m_strEdtExpGain, m_pWndTree );
-        if ( pWnd )
-        {
-            (( CEdit *) pWnd)->SetSel( -1 );		
-        }
-    }
-    
+
     if ( nChar == 0x0d )
     {
-        //SetExpGainValue(byExpGainValue);
         SetFocus(NULL);
     }
     
@@ -1197,12 +1186,33 @@ bool CCameraCtrlLogic::OnEdtExpGainChange( const IArgs& args )
 
 bool CCameraCtrlLogic::OnEdtExpGainKillFocus( const IArgs& args )
 {
-    String str;
-    UIFACTORYMGR_PTR->GetCaption( m_strEdtExpGain, str, m_pWndTree );
+    Value_WindowCaption valueWindowCaption;
+    UIFACTORYMGR_PTR->GetPropertyValue( valueWindowCaption, m_strEdtExpGain, m_pWndTree );
+    
+    CString str =  valueWindowCaption.strCaption.c_str();
+    u8 byExpGainValue = atoi(valueWindowCaption.strCaption.c_str());
+    u8 byAdjustExpGainValue = byExpGainValue/3*3; //步进值为3的倍数
+    //增益范围为0~36
+    if ( byAdjustExpGainValue > 36 )
+    {
+        byAdjustExpGainValue = 36;
+    }
+    
+    //步进值为3的倍数
+    if ( byAdjustExpGainValue != byExpGainValue )
+    {
+        str.Format("%d", byAdjustExpGainValue);
+        UIFACTORYMGR_PTR->SetCaption( m_strEdtExpGain, (String)str, m_pWndTree );
+        Window* pWnd = UIFACTORYMGR_PTR->GetWindowPtr( m_strEdtExpGain, m_pWndTree );
+        if ( pWnd )
+        {
+            (( CEdit *) pWnd)->SetSel( -1 );
+        }
+    }
     
     TGainMode tGainMode;
     ZeroMemory(&tGainMode, sizeof(TGainMode));
-    tGainMode.GainInputVal = atoi(str.c_str());
+    tGainMode.GainInputVal = byAdjustExpGainValue;
     u16 nRetGain = COMIFMGRPTR->SetCamGainCmd( tGainMode );
     if ( nRetGain != NO_ERROR )
     {
@@ -1614,6 +1624,7 @@ HRESULT CCameraCtrlLogic::OnCamParamSyncInd(WPARAM wparam, LPARAM lparam)
         {
             WARNMESSAGE( _T("机芯选择失败") );
         }
+        return S_FALSE;
     }
 
     //机芯先择界面变更
@@ -1651,6 +1662,7 @@ HRESULT CCameraCtrlLogic::OnCamParamSyncInd(WPARAM wparam, LPARAM lparam)
 	    SetCameraCfg( tMoonCameraCfg );
     }
 
+    CMsgboxDlgLogic::GetSingletonPtr()->Clear();
 	return S_OK;
 }
 
@@ -2662,7 +2674,7 @@ void CCameraCtrlLogic::SetCameraCfg( TTPMoonCamInfo tMoonCameraCfg )
     SetHueValue( tMoonCameraCfg.CamImagParam.ColorHueVal );
     SetSaturatValue( tMoonCameraCfg.CamImagParam.ColorGainVal );
 
-    EmH650Gamma emCamma = emGamma1;
+    EmH650Gamma emCamma = emGamma4;
     if ( tMoonCameraCfg.CamImagParam.Gamma_opt_1_flag )
     {
         emCamma = emGamma1;
@@ -2671,10 +2683,11 @@ void CCameraCtrlLogic::SetCameraCfg( TTPMoonCamInfo tMoonCameraCfg )
     {
         emCamma = emGamma2;
     }
-    else
+    else if ( tMoonCameraCfg.CamImagParam.Gamma_opt_3_flag )
     {
         emCamma = emGamma3;
     }
+
     SetGammaValue(emCamma);
 	//SetContrastValue( tMoonCameraCfg.dwContrast );
 	//SetSharpValue( tMoonCameraCfg.dwSharp );
@@ -2830,6 +2843,10 @@ void CCameraCtrlLogic::GetShutSpdValue( EmTPSOrThShutter &emShutSpd )
 	{
 		emShutSpd = em_Shutter_30Sp;
 	}
+    else if ( strComboText == "1/50" )
+    {
+        emShutSpd = em_Shutter_50Sp;
+	}
 	else if ( strComboText == "1/60" )
 	{
 		emShutSpd = em_Shutter_60Sp;
@@ -2927,9 +2944,13 @@ void CCameraCtrlLogic::GetTwShutterValue( EmTPFOrTwShutter &emTwShutter)
 	{
 		emTwShutter = em_Shutter_12Spd;
 	}
-	else if ( strComboText == "1/25" )
-	{
-		emTwShutter = em_Shutter_25Spd;
+    else if ( strComboText == "1/25" )
+    {
+        emTwShutter = em_Shutter_25Spd;
+    }
+    else if ( strComboText == "1/30" )
+    {
+        emTwShutter = em_Shutter_30Spd;
 	}
 	else if ( strComboText == "1/50" )
 	{
@@ -3250,9 +3271,9 @@ void CCameraCtrlLogic::SetExpGainValue( u8 byExpGain )
     {
         byExpGain = 0;
     }
-    else if ( byExpGain > 45 )
+    else if ( byExpGain > 36 )
     {
-        byExpGain = 45;
+        byExpGain = 36;
     }
 
     CString strCaption;
@@ -4154,14 +4175,39 @@ void CCameraCtrlLogic::ResetNormal()
 		//UIFACTORYMGR_PTR->LoadScheme( "SchmNormal", m_pWndTree );
 	}
 }
+//保存至预置位1 Rsp
+HRESULT CCameraCtrlLogic::OnCamPreSet1SaveRsp( WPARAM wparam, LPARAM lparam )
+{
+    BOOL bSuccess = (BOOL)wparam;
+    if (bSuccess)
+    {
+        MSG_BOX_OK("已成功保存至预置位1");
+    }
+    else
+    {
+        WARNMESSAGE( "保存预置位失败" );
+        return S_FALSE;
+    }
 
+    return S_OK;
+}
+//保存至预置位1
 bool CCameraCtrlLogic::OnBtnSaveOrderPos( const IArgs& args )
 {
+    /*
 	CMsgDispatch::SendMessage( UI_MOONTOOL_LISTMENU_OPTION, NULL, (LPARAM)em_MENULIST_HIDE );
 	UIFACTORYMGR_PTR->ShowWindow( g_strCamCtrlDlg, false );
 	UIFACTORYMGR_PTR->ShowWindow( g_strOrderListDlg );
 	CMsgDispatch::SendMessage( UI_MOONTOOL_ORDERPOS_MODIFY, NULL, (LPARAM)em_ORDERPOSOPT_SAVE );
-	return true;
+	return true;*/
+
+    u16 nRet = COMIFMGRPTR->CamPreSet1SaveCmd();
+    if ( nRet != NO_ERROR )
+    {
+        WARNMESSAGE( "保存预置位请求发送失败" );
+    }
+
+    return true;
 }
 
 bool CCameraCtrlLogic::OnBtnSwitchOrderPosClick( const IArgs& args )
@@ -4893,40 +4939,18 @@ String CCameraCtrlLogic::GetCamMechnismStyle()
 	return strComboText;
 }
 
+bool CCameraCtrlLogic::OnBtnImport( const IArgs& args )
+{
+    UIFACTORYMGR_PTR->LoadScheme( "SchmImpCommonClean", NULL, g_stcStrImpCommonDlg );
+    UIFACTORYMGR_PTR->LoadScheme( "SchImportAllCamInfo", NULL, g_stcStrImpCommonDlg );
+    s32 nDodalResult = UIFACTORYMGR_PTR->Domodal( g_stcStrImpCommonDlg );
+    return true;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+bool CCameraCtrlLogic::OnBtnExport( const IArgs& args )
+{
+    UIFACTORYMGR_PTR->LoadScheme( "SchmExpCommonClean", NULL, g_stcStrExpCommonDlg );
+    UIFACTORYMGR_PTR->LoadScheme( "SchExportAllCamInfo", NULL, g_stcStrExpCommonDlg );
+    s32 nDodalResult = UIFACTORYMGR_PTR->Domodal( g_stcStrExpCommonDlg );	
+    return true;	
+}

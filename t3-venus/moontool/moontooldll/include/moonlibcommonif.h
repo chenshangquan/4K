@@ -265,6 +265,14 @@ public:
 
 	u16 CamOrderPosCheckCmd( const TCamPresetNumberList& tCamPreset );
 
+    /** 
+	* 功能: 预置位保存
+	* @param [in] 	   
+	* @return  
+	* @remarks 
+	*/
+    u16 CamPreSet1SaveCmd();
+
 	u16 SetOutPortTypeCmd( EmTPDVIOutPortType emDVIOutPortType, EmTPMOONOutMode emMOONOutMode );
 
 	u16 SetImageAdjustCmd( EmTPImageAdjust emImageAdjust );

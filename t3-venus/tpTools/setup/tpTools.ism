@@ -134,6 +134,7 @@
 		<row><td>Files35</td><td>{E7B24A76-EBD5-4EA8-A5ED-833053FB27DA}</td><td>BTNSAVEPRESET1</td><td>0</td><td/><td>sel.png189</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files36</td><td>{095EBAC6-85F9-4657-816A-D12B29C11FCC}</td><td>BTNSWITCHBW</td><td>0</td><td/><td>onpress.png16</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files37</td><td>{8320A1BC-9C5E-4705-ACBF-9317E1997668}</td><td>BTNSWITCHCOLOURS</td><td>8</td><td/><td>onpress.png17</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Files38</td><td>{9525612E-1067-4104-97C6-A1436930595B}</td><td>END</td><td>0</td><td/><td>sel.png190</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files4</td><td>{53492530-6D96-44F8-92A1-D2AE99D172D3}</td><td>BTNCALLPRESET1</td><td>8</td><td/><td>sel.png185</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files5</td><td>{341B7173-F86D-4694-B82F-B567F217D340}</td><td>LAYOUT</td><td>0</td><td/><td>cfgnetsecuritydlg.xml</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files6</td><td>{8B7F247F-4C18-4F53-A229-5E33325BB56E}</td><td>RESCNSTOOL</td><td>0</td><td/><td>tcpdump.t300e</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -562,6 +563,7 @@
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files35</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files36</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files37</td></row>
+		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files38</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files4</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files5</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files6</td></row>
@@ -945,7 +947,6 @@
 		<row><td>disableright.png8</td><td>Files2</td><td>DisableRight.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESCNSTOOL_FILES&gt;\src\vertSlider\DisableRight.png</td><td>1</td><td>vertSlider</td></row>
 		<row><td>disableright.png9</td><td>Files3</td><td>DisableRight.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESUMSTOOL_FILES&gt;\src\Combobox\Edit\DisableRight.png</td><td>1</td><td>Edit5</td></row>
 		<row><td>doccamerabg.png</td><td>Files2</td><td>DocCamerabg.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESCNSTOOL_FILES&gt;\src\DocCamerabg.png</td><td>1</td><td>src</td></row>
-		<row><td>down.png</td><td>Files2</td><td>Down.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESCNSTOOL_FILES&gt;\src\btnToStatictic\end\Down.png</td><td>1</td><td>end</td></row>
 		<row><td>down.png1</td><td>Files2</td><td>Down.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESCNSTOOL_FILES&gt;\src\itemToAddr\Down.png</td><td>1</td><td>itemToAddr</td></row>
 		<row><td>down.png10</td><td>Files2</td><td>Down.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESCNSTOOL_FILES&gt;\src\itemToCnsCfg\Down.png</td><td>1</td><td>itemToCnsCfg</td></row>
 		<row><td>down.png11</td><td>Files2</td><td>Down.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESCNSTOOL_FILES&gt;\src\itemToCnsInfo\Down.png</td><td>1</td><td>itemToCnsInfo</td></row>
@@ -1896,6 +1897,7 @@
 		<row><td>sel.png188</td><td>Files34</td><td>Sel.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BTNPREPAGE_FILES&gt;\Sel.png</td><td>1</td><td/></row>
 		<row><td>sel.png189</td><td>Files35</td><td>Sel.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BTNSAVEPRESET_FILES&gt;\Sel.png</td><td>1</td><td/></row>
 		<row><td>sel.png19</td><td>Files2</td><td>Sel.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESCNSTOOL_FILES&gt;\src\btnRefresh\Sel.png</td><td>1</td><td>btnRefresh</td></row>
+		<row><td>sel.png190</td><td>Files38</td><td>Sel.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_END_FILES&gt;\Sel.png</td><td>1</td><td/></row>
 		<row><td>sel.png2</td><td>Files1</td><td>sel.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RES_FILES&gt;\Combobox\DelImg\sel.png</td><td>1</td><td>DelImg</td></row>
 		<row><td>sel.png20</td><td>Files2</td><td>Sel.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESCNSTOOL_FILES&gt;\src\btnResetSrv\Sel.png</td><td>1</td><td>btnResetSrv</td></row>
 		<row><td>sel.png21</td><td>Files2</td><td>Sel.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESCNSTOOL_FILES&gt;\src\btnSave\Sel.png</td><td>1</td><td>btnSave</td></row>
@@ -2163,6 +2165,7 @@
 		<row><td>Files35</td><td/><td/><td>_66DE99CF_A6B1_4C69_8687_AEE90B83DACF_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files36</td><td/><td/><td>_6187ABA2_A1FC_40CA_9C6D_95D02B113911_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files37</td><td/><td/><td>_14FF2AE6_7ED3_4771_948D_433AA961CACB_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Files38</td><td/><td/><td>_A826123E_9D24_498C_9373_2EEE94D84126_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files4</td><td/><td/><td>_45FD3B9F_F5B5_492F_935C_80F5B6B162C5_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files5</td><td/><td/><td>_869B67CB_FB03_4352_8700_3CDFB3B76EFC_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files6</td><td/><td/><td>_C24A8B3F_C283_409C_A87D_C461003DF933_FILTER</td><td/><td/><td/><td/></row>
@@ -2735,6 +2738,7 @@
 		<row><td>PATH_TO_CFGNETSECURITY_FILES</td><td>..\setup files\rescnstool\src\CfgNetSecurity</td><td/><td>2</td></row>
 		<row><td>PATH_TO_CFGROUTEINFO_FILES</td><td>..\setup files\rescnstool\src\CfgRouteInfo</td><td/><td>2</td></row>
 		<row><td>PATH_TO_CHECKBTN_FILES</td><td>..\setup files\resumstool\src\Checkbtn</td><td/><td>2</td></row>
+		<row><td>PATH_TO_END_FILES</td><td>..\setup files\rescnstool\src\btnToStatictic\end</td><td/><td>2</td></row>
 		<row><td>PATH_TO_ITEMTOADVANCEIN_FILES</td><td>..\setup files\rescnstool\src\itemToAdvanceInfo</td><td/><td>2</td></row>
 		<row><td>PATH_TO_ITEMTOINTERFACE_FILES</td><td>..\setup files\rescnstool\src\itemToInterfaceDiagnostic</td><td/><td>2</td></row>
 		<row><td>PATH_TO_ITEMTONETDIAGNO_FILES</td><td>..\setup files\rescnstool\src\itemToNetDiagnostic</td><td/><td>2</td></row>
@@ -2750,7 +2754,7 @@
 		<row><td>PATH_TO_LAYOUT_FILES5</td><td>..\setup files\rescnstool\layout</td><td/><td>2</td></row>
 		<row><td>PATH_TO_MENU_FILES</td><td>..\setup files\resumstool\src\Menu</td><td/><td>2</td></row>
 		<row><td>PATH_TO_RESCNSTOOL_FILES</td><td>..\setup files\rescnstool</td><td/><td>2</td></row>
-		<row><td>PATH_TO_RESCNSTOOL_FILES1</td><td>..\setup files\resumstool</td><td/><td>2</td></row>
+		<row><td>PATH_TO_RESCNSTOOL_FILES1</td><td>..\setup files\rescnstool</td><td/><td>2</td></row>
 		<row><td>PATH_TO_RESMOONTOOL_FILES</td><td>..\setup files\resmoontool</td><td/><td>2</td></row>
 		<row><td>PATH_TO_RESUMSTOOL_FILES</td><td>..\setup files\resumstool</td><td/><td>2</td></row>
 		<row><td>PATH_TO_RES_FILES</td><td>..\setup files\res</td><td/><td>2</td></row>

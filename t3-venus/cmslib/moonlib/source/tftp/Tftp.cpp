@@ -115,14 +115,14 @@ bool CTftpOp::SendMsgToChildProc( u32 dwMsgId, LPCTSTR pContent /*= NULL */ )
 
 bool CTftpOp::KillTftpProcess()
 {
-	CString strCmdLine = _T(" /f /im \"tftp.exe\"");
+    CString strCmdLine = _T(" /f /im \"tftp.exe\"");
 	CString strApp  = _T("\\taskkill.exe");
 	s8 achAppPath[255] = {0};
 	GetSystemDirectory(achAppPath, 255);
 	strApp = achAppPath + strApp;
 	PROCESS_INFORMATION pi;
 	STARTUPINFO si = { sizeof(si) };
-	if(CreateProcess(strApp, CT2A(strCmdLine), NULL, NULL, 
+	if(CreateProcess(strApp, (char*)(LPCTSTR)strCmdLine, NULL, NULL, 
 		FALSE, CREATE_NO_WINDOW, NULL, NULL, &si, &pi ))
 	{
 		//Í¬²½

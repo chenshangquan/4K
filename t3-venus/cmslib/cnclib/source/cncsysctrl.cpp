@@ -268,10 +268,11 @@ void CCncSysCtrl::OnCamZoomInd(const CMessage& cMsg)
 	CTpMsg cTpMsg(&cMsg);
 
 	EmZoom emZoom = *(EmZoom*)( cTpMsg.GetBody() );
-	m_pTCnCameraCfg->wZoom = *(u16*)( cTpMsg.GetBody() + sizeof(EmZoom) );
+	if (m_pTCnCameraCfg != NULL) m_pTCnCameraCfg->wZoom = *(u16*)( cTpMsg.GetBody() + sizeof(EmZoom) );
 	BOOL bCamZoom = *(BOOL*)( cTpMsg.GetBody() + sizeof(EmZoom) + sizeof(u16) );
-	PrtMsg( ev_Cn_CameraZoomInd, emEventTypecnstoolRecv, "EmZoom:%d, wZoom:%d, BOOL:%d", emZoom, m_pTCnCameraCfg->wZoom, bCamZoom );
-	PostEvent( UI_CNSTOOL_SET_CAMERA_ZOOM_IND, /*(WPARAM)emZoom*/0, (LPARAM)bCamZoom );
+	if (m_pTCnCameraCfg != NULL) PrtMsg( ev_Cn_CameraZoomInd, emEventTypecnstoolRecv, "EmZoom:%d, wZoom:%d, BOOL:%d", emZoom, m_pTCnCameraCfg->wZoom, bCamZoom );
+    else PrtMsg( ev_Cn_CameraZoomInd, emEventTypecnstoolRecv, "EmZoom:%d, m_pTCnCameraCfg is NULL, BOOL:%d", emZoom, bCamZoom );
+    PostEvent( UI_CNSTOOL_SET_CAMERA_ZOOM_IND, /*(WPARAM)emZoom*/0, (LPARAM)bCamZoom );
 }
 
 u16 CCncSysCtrl::SetCamOSDCmd( const EmOSDShow& emOSDShow )
@@ -293,7 +294,7 @@ EmOSDShow CCncSysCtrl::GetCamOSD()
 		SetCameraCfgPtr();
 	}
 
-	return m_pTCnCameraCfg->emOSDShow;
+	return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->emOSDShow : emOSDOff;
 }
 void CCncSysCtrl::OnCamOSDInd(const CMessage& cMsg)
 {
@@ -304,11 +305,12 @@ void CCncSysCtrl::OnCamOSDInd(const CMessage& cMsg)
 
 	CTpMsg cTpMsg(&cMsg);
 
-    m_pTCnCameraCfg->emOSDShow = *(EmOSDShow*)( cTpMsg.GetBody() );
+    if (m_pTCnCameraCfg != NULL) m_pTCnCameraCfg->emOSDShow = *(EmOSDShow*)( cTpMsg.GetBody() );
 	BOOL bCamOSD = *(BOOL*)( cTpMsg.GetBody() + sizeof(EmOSDShow) );
 
-	PrtMsg( ev_Cn_CameraOSDShowInd, emEventTypecnstoolRecv, "EmOSDShow:%d,BOOL:%d", m_pTCnCameraCfg->emOSDShow, bCamOSD );
-	PostEvent( UI_CNSTOOL_CAMERA_OSDSHOW_IND, NULL, (LPARAM)bCamOSD );
+	if (m_pTCnCameraCfg != NULL) PrtMsg( ev_Cn_CameraOSDShowInd, emEventTypecnstoolRecv, "EmOSDShow:%d,BOOL:%d", m_pTCnCameraCfg->emOSDShow, bCamOSD );
+    else PrtMsg( ev_Cn_CameraOSDShowInd, emEventTypecnstoolRecv, "m_pTCnCameraCfg is NULL,BOOL:%d", bCamOSD );
+    PostEvent( UI_CNSTOOL_CAMERA_OSDSHOW_IND, NULL, (LPARAM)bCamOSD );
 }
 
 u16 CCncSysCtrl::SetCamAutoFocusCmd(const EmFocusMode& emFocusMode)
@@ -400,11 +402,12 @@ void CCncSysCtrl::OnCamPresetMoveInd(const CMessage& cMsg)
 	
 	CTpMsg cTpMsg(&cMsg);
 	
-	m_pTCnCameraCfg->bUsed = *(BOOL*)( cTpMsg.GetBody() );
+	if (m_pTCnCameraCfg != NULL) m_pTCnCameraCfg->bUsed = *(BOOL*)( cTpMsg.GetBody() );
 	BOOL bCamPresetMove = *(BOOL*)( cTpMsg.GetBody() + sizeof(BOOL) );
 	
-	PrtMsg( ev_Cn_CameraPresetInd, emEventTypecnstoolRecv, "bUsed:%d,BOOL:%d", m_pTCnCameraCfg->bUsed, bCamPresetMove );
-	PostEvent( UI_CNSTOOL_CAMERA_PERSET_MOVE_IND, NULL, (LPARAM)bCamPresetMove );
+	if (m_pTCnCameraCfg != NULL) PrtMsg( ev_Cn_CameraPresetInd, emEventTypecnstoolRecv, "bUsed:%d,BOOL:%d", m_pTCnCameraCfg->bUsed, bCamPresetMove );
+    else PrtMsg( ev_Cn_CameraPresetInd, emEventTypecnstoolRecv, "m_pTCnCameraCfg is NULL,BOOL:%d", bCamPresetMove );
+    PostEvent( UI_CNSTOOL_CAMERA_PERSET_MOVE_IND, NULL, (LPARAM)bCamPresetMove );
 }
 
 BOOL CCncSysCtrl::GetCamPresetMove()
@@ -414,7 +417,7 @@ BOOL CCncSysCtrl::GetCamPresetMove()
 		SetCameraCfgPtr();
 	}
 	
-	return m_pTCnCameraCfg->bUsed;
+	return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->bUsed : FALSE;
 }
 
 
@@ -437,7 +440,7 @@ EmExpMode CCncSysCtrl::GetCamExpMode()
 		SetCameraCfgPtr();
 	}
 	
-	return m_pTCnCameraCfg->emExpMode;
+	return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->emExpMode : emExpAuto;
 }
 
 void CCncSysCtrl::OnAutoExposureInd(const CMessage& cMsg)
@@ -449,11 +452,12 @@ void CCncSysCtrl::OnAutoExposureInd(const CMessage& cMsg)
 
 	CTpMsg cTpMsg(&cMsg);
 
-	m_pTCnCameraCfg->emExpMode = *(EmExpMode*)( cTpMsg.GetBody() );
+	if (m_pTCnCameraCfg != NULL) m_pTCnCameraCfg->emExpMode = *(EmExpMode*)( cTpMsg.GetBody() );
 	BOOL bAutoExposure = *(BOOL*)( cTpMsg.GetBody() + sizeof(EmExpMode) );
 
-	PrtMsg( ev_Cn_CameraAutoExposureInd, emEventTypecnstoolRecv, "EmExpMode:%d, AutoExposureInd:%d", m_pTCnCameraCfg->emExpMode, bAutoExposure );
-	PostEvent( UI_CNSTOOL_CAMERA_AUTO_EXPOSURE_IND, NULL, (LPARAM)bAutoExposure );
+	if (m_pTCnCameraCfg != NULL) PrtMsg( ev_Cn_CameraAutoExposureInd, emEventTypecnstoolRecv, "EmExpMode:%d, AutoExposureInd:%d", m_pTCnCameraCfg->emExpMode, bAutoExposure );
+    else PrtMsg( ev_Cn_CameraAutoExposureInd, emEventTypecnstoolRecv, "m_pTCnCameraCfg is NULL, AutoExposureInd:%d", bAutoExposure );
+    PostEvent( UI_CNSTOOL_CAMERA_AUTO_EXPOSURE_IND, NULL, (LPARAM)bAutoExposure );
 }
 
 u16 CCncSysCtrl::CamGainCmd( const EmGain& emGain )
@@ -475,7 +479,7 @@ EmGain CCncSysCtrl::GetCamGain()
 		SetCameraCfgPtr();
 	}
 
-	return m_pTCnCameraCfg->emGain;
+	return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->emGain : em0dB;
 }
 
 void CCncSysCtrl::OnCamGainInd(const CMessage& cMsg)
@@ -487,10 +491,11 @@ void CCncSysCtrl::OnCamGainInd(const CMessage& cMsg)
 
 	CTpMsg cTpMsg(&cMsg);
 
-	m_pTCnCameraCfg->emGain = *(EmGain*)( cTpMsg.GetBody() );
+	if (m_pTCnCameraCfg != NULL) m_pTCnCameraCfg->emGain = *(EmGain*)( cTpMsg.GetBody() );
 	BOOL bCamGain = *(BOOL*)( cTpMsg.GetBody() + sizeof(EmGain) );
-	PrtMsg( ev_Cn_CameraGainInd, emEventTypecnstoolRecv, "EmGain:%d, BOOL:%d", m_pTCnCameraCfg->emGain, bCamGain );
-	PostEvent( UI_CNSTOOL_CAMERA_GAIN_IND, NULL, (LPARAM)bCamGain );
+	if (m_pTCnCameraCfg != NULL) PrtMsg( ev_Cn_CameraGainInd, emEventTypecnstoolRecv, "EmGain:%d, BOOL:%d", m_pTCnCameraCfg->emGain, bCamGain );
+    else PrtMsg( ev_Cn_CameraGainInd, emEventTypecnstoolRecv, "m_pTCnCameraCfg is NULL, BOOL:%d", bCamGain );
+    PostEvent( UI_CNSTOOL_CAMERA_GAIN_IND, NULL, (LPARAM)bCamGain );
 }
 
 u16 CCncSysCtrl::CamShutSpdCmd( const EmShutSpd& emShutSpd )
@@ -512,7 +517,7 @@ EmShutSpd CCncSysCtrl::GetCamShutSpd()
 		SetCameraCfgPtr();
 	}
 
-	return m_pTCnCameraCfg->emShutSpd;
+	return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->emShutSpd : emShutSpd0;
 }
 
 void CCncSysCtrl::OnCamShutSpdCInd(const CMessage& cMsg)
@@ -524,10 +529,11 @@ void CCncSysCtrl::OnCamShutSpdCInd(const CMessage& cMsg)
 
 	CTpMsg cTpMsg(&cMsg);
 
-	m_pTCnCameraCfg->emShutSpd = *(EmShutSpd*)( cTpMsg.GetBody() );
+	if (m_pTCnCameraCfg != NULL) m_pTCnCameraCfg->emShutSpd = *(EmShutSpd*)( cTpMsg.GetBody() );
 	BOOL bCamShutSpdC = *(BOOL*)( cTpMsg.GetBody() + sizeof(EmShutSpd) );
-	PrtMsg( ev_Cn_CameraShutSpdInd, emEventTypecnstoolRecv, "EmShutSpd:%d, BOOL:%d", m_pTCnCameraCfg->emShutSpd, bCamShutSpdC );
-	PostEvent( UI_CNSTOOL_CAMERA_SHUT_SPD_IND, NULL, (LPARAM)bCamShutSpdC );
+	if (m_pTCnCameraCfg != NULL) PrtMsg( ev_Cn_CameraShutSpdInd, emEventTypecnstoolRecv, "EmShutSpd:%d, BOOL:%d", m_pTCnCameraCfg->emShutSpd, bCamShutSpdC );
+    else PrtMsg( ev_Cn_CameraShutSpdInd, emEventTypecnstoolRecv, "m_pTCnCameraCfg is NULL, BOOL:%d", bCamShutSpdC );
+    PostEvent( UI_CNSTOOL_CAMERA_SHUT_SPD_IND, NULL, (LPARAM)bCamShutSpdC );
 }
 
 u16 CCncSysCtrl::CamBackLightCmd( const EmBackLightType& emBackLightType, const u8& byMulti )
@@ -550,7 +556,7 @@ EmBackLightType CCncSysCtrl::GetCamBackLightType()
 		SetCameraCfgPtr();
 	}
 
-	return m_pTCnCameraCfg->emBackLightType;
+	return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->emBackLightType : emBLOff;
 }
 
 u8 CCncSysCtrl::GetCamBackLightIndex()
@@ -560,7 +566,7 @@ u8 CCncSysCtrl::GetCamBackLightIndex()
 		SetCameraCfgPtr();
 	}
 
-	return m_pTCnCameraCfg->byMulti;
+	return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->byMulti : 0;
 }
 
 void CCncSysCtrl::OnCamBackLightInd(const CMessage& cMsg)
@@ -572,11 +578,12 @@ void CCncSysCtrl::OnCamBackLightInd(const CMessage& cMsg)
 
 	CTpMsg cTpMsg(&cMsg);
 
-    m_pTCnCameraCfg->emBackLightType = *(EmBackLightType*)( cTpMsg.GetBody() );
-	m_pTCnCameraCfg->byMulti = *(u8*)( cTpMsg.GetBody() + sizeof(EmBackLightType) );
+    if (m_pTCnCameraCfg != NULL) m_pTCnCameraCfg->emBackLightType = *(EmBackLightType*)( cTpMsg.GetBody() );
+	if (m_pTCnCameraCfg != NULL) m_pTCnCameraCfg->byMulti = *(u8*)( cTpMsg.GetBody() + sizeof(EmBackLightType) );
 	BOOL bCamBackLight = *(BOOL*)( cTpMsg.GetBody() + sizeof(EmBackLightType) + sizeof(u8) );
-	PrtMsg( ev_Cn_CameraBackLightInd, emEventTypecnstoolRecv, "EmBackLightType:%d, byIndex:%d, BOOL:%d", m_pTCnCameraCfg->emBackLightType, m_pTCnCameraCfg->byMulti, bCamBackLight );
-	PostEvent( UI_CNSTOOL_CAMERA_BACK_LIGHT_IND, NULL, (LPARAM)bCamBackLight );
+	if (m_pTCnCameraCfg != NULL) PrtMsg( ev_Cn_CameraBackLightInd, emEventTypecnstoolRecv, "EmBackLightType:%d, byIndex:%d, BOOL:%d", m_pTCnCameraCfg->emBackLightType, m_pTCnCameraCfg->byMulti, bCamBackLight );
+    else PrtMsg( ev_Cn_CameraBackLightInd, emEventTypecnstoolRecv, "m_pTCnCameraCfg is NULL, BOOL:%d", bCamBackLight );
+    PostEvent( UI_CNSTOOL_CAMERA_BACK_LIGHT_IND, NULL, (LPARAM)bCamBackLight );
 }
 
 u16 CCncSysCtrl::CamAperture( const u8& byAperture)
@@ -598,7 +605,7 @@ u8 CCncSysCtrl::GetCamAperture()
 		SetCameraCfgPtr();
 	}
 
-	return m_pTCnCameraCfg->byApt;
+	return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->byApt : 0;
 }
 
 void CCncSysCtrl::OnCamApertureInd(const CMessage& cMsg)
@@ -610,10 +617,11 @@ void CCncSysCtrl::OnCamApertureInd(const CMessage& cMsg)
 
 	CTpMsg cTpMsg(&cMsg);
 
-	m_pTCnCameraCfg->byApt = *(u8*)( cTpMsg.GetBody() );
+	if (m_pTCnCameraCfg != NULL) m_pTCnCameraCfg->byApt = *(u8*)( cTpMsg.GetBody() );
 	BOOL bCamAperture = *(BOOL*)( cTpMsg.GetBody() + sizeof(u8) );
-	PrtMsg( ev_Cn_CameraApertureInd, emEventTypecnstoolRecv, "CamApertureInd:%d, BOOL:%d", m_pTCnCameraCfg->byApt, bCamAperture );
-	PostEvent( UI_CNSTOOL_CAMERA_APERTURE_IND, NULL, (LPARAM)bCamAperture );
+	if (m_pTCnCameraCfg != NULL) PrtMsg( ev_Cn_CameraApertureInd, emEventTypecnstoolRecv, "CamApertureInd:%d, BOOL:%d", m_pTCnCameraCfg->byApt, bCamAperture );
+    else PrtMsg( ev_Cn_CameraApertureInd, emEventTypecnstoolRecv, "m_pTCnCameraCfg is NULL, BOOL:%d", bCamAperture );
+    PostEvent( UI_CNSTOOL_CAMERA_APERTURE_IND, NULL, (LPARAM)bCamAperture );
 }
 
 u16 CCncSysCtrl::CamAutoWBCmd( const EmWBMode& emWBMode )
@@ -635,7 +643,7 @@ EmWBMode CCncSysCtrl::GetCamWBMode()
 		SetCameraCfgPtr();
 	}
 	
-	return m_pTCnCameraCfg->emWBMode;
+	return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->emWBMode : emWBAuto;
 }
 
 u16 CCncSysCtrl::SetLoadCameraFileNty()
@@ -659,11 +667,12 @@ void CCncSysCtrl::OnCamAutoWBInd(const CMessage& cMsg)
 
 	CTpMsg cTpMsg(&cMsg);
 
-	m_pTCnCameraCfg->emWBMode = *(EmWBMode*)( cTpMsg.GetBody() );
+	if (m_pTCnCameraCfg != NULL) m_pTCnCameraCfg->emWBMode = *(EmWBMode*)( cTpMsg.GetBody() );
 	BOOL bCamAutoWB = *(BOOL*)( cTpMsg.GetBody() + sizeof(EmWBMode) );
 
-	PrtMsg( ev_Cn_CameraAutoWBInd, emEventTypecnstoolRecv, "EmWBMode:%d, CamAutoWBInd:%d", m_pTCnCameraCfg->emWBMode, bCamAutoWB );
-	PostEvent( UI_CNSTOOL_CAMERA_AUTO_WB_IND, NULL, (LPARAM)bCamAutoWB );
+	if (m_pTCnCameraCfg != NULL) PrtMsg( ev_Cn_CameraAutoWBInd, emEventTypecnstoolRecv, "EmWBMode:%d, CamAutoWBInd:%d", m_pTCnCameraCfg->emWBMode, bCamAutoWB );
+    else PrtMsg( ev_Cn_CameraAutoWBInd, emEventTypecnstoolRecv, "m_pTCnCameraCfg is NULL, CamAutoWBInd:%d", bCamAutoWB );
+    PostEvent( UI_CNSTOOL_CAMERA_AUTO_WB_IND, NULL, (LPARAM)bCamAutoWB );
 }
 
 u16 CCncSysCtrl::CamRGainCmd( const u16& wRGain )
@@ -684,7 +693,7 @@ u16 CCncSysCtrl::GetCamRGain()
 	{
 		SetCameraCfgPtr();
 	}
-	return m_pTCnCameraCfg->wRGain;
+	return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->wRGain : 0;
 }
 
 void CCncSysCtrl::OnCamRGainInd(const CMessage& cMsg)
@@ -695,10 +704,11 @@ void CCncSysCtrl::OnCamRGainInd(const CMessage& cMsg)
 	}
 
 	CTpMsg cTpMsg(&cMsg);
-	m_pTCnCameraCfg->wRGain = *(u16*)( cTpMsg.GetBody() );
+	if (m_pTCnCameraCfg != NULL) m_pTCnCameraCfg->wRGain = *(u16*)( cTpMsg.GetBody() );
 	BOOL bCamRGain = *(BOOL*)( cTpMsg.GetBody() + sizeof(u16) );
-	PrtMsg( ev_Cn_CameraRGainInd, emEventTypecnstoolRecv, "wRGain:%d, bCamRGain:%d", m_pTCnCameraCfg->wRGain, bCamRGain );
-	PostEvent( UI_CNSTOOL_CAMERA_RGAIN_IND, NULL, (LPARAM)bCamRGain );
+	if (m_pTCnCameraCfg != NULL) PrtMsg( ev_Cn_CameraRGainInd, emEventTypecnstoolRecv, "wRGain:%d, bCamRGain:%d", m_pTCnCameraCfg->wRGain, bCamRGain );
+    else PrtMsg( ev_Cn_CameraRGainInd, emEventTypecnstoolRecv, "m_pTCnCameraCfg is NULL, bCamRGain:%d", bCamRGain );
+    PostEvent( UI_CNSTOOL_CAMERA_RGAIN_IND, NULL, (LPARAM)bCamRGain );
 }
 
 u16 CCncSysCtrl::CamBGainCmd( const u16& wBGain )
@@ -720,7 +730,7 @@ u16 CCncSysCtrl::GetCamBGain()
 		SetCameraCfgPtr();
 	}
 
-	return m_pTCnCameraCfg->wBGain;
+	return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->wBGain : 0;
 }
 
 void CCncSysCtrl::OnCamBGainInd(const CMessage& cMsg)
@@ -732,10 +742,11 @@ void CCncSysCtrl::OnCamBGainInd(const CMessage& cMsg)
 
 	CTpMsg cTpMsg(&cMsg);
 
-	m_pTCnCameraCfg->wBGain = *(u16*)( cTpMsg.GetBody() );
+	if (m_pTCnCameraCfg != NULL) m_pTCnCameraCfg->wBGain = *(u16*)( cTpMsg.GetBody() );
 	BOOL bCamBGain = *(BOOL*)( cTpMsg.GetBody() + sizeof(u16) );
-	PrtMsg( ev_Cn_CameraBGainInd, emEventTypecnstoolRecv, "wBGain:%d, bCamBGain:%d", m_pTCnCameraCfg->wBGain, bCamBGain );
-	PostEvent( UI_CNSTOOL_CAMERA_BGAIN_IND, NULL, (LPARAM)bCamBGain );
+	if (m_pTCnCameraCfg != NULL) PrtMsg( ev_Cn_CameraBGainInd, emEventTypecnstoolRecv, "wBGain:%d, bCamBGain:%d", m_pTCnCameraCfg->wBGain, bCamBGain );
+    else PrtMsg( ev_Cn_CameraBGainInd, emEventTypecnstoolRecv, "m_pTCnCameraCfg is NULL, bCamBGain:%d", bCamBGain );
+    PostEvent( UI_CNSTOOL_CAMERA_BGAIN_IND, NULL, (LPARAM)bCamBGain );
 }
 
 u16 CCncSysCtrl::CamPicSceneModeCmd( const EmPicSceMode& emPicSceMode )
@@ -757,7 +768,7 @@ EmPicSceMode CCncSysCtrl::GetCamPicSceneMode()
 		SetCameraCfgPtr();
 	}
 
-	return m_pTCnCameraCfg->emPicSceMode;
+	return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->emPicSceMode : emLamp;
 }
 
 void CCncSysCtrl::OnCamPicSceneModeInd(const CMessage& cMsg)
@@ -771,8 +782,9 @@ void CCncSysCtrl::OnCamPicSceneModeInd(const CMessage& cMsg)
 
 	m_pTCnCameraCfg->emPicSceMode = *(EmPicSceMode*)( cTpMsg.GetBody() );
 	BOOL bCamPicSceneMode = *(BOOL*)( cTpMsg.GetBody() + sizeof(EmPicSceMode) );
-	PrtMsg( ev_Cn_CameraPicSceneModeInd, emEventTypecnstoolRecv, "emPicSceMode:%d, bCamPicSceneMode:%d", m_pTCnCameraCfg->emPicMode, bCamPicSceneMode );
-	PostEvent( UI_CNSTOOL_CAMERA_PIC_SCENE_MODE_IND, NULL, (LPARAM)bCamPicSceneMode );
+	if (m_pTCnCameraCfg != NULL) PrtMsg( ev_Cn_CameraPicSceneModeInd, emEventTypecnstoolRecv, "emPicSceMode:%d, bCamPicSceneMode:%d", m_pTCnCameraCfg->emPicMode, bCamPicSceneMode );
+    else PrtMsg( ev_Cn_CameraPicSceneModeInd, emEventTypecnstoolRecv, "m_pTCnCameraCfg is NULL, bCamPicSceneMode:%d", bCamPicSceneMode );
+    PostEvent( UI_CNSTOOL_CAMERA_PIC_SCENE_MODE_IND, NULL, (LPARAM)bCamPicSceneMode );
 }
 
 u16 CCncSysCtrl::CamGammaCmd( const EmGamma& emGamma )
@@ -794,7 +806,7 @@ EmGamma CCncSysCtrl::GetCamGamma()
 		SetCameraCfgPtr();
 	}
 
-	return m_pTCnCameraCfg->emGamma;
+	return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->emGamma : emGammaOff;
 }
 
 void CCncSysCtrl::OnCamGammaInd(const CMessage& cMsg)
@@ -806,10 +818,11 @@ void CCncSysCtrl::OnCamGammaInd(const CMessage& cMsg)
 
 	CTpMsg cTpMsg(&cMsg);
 
-	m_pTCnCameraCfg->emGamma = *(EmGamma*)( cTpMsg.GetBody() );
+	if (m_pTCnCameraCfg != NULL) m_pTCnCameraCfg->emGamma = *(EmGamma*)( cTpMsg.GetBody() );
 	BOOL bCamGamma = *(BOOL*)( cTpMsg.GetBody() + sizeof(EmGamma) );
-	PrtMsg( ev_Cn_CameraGammaInd, emEventTypecnstoolRecv, "emGamma:%d, bCamGamma:%d", m_pTCnCameraCfg->emGamma, bCamGamma );
-	PostEvent( UI_CNSTOOL_CAMERA_GAMMA_IND, NULL, (LPARAM)bCamGamma );
+	if (m_pTCnCameraCfg != NULL) PrtMsg( ev_Cn_CameraGammaInd, emEventTypecnstoolRecv, "emGamma:%d, bCamGamma:%d", m_pTCnCameraCfg->emGamma, bCamGamma );
+    else PrtMsg( ev_Cn_CameraGammaInd, emEventTypecnstoolRecv, "m_pTCnCameraCfg is NULL, bCamGamma:%d", bCamGamma );
+    PostEvent( UI_CNSTOOL_CAMERA_GAMMA_IND, NULL, (LPARAM)bCamGamma );
 }
 
 u16 CCncSysCtrl::CamPicSceAptCmd( const u8& byPicSceApt )
@@ -831,7 +844,7 @@ u8 CCncSysCtrl::GetCamPicSceApt()
 		SetCameraCfgPtr();
 	}
 
-	return m_pTCnCameraCfg->byPicApt;
+	return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->byPicApt : 0;
 }
 
 void CCncSysCtrl::OnCamPicSceAptInd(const CMessage& cMsg)
@@ -843,10 +856,11 @@ void CCncSysCtrl::OnCamPicSceAptInd(const CMessage& cMsg)
 
 	CTpMsg cTpMsg(&cMsg);
 
-	m_pTCnCameraCfg->byPicApt = *(u8*)( cTpMsg.GetBody() );
+	if (m_pTCnCameraCfg != NULL) m_pTCnCameraCfg->byPicApt = *(u8*)( cTpMsg.GetBody() );
 	BOOL bCamPicSceApt = *(BOOL*)( cTpMsg.GetBody() + sizeof(u8) );
-	PrtMsg( ev_Cn_CameraPicSceAptInd, emEventTypecnstoolRecv, "byPicSceApt:%d, bCamPicSceApt:%d", m_pTCnCameraCfg->byPicApt, bCamPicSceApt );
-	PostEvent( UI_CNSTOOL_CAMERA_PIC_SCE_APT_IND, NULL, (LPARAM)bCamPicSceApt );
+	if (m_pTCnCameraCfg != NULL) PrtMsg( ev_Cn_CameraPicSceAptInd, emEventTypecnstoolRecv, "byPicSceApt:%d, bCamPicSceApt:%d", m_pTCnCameraCfg->byPicApt, bCamPicSceApt );
+    else PrtMsg( ev_Cn_CameraPicSceAptInd, emEventTypecnstoolRecv, "m_pTCnCameraCfg is NULL, bCamPicSceApt:%d", bCamPicSceApt );
+    PostEvent( UI_CNSTOOL_CAMERA_PIC_SCE_APT_IND, NULL, (LPARAM)bCamPicSceApt );
 }
 
 u16 CCncSysCtrl::CamContrastCmd( const u16& wContrast )
@@ -868,7 +882,7 @@ u16 CCncSysCtrl::GetCamContrast()
 		SetCameraCfgPtr();
 	}
 
-	return m_pTCnCameraCfg->wContrast;
+	return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->wContrast : 0;
 }
 
 void CCncSysCtrl::OnCamContrastInd(const CMessage& cMsg)
@@ -880,10 +894,11 @@ void CCncSysCtrl::OnCamContrastInd(const CMessage& cMsg)
 
 	CTpMsg cTpMsg(&cMsg);
 
-	m_pTCnCameraCfg->wContrast = *(u16*)( cTpMsg.GetBody() );
+	if (m_pTCnCameraCfg != NULL) m_pTCnCameraCfg->wContrast = *(u16*)( cTpMsg.GetBody() );
 	BOOL bCamContrast = *(BOOL*)( cTpMsg.GetBody() + sizeof(u16) );
-	PrtMsg( ev_Cn_CameraContrastInd, emEventTypecnstoolRecv, "wContrast:%d, bCamContrast:%d", m_pTCnCameraCfg->wContrast, bCamContrast );
-	PostEvent( UI_CNSTOOL_CAMERA_CONTRAST_IND, NULL, (LPARAM)bCamContrast );
+	if (m_pTCnCameraCfg != NULL) PrtMsg( ev_Cn_CameraContrastInd, emEventTypecnstoolRecv, "wContrast:%d, bCamContrast:%d", m_pTCnCameraCfg->wContrast, bCamContrast );
+    else PrtMsg( ev_Cn_CameraContrastInd, emEventTypecnstoolRecv, "m_pTCnCameraCfg is NULL, bCamContrast:%d", bCamContrast );
+    PostEvent( UI_CNSTOOL_CAMERA_CONTRAST_IND, NULL, (LPARAM)bCamContrast );
 }
 
 u16 CCncSysCtrl::CamHueCmd( const u16& wHue )
@@ -905,7 +920,7 @@ u16 CCncSysCtrl::GetCamHue()
 		SetCameraCfgPtr();
 	}
 
-	return m_pTCnCameraCfg->wHue;
+	return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->wHue : 0;
 }
 
 void CCncSysCtrl::OnCamHueInd(const CMessage& cMsg)
@@ -917,10 +932,11 @@ void CCncSysCtrl::OnCamHueInd(const CMessage& cMsg)
 
 	CTpMsg cTpMsg(&cMsg);
 
-	m_pTCnCameraCfg->wHue = *(u16*)( cTpMsg.GetBody() );
+	if (m_pTCnCameraCfg != NULL) m_pTCnCameraCfg->wHue = *(u16*)( cTpMsg.GetBody() );
 	BOOL bCamHue = *(BOOL*)( cTpMsg.GetBody() + sizeof(u16) );
-	PrtMsg( ev_Cn_CameraHueInd, emEventTypecnstoolRecv, "wHue:%d, bCamHue:%d", m_pTCnCameraCfg->wHue, bCamHue );
-	PostEvent( UI_CNSTOOL_CAMERA_HUE_IND, NULL, (LPARAM)bCamHue );
+	if (m_pTCnCameraCfg != NULL) PrtMsg( ev_Cn_CameraHueInd, emEventTypecnstoolRecv, "wHue:%d, bCamHue:%d", m_pTCnCameraCfg->wHue, bCamHue );
+    else PrtMsg( ev_Cn_CameraHueInd, emEventTypecnstoolRecv, "m_pTCnCameraCfg is NULL, bCamHue:%d", bCamHue );
+    PostEvent( UI_CNSTOOL_CAMERA_HUE_IND, NULL, (LPARAM)bCamHue );
 }
 
 u16 CCncSysCtrl::CamSaturatCmd( const u16& wSaturat )
@@ -937,7 +953,7 @@ u16 CCncSysCtrl::CamSaturatCmd( const u16& wSaturat )
 
 u16 CCncSysCtrl::GetCamSaturat()
 {
-	return m_pTCnCameraCfg->wSaturat;
+	return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->wSaturat : 0;
 }
 
 void CCncSysCtrl::OnCamSaturatInd(const CMessage& cMsg)
@@ -949,10 +965,11 @@ void CCncSysCtrl::OnCamSaturatInd(const CMessage& cMsg)
 
 	CTpMsg cTpMsg(&cMsg);
 
-	m_pTCnCameraCfg->wSaturat = *(u16*)( cTpMsg.GetBody() );
+	if (m_pTCnCameraCfg != NULL) m_pTCnCameraCfg->wSaturat = *(u16*)( cTpMsg.GetBody() );
 	BOOL bCamSaturat = *(BOOL*)( cTpMsg.GetBody() + sizeof(u16) );
-	PrtMsg( ev_Cn_CameraSaturatInd, emEventTypecnstoolRecv, "wSaturat:%d, bCamSaturat:%d", m_pTCnCameraCfg->wSaturat, bCamSaturat );
-	PostEvent( UI_CNSTOOL_CAMERA_SATURAT_IND, NULL, (LPARAM)bCamSaturat );
+	if (m_pTCnCameraCfg != NULL) PrtMsg( ev_Cn_CameraSaturatInd, emEventTypecnstoolRecv, "wSaturat:%d, bCamSaturat:%d", m_pTCnCameraCfg->wSaturat, bCamSaturat );
+    else PrtMsg( ev_Cn_CameraSaturatInd, emEventTypecnstoolRecv, "m_pTCnCameraCfg is NULL, bCamSaturat:%d", bCamSaturat );
+    PostEvent( UI_CNSTOOL_CAMERA_SATURAT_IND, NULL, (LPARAM)bCamSaturat );
 }
 
 u16 CCncSysCtrl::CamBrightCmd( const u16& wBright )
@@ -974,7 +991,7 @@ u16 CCncSysCtrl::GetCamBright()
 		SetCameraCfgPtr();
 	}
 
-	return m_pTCnCameraCfg->wBright;
+	return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->wBright : 0;
 }
 
 void CCncSysCtrl::OnCamBrightInd(const CMessage& cMsg)
@@ -986,10 +1003,11 @@ void CCncSysCtrl::OnCamBrightInd(const CMessage& cMsg)
 
 	CTpMsg cTpMsg(&cMsg);
 
-	m_pTCnCameraCfg->wBright = *(u16*)( cTpMsg.GetBody() );
+	if (m_pTCnCameraCfg != NULL) m_pTCnCameraCfg->wBright = *(u16*)( cTpMsg.GetBody() );
 	BOOL bCamBright = *(BOOL*)( cTpMsg.GetBody() + sizeof(u16) );
-	PrtMsg( ev_Cn_CameraBrightInd, emEventTypecnstoolRecv, "wBright:%d, bCamBright:%d", m_pTCnCameraCfg->wBright, bCamBright );
-	PostEvent( UI_CNSTOOL_CAMERA_BRIGHT_IND, NULL, (LPARAM)bCamBright );
+	if (m_pTCnCameraCfg != NULL) PrtMsg( ev_Cn_CameraBrightInd, emEventTypecnstoolRecv, "wBright:%d, bCamBright:%d", m_pTCnCameraCfg->wBright, bCamBright );
+    else PrtMsg( ev_Cn_CameraBrightInd, emEventTypecnstoolRecv, "m_pTCnCameraCfg is NULL, bCamBright:%d", bCamBright );
+    PostEvent( UI_CNSTOOL_CAMERA_BRIGHT_IND, NULL, (LPARAM)bCamBright );
 }
 
 u16 CCncSysCtrl::CamNRStmCleanCmd( const EmStmClean& emStmClean )
@@ -1011,7 +1029,7 @@ EmStmClean CCncSysCtrl::GetCamNRStmClean()
 		SetCameraCfgPtr();
 	}
 
-	return m_pTCnCameraCfg->emStmClean;
+	return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->emStmClean : emNRoff;
 }
 
 void CCncSysCtrl::OnCamNRStmCleanInd(const CMessage& cMsg)
@@ -1023,10 +1041,11 @@ void CCncSysCtrl::OnCamNRStmCleanInd(const CMessage& cMsg)
 
 	CTpMsg cTpMsg(&cMsg);
 
-	m_pTCnCameraCfg->emStmClean = *(EmStmClean*)( cTpMsg.GetBody() );
+	if (m_pTCnCameraCfg != NULL) m_pTCnCameraCfg->emStmClean = *(EmStmClean*)( cTpMsg.GetBody() );
 	BOOL bCamNRStmClean = *(BOOL*)( cTpMsg.GetBody() + sizeof(EmStmClean) );
-	PrtMsg( ev_Cn_CameraNRStmCleanInd, emEventTypecnstoolRecv, "emStmClean:%d, bCamNRStmClean:%d", m_pTCnCameraCfg->emStmClean, bCamNRStmClean );
-	PostEvent( UI_CNSTOOL_CAMERA_NR_STM_CLEAN_IND, NULL, (LPARAM)bCamNRStmClean );
+	if (m_pTCnCameraCfg != NULL) PrtMsg( ev_Cn_CameraNRStmCleanInd, emEventTypecnstoolRecv, "emStmClean:%d, bCamNRStmClean:%d", m_pTCnCameraCfg->emStmClean, bCamNRStmClean );
+    else PrtMsg( ev_Cn_CameraNRStmCleanInd, emEventTypecnstoolRecv, "m_pTCnCameraCfg is NULL, bCamNRStmClean:%d", bCamNRStmClean );
+    PostEvent( UI_CNSTOOL_CAMERA_NR_STM_CLEAN_IND, NULL, (LPARAM)bCamNRStmClean );
 }
 
 u16 CCncSysCtrl::Cam3DNRCmd( const Em3DNR& em3DNR )
@@ -1048,7 +1067,7 @@ Em3DNR CCncSysCtrl::GetCam3DNR()
 		SetCameraCfgPtr();
 	}
 
-	return m_pTCnCameraCfg->em3DNR;
+	return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->em3DNR : em3DNROff;
 }
 
 void CCncSysCtrl::OnCam3DNRInd(const CMessage& cMsg)
@@ -1060,10 +1079,11 @@ void CCncSysCtrl::OnCam3DNRInd(const CMessage& cMsg)
 
 	CTpMsg cTpMsg(&cMsg);
 
-	m_pTCnCameraCfg->em3DNR = *(Em3DNR*)( cTpMsg.GetBody() );
+	if (m_pTCnCameraCfg != NULL) m_pTCnCameraCfg->em3DNR = *(Em3DNR*)( cTpMsg.GetBody() );
 	BOOL bCam3DNR = *(BOOL*)( cTpMsg.GetBody() + sizeof(Em3DNR) );
-	PrtMsg( ev_Cn_Camera3DNRInd, emEventTypecnstoolRecv, "em3DNR:%d, bCam3DNR:%d", m_pTCnCameraCfg->em3DNR, bCam3DNR );
-	PostEvent( UI_CNSTOOL_CAMERA_3DNR_IND, NULL, (LPARAM)bCam3DNR );
+	if (m_pTCnCameraCfg != NULL) PrtMsg( ev_Cn_Camera3DNRInd, emEventTypecnstoolRecv, "em3DNR:%d, bCam3DNR:%d", m_pTCnCameraCfg->em3DNR, bCam3DNR );
+    else PrtMsg( ev_Cn_Camera3DNRInd, emEventTypecnstoolRecv, "m_pTCnCameraCfg is NULL, bCam3DNR:%d", bCam3DNR );
+    PostEvent( UI_CNSTOOL_CAMERA_3DNR_IND, NULL, (LPARAM)bCam3DNR );
 }
 
 void CCncSysCtrl::SetCameraCfgPtr()
@@ -1099,7 +1119,7 @@ u16 CCncSysCtrl::GetCamZoom()
 		SetCameraCfgPtr();
 	}
 	
-	return m_pTCnCameraCfg->wZoom;	
+	return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->wZoom : 0;	
 }
 
 u16 CCncSysCtrl::SetCamZoomCmd( const u16& wZoom )
@@ -1123,11 +1143,12 @@ void CCncSysCtrl::OnSetCameraZoomInd(const CMessage& cMsg)
 	
 	CTpMsg cTpMsg(&cMsg);
 	
-	m_pTCnCameraCfg->wZoom = *(u16*)( cTpMsg.GetBody() );
+	if ( m_pTCnCameraCfg != NULL ) m_pTCnCameraCfg->wZoom = *(u16*)( cTpMsg.GetBody() );
 	BOOL bRet = *(BOOL*)( cTpMsg.GetBody() + sizeof(u16) );
 	
-	PrtMsg( ev_Cn_SetCameraZoomInd, emEventTypecnstoolRecv, "u16:%d,BOOL:%d", m_pTCnCameraCfg->wZoom, bRet );
-	PostEvent( UI_CNSTOOL_SET_CAMERA_ZOOM_IND, NULL, (LPARAM)bRet );
+	if ( m_pTCnCameraCfg != NULL ) PrtMsg( ev_Cn_SetCameraZoomInd, emEventTypecnstoolRecv, "u16:%d,BOOL:%d", m_pTCnCameraCfg->wZoom, bRet );
+    else PrtMsg( ev_Cn_SetCameraZoomInd, emEventTypecnstoolRecv, "m_pTCnCameraCfg is NULL,BOOL:%d", bRet );
+    PostEvent( UI_CNSTOOL_SET_CAMERA_ZOOM_IND, NULL, (LPARAM)bRet );
 }
 
 void CCncSysCtrl::OnCameraPowerOnNty(const CMessage& cMsg)
@@ -1297,7 +1318,7 @@ u8 CCncSysCtrl::GetMoon90CamExpGain()
     {
         SetCameraCfgPtr();
     }
-    return m_pTCnCameraCfg->byGainValue;
+    return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->byGainValue : 0;
 }
 
 u16 CCncSysCtrl::GetMoon90CamExCompRate()
@@ -1306,7 +1327,7 @@ u16 CCncSysCtrl::GetMoon90CamExCompRate()
     {
         SetCameraCfgPtr();
     }
-    return m_pTCnCameraCfg->wExposureComp;
+    return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->wExposureComp : 0;
 }
 
 u8 CCncSysCtrl::GetMoon90CamBLCRate()
@@ -1315,7 +1336,7 @@ u8 CCncSysCtrl::GetMoon90CamBLCRate()
     {
         SetCameraCfgPtr();
     }
-    return m_pTCnCameraCfg->byBackLightLevel;
+    return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->byBackLightLevel : 0;
 }
 
 u8 CCncSysCtrl::GetMoon90CamWDRRate()
@@ -1324,7 +1345,7 @@ u8 CCncSysCtrl::GetMoon90CamWDRRate()
     {
         SetCameraCfgPtr();
     }
-    return m_pTCnCameraCfg->byWideDynamicsLevel;
+    return m_pTCnCameraCfg != NULL ? m_pTCnCameraCfg->byWideDynamicsLevel : 0;
 }
 
 void CCncSysCtrl::OnSrcOffLineNty(const CMessage& cMsg)

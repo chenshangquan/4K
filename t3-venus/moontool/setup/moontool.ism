@@ -102,7 +102,7 @@
 		<col def="S0">ISDotNetInstallerArgsCommit</col>
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
-		<row><td>Files</td><td>{C4BC89A9-C40D-4CF6-86FA-285DB4AC6912}</td><td>TARGETDIR</td><td>0</td><td/><td>moontooldll.dll</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Files</td><td>{C4BC89A9-C40D-4CF6-86FA-285DB4AC6912}</td><td>TARGETDIR</td><td>0</td><td/><td>tftp.exe</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files1</td><td>{DC15CD90-01BC-484E-9898-0E66F93BB2DB}</td><td>RES</td><td>0</td><td/><td>tabmoonsel.png</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files2</td><td>{8D9C5F6C-E0F7-4CA2-BAF2-19DC2F311317}</td><td>BTNSYNC</td><td>0</td><td/><td>sel.png</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files3</td><td>{A9977B21-33A8-48D2-93C4-AA2454AAB353}</td><td>BTNGAINPLUS</td><td>0</td><td/><td>sel.png4</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -869,6 +869,7 @@
 		<row><td>syscfgdlg.xml</td><td>Files4</td><td>SysCfgDlg.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\layout\SysCfgDlg.xml</td><td>1</td><td>layout2</td></row>
 		<row><td>system.xml1</td><td>Files4</td><td>system.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\system.xml</td><td>1</td><td/></row>
 		<row><td>tabmoonsel.png</td><td>Files1</td><td>tabmoonsel.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RES_FILES2&gt;\tabmoonsel.png</td><td>1</td><td/></row>
+		<row><td>tftp.exe</td><td>Files</td><td>tftp.exe</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RELEASE_FILES&gt;\tftp.exe</td><td>1</td><td/></row>
 		<row><td>thumbdisable.png3</td><td>Files4</td><td>ThumbDisable.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\Camera\slider\ThumbDisable.png</td><td>1</td><td>slider2</td></row>
 		<row><td>thumbnormal.png3</td><td>Files4</td><td>ThumbNormal.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\Camera\slider\ThumbNormal.png</td><td>1</td><td>slider2</td></row>
 		<row><td>thumbpress.png3</td><td>Files4</td><td>ThumbPress.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\Camera\slider\ThumbPress.png</td><td>1</td><td>slider2</td></row>
@@ -1307,6 +1308,7 @@
 		<row><td>PATH_TO_LAYOUT_FILES</td><td>..\setup files\rescnstool\layout</td><td/><td>2</td></row>
 		<row><td>PATH_TO_LAYOUT_FILES2</td><td>..\setup files\resumstool\layout</td><td/><td>2</td></row>
 		<row><td>PATH_TO_MENU_FILES</td><td>..\setup files\resumstool\src\Menu</td><td/><td>2</td></row>
+		<row><td>PATH_TO_RELEASE_FILES</td><td>..\setup files</td><td/><td>2</td></row>
 		<row><td>PATH_TO_RESCNSTOOL_FILES</td><td>..\setup files\rescnstool</td><td/><td>2</td></row>
 		<row><td>PATH_TO_RESMOONTOOL_FILES</td><td>..\setup files\resmoontool</td><td/><td>2</td></row>
 		<row><td>PATH_TO_RESMOONTOOL_FILES1</td><td>..\setup files\resmoontool</td><td/><td>2</td></row>
@@ -1610,6 +1612,7 @@
 		<col key="yes" def="s72">Component_</col>
 		<row><td>moontool.exe</td><td>Files</td></row>
 		<row><td>moontool.exe1</td><td>Files</td></row>
+		<row><td>tftp.exe</td><td>Files</td></row>
 	</table>
 
 	<table name="ISStorages">
@@ -1641,6 +1644,8 @@
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME4</td><td>2052</td><td>47](5/1^I&amp;+E77=1</td><td>6</td><td/><td>1377900270</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME5</td><td>2052</td><td>Launch moontool.exe</td><td>0</td><td/><td>-987261648</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME6</td><td>2052</td><td>47](5/1^I&amp;+E77=1+@!E`'@`90``</td><td>10</td><td/><td>1377900270</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME7</td><td>1033</td><td/><td>0</td><td/><td>-441983415</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME7</td><td>2052</td><td>Launch tftp.exe</td><td>0</td><td/><td>-441983415</td></row>
 		<row><td>IDS_SQLSCRIPT_INSTALLING</td><td>2052</td><td>8VLH5V=B3(@@`%,`40!,`"``B5O%B!J!+&amp;&lt;N`"X`+@``</td><td>16</td><td/><td/></row>
 		<row><td>IDS_SQLSCRIPT_UNINSTALLING</td><td>2052</td><td>8VLH5V=B3(@@`%,`40!,`"``&gt;%-]CQJ!+&amp;&lt;N`"X`+@``</td><td>16</td><td/><td/></row>
 		<row><td>IDS__DialogId_10103</td><td>1033</td><td> </td><td>0</td><td/><td>1377900270</td></row>
@@ -3696,6 +3701,7 @@ UwBJAE4ARwBMAEUAXwBFAFgARQBfAEkATQBBAEcARQABAE0AZQBkAGkAYQA=
 		<col def="I4">ISAttributes</col>
 		<row><td>moontool.exe</td><td>product_name</td><td>##IDS_SHORTCUT_DISPLAY_NAME13##</td><td/><td>&lt;TARGETDIR&gt;\网呈维护工具-moon_setup.exe</td><td/><td/><td/><td/><td/><td>1</td><td>TARGETDIR</td><td/><td/><td/><td/><td/><td>moontool.exe</td><td>18</td></row>
 		<row><td>moontool.exe1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME13##</td><td/><td>&lt;TARGETDIR&gt;\moontool.exe</td><td/><td/><td>0</td><td/><td/><td>1</td><td>TARGETDIR</td><td/><td/><td/><td/><td/><td>moontool.exe1</td><td>18</td></row>
+		<row><td>tftp.exe</td><td>product_name</td><td>##IDS_SHORTCUT_DISPLAY_NAME7##</td><td/><td>&lt;TARGETDIR&gt;\tftp.exe</td><td/><td/><td/><td/><td/><td>1</td><td>TARGETDIR</td><td/><td/><td/><td/><td/><td>tftp.exe</td><td>18</td></row>
 	</table>
 
 	<table name="TextStyle">

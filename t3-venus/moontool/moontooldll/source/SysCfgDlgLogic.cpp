@@ -79,8 +79,9 @@ void CSysCfgDlgLogic::RegMsg()
 	//REG_MSG_HANDLER( UI_MOONTOOL_IMAGE_ADJUST_IND, CSysCfgDlgLogic::OnCamImageAdjustInd, pThis, CSysCfgDlgLogic );
 //	REG_MSG_HANDLER( UI_MOONTOOL_LVDSBAUD_IND, CSysCfgDlgLogic::OnLvdsBaudRateInd, pThis, CSysCfgDlgLogic );
     REG_MSG_HANDLER( UI_MOONTOOL_CONNECTED, CSysCfgDlgLogic::OnConnectRsp, pThis, CSysCfgDlgLogic );
-    REG_MSG_HANDLER( UI_RKC_NETWORK_REFLESH, CSysCfgDlgLogic::OnEthnetInfoNty, pThis, CSysCfgDlgLogic );
+    REG_MSG_HANDLER( UI_RKC_NETWORK_REFLESH, CSysCfgDlgLogic::OnEthnetInfoReflesh, pThis, CSysCfgDlgLogic );
     REG_MSG_HANDLER( UI_MOONTOOL_CamParamSync_IND, CSysCfgDlgLogic::OnCamOutputInfoNty, pThis, CSysCfgDlgLogic );
+    REG_MSG_HANDLER( UI_MoonSecDefault_Nty, CSysCfgDlgLogic::OnSetDefaultParamRsp, pThis, CSysCfgDlgLogic );
 }
 
 void CSysCfgDlgLogic::UnRegMsg()
@@ -439,6 +440,43 @@ HRESULT CSysCfgDlgLogic::OnCamOutputInfoNty( WPARAM wparam, LPARAM lparam )
     return NO_ERROR;
 }
 
+//恢复默认Rsp
+HRESULT CSysCfgDlgLogic::OnSetDefaultParamRsp( WPARAM wparam, LPARAM lparam )
+{
+    BOOL bSuccess = (BOOL)wparam;
+    TRK100NetParam tNetParam = *(TRK100NetParam*)lparam;
+    if ( TRUE == bSuccess )
+    {
+        Value_IpEditData valIpData;
+        valIpData.dwIP = ntohl(tNetParam.dwIP);
+        UIFACTORYMGR_PTR->SetPropertyValue( valIpData, m_strEdtIp, m_pWndTree ); 
+        valIpData.dwIP = ntohl(tNetParam.dwSubMask);
+        UIFACTORYMGR_PTR->SetPropertyValue( valIpData, m_strEdtSubMask, m_pWndTree ); 
+        valIpData.dwIP = ntohl(tNetParam.dwGateway);
+        UIFACTORYMGR_PTR->SetPropertyValue( valIpData, m_strEdtGateWay, m_pWndTree );
+        
+        //网络设置更改需重启生效  /*恢复默认直接提示是否重启*/
+        MSGBOX_RET nMsgBoxRet = MSGBOX_CANCEL;
+        MSG_BOX( nMsgBoxRet, "恢复默认需要重启，是否重启？" );	
+        if ( MSGBOX_OK == nMsgBoxRet )
+        {
+            u16 wRes = COMIFMGRPTR->RebootMoon();
+            if ( wRes != NO_ERROR )
+            {
+                WARNMESSAGE( "重启moon90请求发送失败" );
+            }
+        }
+        else
+        {
+        }
+        
+        m_vctWndName.clear();
+        UpBtnState();
+    }
+    
+    return NO_ERROR;
+}
+
 //后续保存操作参数设置
 HRESULT CSysCfgDlgLogic::OnCamOutputInfoInd( WPARAM wparam, LPARAM lparam )
 {
@@ -594,7 +632,7 @@ HRESULT CSysCfgDlgLogic::OnEthnetInfoNty( WPARAM wparam, LPARAM lparam )
     BOOL bSuccess = (BOOL)wparam;
     if (!bSuccess)
     {
-        WARNMESSAGE( "设置网络配置失败" );
+        WARNMESSAGE( "获取网络配置失败" );
         return false;
     }
 
@@ -602,6 +640,22 @@ HRESULT CSysCfgDlgLogic::OnEthnetInfoNty( WPARAM wparam, LPARAM lparam )
     m_vctWndName.clear();
 	UpBtnState();
 
+	return NO_ERROR;	
+}
+
+HRESULT CSysCfgDlgLogic::OnEthnetInfoReflesh( WPARAM wparam, LPARAM lparam )
+{
+    BOOL bSuccess = (BOOL)wparam;
+    if (!bSuccess)
+    {
+        WARNMESSAGE( "设置网络配置失败" );
+        return false;
+    }
+    
+    SetEthnetCfgData();
+    m_vctWndName.clear();
+    UpBtnState();
+    
     //网络设置更改需重启生效
     MSGBOX_RET nMsgBoxRet = MSGBOX_CANCEL;
     MSG_BOX( nMsgBoxRet, "网络配置已修改，需重启服务器生效，是否立即重启？" );	
@@ -615,9 +669,9 @@ HRESULT CSysCfgDlgLogic::OnEthnetInfoNty( WPARAM wparam, LPARAM lparam )
     }
     else
     {	
-	}
-
-	return NO_ERROR;	
+    }
+    
+    return NO_ERROR;	
 }
 
 void CSysCfgDlgLogic::SetEthnetCfgData()

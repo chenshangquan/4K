@@ -662,7 +662,7 @@ void CCentCfgDisplayDlg::UpdateTvState( EmTVModle emTvMode)
 	}
 	else
 	{
-		UIFACTORYMGR_PTR->LoadScheme("SchShow",m_pWndTree);
+		UIFACTORYMGR_PTR->LoadScheme("SchHide",m_pWndTree);
 
 		if ( emTvMode == emSharp70LX550A )
 		{

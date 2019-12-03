@@ -36,7 +36,7 @@ void CSysConfig::BuildEventsMap()
 	REG_PFUN(ev_TpCamImageAdjust_Nty, CSysConfig::OnCamImageAdjustNty);
 	REG_PFUN(ev_TpCamImageAdjust_Ind, CSysConfig::OnCamImageAdjustInd);	
 	REG_PFUN(ev_TpCamOutPortInfo_Ind, CSysConfig::OnCamOutputInfoInd);
-	REG_PFUN(ev_TpMoonCfgEthnet_Ind, CSysConfig::OnEthnetInfoInd);
+	//REG_PFUN(ev_TpMoonCfgEthnet_Ind, CSysConfig::OnEthnetInfoInd);
 	REG_PFUN(ev_TpSetLVDSBaud_Ind, CSysConfig::OnLVDBaudInd);
 	REG_PFUN( ev_TpSetLVDSBaud_Nty, CSysConfig::OnLVDBaudNty);
 
@@ -194,7 +194,7 @@ void CSysConfig::OnEthnetInfoInd( const CMessage& cMsg )
 	in_addr tAddr;
 	tAddr.S_un.S_addr = m_tRK100NetParam.dwIP;
 	PrtRkcMsg( RK100_EVT_SET_NETPARAM_ACK, emEventTypeScoketRecv, "TRK100NetParam: [wRtn:%d, IP:%s]", tMsgHead.wOptRtn, inet_ntoa(tAddr));
-	PostEvent( UI_MOONTOOL_ETHNETINFO_NOTIFY, WPARAM(RK100_OPT_RTN_OK == tMsgHead.wOptRtn) );
+	PostEvent( UI_RKC_NETWORK_REFLESH, WPARAM(RK100_OPT_RTN_OK == tMsgHead.wOptRtn) );
 }
 
 const TTPEthnetInfo& CSysConfig::GetEthnetCfg() const
@@ -486,8 +486,6 @@ void CSysConfig::OnGetNetWorkConfigRsp( const CMessage& cMsg )
     tMsgHead.wMsgLen = ntohs(tMsgHead.wMsgLen);
     tMsgHead.wOptRtn = ntohs(tMsgHead.wOptRtn);
     tMsgHead.wReserved1 = ntohs(tMsgHead.wReserved1);
-    
-    PrtRkcMsg( RK100_EVT_GET_NETPARAM_ACK, emEventTypeScoketRecv, "wOptRtn = %d", tMsgHead.wOptRtn);
 
     if (tMsgHead.wMsgLen != 0)
     {
@@ -498,7 +496,17 @@ void CSysConfig::OnGetNetWorkConfigRsp( const CMessage& cMsg )
         m_tRK100NetParam.dwMqttIP = ntohl(m_tRK100NetParam.dwMqttIP);
         m_tRK100NetParam.MqttPort = ntohs(m_tRK100NetParam.MqttPort);
     }
-    PostEvent(UI_RKC_NETWORK_REFLESH, WPARAM(RK100_OPT_RTN_OK == tMsgHead.wOptRtn), (LPARAM)tMsgHead.wOptRtn );
+
+    in_addr tAddr;
+    tAddr.S_un.S_addr = m_tRK100NetParam.dwIP;
+    PrtRkcMsg( RK100_EVT_GET_NETPARAM_ACK, emEventTypeScoketRecv, "NetParam[IP:%s]", inet_ntoa(tAddr));
+    tAddr.S_un.S_addr = m_tRK100NetParam.dwSubMask;
+    PrtRkcMsg( RK100_EVT_GET_NETPARAM_ACK, emEventTypeScoketRecv, "NetParam[SubMask:%s]", inet_ntoa(tAddr));
+    tAddr.S_un.S_addr = m_tRK100NetParam.dwGateway;
+    PrtRkcMsg( RK100_EVT_GET_NETPARAM_ACK, emEventTypeScoketRecv, "NetParam[Gateway:%s]", inet_ntoa(tAddr));
+
+    PostEvent(UI_MOONTOOL_ETHNETINFO_NOTIFY, WPARAM(RK100_OPT_RTN_OK == tMsgHead.wOptRtn));
+    PrtRkcMsg( RK100_EVT_GET_NETPARAM_ACK, emEventTypeScoketRecv, "wOptRtn = %d", tMsgHead.wOptRtn);
 }
 
 u16 CSysConfig::GetNetWorkConfig(TRK100NetParam& tRK100NetParam)

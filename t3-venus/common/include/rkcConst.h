@@ -67,6 +67,6 @@ enum EmErrRkcLib
 };
  
 #define RKC_UPDATEFILE_TYPE                     "lpc1837_app"
-#define RKC_UPDATEFILE_NAME                     "rk100.bin"
+#define RKC_UPDATEFILE_NAME                     "moon904k30.bin"
  
 #endif

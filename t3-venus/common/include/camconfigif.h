@@ -248,7 +248,31 @@ public:
 	* @remarks 
 	*/	
 	virtual TTPMoonCamInfo GetCamCfg() = 0;
+
+    /** 
+	* 功能 设置当前所有机芯配置
+	* @param [in] 	 
+	* @return  
+	* @remarks 
+	*/	
+	virtual void SetAllCamCfg(TTPMoonCamInfo tCamInfo[]) = 0;
+
+    /** 
+	* 功能 获取当前所有机芯配置
+	* @param [in] 	 
+	* @return  
+	* @remarks 
+	*/	
+	virtual void GetAllCamCfg(TTPMoonCamInfo* ptCamInfo[]) = 0;
 	
+    /** 
+	* 功能 获取当前界面状态
+	* @param [in] 	 
+	* @return  
+	* @remarks 
+	*/	
+	virtual BOOL GetCurStatus() = 0;
+
 	/** 
 	* 功能 获取被选中的摄像机
 	* @param [in] 	 
@@ -302,6 +326,9 @@ public:
 	* @remarks 
 	*/
 	virtual	u16 Cam3DNRCmd( BOOL bIsOpen, EmTPReduNoise emTPReduNoise ) = 0;
+
+    //预置位1保存
+    virtual	u16 CamPreSet1SaveCmd() = 0;
 
     virtual TTPCamPre* GetCamPreInfo() = 0; 
 

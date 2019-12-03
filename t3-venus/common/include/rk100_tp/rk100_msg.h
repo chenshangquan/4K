@@ -412,6 +412,15 @@ typedef struct
 	u8 ZoomUpDownStopFlag;
 } TCamZoomVal; 
 
+enum OPTIRISVALUE
+{
+    OPT_IRIS_2_8 = 0,
+    OPT_IRIS_3_1,
+    OPT_IRIS_3_4,
+    OPT_IRIS_3_7,
+    OPT_IRIS_4_0,
+    OPT_IRIS_4_5,
+};
 
 typedef struct
 {
@@ -493,6 +502,18 @@ typedef struct
     u8 RVal;
 	  u8 BVal;
 }TCamWBMode_Ack;
+
+enum FMTMODE
+{
+    FMT4K_30fps = 0,
+    FMT4K_25fps,
+    FMT1080_60fps,
+    FMT1080_50fps,
+    FMT1080_30fps,
+    FMT1080_25fps,
+    FMT720_60fps,
+    FMT720_50fps,
+};
 
 typedef struct
 {

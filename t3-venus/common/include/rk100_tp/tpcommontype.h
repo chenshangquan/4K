@@ -3379,6 +3379,7 @@ enum EmTPSOrThShutter
 	em_Shutter_8Sp ,          // 1/8
 	em_Shutter_15Sp ,         // 1/15
 	em_Shutter_30Sp ,         // 1/30
+    em_Shutter_50Sp ,         // 1/50
 	em_Shutter_60Sp ,         // 1/60
 	em_Shutter_90Sp ,         // 1/90
 	em_Shutter_100Sp,         // 1/100(д╛хо)
@@ -3406,6 +3407,7 @@ enum EmTPFOrTwShutter
 	em_Shutter_6Spd ,          // 1/6
 	em_Shutter_12Spd ,         // 1/12
 	em_Shutter_25Spd ,         // 1/25
+    em_Shutter_30Spd ,         // 1/30
 	em_Shutter_50Spd ,         // 1/50
 	em_Shutter_60Spd ,         // 1/60
 	em_Shutter_75Spd ,         // 1/75

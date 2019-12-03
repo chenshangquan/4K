@@ -257,11 +257,11 @@ void CCRenameOptDlg::SetDisplaySourceData()
 	strDisplaySourceType = TransDefaultDisplaySource(emVgaType001);
 	vecDiplaySource.push_back(strDisplaySourceType.c_str());
 	
-	strDisplaySourceType = TransDefaultDisplaySource(emVgaType002);
-	vecDiplaySource.push_back(strDisplaySourceType.c_str());
-	
     if ( emCnModel != T300E_4K )
     {
+        strDisplaySourceType = TransDefaultDisplaySource(emVgaType002);
+        vecDiplaySource.push_back(strDisplaySourceType.c_str());
+
         strDisplaySourceType = TransDefaultDisplaySource(emVgaType003);
 	    vecDiplaySource.push_back(strDisplaySourceType.c_str());
     }

@@ -531,6 +531,10 @@ protected:
 
     bool OnComboboxOrderPosClick( const IArgs& args );
 
+    bool OnBtnImport( const IArgs& args );
+
+    bool OnBtnExport( const IArgs& args );
+
 protected:
 	/**	 
 	* 功能:  响应服务器发来的UI_CNSTOOL_CAMERA_CFG_NTY的函数
@@ -768,12 +772,19 @@ protected:
 
 	HRESULT OnSetCamAutoFocusInd( WPARAM wparam, LPARAM lparam );
 
-	
+    /**	 
+	* 功能:  预置位1保存结果界面通知
+	* @return   LRESULT
+	* @remarks	 
+	*/
+    HRESULT OnCamPreSet1SaveRsp( WPARAM wparam, LPARAM lparam );
+
+public:
+    void GetShutSpdValue( EmTPSOrThShutter &emShutSpd );
+	void GetTwShutterValue( EmTPFOrTwShutter &emTwShutter );
 
 private:
     void SetOutputFormatValue( TPOutputFmt &tOutputFmt );
-	void GetShutSpdValue( EmTPSOrThShutter &emShutSpd );
-	void GetTwShutterValue( EmTPFOrTwShutter &emTwShutter );
 	void GetApertureValue(EmTPAperture &emAper);
 	void SetApertureValue(TIrisAutoManuMode &tAperMode);
 	void GetExpGainValue( EmTPExpGain &emGain );

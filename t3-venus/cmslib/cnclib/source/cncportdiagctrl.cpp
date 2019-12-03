@@ -504,9 +504,13 @@ void CCncPortDiagCtrl::OnUpgradeCnsInd( const CMessage& cMsg )
 	if ( NULL != bSuccess )
 	{
 		PostEvent( UI_CNSTOOL_MSG_UpgradeCns_NTY, (WPARAM)bSuccess, 0 );
+        PrtMsg( ev_tppUpdate_Ind, emEventTypecnstoolRecv, "bSuccess:%d", *bSuccess );
 	}
+    else
+    {
+        PrtMsg( ev_tppUpdate_Ind, emEventTypecnstoolRecv, "bSuccess:NULL" );
+    }
 	
-	PrtMsg( ev_tppUpdate_Ind, emEventTypecnstoolRecv, "bSuccess:%d", *bSuccess );
 }
 
 //维护工具刷新界面请求

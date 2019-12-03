@@ -26,6 +26,11 @@ public:
 	CImpCommonDlgLogic();
 	virtual ~CImpCommonDlgLogic();
 
+    //开启Tftp后 延时发送升级第一步消息
+    void SendUpdateFirst();
+    //tftp进度条绘制
+    void UpdateUploadProgress(u32 dwPos);
+
 public:  
 	/** 功能:  注册回调函数
 	*  @param[in] 
@@ -88,6 +93,13 @@ public:
 	*/
 	bool OnBtnImportCamCfg( const IArgs & arg );
 
+    /**	 
+	* 功能: 导入所有摄像机参数
+	* @return   bool
+	* @remarks  
+	*/
+	bool OnBtnImportAllCamInfo( const IArgs & arg );
+
 	/**	 
 	* 功能: Moon90升级
 	* @return   bool
@@ -117,7 +129,10 @@ protected:
 	
 	HRESULT OnCameraUpgradeInd( WPARAM wparam, LPARAM lparam );
 	HRESULT OnCamMechanismUpgradeInd( WPARAM wparam, LPARAM lparam );
-	
+    HRESULT OnRkcUpdateFirstAck( WPARAM wparam, LPARAM lparam );
+    HRESULT OnRkcUpdateFirstNty( WPARAM wparam, LPARAM lparam );
+	HRESULT OnRkcUpdateSecondNty( WPARAM wparam, LPARAM lparam );
+
 private:
 		/**	 
 	* 功能: 上传核心
@@ -142,6 +157,19 @@ private:
 	*/
 //	void UpdateUpgradeFileList();
 
+    /**	 
+	* 功能: 读取配置文件
+	* @return   无
+	* @remarks  
+	*/
+    void ReadFromCfgFile(String strPath);
+
+    BOOL ReadProgressPos(u32 dwReadSize);
+
+    bool OnUpLoadFileFirst();
+public:
+    void SetAllCamCfgEnd();
+
 private:
 	const String m_strEdtSaveFolder;
 	const String m_strProgressImp;
@@ -159,6 +187,8 @@ private:
 	CString m_strCurTransFile;	    	//当前升级传输的文件名
 	u32 m_dwCurSevr;                    //当前升级服务器
 	u32 m_nCount;						//统计超时次数
+
+    CString m_strTftpFilePath;//TFtp文件路径
 };
 
 #define IMPCOMMONLOGICRPTR    CImpCommonDlgLogic::GetSingletonPtr()               //上传（导入）通用弹出界面logic指针

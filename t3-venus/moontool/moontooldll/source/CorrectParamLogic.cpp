@@ -80,7 +80,7 @@ void CCorrectParamLogic::RegMsg()
 	//REG_MSG_HANDLER( UI_MOONTOOL_CamParamSync_IND, CCorrectParamLogic::OnCamParamSyncInd, pThis, CCorrectParamLogic );
 	REG_MSG_HANDLER( UI_CHANGEDISTORT_IND, CCorrectParamLogic::OnChangeDistortInd, pThis, CCorrectParamLogic );
 	REG_MSG_HANDLER( UI_DIRECTSETDISTORT_IND, CCorrectParamLogic::OnDirectSetDistortInd, pThis, CCorrectParamLogic );
-	REG_MSG_HANDLER( UI_MoonSecDefault_Nty, CCorrectParamLogic::OnSetDefaultParamNty, pThis, CCorrectParamLogic );
+	//REG_MSG_HANDLER( UI_MoonSecDefault_Nty, CCorrectParamLogic::OnSetDefaultParamNty, pThis, CCorrectParamLogic );
 	REG_MSG_HANDLER( UI_MOONTOOL_CAMPARAMDEFAULT_IND, CCorrectParamLogic::OnSetDefaultZoomInd, pThis, CCorrectParamLogic );
 }
 

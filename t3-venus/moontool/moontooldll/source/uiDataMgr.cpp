@@ -329,4 +329,34 @@ void CUIDataMgr::SetLstSelItem(const String& strLstWnd, IWndTree* pWndTree /*= N
 	}
 }
 
+u32 CUIDataMgr::GetLocalIP()
+{
+    //初始化wsa
+    WSADATA wsaData;
+    int ret = WSAStartup(MAKEWORD(2,2), &wsaData);
+    if (ret != 0)
+    {
+        return -1;
+    }
+
+    //获取主机名
+    u32 ip;
+    char hostname[256] = {0};
+    ret = gethostname(hostname, sizeof(hostname));
+    if (ret == SOCKET_ERROR)
+    {
+        return -1;
+    }
+
+    //获取主机IP
+    struct hostent *hent;
+    hent = gethostbyname(hostname);
+    if (NULL == hent) 
+    {
+        return -1;
+    }
+
+    ip = ((struct in_addr*)hent->h_addr)->s_addr;
+    return ip;
+}
 
