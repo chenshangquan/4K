@@ -99,7 +99,7 @@ void CMainFrameLogic::RegMsg()
 	REG_MSG_HANDLER( UI_UMS_GRAB_LOGIN_NOTIFY, CMainFrameLogic::OnGrabLoginNty, m_pThis, CMainFrameLogic );
     REG_MSG_HANDLER( UI_RKC_REBOOT, CMainFrameLogic::OnReBoot, m_pThis, CMainFrameLogic );
 	REG_MSG_HANDLER( UI_CNS_LOGIN_TIMEOUT, CMainFrameLogic::OnLoginTimeOut, m_pThis, CMainFrameLogic );
-	REG_MSG_HANDLER( UI_MOONTOOL_VERINFO_NTY, CMainFrameLogic::OnProductModelNty, m_pThis, CMainFrameLogic );
+	//REG_MSG_HANDLER( UI_MOONTOOL_VERINFO_NTY, CMainFrameLogic::OnProductModelNty, m_pThis, CMainFrameLogic );
 
 	//进入预置位列表页面，通知主界面显隐顶部菜单栏
 	REG_MSG_HANDLER( UI_MOONTOOL_LISTMENU_OPTION, CMainFrameLogic::OnListMenuShow, m_pThis, CMainFrameLogic );
@@ -375,10 +375,11 @@ bool CMainFrameLogic::OnBtnRestore( const IArgs& args )
 		return false;
 	}
 
-	if( m_byIndex == 2 )
+    //系统设置界面禁用恢复默认按钮
+	/*if( m_byIndex == 2 )
 	{
 		return false;
-	}
+	}*/
 
     u8 byCameraIndex = 0;
 	MOONLIBDATAMGRPTR->GetCamSel( byCameraIndex );
@@ -390,7 +391,7 @@ bool CMainFrameLogic::OnBtnRestore( const IArgs& args )
 		return true;
 	}
 	
-//	MSG_BOX_ONLY_READ( _T("正在恢复默认值，请稍等，摄像机配置暂时无法配置") );
+    //MSG_BOX_ONLY_READ( _T("正在恢复默认，请勿操作...") );
 
 	return true;	
 }

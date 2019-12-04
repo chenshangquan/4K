@@ -1712,23 +1712,23 @@
                 <Property Name="WindowVisible" Value="False" />
             </Scheme>
         </Window>
-        <!-- 导入 -->
-        <Window Type="TransButton" Name="BtnImport" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <!-- 导入参数 -->
+        <Window Type="TransButton" Name="BtnImportParam" Style="WS_CHILD|WS_CLIPSIBLINGS">
             <Property Name="WindowPos" Value="x:520 y:453" />
             <Property Name="WindowSize" Value="x:86 y:38" />
-            <Property Name="WindowCaption" Value="导入" />
+            <Property Name="WindowCaption" Value="导入参数" />
             <Property Name="WindowVisible" Value="true" />
-            <Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnImport" />
-            <Property Name="Image" Value="btnImport" />
+            <Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnImportParam" />
+            <Property Name="Image" Value="btnImportParam" />
         </Window>
-        <!-- 导出 -->
-        <Window Type="TransButton" Name="BtnExport" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <!-- 导出参数 -->
+        <Window Type="TransButton" Name="BtnExportParam" Style="WS_CHILD|WS_CLIPSIBLINGS">
             <Property Name="WindowPos" Value="x:620 y:453" />
             <Property Name="WindowSize" Value="x:86 y:38" />
-            <Property Name="WindowCaption" Value="导出" />
+            <Property Name="WindowCaption" Value="导出参数" />
             <Property Name="WindowVisible" Value="true" />
-            <Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnExport" />
-            <Property Name="Image" Value="btnExport" />
+            <Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnExportParam" />
+            <Property Name="Image" Value="btnExportParam" />
         </Window>
         <!-- 预置位列表 -->
         <!--
@@ -1741,14 +1741,14 @@
             <Property Name="Image" Value="btnOrderPosList" />
         </Window>
         -->
-        <!-- 保存预置位 -->
-        <Window Type="TransButton" Name="BtnSaveOrderPos" Style="WS_CHILD|WS_CLIPSIBLINGS">
+        <!-- 保存参数 -->
+        <Window Type="TransButton" Name="BtnSaveParam" Style="WS_CHILD|WS_CLIPSIBLINGS">
             <Property Name="WindowPos" Value="x:720 y:453" />
             <Property Name="WindowSize" Value="x:86 y:38" />
-            <Property Name="WindowCaption" Value="保存预置位" />
+            <Property Name="WindowCaption" Value="保存参数" />
             <Property Name="WindowVisible" Value="true" />
-            <Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnSaveOrderPos" />
-            <Property Name="Image" Value="btnSaveOrderPos" />
+            <Event Type="WM_BUTTON_CLICK" Value="CCameraCtrlLogic::OnBtnSaveParam" />
+            <Property Name="Image" Value="btnSaveParam" />
             <Scheme Name ="SchmEnd" >
                 <Property Name="WindowEnable" Value="true" />
             </Scheme>

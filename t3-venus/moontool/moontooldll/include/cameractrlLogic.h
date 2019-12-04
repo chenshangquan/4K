@@ -505,11 +505,11 @@ protected:
 	bool OnBtnOrderPosList( const IArgs& args );
 
 	/**	 
-	* 功能: 保存预置位按钮响应函数
+	* 功能: 保存参数按钮响应函数
 	* @return   bool
 	* @remarks	 
 	*/
-	bool OnBtnSaveOrderPos( const IArgs& args );
+	bool OnBtnSaveParam( const IArgs& args );
 
 	bool OnBtnSwitchKeyStoneAdjust( const IArgs& args );
 
@@ -531,9 +531,9 @@ protected:
 
     bool OnComboboxOrderPosClick( const IArgs& args );
 
-    bool OnBtnImport( const IArgs& args );
+    bool OnBtnImportParam( const IArgs& args );
 
-    bool OnBtnExport( const IArgs& args );
+    bool OnBtnExportParam( const IArgs& args );
 
 protected:
 	/**	 

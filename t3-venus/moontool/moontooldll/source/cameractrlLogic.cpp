@@ -217,7 +217,7 @@ void CCameraCtrlLogic::RegCBFun()
 	REG_GOBAL_MEMBER_FUNC( "CCameraCtrlLogic::OnBtnSwitchOrderPosClick", CCameraCtrlLogic::OnBtnSwitchOrderPosClick, CAMERALOGICRPTR, CCameraCtrlLogic );
 	REG_GOBAL_MEMBER_FUNC( "CCameraCtrlLogic::OnBtnUpdateVersion", CCameraCtrlLogic::OnBtnUpdateVersion, CAMERALOGICRPTR, CCameraCtrlLogic );
 	REG_GOBAL_MEMBER_FUNC( "CCameraCtrlLogic::OnBtnOrderPosList", CCameraCtrlLogic::OnBtnOrderPosList, CAMERALOGICRPTR, CCameraCtrlLogic );
-	REG_GOBAL_MEMBER_FUNC( "CCameraCtrlLogic::OnBtnSaveOrderPos", CCameraCtrlLogic::OnBtnSaveOrderPos, CAMERALOGICRPTR, CCameraCtrlLogic );
+	REG_GOBAL_MEMBER_FUNC( "CCameraCtrlLogic::OnBtnSaveParam", CCameraCtrlLogic::OnBtnSaveParam, CAMERALOGICRPTR, CCameraCtrlLogic );
 	REG_GOBAL_MEMBER_FUNC( "CCameraCtrlLogic::OnBtnSwitchKeyStoneAdjust", CCameraCtrlLogic::OnBtnSwitchKeyStoneAdjust, CAMERALOGICRPTR, CCameraCtrlLogic );
 	REG_GOBAL_MEMBER_FUNC( "CCameraCtrlLogic::OnBtnCheckBackLightClick", CCameraCtrlLogic::OnBtnCheckBackLightClick, CAMERALOGICRPTR, CCameraCtrlLogic );
 	REG_GOBAL_MEMBER_FUNC( "CCameraCtrlLogic::OnSliderAdjustRangeChanged", CCameraCtrlLogic::OnSliderAdjustRangeChanged, CAMERALOGICRPTR, CCameraCtrlLogic );
@@ -229,9 +229,9 @@ void CCameraCtrlLogic::RegCBFun()
     //伽马
 	REG_GOBAL_MEMBER_FUNC( "CCameraCtrlLogic::OnComboboxGammaClick", CCameraCtrlLogic::OnComboboxGammaClick, CAMERALOGICRPTR, CCameraCtrlLogic );
     REG_GOBAL_MEMBER_FUNC( "CCameraCtrlLogic::OnComboboxOrderPosClick", CCameraCtrlLogic::OnComboboxOrderPosClick, CAMERALOGICRPTR, CCameraCtrlLogic );
-    //导入/导出
-    REG_GOBAL_MEMBER_FUNC( "CCameraCtrlLogic::OnBtnImport", CCameraCtrlLogic::OnBtnImport, CAMERALOGICRPTR, CCameraCtrlLogic );
-	REG_GOBAL_MEMBER_FUNC( "CCameraCtrlLogic::OnBtnExport", CCameraCtrlLogic::OnBtnExport, CAMERALOGICRPTR, CCameraCtrlLogic );
+    //导入/导出参数
+    REG_GOBAL_MEMBER_FUNC( "CCameraCtrlLogic::OnBtnImportParam", CCameraCtrlLogic::OnBtnImportParam, CAMERALOGICRPTR, CCameraCtrlLogic );
+	REG_GOBAL_MEMBER_FUNC( "CCameraCtrlLogic::OnBtnExportParam", CCameraCtrlLogic::OnBtnExportParam, CAMERALOGICRPTR, CCameraCtrlLogic );
 }
 
 void CCameraCtrlLogic::UnRegFunc()
@@ -4192,7 +4192,7 @@ HRESULT CCameraCtrlLogic::OnCamPreSet1SaveRsp( WPARAM wparam, LPARAM lparam )
     return S_OK;
 }
 //保存至预置位1
-bool CCameraCtrlLogic::OnBtnSaveOrderPos( const IArgs& args )
+bool CCameraCtrlLogic::OnBtnSaveParam( const IArgs& args )
 {
     /*
 	CMsgDispatch::SendMessage( UI_MOONTOOL_LISTMENU_OPTION, NULL, (LPARAM)em_MENULIST_HIDE );
@@ -4204,7 +4204,7 @@ bool CCameraCtrlLogic::OnBtnSaveOrderPos( const IArgs& args )
     u16 nRet = COMIFMGRPTR->CamPreSet1SaveCmd();
     if ( nRet != NO_ERROR )
     {
-        WARNMESSAGE( "保存预置位请求发送失败" );
+        WARNMESSAGE( "保存参数请求发送失败" );
     }
 
     return true;
@@ -4939,18 +4939,18 @@ String CCameraCtrlLogic::GetCamMechnismStyle()
 	return strComboText;
 }
 
-bool CCameraCtrlLogic::OnBtnImport( const IArgs& args )
+bool CCameraCtrlLogic::OnBtnImportParam( const IArgs& args )
 {
     UIFACTORYMGR_PTR->LoadScheme( "SchmImpCommonClean", NULL, g_stcStrImpCommonDlg );
     UIFACTORYMGR_PTR->LoadScheme( "SchImportAllCamInfo", NULL, g_stcStrImpCommonDlg );
-    s32 nDodalResult = UIFACTORYMGR_PTR->Domodal( g_stcStrImpCommonDlg );
+    s32 nDodalResult = UIFACTORYMGR_PTR->Domodal( g_stcStrImpCommonDlg, NULL, TRUE );
     return true;
 }
 
-bool CCameraCtrlLogic::OnBtnExport( const IArgs& args )
+bool CCameraCtrlLogic::OnBtnExportParam( const IArgs& args )
 {
     UIFACTORYMGR_PTR->LoadScheme( "SchmExpCommonClean", NULL, g_stcStrExpCommonDlg );
     UIFACTORYMGR_PTR->LoadScheme( "SchExportAllCamInfo", NULL, g_stcStrExpCommonDlg );
-    s32 nDodalResult = UIFACTORYMGR_PTR->Domodal( g_stcStrExpCommonDlg );	
+    s32 nDodalResult = UIFACTORYMGR_PTR->Domodal( g_stcStrExpCommonDlg, NULL, TRUE );	
     return true;	
 }

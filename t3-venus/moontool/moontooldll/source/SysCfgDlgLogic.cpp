@@ -445,6 +445,9 @@ HRESULT CSysCfgDlgLogic::OnSetDefaultParamRsp( WPARAM wparam, LPARAM lparam )
 {
     BOOL bSuccess = (BOOL)wparam;
     TRK100NetParam tNetParam = *(TRK100NetParam*)lparam;
+    
+    //CMsgboxDlgLogic::GetSingletonPtr()->Clear();
+
     if ( TRUE == bSuccess )
     {
         Value_IpEditData valIpData;
@@ -457,7 +460,7 @@ HRESULT CSysCfgDlgLogic::OnSetDefaultParamRsp( WPARAM wparam, LPARAM lparam )
         
         //网络设置更改需重启生效  /*恢复默认直接提示是否重启*/
         MSGBOX_RET nMsgBoxRet = MSGBOX_CANCEL;
-        MSG_BOX( nMsgBoxRet, "恢复默认需要重启，是否重启？" );	
+        MSG_BOX( nMsgBoxRet, "恢复默认需要重启，是否重启？" );
         if ( MSGBOX_OK == nMsgBoxRet )
         {
             u16 wRes = COMIFMGRPTR->RebootMoon();
@@ -473,7 +476,11 @@ HRESULT CSysCfgDlgLogic::OnSetDefaultParamRsp( WPARAM wparam, LPARAM lparam )
         m_vctWndName.clear();
         UpBtnState();
     }
-    
+    else
+    {
+        WARNMESSAGE( "恢复默认失败！" );
+    }
+
     return NO_ERROR;
 }
 
