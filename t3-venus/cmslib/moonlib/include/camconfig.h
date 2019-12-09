@@ -121,7 +121,9 @@ public:
 	* @return  
 	* @remarks 
 	*/
-    virtual BOOL GetCurStatus();
+    virtual void GetCurStatus(BOOL &bSetCamCfgOver, BOOL &bOutputFmtChg);
+    // 清理当前界面状态
+    virtual void ClearCurStatus();
 
 	/** 
 	* 功能  	获取被选中的摄像机
@@ -269,6 +271,7 @@ public:
 	* @remarks 
 	*/
 	virtual u16 CamImageParaCmd( EmTPImagePara emImagePara, const u32& dwImagePara );
+    virtual u16 CamImageParaCmd( TCamImagParam &tCamImagParam );
 	/** 
 	* 功能  	获取图片参数值
 	* @param [in] 	 
@@ -303,6 +306,7 @@ public:
 	* @remarks 
 	*/
 	virtual u16 Cam2DNRCmd( BOOL bIsOpen, EmTPReduNoise emTPReduNoise );
+    virtual u16 Cam2DNRCmd( TCamD2NRMode &tCamD2NRMode );
 
 	/** 
 	* 功能  	3D降噪参数设置
@@ -311,6 +315,7 @@ public:
 	* @remarks 
 	*/
 	virtual u16 Cam3DNRCmd( BOOL bIsOpen, EmTPReduNoise emTPReduNoise );
+    virtual u16 Cam3DNRCmd( TCamD3NRMode &tCamD3NRMode );
 
     virtual u16 CamOrderPosCheckCmd( const TCamPresetNumberList& tCamPreset );
 
@@ -383,6 +388,14 @@ public:
 	* @remarks 
 	*/	
 	virtual TCamImagParam GetCamImagParam();
+
+    /** 
+	* 功能  界面参数设置已完成
+	* @param [in] 	 
+	* @return  
+	* @remarks 
+	*/	
+	virtual u16 InputCamParamOverCmd();
 
 protected:
     virtual void OnTimeOut(u16 wEvent); 
@@ -515,6 +528,7 @@ protected:
     void OnSetCamApertreRsp( const CMessage& cMsg );
     void OnReBootRkRsp( const CMessage& cMsg );
     void OnCamPreSet1SaveRsp( const CMessage& cMsg );
+    void OnCamParamInputOverRsp( const CMessage& cMsg );
 
 public:
 	void SetCameraCfgPtr();
@@ -527,6 +541,7 @@ private:
 	TTPMoonCamInfo  m_tCnCameraCfg2;
 	TTPMoonCamInfo  m_tCnCameraCfg3;
     TTPMoonCamInfo *m_pTPMoonCamCfg;
+    TTPMoonCamInfo  m_atOldCamCfg[3];  //导入界面参数时，原摄像机参数
 				
 	u8	m_byCameraSel;
 	u8  m_byCameraSyncSel;
@@ -535,6 +550,7 @@ private:
 	TTPCamPre       m_atTPCamPre[MAX_CAMERA_Pre_NUM];   //显示器信息 
     EmTPMechanism  m_emTPMechanism;  //机芯类型
     BOOL           m_bSetAllCamCfg;  //是否在设置界面参数
+    BOOL           m_bOutputFmtChg;  //输出制式是否改变  /*仅用于导入界面参数时*/
 };
 
 #endif // !defined(AFX_CNCCONFIG_H__40492EAF_0B43_4101_A0B9_FDD4C21B1D4A__INCLUDED_)

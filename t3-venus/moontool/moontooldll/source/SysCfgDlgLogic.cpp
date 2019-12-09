@@ -71,6 +71,7 @@ bool CSysCfgDlgLogic::InitWnd( const IArgs & arg )
 void CSysCfgDlgLogic::RegMsg()
 {
 	CSysCfgDlgLogic *pThis = GetSingletonPtr();
+    REG_MSG_HANDLER( UI_MOONTOOL_CONNECTED, CSysCfgDlgLogic::OnConnectRsp, pThis, CSysCfgDlgLogic );
 	REG_MSG_HANDLER( UI_MOONTOOL_VERINFO_NTY, CSysCfgDlgLogic::OnSoftWareVerInfoNty, pThis, CSysCfgDlgLogic );
 	//REG_MSG_HANDLER( UI_MOONTOOL_CAMOUTPUT_INFO_NTY, CSysCfgDlgLogic::OnCamOutputInfoNty, pThis, CSysCfgDlgLogic );
 	//REG_MSG_HANDLER( UI_MOONTOOL_IMAGE_ADJUST_NTY, CSysCfgDlgLogic::OnCamImageAdjustNty, pThis, CSysCfgDlgLogic );
@@ -78,7 +79,6 @@ void CSysCfgDlgLogic::RegMsg()
 	//REG_MSG_HANDLER( UI_MOONTOOL_CAMOUTPUT_INFO_IND, CSysCfgDlgLogic::OnCamOutputInfoInd, pThis, CSysCfgDlgLogic );
 	//REG_MSG_HANDLER( UI_MOONTOOL_IMAGE_ADJUST_IND, CSysCfgDlgLogic::OnCamImageAdjustInd, pThis, CSysCfgDlgLogic );
 //	REG_MSG_HANDLER( UI_MOONTOOL_LVDSBAUD_IND, CSysCfgDlgLogic::OnLvdsBaudRateInd, pThis, CSysCfgDlgLogic );
-    REG_MSG_HANDLER( UI_MOONTOOL_CONNECTED, CSysCfgDlgLogic::OnConnectRsp, pThis, CSysCfgDlgLogic );
     REG_MSG_HANDLER( UI_RKC_NETWORK_REFLESH, CSysCfgDlgLogic::OnEthnetInfoReflesh, pThis, CSysCfgDlgLogic );
     REG_MSG_HANDLER( UI_MOONTOOL_CamParamSync_IND, CSysCfgDlgLogic::OnCamOutputInfoNty, pThis, CSysCfgDlgLogic );
     REG_MSG_HANDLER( UI_MoonSecDefault_Nty, CSysCfgDlgLogic::OnSetDefaultParamRsp, pThis, CSysCfgDlgLogic );
@@ -530,12 +530,19 @@ HRESULT CSysCfgDlgLogic::OnCamImageAdjustInd( WPARAM wparam, LPARAM lparam )
 HRESULT CSysCfgDlgLogic::OnConnectRsp( WPARAM wparam, LPARAM lparam )
 {
     BOOL bIsLogin = (BOOL)wparam;
-    if ( TRUE == bIsLogin )
+    if ( bIsLogin )
     {
         u16 wRet = COMIFMGRPTR->GetNetWorkConfig();
         if (wRet != NO_ERROR)
         {
             WARNMESSAGE( "获取网络配置请求发送失败" );
+            return false;
+        }
+
+        wRet = COMIFMGRPTR->GetVersionInfo();
+        if (wRet != NO_ERROR)
+        {
+            WARNMESSAGE( "获取版本信息请求发送失败" );
             return false;
         }
     }

@@ -1,13 +1,13 @@
 /*****************************************************************************
-æ¨¡å—å?     :  
-æ–‡ä»¶å?     : printctrl.cpp
-ç›¸å…³æ–‡ä»¶    : 
-ä½œè€?       : ylp
-ç‰ˆæœ¬        : V1.0  Copyright(C) 2011-2012 KDC, All rights reserved.
+Ä£¿éÃû      :  
+ÎÄ¼þÃû      : printctrl.cpp
+Ïà¹ØÎÄ¼þ    : 
+×÷Õß        : ylp
+°æ±¾        : V1.0  Copyright(C) 2011-2012 KDC, All rights reserved.
 -----------------------------------------------------------------------------
-ä¿®æ”¹è®°å½•:
-æ—? æœ?     ç‰ˆæœ¬        ä¿®æ”¹äº?     ä¿®æ”¹å†…å®¹
-2018/03/05  1.0          ylp      åˆ›å»º
+ÐÞ¸Ä¼ÇÂ¼:
+ÈÕ  ÆÚ      °æ±¾        ÐÞ¸ÄÈË      ÐÞ¸ÄÄÚÈÝ
+2018/03/05  1.0          ylp      ´´½¨
 ******************************************************************************/
 
 #include "stdafx.h"
@@ -20,9 +20,9 @@ map<u16, u8>            CRkcPrintCtrl::m_mapEventLevel;
 map<u16, CString>       CRkcPrintCtrl::m_mapEventsName;
 BOOL32                  CRkcPrintCtrl::m_bPrintAllMsg =  FALSE ;    //for test 
 u8                      CRkcPrintCtrl::m_bayPrintLevel = 0;
-u32                     CRkcPrintCtrl::m_dwPrintMsgID  = 0 ;        //è¦æ‰“å°çš„æ¶ˆæ¯å?
-u32                     CRkcPrintCtrl::m_dwPrintRangeMax = 0;       //è¦æ‰“å°çš„æ¶ˆæ¯èŒƒå›´ ä¸­çš„æœ€å¤§å€?
-u32                     CRkcPrintCtrl::m_dwPrintRangeMin = 0;       //è¦æ‰“å°çš„æ¶ˆæ¯èŒƒå›´ ä¸­çš„æœ€å°å€?
+u32                     CRkcPrintCtrl::m_dwPrintMsgID  = 0 ;        //Òª´òÓ¡µÄÏûÏ¢ºÅ
+u32                     CRkcPrintCtrl::m_dwPrintRangeMax = 0;       //Òª´òÓ¡µÄÏûÏ¢·¶Î§ ÖÐµÄ×î´óÖµ
+u32                     CRkcPrintCtrl::m_dwPrintRangeMin = 0;       //Òª´òÓ¡µÄÏûÏ¢·¶Î§ ÖÐµÄ×îÐ¡Öµ
 
 CRkcPrintCtrl::CRkcPrintCtrl()
 {
@@ -30,7 +30,7 @@ CRkcPrintCtrl::CRkcPrintCtrl()
     //m_bPrintAllMsg = TRUE;
     m_bayPrintLevel = 2;
 #endif
-    m_bayPrintLevel = 2;
+    m_bayPrintLevel = 0;
 }
 
 
@@ -99,7 +99,7 @@ void CRkcPrintCtrl::PrintMsg(u16 dwMsgID, EmScoketEventType emScoketEventType, c
     {
         return;
     }
-    //æ‰“å°æ¶ˆæ¯å?
+    //´òÓ¡ÏûÏ¢Ãû
     char szMsg[200] = {0}; 
     _snprintf(szMsg,sizeof(szMsg),"\n%s%s: %s.  ", GetTime(), GetEventTypeDescribe(emScoketEventType), GetEventDescribe(dwMsgID) );
 
@@ -107,7 +107,7 @@ void CRkcPrintCtrl::PrintMsg(u16 dwMsgID, EmScoketEventType emScoketEventType, c
     szMsg[n] = '\0';
     OspPrintf( TRUE, FALSE,  szMsg );  
 
-    //æ‰“å°æ¶ˆæ¯ä½?
+    //´òÓ¡ÏûÏ¢Ìå
     va_list arg_ptr;  
     char szBuffer[300] = { 0 };
 
@@ -202,7 +202,8 @@ CString CRkcPrintCtrl::GetEventDescribe( u16 wEvent )
 
 void CRkcPrintCtrl::PrintAllMsg()
 {
-    m_bPrintAllMsg = TRUE;
+    //m_bPrintAllMsg = TRUE;
+    m_bayPrintLevel = 2;
 }
 
 void CRkcPrintCtrl::PrintMsgLevel( u8 abyLevel )

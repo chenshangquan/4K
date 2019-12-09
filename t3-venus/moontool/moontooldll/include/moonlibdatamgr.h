@@ -67,7 +67,10 @@ public:
 	*/	
 	u16 GetAllCamCfg( TTPMoonCamInfo* ptCamInfo[] )const;
 
-    u16 GetCurStatus( BOOL& bSetAllCamCfg )const;
+    // 获取当前界面状态
+    u16 GetCurStatus( BOOL& bSetCamCfgOver, BOOL& bOutputFmtChg )const;
+    // 清理当前界面状态
+    u16 ClearCurStatus()const;
 
     // 获取输出制式参数
     u16 GetOutputFormat( TPOutputFmt &tPOutputFmt )const;

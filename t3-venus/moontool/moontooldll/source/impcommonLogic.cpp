@@ -62,12 +62,13 @@ VOID  CALLBACK  CWaitTimerFun( HWND hwnd, UINT uMsg, UINT_PTR idEvent, DWORD dwT
 
 VOID  CALLBACK  CWaitFunc( HWND hwnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime )
 {
-    BOOL bRet = TRUE;
-    MOONLIBDATAMGRPTR->GetCurStatus(bRet);
-    if (!bRet)
+    BOOL bSetCamCfgOver = FALSE;
+    BOOL bOutputFmtChg = FALSE;
+    MOONLIBDATAMGRPTR->GetCurStatus(bSetCamCfgOver, bOutputFmtChg);
+    if (!bSetCamCfgOver)
     {
         BOOL bOk = KillTimer( NULL, g_nTransTimeID );	//关掉定时器
-        IMPCOMMONLOGICRPTR->SetAllCamCfgEnd();
+        IMPCOMMONLOGICRPTR->SetAllCamCfgEnd(bOutputFmtChg);
     }
     else
     {
@@ -78,7 +79,7 @@ VOID  CALLBACK  CWaitFunc( HWND hwnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime 
     if ( IMPCOMMONLOGICRPTR->GetTimeOutCount() >= SET_ALL_CAM_CFG_COUNT )
     {
         BOOL bOk = KillTimer( NULL, g_nTransTimeID );	//关掉定时器
-        IMPCOMMONLOGICRPTR->SetAllCamCfgEnd();
+        IMPCOMMONLOGICRPTR->SetAllCamCfgEnd(bOutputFmtChg);
     }
 }
 
@@ -593,6 +594,18 @@ bool CImpCommonDlgLogic::OnBtnUpgradeMoon( const IArgs & arg )
 	
 	UploadCore( /*CNSUPGRADE_FILE_PATH*/UPDATEFILE_PATH_NAME, strFileFullPath, /*CNSUPGRADE_FILE_NAME*/m_strImpFileName );  //参数需要重新设置
 #else  //TFTP
+    Value_WindowCaption valFolderName;
+    UIFACTORYMGR_PTR->GetPropertyValue( valFolderName, m_strEdtSaveFolder, m_pWndTree );
+    
+    String strFileFullPath;
+    strFileFullPath = valFolderName.strCaption.c_str();
+    if ( !UIDATAMGR_PTR->IsFileExist( strFileFullPath.c_str() ) )
+    {
+        MSG_BOX_OK("指定文件不存在，无法升级!");
+        UIFACTORYMGR_PTR->LoadScheme( "SchmImpCommonClean", m_pWndTree );
+        return false;
+    }
+
     UIFACTORYMGR_PTR->LoadScheme( "SchmTransferBeg", m_pWndTree );
     //开始定时器 到达时间后关闭窗口
     g_nUpLoadProcess = 0;
@@ -774,7 +787,7 @@ void CImpCommonDlgLogic::ClearTransFile()
     KillTimer( NULL, g_nUpLoadProcessTimerID );
     m_nCount = 0;
     g_nUpLoadProcess = 0;
-	MSG_BOX_OK("导入文件出错，错误原因：超时");
+	MSG_BOX_OK("升级文件上传失败，错误原因：超时");
     UIFACTORYMGR_PTR->LoadScheme( "SchmImpCommonClean", m_pWndTree );
     UIFACTORYMGR_PTR->LoadScheme( "SchmTransferBeg", m_pWndTree, m_strProgressImp );
 #endif
@@ -938,7 +951,7 @@ void CImpCommonDlgLogic::ReadFromCfgFile(String strPath)
     }
 }
 
-void CImpCommonDlgLogic::SetAllCamCfgEnd()
+void CImpCommonDlgLogic::SetAllCamCfgEnd(BOOL bOutputFmtChg)
 {
     UIFACTORYMGR_PTR->LoadScheme( "SchmTransferEnd", m_pWndTree );
     if ( m_nCount >= SET_ALL_CAM_CFG_COUNT )
@@ -947,9 +960,22 @@ void CImpCommonDlgLogic::SetAllCamCfgEnd()
     }
     else
     {
-        MSG_BOX_OK( "摄像机参数已被重置！" );
+        if ( bOutputFmtChg )
+        {
+            MSG_BOX_OK( "摄像机参数已被重置！输出制式已修改，需重启生效" );	
+            u16 wRet = COMIFMGRPTR->RebootMoon();
+            if ( wRet != NO_ERROR )
+            {
+                WARNMESSAGE( "重启moon90请求发送失败" );
+            }
+        }
+        else
+        {
+            MSG_BOX_OK( "摄像机参数已被重置！" );
+        }
     }
 
+    MOONLIBDATAMGRPTR->ClearCurStatus();
     m_nCount = 0;
 }
 

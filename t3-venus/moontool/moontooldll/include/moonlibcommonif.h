@@ -288,6 +288,8 @@ public:
     u16 GetNetWorkConfig();
     //获取网络配置内容
     u16 GetNetWorkConfig(TRK100NetParam& tRK100NetParam);
+    //获取软件版本
+    u16 GetVersionInfo();
 
 	u16 CamPreSetSaveCmd( const TTPCamPre& tTPCamPre );
 

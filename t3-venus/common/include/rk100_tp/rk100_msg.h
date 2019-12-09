@@ -192,6 +192,14 @@ enum EMRK100EvtId
     RK100_EVT_RECOVERY_DEFAULT_SET           = 2569,
     RK100_EVT_RECOVERY_DEFAULT_SET_ACK       = 2570,
 
+    /*参数导入完成*/
+    RK100_EVT_PARAM_INPUT_OVER              = 2571,
+    RK100_EVT_PARAM_INPUT_OVER_ACK          = 2572,
+
+    /*推送版本信息*/
+    RK100_EVT_GET_VERSION_INFO              = 2573,
+    RK100_EVT_GET_VERSION_INFO_ACK          = 2574,
+
 };
 
 /* 事件处理返回值定义 */

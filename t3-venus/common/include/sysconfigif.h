@@ -60,6 +60,13 @@ public:
 	 *  @remarks 
 	 */
 	virtual u16 GetNetWorkConfig(TRK100NetParam& tRK100NetParam) = 0;
+
+    /** 功能   获取软件版本
+	 *  @param[in]
+	 *  @return 成功返回0,失败返回非0错误码
+	 *  @remarks 
+	 */
+    virtual u16 GetVersionInfo() = 0;
 };
 
 #endif

@@ -191,7 +191,7 @@ MOONTOOLDLL_API BOOL _stdcall HandleMoonToolMsg( MSG* pMsg )
 API void help()
 {
     PrtMsg( "\n    showver:                    显示版本和编译时间");
-	PrtMsg( "\n    prt:                        打印所有级别为3以上的消息");
+	PrtMsg( "\n    prt:                        打印所有级别为2的消息，即一般级别的消息");
 	PrtMsg( "\n    prtlevel nLevel:            打印级别为nLevel的消息；消息级别 1-3，\n \
                                                1为级别最高的消息，该级别的消息对系统可能产生致命影响\n \
                                                2为一般级别的消息\n \
@@ -199,8 +199,8 @@ API void help()
 	PrtMsg( "\n    stopprt:                    停止打印");
 	PrtMsg( "\n    prtid msgID:                打印消息号是msgID的消息");
     PrtMsg( "\n    prtrange beginID endID:     打印消息号范围在 beginID 和 endID 之间的消息");
-    PrtMsg( "\n    prtrecive 0 / 1:            打印所有接受到的消息, 0:不打印，1:打印");
-    PrtMsg( "\n    prtsend 0 / 1:              打印所有发送出去的消息, 0:不打印，1:打印");
+    //PrtMsg( "\n    prtrecive 0 / 1:            打印所有接受到的消息, 0:不打印，1:打印");
+    //PrtMsg( "\n    prtsend 0 / 1:              打印所有发送出去的消息, 0:不打印，1:打印");
 }
 
 API void showver()
@@ -235,12 +235,12 @@ API void prtrange( u32 beginID, u32 endID )
     CRkcPrintCtrl::GetPrintCtrl()->SetPrintMsgRange( beginID, endID ); 
 }
 
-API void prtrecive( BOOL bPrint /*= TRUE */ )
-{
-    //CPrintCtrl::GetPrintCtrl()->PrintEnterMsg( bPrint ); 
-}
+//API void prtrecive( BOOL bPrint /*= TRUE */ )
+//{
+//    CPrintCtrl::GetPrintCtrl()->PrintEnterMsg( bPrint ); 
+//}
 
-API void prtsend( BOOL bPrint/* = TRUE */)
-{
-	//CRkcPrintCtrl::GetPrintCtrl()->PrintOutMsg( bPrint );
-}
+//API void prtsend( BOOL bPrint/* = TRUE */)
+//{
+//    CRkcPrintCtrl::GetPrintCtrl()->PrintOutMsg( bPrint );
+//}

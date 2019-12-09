@@ -77,9 +77,15 @@ u16 CMoonlibDataMgr::SetAllCamCfg( TTPMoonCamInfo tCamInfo[] )const
     return NO_ERROR;
 }
 
-u16 CMoonlibDataMgr::GetCurStatus( BOOL& bSetAllCamCfg )const
+u16 CMoonlibDataMgr::GetCurStatus( BOOL& bSetCamCfgOver, BOOL& bOutputFmtChg )const
 {
-    bSetAllCamCfg = MOONSESSION_MGR_PTR->GetCamConfigIF()->GetCurStatus();
+    MOONSESSION_MGR_PTR->GetCamConfigIF()->GetCurStatus(bSetCamCfgOver, bOutputFmtChg);
+    return NO_ERROR;
+}
+
+u16 CMoonlibDataMgr::ClearCurStatus()const
+{
+    MOONSESSION_MGR_PTR->GetCamConfigIF()->ClearCurStatus();
     return NO_ERROR;
 }
 

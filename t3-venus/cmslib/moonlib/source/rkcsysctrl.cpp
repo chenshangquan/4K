@@ -149,7 +149,7 @@ void CRkcSysCtrl::OnLoginRsp(const CMessage& cMsg)
         CloseSocket();
     }
     m_tRK100MsgHead = tMsgHead;
-    PostEvent(UI_MOONTOOL_CONNECTED, WPARAM(RK100_OPT_RTN_OK == tMsgHead.wOptRtn) , (LPARAM)tMsgHead.wOptRtn );
+    PostEvent(UI_MOONTOOL_CONNECTED, WPARAM(RK100_OPT_RTN_OK == tMsgHead.wOptRtn || RK100_OPT_ERR_FIRST_LOGIN == tMsgHead.wOptRtn) , (LPARAM)tMsgHead.wOptRtn );
 }
 
 void CRkcSysCtrl::OnModifyPasswordRsp(const CMessage& cMsg)

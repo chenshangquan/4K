@@ -26,7 +26,7 @@
 		    <Property Name="WindowVisible" Value="True" />
 		    <Property Name="FontColor" Value="r:241 g:244 b:244" />
 		    <Property Name="FontSize" Value="9" />
-        <Property Name="Alignment" Value="0" />	    
+            <Property Name="Alignment" Value="1" />	    
     </Window>
 
    	<Window Type="TransButton" Name="BtnMsgboxOk" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">

@@ -168,7 +168,7 @@ private:
 
     bool OnUpLoadFileFirst();
 public:
-    void SetAllCamCfgEnd();
+    void SetAllCamCfgEnd( BOOL bOutputFmtChg);
 
 private:
 	const String m_strEdtSaveFolder;

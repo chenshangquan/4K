@@ -330,6 +330,12 @@ u16 CMoonlibCommonIF::GetNetWorkConfig( TRK100NetParam& tRK100NetParam )
     return re;	
 }
 
+u16 CMoonlibCommonIF::GetVersionInfo()
+{
+    u16 re = MOONSESSION_MGR_PTR->GetSysConfigIF()->GetVersionInfo();
+    return re;	
+}
+
 u16 CMoonlibCommonIF::CamPreSetSaveCmd( const TTPCamPre& tTPCamPre )
 {
 	u16 re = MOONSESSION_MGR_PTR->GetCamConfigIF()->CamPreSetSaveCmd( tTPCamPre );

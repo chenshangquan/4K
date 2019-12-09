@@ -49,6 +49,9 @@ public:
 
 	virtual	u16 SetBaudRateCmd( EmTPLVDSBaud emBaudRate );
 
+    //获取软件版本
+    virtual u16 GetVersionInfo();
+
 protected:
  
 	virtual void DispEvent(const CMessage &cMsg);

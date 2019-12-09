@@ -1661,31 +1661,22 @@ HRESULT CCameraCtrlLogic::OnCamParamSyncInd(WPARAM wparam, LPARAM lparam)
         //摄像机界面设置
 	    SetCameraCfg( tMoonCameraCfg );
     }
+    else
+    {
+        CMsgboxDlgLogic::GetSingletonPtr()->Clear();
+    }
 
-    CMsgboxDlgLogic::GetSingletonPtr()->Clear();
 	return S_OK;
 }
 
 HRESULT CCameraCtrlLogic::OnCameraOutputFormatRsp(WPARAM wparam, LPARAM lparam)
 {
-    TPOutputFmt *tOutputFmt = (TPOutputFmt*)wparam;
+    BOOL bRet = static_cast<BOOL>(wparam);
     EMRK100OptRtn wRet = static_cast<EMRK100OptRtn>(lparam);
-    if ( wRet != RK100_OPT_RTN_OK )
+    if ( !bRet )
     {
         WARNMESSAGE( _T("摄像机输出制式设置失败") );
     }
-
-    /*if (tOutputFmt->FMT1080_25fps_flag || tOutputFmt->FMT1080_50fps_flag ||
-        tOutputFmt->FMT4K_25fps_flag || tOutputFmt->FMT720_50fps_flag)
-    {
-        m_bSourceCfg = 0;
-    }
-    else
-    {
-        m_bSourceCfg = 1;
-    }
-
-    SetShutComboxData();*/
 
     //输出制式修改需重启生效
     u16 wRes = COMIFMGRPTR->RebootMoon();
@@ -1925,14 +1916,28 @@ HRESULT CCameraCtrlLogic::OnCameraAutoWBInd( WPARAM wparam, LPARAM lparam )
 		return S_FALSE;
 	}
 	
-	//EmTPMOOMMode emWBMode;
-	//MOONLIBDATAMGRPTR->GetCamWBMode( emWBMode );
+    u32 dwGainValue = 0;
+	EmTPMOOMMode emWBMode;
+	MOONLIBDATAMGRPTR->GetCamWBMode( emWBMode );
 	EMRK100OptRtn wRet = static_cast<EMRK100OptRtn>(lparam);
 	
 	if ( wRet != RK100_OPT_RTN_OK )
 	{
 		WARNMESSAGE( "白平衡设置失败" );
 	}
+    else
+    {
+        //切换为自动模式，需取自动调节后的R、B增益值
+        if ( emAuto == emWBMode )
+        {
+            //R增益
+            MOONLIBDATAMGRPTR->GetCamRGain(dwGainValue);
+            SetRGainValue(dwGainValue);
+            //B增益
+            MOONLIBDATAMGRPTR->GetCamBGain(dwGainValue);
+            SetBGainValue(dwGainValue);
+        }
+    }
 	
 	//SetAutoWB(emWBMode);
 		
@@ -4181,11 +4186,11 @@ HRESULT CCameraCtrlLogic::OnCamPreSet1SaveRsp( WPARAM wparam, LPARAM lparam )
     BOOL bSuccess = (BOOL)wparam;
     if (bSuccess)
     {
-        MSG_BOX_OK("已成功保存至预置位1");
+        MSG_BOX_OK("已成功保存当前参数");
     }
     else
     {
-        WARNMESSAGE( "保存预置位失败" );
+        WARNMESSAGE( "保存当前参数失败" );
         return S_FALSE;
     }
 

@@ -8,7 +8,7 @@
 //#include "rkcevent.h"
 #include "rkcprintctrl.h"
 
-static UINT g_nTmHandleWaiting = 1;
+static UINT g_nTmHandleWaiting = 0;
 static BOOL g_bRecZoomACK = FALSE;
 static CRkMessage g_rkmsg;  //消息定义
 VOID  CALLBACK  CWaitingTimerFun( HWND hwnd, UINT uMsg, UINT idEvent, DWORD dwTime )
@@ -31,10 +31,12 @@ CCamConfig::CCamConfig(CRkcSession &cSession) : CCamConfigIF()
 	m_byCameraSyncSel = 0;
     m_emTPMechanism = emSonyFCBCS8230;
     m_bSetAllCamCfg = FALSE;
+    m_bOutputFmtChg = FALSE;
 
     memset( &m_tCnCameraCfg1, 0, sizeof(TTPMoonCamInfo) );
     memset( &m_tCnCameraCfg2, 0, sizeof(TTPMoonCamInfo) );
 	memset( &m_tCnCameraCfg3, 0, sizeof(TTPMoonCamInfo) );
+    ZeroMemory(m_atOldCamCfg, 3*sizeof(TTPMoonCamInfo));
 
 	BuildEventsMap();
 }
@@ -125,6 +127,7 @@ void CCamConfig::BuildEventsMap()
     REG_PFUN( RK100_EVT_REBOOT_ACK, CCamConfig::OnReBootRkRsp );
     REG_PFUN( RK100_EVT_RECOVERY_DEFAULT_SET_ACK, CCamConfig::OnCamParamDefaultInd );
     REG_PFUN( RK100_EVT_SET_CAM_Preset_Save_ACK, CCamConfig::OnCamPreSet1SaveRsp );
+    REG_PFUN( RK100_EVT_PARAM_INPUT_OVER_ACK, CCamConfig::OnCamParamInputOverRsp );
 
 }
 
@@ -139,7 +142,11 @@ void CCamConfig::OnLinkBreak(const CMessage& cMsg)
 	memset( &m_tCnCameraCfg1, 0, sizeof(TTPMoonCamInfo) );
 	memset( &m_tCnCameraCfg2, 0, sizeof(TTPMoonCamInfo) );
 	memset( &m_tCnCameraCfg3, 0, sizeof(TTPMoonCamInfo) );
-	memset( &m_atTPCamPre, 0, sizeof(TTPCamPre) );	
+	memset( &m_atTPCamPre, 0, sizeof(TTPCamPre) );
+    ZeroMemory(m_atOldCamCfg, 3*sizeof(TTPMoonCamInfo));
+
+    m_bSetAllCamCfg = FALSE;
+    m_bOutputFmtChg = FALSE;
 	m_pTPMoonCamCfg = NULL;
 //	再次登陆记住已选择机芯
 //	m_byCameraSel = 0;
@@ -514,10 +521,16 @@ TTPMoonCamInfo CCamConfig::GetCamCfg()
 
 void CCamConfig::SetAllCamCfg(TTPMoonCamInfo tCamInfo[])
 {
+    //保存原配置  /* 机芯控制逻辑界面映射：1->2, 2->3, 3->1 */
+    m_atOldCamCfg[0] = m_tCnCameraCfg2;
+    m_atOldCamCfg[1] = m_tCnCameraCfg3;
+    m_atOldCamCfg[2] = m_tCnCameraCfg1;
+    //导入参数获取
     m_tCnCameraCfg1 = tCamInfo[0];
     m_tCnCameraCfg2 = tCamInfo[1];
     m_tCnCameraCfg3 = tCamInfo[2];
     m_bSetAllCamCfg = TRUE;
+    m_bOutputFmtChg = FALSE;
     AllCamCfgCmdSend();
 }
 
@@ -528,9 +541,16 @@ void CCamConfig::GetAllCamCfg(TTPMoonCamInfo* ptCamInfo[])
     ptCamInfo[2] = &m_tCnCameraCfg3;
 }
 
-BOOL CCamConfig::GetCurStatus()
+void CCamConfig::GetCurStatus(BOOL &bSetCamCfgOver, BOOL &bOutputFmtChg)
 {
-    return m_bSetAllCamCfg;
+    bSetCamCfgOver = m_bSetAllCamCfg;
+    bOutputFmtChg = m_bOutputFmtChg;
+}
+
+void CCamConfig::ClearCurStatus()
+{
+    m_bSetAllCamCfg = FALSE;
+    m_bOutputFmtChg = FALSE;
 }
 
 u8 CCamConfig::GetCamSel()const
@@ -709,7 +729,16 @@ void CCamConfig::OnOutputFormatRsp(const CMessage& cMsg)
     }
     
     PrtRkcMsg( RK100_EVT_SET_CAM_OUTPUT_FORMAT_ACK, emEventTypeScoketRecv, "wRtn:%d", tMsgHead.wOptRtn);
-    PostEvent( UI_MOONTOOL_OUTPUT_FORMAT_RSP, (WPARAM)&tOutputFmt, (LPARAM)tMsgHead.wOptRtn );
+
+    //导入界面参数，若输出制式改变，无需通知界面
+    if ( m_bSetAllCamCfg )
+    {
+        m_bOutputFmtChg = TRUE;
+    }
+    else
+    {
+        PostEvent( UI_MOONTOOL_OUTPUT_FORMAT_RSP, (WPARAM)(RK100_OPT_RTN_OK == tMsgHead.wOptRtn), (LPARAM)tMsgHead.wOptRtn );
+    }
 }
 
 TPOutputFmt CCamConfig::GetOutputFormat()
@@ -744,7 +773,7 @@ u16 CCamConfig::SetCamZoomValCmd( const TCamZoomVal& tCamZoomVal)
     else
     {
         g_rkmsg = rkmsg;
-        if ( g_nTmHandleWaiting == 1 )
+        if ( g_nTmHandleWaiting == 0 )
         {
             SOCKETWORK->SendDataPack(rkmsg);//消息发送
             g_nTmHandleWaiting = SetTimer( NULL, 0, 100, CWaitingTimerFun );
@@ -782,7 +811,7 @@ void CCamConfig::OnSetCamZoomValRsp(const CMessage& cMsg)
     if ( tMsgHead.wOptRtn == RK100_OPT_RTN_OK )
     {
         //zoom持续调节
-        if (g_nTmHandleWaiting != 1)
+        if (g_nTmHandleWaiting != 0)
         {
             if ( SetCamZoomValCmd(tCamZoomVal) == NO_ERROR )
             {
@@ -854,7 +883,7 @@ u16 CCamConfig::SetCamZoomStopCmd(u8 byIndex)
         tCamZoomVal.InputPreciseValFlag, tCamZoomVal.InputVal, tCamZoomVal.ZoomUpFlag, tCamZoomVal.ZoomDownFlag, tCamZoomVal.ZoomUpDownStopFlag);*/
 
     KillTimer( NULL, g_nTmHandleWaiting );
-    g_nTmHandleWaiting = 1;
+    g_nTmHandleWaiting = 0;
     
     //SOCKETWORK->SendDataPack(rkmsg);//消息发送
     return NOERROR;
@@ -2104,15 +2133,7 @@ void CCamConfig::OnCamAutoWBInd(const CMessage& cMsg)
     
     if ( tMsgHead.wOptRtn == RK100_OPT_RTN_OK )
     {
-        if ( tCamWBMode.CamWBManuModeFlag == 1 )
-        {
-            m_pTPMoonCamCfg->WBMode = tCamWBMode;
-        }
-        else if ( tCamWBMode.CamWBAutoModeFlag == 1 )
-        {
-            m_pTPMoonCamCfg->WBMode.CamWBAutoModeFlag = tCamWBMode.CamWBAutoModeFlag;
-            m_pTPMoonCamCfg->WBMode.CamWBManuModeFlag = tCamWBMode.CamWBManuModeFlag;
-        }
+        m_pTPMoonCamCfg->WBMode = tCamWBMode;
     }
     
     PrtRkcMsg( RK100_EVT_SET_CAM_WB_ACK, emEventTypeScoketRecv, "wRtn:%d,[AutoMode:%d,ManuMode:%d,RGain:%d,BGain:%d]",
@@ -2329,6 +2350,11 @@ u16 CCamConfig::CamImageParaCmd( EmTPImagePara emImagePara, const u32& dwImagePa
     }
     else if ( emImagePara == emGama )
     {
+        //Gamma 调节需清空原有配置
+        tCamImgParam.Gamma_opt_1_flag = 0;
+        tCamImgParam.Gamma_opt_2_flag = 0;
+        tCamImgParam.Gamma_opt_3_flag  =0;
+
         if ( dwImagePara == emGamma1 )
         {
             tCamImgParam.Gamma_opt_1_flag = 1;
@@ -2351,6 +2377,24 @@ u16 CCamConfig::CamImageParaCmd( EmTPImagePara emImagePara, const u32& dwImagePa
     PrtRkcMsg( RK100_EVT_SET_CAM_ImagParam, emEventTypeScoketSend, "emImagePara:%d, tCamImgParam:[Bright:%d,Hue:%d,saturation:%d], Gamma:[%d,%d,%d]",
         emImagePara, tCamImgParam.BrightVal, tCamImgParam.ColorHueVal, tCamImgParam.ColorGainVal,
         tCamImgParam.Gamma_opt_1_flag, tCamImgParam.Gamma_opt_2_flag, tCamImgParam.Gamma_opt_3_flag);
+
+    SOCKETWORK->SendDataPack(rkmsg);//消息发送
+    return NOERROR;
+}
+// 所有图像参数
+u16 CCamConfig::CamImageParaCmd( TCamImagParam &tCamImagParam )
+{
+    TRK100MsgHead tRK100MsgHead;//定义消息头结构体
+    memset(&tRK100MsgHead,0,sizeof(TRK100MsgHead));
+    //整型传数据集的转网络序
+    tRK100MsgHead.dwEvent = htonl(RK100_EVT_SET_CAM_ImagParam);
+    tRK100MsgHead.wMsgLen = htons(sizeof(TCamImagParam));
+    CRkMessage rkmsg;//定义消息
+    rkmsg.SetBody(&tRK100MsgHead, sizeof(TRK100MsgHead));//添加头内容
+    rkmsg.CatBody(&tCamImagParam, sizeof(TCamImagParam));//添加消息体
+    PrtRkcMsg( RK100_EVT_SET_CAM_ImagParam, emEventTypeScoketSend, "tCamImgParam:[Bright:%d,Hue:%d,saturation:%d], Gamma:[%d,%d,%d]",
+        tCamImagParam.BrightVal, tCamImagParam.ColorHueVal, tCamImagParam.ColorGainVal,
+        tCamImagParam.Gamma_opt_1_flag, tCamImagParam.Gamma_opt_2_flag, tCamImagParam.Gamma_opt_3_flag);
 
     SOCKETWORK->SendDataPack(rkmsg);//消息发送
     return NOERROR;
@@ -2783,6 +2827,25 @@ u16 CCamConfig::Cam2DNRCmd( BOOL bIsOpen, EmTPReduNoise emTPReduNoise )
     return NOERROR;
 }
 
+u16 CCamConfig::Cam2DNRCmd( TCamD2NRMode &tCamD2NRMode )
+{
+    TRK100MsgHead tRK100MsgHead;//定义消息头结构体
+    memset(&tRK100MsgHead,0,sizeof(TRK100MsgHead));
+    //整型传数据集的转网络序
+    tRK100MsgHead.dwEvent = htonl(RK100_EVT_SET_CAM_D2NR);
+    tRK100MsgHead.wMsgLen = htons(sizeof(TCamD2NRMode));
+    CRkMessage rkmsg;//定义消息
+    rkmsg.SetBody(&tRK100MsgHead, sizeof(TRK100MsgHead));//添加头内容
+    rkmsg.CatBody(&tCamD2NRMode, sizeof(TCamD2NRMode));//添加消息体
+    
+    PrtRkcMsg( RK100_EVT_SET_CAM_D2NR, emEventTypeScoketSend, "tCamD2NRMode:[On:%d,Off:%d,Level<%d,%d,%d,%d,%d>]",
+        tCamD2NRMode.D2NROnFlag, tCamD2NRMode.D2NROffFlag, tCamD2NRMode.D2NR_level_1_Flag, tCamD2NRMode.D2NR_level_2_Flag,
+        tCamD2NRMode.D2NR_level_3_Flag, tCamD2NRMode.D2NR_level_4_Flag, tCamD2NRMode.D2NR_level_5_Flag);
+    
+    SOCKETWORK->SendDataPack(rkmsg);//消息发送
+    return NOERROR;
+}
+
 u16 CCamConfig::Cam3DNRCmd( BOOL bIsOpen, EmTPReduNoise emTPReduNoise )
 {
 	/*CTpMsg *pcTpMsg = m_pSession->GetKdvMsgPtr();
@@ -2849,6 +2912,25 @@ u16 CCamConfig::Cam3DNRCmd( BOOL bIsOpen, EmTPReduNoise emTPReduNoise )
     rkmsg.CatBody(&tCamNRMode, sizeof(TCamD3NRMode));//添加消息体
     
     PrtRkcMsg( RK100_EVT_SET_CAM_D3NR, emEventTypeScoketSend, "bIsOpen:%d, emTPReduNoise:%d", bIsOpen, emTPReduNoise);
+    
+    SOCKETWORK->SendDataPack(rkmsg);//消息发送
+    return NOERROR;
+}
+
+u16 CCamConfig::Cam3DNRCmd( TCamD3NRMode &tCamD3NRMode )
+{
+    TRK100MsgHead tRK100MsgHead;//定义消息头结构体
+    memset(&tRK100MsgHead,0,sizeof(TRK100MsgHead));
+    //整型传数据集的转网络序
+    tRK100MsgHead.dwEvent = htonl(RK100_EVT_SET_CAM_D3NR);
+    tRK100MsgHead.wMsgLen = htons(sizeof(TCamD3NRMode));
+    CRkMessage rkmsg;//定义消息
+    rkmsg.SetBody(&tRK100MsgHead, sizeof(TRK100MsgHead));//添加头内容
+    rkmsg.CatBody(&tCamD3NRMode, sizeof(TCamD3NRMode));//添加消息体
+    
+    PrtRkcMsg( RK100_EVT_SET_CAM_D3NR, emEventTypeScoketSend, "tCamD3NRMode:[On:%d,Off:%d,Level<%d,%d,%d,%d,%d>]",
+        tCamD3NRMode.D3NROnFlag, tCamD3NRMode.D3NROffFlag, tCamD3NRMode.D3NR_level_1_Flag, tCamD3NRMode.D3NR_level_2_Flag,
+        tCamD3NRMode.D3NR_level_3_Flag, tCamD3NRMode.D3NR_level_4_Flag, tCamD3NRMode.D3NR_level_5_Flag);
     
     SOCKETWORK->SendDataPack(rkmsg);//消息发送
     return NOERROR;
@@ -2950,12 +3032,6 @@ void CCamConfig::OnCam3DNRInd(const CMessage& cMsg)
 
     PrtRkcMsg( RK100_EVT_SET_CAM_D3NR_ACK, emEventTypeScoketRecv, "wRtn:%d", tMsgHead.wOptRtn);
     PostEvent( UI_MOONTOOL_CAMERA_3DNR_IND, (WPARAM)tCamD3NRMode.D3NROnFlag, (LPARAM)tMsgHead.wOptRtn );
-
-    //导入界面参数，最后一参数设置完成
-    if ( m_bSetAllCamCfg && m_byCameraSel == 0 )
-    {
-        m_bSetAllCamCfg = FALSE;
-    }
 }
 
 //预置位
@@ -3097,6 +3173,45 @@ u16 CCamConfig::MoonCamResetCmd(u8 byIndex)
     
     SOCKETWORK->SendDataPack(rkmsg);//消息发送
     return NOERROR;
+}
+
+//界面参数设置完成
+u16 CCamConfig::InputCamParamOverCmd()
+{
+    TRK100MsgHead tRK100MsgHead;//定义消息头结构体
+    memset(&tRK100MsgHead,0,sizeof(TRK100MsgHead));
+    //整型传数据集的转网络序
+    tRK100MsgHead.dwEvent = htonl(RK100_EVT_PARAM_INPUT_OVER);
+    CRkMessage rkmsg;//定义消息
+    rkmsg.SetBody(&tRK100MsgHead, sizeof(TRK100MsgHead));//添加头内容
+    
+    PrtRkcMsg( RK100_EVT_PARAM_INPUT_OVER, emEventTypeScoketSend, "Input Camera Param Over.");
+    
+    SOCKETWORK->SendDataPack(rkmsg);//消息发送
+    return NOERROR;
+}
+
+//界面参数设置完成 Rsp
+void CCamConfig::OnCamParamInputOverRsp( const CMessage& cMsg )
+{
+    TRK100MsgHead tMsgHead = *reinterpret_cast<TRK100MsgHead*>( cMsg.content );
+    tMsgHead.dwEvent = ntohl(tMsgHead.dwEvent);
+    tMsgHead.dwHandle = ntohl(tMsgHead.dwHandle);
+    tMsgHead.dwProtocolVer = ntohl(tMsgHead.dwProtocolVer);
+    tMsgHead.dwRsvd = ntohl(tMsgHead.dwRsvd);
+    tMsgHead.dwSerial = ntohl(tMsgHead.dwSerial);
+    tMsgHead.nArgv = ntohl(tMsgHead.nArgv);
+    tMsgHead.wExtLen = ntohs(tMsgHead.wExtLen);
+    tMsgHead.wMsgLen = ntohs(tMsgHead.wMsgLen);
+    tMsgHead.wOptRtn = ntohs(tMsgHead.wOptRtn);
+    tMsgHead.wReserved1 = ntohs(tMsgHead.wReserved1);
+    
+    PrtRkcMsg( RK100_EVT_PARAM_INPUT_OVER_ACK, emEventTypeScoketRecv, "Input Camera Param Done!");
+    //导入界面参数，最后一参数设置完成
+    if ( m_bSetAllCamCfg && m_byCameraSel == 0 )
+    {
+        m_bSetAllCamCfg = FALSE;
+    }
 }
 
 void CCamConfig::OnCamPreSetNty( const CMessage& cMsg )
@@ -3834,15 +3949,41 @@ void CCamConfig::OnReBootRkRsp( const CMessage& cMsg )
     PostEvent(UI_RKC_REBOOT, WPARAM(RK100_OPT_RTN_OK == tMsgHead.wOptRtn) , (LPARAM)tMsgHead.wOptRtn );
 }
 
+void DelaySendCmd(int interval)
+{
+    HANDLE evt;
+    if (interval <= 0)
+    {
+        interval = 1;
+    }
+
+    evt = CreateEvent(NULL, TRUE, FALSE, NULL);
+    WaitForSingleObject(evt, interval);
+    CloseHandle(evt);
+}
+
 void CCamConfig::AllCamCfgCmdSend()
 {
+    //首先判断输出制式是否相同
+    if ( m_tCnCameraCfg2.OutputFmt.FMT4K_25fps_flag != m_atOldCamCfg[0].OutputFmt.FMT4K_25fps_flag
+        || m_tCnCameraCfg2.OutputFmt.FMT4K_30fps_flag != m_atOldCamCfg[0].OutputFmt.FMT4K_30fps_flag
+        || m_tCnCameraCfg2.OutputFmt.FMT1080_25fps_flag != m_atOldCamCfg[0].OutputFmt.FMT1080_25fps_flag
+        || m_tCnCameraCfg2.OutputFmt.FMT1080_30fps_flag != m_atOldCamCfg[0].OutputFmt.FMT1080_30fps_flag
+        || m_tCnCameraCfg2.OutputFmt.FMT1080_50fps_flag != m_atOldCamCfg[0].OutputFmt.FMT1080_50fps_flag
+        || m_tCnCameraCfg2.OutputFmt.FMT1080_60fps_flag != m_atOldCamCfg[0].OutputFmt.FMT1080_60fps_flag
+        || m_tCnCameraCfg2.OutputFmt.FMT720_50fps_flag != m_atOldCamCfg[0].OutputFmt.FMT720_50fps_flag
+        || m_tCnCameraCfg2.OutputFmt.FMT720_60fps_flag != m_atOldCamCfg[0].OutputFmt.FMT720_60fps_flag )
+    {
+        SetOutputFormatCmd(m_tCnCameraCfg2.OutputFmt);
+    }
+
     TTPMoonCamInfo *ptCurCamInfo = NULL ;
     //分别对机芯3，2，1进行参数设置
     for (s8 byIndex = 2; byIndex >= 0 ; byIndex--)
     {
         //机芯选择
         CamSelCmd(byIndex);
-        Sleep(DELAY_SEND_CMD);
+        DelaySendCmd(DELAY_SEND_CMD);
         //机芯控制逻辑界面映射：1->2, 2->3, 3->1
         if ( byIndex == 2 )
         {
@@ -3857,116 +3998,162 @@ void CCamConfig::AllCamCfgCmdSend()
             ptCurCamInfo = &m_tCnCameraCfg2;
         }
         //ZOOM值设置
-        TCamZoomVal tCamZoomVal;
-        ZeroMemory(&tCamZoomVal, sizeof(TCamZoomVal));
-        tCamZoomVal.InputPreciseValFlag = 1;
-        tCamZoomVal.InputVal = ptCurCamInfo->dwZoomPos;
-        SetCamZoomValCmd(tCamZoomVal);
+        if ( m_atOldCamCfg[byIndex].dwZoomPos != ptCurCamInfo->dwZoomPos )
+        {
+            TCamZoomVal tCamZoomVal;
+            ZeroMemory(&tCamZoomVal, sizeof(TCamZoomVal));
+            tCamZoomVal.InputPreciseValFlag = 1;
+            tCamZoomVal.InputVal = ptCurCamInfo->dwZoomPos;
+            SetCamZoomValCmd(tCamZoomVal);
+            DelaySendCmd(DELAY_SEND_CMD);
+        }
         //聚焦模式设置
-        if (ptCurCamInfo->FocusMode.AutoModeFlag == 1)
+        if ( m_atOldCamCfg[byIndex].FocusMode.AutoModeFlag
+            != ptCurCamInfo->FocusMode.AutoModeFlag )
         {
-            SetCamAutoFocusCmd(emAuto);
+            if (ptCurCamInfo->FocusMode.AutoModeFlag == 1)
+            {
+                SetCamAutoFocusCmd(emAuto);
+            }
+            else
+            {
+                SetCamAutoFocusCmd(emManual);
+            }
+            DelaySendCmd(DELAY_SEND_CMD);
         }
-        else
-        {
-            SetCamAutoFocusCmd(emManual);
-        }
-      
         //光圈模式设置
-        SetCamApertreCmd( ptCurCamInfo->IrisMode );
-        //曝光模式设置
-        if (ptCurCamInfo->ExpMode.ExposAutoModeFlag == 1)
+        if (  m_atOldCamCfg[byIndex].IrisMode.IrisAutoFlag != ptCurCamInfo->IrisMode.IrisAutoFlag
+            || m_atOldCamCfg[byIndex].IrisMode.IrisBackCompFlag != ptCurCamInfo->IrisMode.IrisBackCompFlag
+            || m_atOldCamCfg[byIndex].IrisMode.optIrisF2_8Flag != ptCurCamInfo->IrisMode.optIrisF2_8Flag
+            || m_atOldCamCfg[byIndex].IrisMode.optIrisF3_1Flag != ptCurCamInfo->IrisMode.optIrisF3_1Flag
+            || m_atOldCamCfg[byIndex].IrisMode.optIrisF3_4Flag != ptCurCamInfo->IrisMode.optIrisF3_4Flag
+            || m_atOldCamCfg[byIndex].IrisMode.optIrisF3_7Flag != ptCurCamInfo->IrisMode.optIrisF3_7Flag
+            || m_atOldCamCfg[byIndex].IrisMode.optIrisF4_0Flag != ptCurCamInfo->IrisMode.optIrisF4_0Flag
+            || m_atOldCamCfg[byIndex].IrisMode.optIrisF4_4Flag != ptCurCamInfo->IrisMode.optIrisF4_4Flag)
         {
-            CamAutoExposureCmd( emAuto );
+            SetCamApertreCmd( ptCurCamInfo->IrisMode );
+            DelaySendCmd(DELAY_SEND_CMD);
         }
-        else
-        {
-            CamAutoExposureCmd( emManual );
-            //快门设置
-            SetCamShutterCmd( ptCurCamInfo->ShutterMode );
-            //增益设置
-            SetCamGainCmd( ptCurCamInfo->GainMode );
-        }
+        
         //白平衡设置
-        CamAutoWBCmd( ptCurCamInfo->WBMode );
+        if ( ptCurCamInfo->WBMode.CamWBAutoModeFlag
+            != m_atOldCamCfg[byIndex].WBMode.CamWBAutoModeFlag )
+        {
+            CamAutoWBCmd( ptCurCamInfo->WBMode );
+            DelaySendCmd(DELAY_SEND_CMD);
+        }
+        else if ( ptCurCamInfo->WBMode.RGainVal != m_atOldCamCfg[byIndex].WBMode.RGainVal
+            || ptCurCamInfo->WBMode.BGainVal != m_atOldCamCfg[byIndex].WBMode.BGainVal)
+        {
+            if ( ptCurCamInfo->WBMode.CamWBManuModeFlag == 1 )
+            {
+                CamAutoWBCmd( ptCurCamInfo->WBMode );
+                DelaySendCmd(DELAY_SEND_CMD);
+            }
+        }
         //图像参数
-        CamImageParaCmd( emHue, ptCurCamInfo->CamImagParam.ColorHueVal );
-        CamImageParaCmd( emSaturat, ptCurCamInfo->CamImagParam.ColorGainVal );
-        if ( ptCurCamInfo->CamImagParam.Gamma_opt_1_flag == 1 )
+        if ( ptCurCamInfo->CamImagParam.ColorGainVal != m_atOldCamCfg[byIndex].CamImagParam.ColorGainVal
+            || ptCurCamInfo->CamImagParam.ColorHueVal != m_atOldCamCfg[byIndex].CamImagParam.ColorHueVal
+            || ptCurCamInfo->CamImagParam.Gamma_opt_1_flag != m_atOldCamCfg[byIndex].CamImagParam.Gamma_opt_1_flag
+            || ptCurCamInfo->CamImagParam.Gamma_opt_2_flag != m_atOldCamCfg[byIndex].CamImagParam.Gamma_opt_2_flag
+            || ptCurCamInfo->CamImagParam.Gamma_opt_3_flag != m_atOldCamCfg[byIndex].CamImagParam.Gamma_opt_3_flag )
         {
-            CamImageParaCmd( emGama, emGamma1);
-        }
-        else if ( ptCurCamInfo->CamImagParam.Gamma_opt_2_flag == 1 )
-        {
-            CamImageParaCmd( emGama, emGamma2);
-        }
-        else if (  ptCurCamInfo->CamImagParam.Gamma_opt_3_flag == 1 )
-        {
-            CamImageParaCmd( emGama, emGamma3);
+            CamImageParaCmd( ptCurCamInfo->CamImagParam );
+            DelaySendCmd(DELAY_SEND_CMD);
         }
         //2D降噪设置
-        if ( ptCurCamInfo->CamD2NRMode.D2NROnFlag == 1 )
+        if ( ptCurCamInfo->CamD2NRMode.D2NROnFlag != m_atOldCamCfg[byIndex].CamD2NRMode.D2NROnFlag )
         {
-            if ( ptCurCamInfo->CamD2NRMode.D2NR_level_1_Flag == 1 )
-            {
-                Cam2DNRCmd( TRUE, emLevelFist );
-            }
-            else if ( ptCurCamInfo->CamD2NRMode.D2NR_level_2_Flag == 1 )
-            {
-                Cam2DNRCmd( TRUE, emLevelSecond );
-            }
-            else if ( ptCurCamInfo->CamD2NRMode.D2NR_level_3_Flag == 1 )
-            {
-                Cam2DNRCmd( TRUE, emLevelThird );
-            }
-            else if ( ptCurCamInfo->CamD2NRMode.D2NR_level_4_Flag == 1 )
-            {
-                Cam2DNRCmd( TRUE, emLevelFourth );
-            }
-            else if ( ptCurCamInfo->CamD2NRMode.D2NR_level_5_Flag == 1 )
-            {
-                Cam2DNRCmd( TRUE, emLeVelFifth );
-            }
-            else
-            {
-                Cam2DNRCmd( TRUE, emClose );
-            }
+            Cam2DNRCmd( ptCurCamInfo->CamD2NRMode );
+            DelaySendCmd(DELAY_SEND_CMD);
         }
-        else
+        else if ( ptCurCamInfo->CamD2NRMode.D2NR_level_1_Flag != m_atOldCamCfg[byIndex].CamD2NRMode.D2NR_level_1_Flag
+            || ptCurCamInfo->CamD2NRMode.D2NR_level_2_Flag != m_atOldCamCfg[byIndex].CamD2NRMode.D2NR_level_2_Flag
+            || ptCurCamInfo->CamD2NRMode.D2NR_level_3_Flag != m_atOldCamCfg[byIndex].CamD2NRMode.D2NR_level_3_Flag
+            || ptCurCamInfo->CamD2NRMode.D2NR_level_4_Flag != m_atOldCamCfg[byIndex].CamD2NRMode.D2NR_level_4_Flag
+            || ptCurCamInfo->CamD2NRMode.D2NR_level_5_Flag != m_atOldCamCfg[byIndex].CamD2NRMode.D2NR_level_5_Flag )
         {
-            Cam2DNRCmd( FALSE, emClose );
+            if ( ptCurCamInfo->CamD2NRMode.D2NROnFlag == 1 )
+            {
+                Cam2DNRCmd( ptCurCamInfo->CamD2NRMode );
+                DelaySendCmd(DELAY_SEND_CMD);
+            }
         }
         //3D降噪设置
-        if ( ptCurCamInfo->CamD3NRMode.D3NROnFlag == 1 )
+        if ( ptCurCamInfo->CamD3NRMode.D3NROnFlag != m_atOldCamCfg[byIndex].CamD3NRMode.D3NROnFlag )
         {
-            if ( ptCurCamInfo->CamD3NRMode.D3NR_level_1_Flag == 1 )
+            Cam3DNRCmd( ptCurCamInfo->CamD3NRMode );
+            DelaySendCmd(DELAY_SEND_CMD);
+        }
+        else if ( ptCurCamInfo->CamD3NRMode.D3NR_level_1_Flag != m_atOldCamCfg[byIndex].CamD3NRMode.D3NR_level_1_Flag
+            || ptCurCamInfo->CamD3NRMode.D3NR_level_2_Flag != m_atOldCamCfg[byIndex].CamD3NRMode.D3NR_level_2_Flag
+            || ptCurCamInfo->CamD3NRMode.D3NR_level_3_Flag != m_atOldCamCfg[byIndex].CamD3NRMode.D3NR_level_3_Flag
+            || ptCurCamInfo->CamD3NRMode.D3NR_level_4_Flag != m_atOldCamCfg[byIndex].CamD3NRMode.D3NR_level_4_Flag
+            || ptCurCamInfo->CamD3NRMode.D3NR_level_5_Flag != m_atOldCamCfg[byIndex].CamD3NRMode.D3NR_level_5_Flag )
+        {
+            if ( ptCurCamInfo->CamD3NRMode.D3NROnFlag == 1 )
             {
-                Cam3DNRCmd( TRUE, emLevelFist );
+                Cam3DNRCmd( ptCurCamInfo->CamD3NRMode );
+                DelaySendCmd(DELAY_SEND_CMD);
             }
-            else if ( ptCurCamInfo->CamD3NRMode.D3NR_level_2_Flag == 1 )
+        }
+        // 曝光模式设置
+        if (ptCurCamInfo->ExpMode.ExposAutoModeFlag == 1)
+        {
+            if ( m_atOldCamCfg[byIndex].ExpMode.ExposAutoModeFlag == 0 )
             {
-                Cam3DNRCmd( TRUE, emLevelSecond );
-            }
-            else if ( ptCurCamInfo->CamD3NRMode.D3NR_level_3_Flag == 1 )
-            {
-                Cam3DNRCmd( TRUE, emLevelThird );
-            }
-            else if ( ptCurCamInfo->CamD3NRMode.D3NR_level_4_Flag == 1 )
-            {
-                Cam3DNRCmd( TRUE, emLevelFourth );
-            }
-            else if ( ptCurCamInfo->CamD3NRMode.D3NR_level_5_Flag == 1 )
-            {
-                Cam3DNRCmd( TRUE, emLeVelFifth );
-            }
-            else
-            {
-                Cam3DNRCmd( TRUE, emClose );
+                CamAutoExposureCmd( emAuto );
+                DelaySendCmd(DELAY_SEND_CMD);
             }
         }
         else
         {
-            Cam3DNRCmd( FALSE, emClose );
+            if ( m_atOldCamCfg[byIndex].ExpMode.ExposAutoModeFlag == 1 )
+            {
+                CamAutoExposureCmd( emManual );
+                DelaySendCmd(DELAY_SEND_CMD);
+                //增益设置
+                SetCamGainCmd( ptCurCamInfo->GainMode );
+                DelaySendCmd(DELAY_SEND_CMD);
+                //快门设置
+                SetCamShutterCmd( ptCurCamInfo->ShutterMode );
+                DelaySendCmd(500);  //快门响应时间较长
+            }
+            else
+            {
+                //增益设置
+                if ( ptCurCamInfo->GainMode.GainInputVal
+                    != m_atOldCamCfg[byIndex].GainMode.GainInputVal )
+                {
+                    SetCamGainCmd( ptCurCamInfo->GainMode );
+                    DelaySendCmd(DELAY_SEND_CMD);
+                }
+                //快门设置
+                string strCurParam = _T("");
+                string strOldParam = _T("");
+                s8 achTemp[8] = {0};
+                for (s32 nPos = 0; nPos < sizeof(TShutterMode); nPos++)
+                {
+                    sprintf( achTemp, "%02x", *((u8*)(&ptCurCamInfo->ShutterMode)+nPos) );
+                    strCurParam.append(achTemp);
+                    sprintf( achTemp, "%02x", *((u8*)(&m_atOldCamCfg[byIndex].ShutterMode)+nPos) );
+                    strOldParam.append(achTemp);
+                }
+
+                if ( strCurParam.compare(strOldParam) != 0 )
+                {
+                    SetCamShutterCmd( ptCurCamInfo->ShutterMode );
+                    DelaySendCmd(500);  //快门响应时间较长
+                }
+            }
+        }
+
+        // 导入参数最后完成消息推送
+        /* 必推消息（设置结束标志位：m_bSetAllCamCfg = FALSE，Kill 参数设置超时定时器） */
+        if ( byIndex == 0 )
+        {
+            InputCamParamOverCmd();
+            ptCurCamInfo = NULL;
         }
     }
 }

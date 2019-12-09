@@ -31,18 +31,19 @@ void CSysConfig::BuildEventsMap()
 {  
 	//断链清空资源
 	REG_PFUN(UI_RKC_DISCONNECTED, CSysConfig::OnLinkBreak); 
-	REG_PFUN(ev_TpMoonVerInfo_Nty, CSysConfig::OnSoftWareVerInfoNty);
-	REG_PFUN(ev_TpCamOutPortInfo_Nty, CSysConfig::OnCamOutputInfoNty);
-	REG_PFUN(ev_TpCamImageAdjust_Nty, CSysConfig::OnCamImageAdjustNty);
-	REG_PFUN(ev_TpCamImageAdjust_Ind, CSysConfig::OnCamImageAdjustInd);	
-	REG_PFUN(ev_TpCamOutPortInfo_Ind, CSysConfig::OnCamOutputInfoInd);
+	//REG_PFUN(ev_TpMoonVerInfo_Nty, CSysConfig::OnSoftWareVerInfoNty);
+	//REG_PFUN(ev_TpCamOutPortInfo_Nty, CSysConfig::OnCamOutputInfoNty);
+	//REG_PFUN(ev_TpCamImageAdjust_Nty, CSysConfig::OnCamImageAdjustNty);
+	//REG_PFUN(ev_TpCamImageAdjust_Ind, CSysConfig::OnCamImageAdjustInd);	
+	//REG_PFUN(ev_TpCamOutPortInfo_Ind, CSysConfig::OnCamOutputInfoInd);
 	//REG_PFUN(ev_TpMoonCfgEthnet_Ind, CSysConfig::OnEthnetInfoInd);
-	REG_PFUN(ev_TpSetLVDSBaud_Ind, CSysConfig::OnLVDBaudInd);
-	REG_PFUN( ev_TpSetLVDSBaud_Nty, CSysConfig::OnLVDBaudNty);
+	//REG_PFUN(ev_TpSetLVDSBaud_Ind, CSysConfig::OnLVDBaudInd);
+	//REG_PFUN( ev_TpSetLVDSBaud_Nty, CSysConfig::OnLVDBaudNty);
 
     //MOON904K30
     REG_PFUN( RK100_EVT_GET_NETPARAM_ACK, CSysConfig::OnGetNetWorkConfigRsp);
     REG_PFUN( RK100_EVT_SET_NETPARAM_ACK, CSysConfig::OnEthnetInfoInd);
+    REG_PFUN( RK100_EVT_GET_VERSION_INFO_ACK, CSysConfig::OnSoftWareVerInfoNty);
 }
 
 void CSysConfig::OnLinkBreak(const CMessage& cMsg)
@@ -83,15 +84,13 @@ void CSysConfig::OnSoftWareVerInfoNty( const CMessage& cMsg )
 	tMsgHead.wReserved1 = ntohs(tMsgHead.wReserved1);
 
 	s8* achSoftWareVer = NULL;
-	EmTpVer emMoonVer = tp_Ver_MOON90;
 	if (tMsgHead.wMsgLen != 0)
 	{
-		achSoftWareVer = (s8*)( cMsg.content );
-		emMoonVer = *reinterpret_cast<EmTpVer*>( cMsg.content + sizeof(s8)*MOON_MAX_DEVICEVER_LEN + sizeof(EmTPImageAdjust) );
+		achSoftWareVer = (s8*)( cMsg.content + sizeof(TRK100MsgHead) );
 	}
 
-	PrtRkcMsg( ev_TpMoonVerInfo_Nty, emEventTypeScoketRecv, "SoftWareVer:%s", achSoftWareVer);
-	PostEvent( UI_MOONTOOL_VERINFO_NTY, (WPARAM)achSoftWareVer, (LPARAM)&emMoonVer );
+	PrtRkcMsg( RK100_EVT_GET_VERSION_INFO_ACK, emEventTypeScoketRecv, "SoftWareVer:%s", achSoftWareVer);
+	PostEvent( UI_MOONTOOL_VERINFO_NTY, (WPARAM)achSoftWareVer, (LPARAM)0 );
 }
 
 void CSysConfig::OnCamOutputInfoNty( const CMessage& cMsg )
@@ -512,5 +511,20 @@ void CSysConfig::OnGetNetWorkConfigRsp( const CMessage& cMsg )
 u16 CSysConfig::GetNetWorkConfig(TRK100NetParam& tRK100NetParam)
 {
     tRK100NetParam = m_tRK100NetParam;
+    return NOERROR;
+}
+
+u16 CSysConfig::GetVersionInfo()
+{
+    TRK100MsgHead tRK100MsgHead;//定义消息头结构体
+    memset(&tRK100MsgHead,0,sizeof(TRK100MsgHead));
+    //整型传数据集的转网络序
+    tRK100MsgHead.dwEvent = htonl(RK100_EVT_GET_VERSION_INFO);
+    CRkMessage rkmsg;//定义消息
+    rkmsg.SetBody(&tRK100MsgHead, sizeof(TRK100MsgHead));//添加头内容
+    
+    PrtRkcMsg( RK100_EVT_GET_VERSION_INFO, emEventTypeScoketSend ,"获取版本信息");
+    
+    SOCKETWORK->SendDataPack(rkmsg);//消息发送
     return NOERROR;
 }

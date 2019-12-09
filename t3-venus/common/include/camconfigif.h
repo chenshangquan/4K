@@ -271,7 +271,8 @@ public:
 	* @return  
 	* @remarks 
 	*/	
-	virtual BOOL GetCurStatus() = 0;
+	virtual void GetCurStatus(BOOL &bSetCamCfgOver, BOOL &bOutputFmtChg) = 0;
+    virtual void ClearCurStatus() = 0;
 
 	/** 
 	* 功能 获取被选中的摄像机
