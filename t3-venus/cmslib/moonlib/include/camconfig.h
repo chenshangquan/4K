@@ -11,7 +11,7 @@
 
 #include "rkcSession.h"
 
-#define DELAY_SEND_CMD     200  //输入指令间隔
+#define DELAY_SEND_CMD     500  //输入指令间隔
 
 class CCamConfig : public CCamConfigIF 
 {

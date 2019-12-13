@@ -400,7 +400,6 @@ void CCameraCtrlLogic::Clear()
 	m_bLoginByOther = false;
 
     m_emFocusMode =  emAuto;
-    m_emApertreMode = emAuto;
     m_emExposureMode = emAuto;
     m_emWBMode = emAuto;
 
@@ -886,21 +885,14 @@ bool CCameraCtrlLogic::OnLBtnUpFocusFar( const IArgs& args )
 }
 
 bool CCameraCtrlLogic::OnBtnSwitchManuelApertre( const IArgs& args )
-{	
-    /*Value_SwitchState valueSwitchState;
-	UIFACTORYMGR_PTR->GetPropertyValue( valueSwitchState, m_strBtnSwitchManuelApertre, m_pWndTree );
-    if ( valueSwitchState.bState )
-    {
-        return false;
-    }*/
-
-    if ( m_emApertreMode == emManual )
+{
+    /*if ( m_emExposureMode == emManual )
     {
         return false;
     }
-    m_emApertreMode = emManual;
+    m_emExposureMode = emManual;*/
 
-    UIFACTORYMGR_PTR->LoadScheme( _T("SchManuelApertre"), m_pWndTree );
+    //UIFACTORYMGR_PTR->LoadScheme( _T("SchManuelApertre"), m_pWndTree );
 
     TIrisAutoManuMode tIrisAutoManuMode;
     ZeroMemory(&tIrisAutoManuMode, sizeof(TIrisAutoManuMode));
@@ -944,21 +936,14 @@ bool CCameraCtrlLogic::OnBtnSwitchManuelApertre( const IArgs& args )
 }
 
 bool CCameraCtrlLogic::OnBtnSwitchAutoApertre( const IArgs& args )
-{	
-    /*Value_SwitchState valueSwitchState;
-    UIFACTORYMGR_PTR->GetPropertyValue( valueSwitchState, m_strBtnSwitchAutoApertre, m_pWndTree );
-    if ( valueSwitchState.bState )
-    {
-        return false;
-    }*/
-
-    if ( m_emApertreMode == emAuto )
+{
+    /*if ( m_emExposureMode == emAuto )
     {
         return false;
     }
-    m_emApertreMode = emAuto;
+    m_emExposureMode = emAuto;*/
 
-    UIFACTORYMGR_PTR->LoadScheme( _T("SchAutoApertre"), m_pWndTree );
+    //UIFACTORYMGR_PTR->LoadScheme( _T("SchAutoApertre"), m_pWndTree );
     
     TIrisAutoManuMode tIrisAutoManuMode;
     ZeroMemory(&tIrisAutoManuMode, sizeof(TIrisAutoManuMode));
@@ -1080,6 +1065,9 @@ bool CCameraCtrlLogic::OnBtnSwitchManuelExposure( const IArgs& args )
         {
             WARNMESSAGE( "增益请求发送失败" );
         }
+
+        //光圈设置
+        OnBtnSwitchManuelApertre(args);
         
     }
 
@@ -1110,6 +1098,9 @@ bool CCameraCtrlLogic::OnBtnSwitchAutoExposure( const IArgs& args )
     {
         WARNMESSAGE( "自动曝光请求发送失败" );
     }
+
+    //光圈设置
+    OnBtnSwitchAutoApertre(args);
 
     SetAutoExp(emAuto);
 
@@ -1638,12 +1629,6 @@ HRESULT CCameraCtrlLogic::OnCamParamSyncInd(WPARAM wparam, LPARAM lparam)
         if (tMoonCameraCfg.FocusMode.ManualModeFlag == 1)
         {
             m_emFocusMode = emManual;
-        }
-        
-        m_emApertreMode = emAuto;
-        if (tMoonCameraCfg.IrisMode.IrisManuFlag == 1)
-        {
-            m_emApertreMode = emManual;
         }
         
         m_emExposureMode = emAuto;
@@ -2650,15 +2635,13 @@ void CCameraCtrlLogic::SetCameraCfg( TTPMoonCamInfo tMoonCameraCfg )
     SetZoomValue(tMoonCameraCfg.dwZoomPos);
     //聚焦模式
 	SetFocusState(m_emFocusMode);
-    //光圈模式
-    SetApertreState(m_emApertreMode);
-    //光圈 & 背光
-	SetApertureValue( tMoonCameraCfg.IrisMode );
     //曝光模式
     SetAutoExp(m_emExposureMode);
     //快门 -- 输出制式 已设置
     //增益
     SetExpGainValue( tMoonCameraCfg.GainMode.GainInputVal );
+    //光圈 & 背光
+	SetApertureValue( tMoonCameraCfg.IrisMode );
 	
 	//开机调用预置位1
 	//SetPresetValue( tMoonCameraCfg.bIsPreUsed );
@@ -4184,9 +4167,13 @@ void CCameraCtrlLogic::ResetNormal()
 HRESULT CCameraCtrlLogic::OnCamPreSet1SaveRsp( WPARAM wparam, LPARAM lparam )
 {
     BOOL bSuccess = (BOOL)wparam;
+    BOOL bShowMsg = (BOOL)lparam;
     if (bSuccess)
     {
-        MSG_BOX_OK("已成功保存当前参数");
+        if (bShowMsg)
+        {
+            MSG_BOX_OK("已成功保存当前参数");
+        }
     }
     else
     {

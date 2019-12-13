@@ -5,6 +5,9 @@
 #include "stdafx.h"
 #include "moonToolDll.h"
 #include "uiDataMgr.h"
+#include <IPHlpApi.h>
+
+#pragma comment(lib, "Iphlpapi.lib")
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -357,6 +360,61 @@ u32 CUIDataMgr::GetLocalIP()
     }
 
     ip = ((struct in_addr*)hent->h_addr)->s_addr;
+
     return ip;
 }
 
+u32 CUIDataMgr::GetLocalSameNetIP(u32 dwNetID)
+{
+    u32 dwIP = 0;
+    u32 dwMask = 0;
+    u32 dwGetNetID = 0;
+    PIP_ADAPTER_INFO pAdapterInfo = NULL;
+    PIP_ADAPTER_INFO pAdapter = NULL;
+    DWORD dwRetVal = 0;
+    pAdapterInfo = ( IP_ADAPTER_INFO * ) malloc( sizeof( IP_ADAPTER_INFO ) );
+    ULONG ulOutBufLen;
+    ulOutBufLen = sizeof(IP_ADAPTER_INFO);
+    
+    // 第一次调用GetAdapterInfo获取ulOutBufLen大小
+    if (GetAdaptersInfo( pAdapterInfo, &ulOutBufLen) == ERROR_BUFFER_OVERFLOW)
+    {
+        free(pAdapterInfo);
+        pAdapterInfo = (IP_ADAPTER_INFO *) malloc (ulOutBufLen);
+    }
+
+    if ((dwRetVal = GetAdaptersInfo( pAdapterInfo, &ulOutBufLen)) == NO_ERROR)
+    {
+        pAdapter = pAdapterInfo;
+        while (pAdapter)
+        {
+            PIP_ADDR_STRING pIPAddr;
+            pIPAddr = &pAdapter->IpAddressList;
+            while (pIPAddr)
+            {
+                dwIP = inet_addr(pIPAddr->IpAddress.Str);
+                dwMask = inet_addr(pIPAddr->IpMask.Str);
+                dwGetNetID = dwIP & dwMask;
+                //获取同网段IP
+                if ( dwGetNetID == dwNetID )
+                {
+                    break;
+                }
+
+                pIPAddr = pIPAddr->Next;
+            }
+            //获取同网段IP
+            if ( dwGetNetID == dwNetID )
+            {
+                break;
+            }
+
+            pAdapter = pAdapter->Next;
+        }
+
+        pAdapter = NULL;
+        free(pAdapterInfo);
+        pAdapterInfo = NULL;
+    }
+    return dwIP;
+}

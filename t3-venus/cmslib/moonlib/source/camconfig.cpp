@@ -3129,7 +3129,15 @@ void CCamConfig::OnCamPreSet1SaveRsp( const CMessage& cMsg )
     tMsgHead.wReserved1 = ntohs(tMsgHead.wReserved1);
     
     PrtRkcMsg( RK100_EVT_SET_CAM_Preset_Save_ACK, emEventTypeScoketRecv, "wRtn:%d", tMsgHead.wOptRtn);
-    PostEvent( UI_CAMERA_PRESET1_SAVE_RSP, (WPARAM)(RK100_OPT_RTN_OK == tMsgHead.wOptRtn), (LPARAM)tMsgHead.wOptRtn );
+
+    if ( m_bOutputFmtChg )
+    {
+        PostEvent( UI_CAMERA_PRESET1_SAVE_RSP, (WPARAM)(RK100_OPT_RTN_OK == tMsgHead.wOptRtn), FALSE );  //无重启提示弹框
+    }
+    else
+    {
+        PostEvent( UI_CAMERA_PRESET1_SAVE_RSP, (WPARAM)(RK100_OPT_RTN_OK == tMsgHead.wOptRtn), TRUE );  //有重启提示弹框
+    }
 }
 
 //重启MOON
@@ -3975,6 +3983,7 @@ void CCamConfig::AllCamCfgCmdSend()
         || m_tCnCameraCfg2.OutputFmt.FMT720_60fps_flag != m_atOldCamCfg[0].OutputFmt.FMT720_60fps_flag )
     {
         SetOutputFormatCmd(m_tCnCameraCfg2.OutputFmt);
+        DelaySendCmd(DELAY_SEND_CMD);
     }
 
     TTPMoonCamInfo *ptCurCamInfo = NULL ;
@@ -4032,7 +4041,7 @@ void CCamConfig::AllCamCfgCmdSend()
             || m_atOldCamCfg[byIndex].IrisMode.optIrisF4_4Flag != ptCurCamInfo->IrisMode.optIrisF4_4Flag)
         {
             SetCamApertreCmd( ptCurCamInfo->IrisMode );
-            DelaySendCmd(DELAY_SEND_CMD);
+            DelaySendCmd(6*DELAY_SEND_CMD);  //响应时间较长
         }
         
         //白平衡设置
@@ -4059,7 +4068,7 @@ void CCamConfig::AllCamCfgCmdSend()
             || ptCurCamInfo->CamImagParam.Gamma_opt_3_flag != m_atOldCamCfg[byIndex].CamImagParam.Gamma_opt_3_flag )
         {
             CamImageParaCmd( ptCurCamInfo->CamImagParam );
-            DelaySendCmd(DELAY_SEND_CMD);
+            DelaySendCmd(6*DELAY_SEND_CMD);  //响应时间较长
         }
         //2D降噪设置
         if ( ptCurCamInfo->CamD2NRMode.D2NROnFlag != m_atOldCamCfg[byIndex].CamD2NRMode.D2NROnFlag )
@@ -4117,7 +4126,7 @@ void CCamConfig::AllCamCfgCmdSend()
                 DelaySendCmd(DELAY_SEND_CMD);
                 //快门设置
                 SetCamShutterCmd( ptCurCamInfo->ShutterMode );
-                DelaySendCmd(500);  //快门响应时间较长
+                DelaySendCmd(2*DELAY_SEND_CMD);  //快门响应时间较长
             }
             else
             {
@@ -4143,7 +4152,7 @@ void CCamConfig::AllCamCfgCmdSend()
                 if ( strCurParam.compare(strOldParam) != 0 )
                 {
                     SetCamShutterCmd( ptCurCamInfo->ShutterMode );
-                    DelaySendCmd(500);  //快门响应时间较长
+                    DelaySendCmd(2*DELAY_SEND_CMD);  //快门响应时间较长
                 }
             }
         }
@@ -4152,6 +4161,12 @@ void CCamConfig::AllCamCfgCmdSend()
         /* 必推消息（设置结束标志位：m_bSetAllCamCfg = FALSE，Kill 参数设置超时定时器） */
         if ( byIndex == 0 )
         {
+            //输出制式改变需要重启，需提前保存导入的界面参数
+            if ( m_bOutputFmtChg )
+            {
+                CamPreSet1SaveCmd();
+            }
+
             InputCamParamOverCmd();
             ptCurCamInfo = NULL;
         }

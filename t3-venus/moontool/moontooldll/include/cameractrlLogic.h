@@ -926,7 +926,6 @@ private:
 	u32          m_dwBright;
 	u32          m_dwSaturat;
 	EmTPMOOMMode m_emFocusMode;        //聚焦模式
-    EmTPMOOMMode m_emApertreMode;      //光圈模式
     EmTPMOOMMode m_emExposureMode;     //曝光模式
     EmTPMOOMMode m_emWBMode;           //白平衡模式
 	BOOL		 m_bIsOrderPos;

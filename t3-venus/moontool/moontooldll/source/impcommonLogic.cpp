@@ -483,7 +483,11 @@ void CImpCommonDlgLogic::SendUpdateFirst()
     //Êý¾Ý·¢ËÍ
     TRK100TftpFwUpdate tRK100TftpFwUpdate;
     memset(&tRK100TftpFwUpdate, 0, sizeof(TRK100TftpFwUpdate));
-    tRK100TftpFwUpdate.dwTftpSvrIp = UIDATAMGR_PTR->GetLocalIP();
+
+    TRK100NetParam tRK100NetParam;
+    ZeroMemory(&tRK100NetParam, sizeof(TRK100NetParam));
+    COMIFMGRPTR->GetNetWorkConfig(tRK100NetParam);
+    tRK100TftpFwUpdate.dwTftpSvrIp = UIDATAMGR_PTR->GetLocalSameNetIP(tRK100NetParam.dwIP & tRK100NetParam.dwSubMask);
     tRK100TftpFwUpdate.dwFileSize = nFileSize;
     strncpy(tRK100TftpFwUpdate.szFwTypeName , RKC_UPDATEFILE_TYPE, sizeof(RKC_UPDATEFILE_TYPE) );
     strncpy(tRK100TftpFwUpdate.szFileFullName , RKC_UPDATEFILE_NAME, sizeof(RKC_UPDATEFILE_NAME) );

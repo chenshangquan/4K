@@ -108,15 +108,8 @@
 		<row><td>Files2</td><td>{8D9C5F6C-E0F7-4CA2-BAF2-19DC2F311317}</td><td>BTNSYNC</td><td>0</td><td/><td>sel.png</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files3</td><td>{A9977B21-33A8-48D2-93C4-AA2454AAB353}</td><td>BTNGAINPLUS</td><td>0</td><td/><td>sel.png4</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files4</td><td>{2529605F-C158-461C-B21B-B2BEC4C9AC63}</td><td>RESMOONTOOL</td><td>0</td><td/><td>system.xml1</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Files5</td><td>{BFA15979-AC17-41FB-B62B-7F0018CEE9C4}</td><td>NoDirectory</td><td>8</td><td/><td>uncheckpress.png8</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files6</td><td>{5B3454DF-1F4D-4B7C-83E2-E0FF6B0C0343}</td><td>CHECKMOON904K30</td><td>0</td><td/><td>uncheckpress.png1</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Files69</td><td>{43277FEB-2A6D-4A09-A3C2-ED593FED1F0C}</td><td>NoDirectory</td><td>0</td><td/><td>uncheckpress.png5</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files7</td><td>{9FDEEE3E-2F69-4553-818D-D56519E685B9}</td><td>BTNGAINSUB</td><td>0</td><td/><td>sel.png5</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Files70</td><td>{D27DD54B-AE2A-4CC5-919A-B2FF79A8944B}</td><td>NoDirectory</td><td>8</td><td/><td>uncheckdisable.png</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Files71</td><td>{4DD5F6E9-A339-4A46-9256-6BD164FD2912}</td><td>NoDirectory</td><td>0</td><td/><td>uncheckpress.png</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Files72</td><td>{9281E743-CFDA-4EDE-8F39-0AF10686C2C1}</td><td>NoDirectory</td><td>8</td><td/><td>normal.png164</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Files73</td><td>{9BFA6A3B-C756-4D1B-8185-9E6499BA8EB5}</td><td>NoDirectory</td><td>8</td><td/><td>over.png160</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Files74</td><td>{F8827440-25AF-4AE2-AD4C-58EF7B1078DC}</td><td>NoDirectory</td><td>8</td><td/><td>sel.png167</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files8</td><td>{5BE04A37-F485-4B70-A170-3A1A4A755C6E}</td><td>BTNIMPORTPARAM</td><td>8</td><td/><td>sel.png6</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files9</td><td>{DBE57A6C-A728-4C7F-B6B4-9C41F74C3BBB}</td><td>BTNEXPORTPARAM</td><td>8</td><td/><td>sel.png7</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
@@ -330,15 +323,8 @@
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files2</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files3</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files4</td></row>
-		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files5</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files6</td></row>
-		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files69</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files7</td></row>
-		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files70</td></row>
-		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files71</td></row>
-		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files72</td></row>
-		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files73</td></row>
-		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files74</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files8</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files9</td></row>
 	</table>
@@ -558,7 +544,6 @@
 		<row><td>msgboxdlg.xml2</td><td>Files4</td><td>msgboxDlg.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\layout\msgboxDlg.xml</td><td>1</td><td>layout2</td></row>
 		<row><td>normal.png</td><td>Files2</td><td>Normal.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BTNSYNC_FILES&gt;\Normal.png</td><td>1</td><td/></row>
 		<row><td>normal.png1</td><td>Files1</td><td>Normal.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RES_FILES1&gt;\CloseBtn\Normal.png</td><td>1</td><td>CloseBtn</td></row>
-		<row><td>normal.png164</td><td>Files72</td><td>Normal.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SETUP FILES_FILES&gt;\res\closebtn\Normal.png</td><td>1</td><td/></row>
 		<row><td>normal.png165</td><td>Files4</td><td>Normal.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\AdjustDlg\IncreaseBtn\Normal.png</td><td>1</td><td>IncreaseBtn</td></row>
 		<row><td>normal.png166</td><td>Files4</td><td>Normal.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\AdjustDlg\ReduceBtn\Normal.png</td><td>1</td><td>ReduceBtn</td></row>
 		<row><td>normal.png167</td><td>Files4</td><td>Normal.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\AdjustDlg\SnapSaveAsBtn\Normal.png</td><td>1</td><td>SnapSaveAsBtn</td></row>
@@ -737,7 +722,6 @@
 		<row><td>orderposinfodlg.xml</td><td>Files4</td><td>OrderPosInfoDlg.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\layout\OrderPosInfoDlg.xml</td><td>1</td><td>layout2</td></row>
 		<row><td>over.png</td><td>Files2</td><td>Over.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BTNSYNC_FILES&gt;\Over.png</td><td>1</td><td/></row>
 		<row><td>over.png1</td><td>Files1</td><td>Over.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RES_FILES1&gt;\CloseBtn\Over.png</td><td>1</td><td>CloseBtn</td></row>
-		<row><td>over.png160</td><td>Files73</td><td>Over.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SETUP FILES_FILES&gt;\res\closebtn\Over.png</td><td>1</td><td/></row>
 		<row><td>over.png161</td><td>Files4</td><td>Over.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\AdjustDlg\IncreaseBtn\Over.png</td><td>1</td><td>IncreaseBtn</td></row>
 		<row><td>over.png162</td><td>Files4</td><td>Over.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\AdjustDlg\ReduceBtn\Over.png</td><td>1</td><td>ReduceBtn</td></row>
 		<row><td>over.png163</td><td>Files4</td><td>over.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\AdjustDlg\SnapSaveAsBtn\over.png</td><td>1</td><td>SnapSaveAsBtn</td></row>
@@ -813,7 +797,6 @@
 		<row><td>search.png3</td><td>Files4</td><td>Search.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\ComboboxCommon\Edit\Search.png</td><td>1</td><td>Edit13</td></row>
 		<row><td>sel.png</td><td>Files2</td><td>Sel.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_BTNSYNC_FILES&gt;\Sel.png</td><td>1</td><td/></row>
 		<row><td>sel.png1</td><td>Files1</td><td>Sel.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RES_FILES1&gt;\CloseBtn\Sel.png</td><td>1</td><td>CloseBtn</td></row>
-		<row><td>sel.png167</td><td>Files74</td><td>Sel.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SETUP FILES_FILES&gt;\res\closebtn\Sel.png</td><td>1</td><td/></row>
 		<row><td>sel.png168</td><td>Files4</td><td>Sel.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\AdjustDlg\IncreaseBtn\Sel.png</td><td>1</td><td>IncreaseBtn</td></row>
 		<row><td>sel.png169</td><td>Files4</td><td>Sel.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\AdjustDlg\ReduceBtn\Sel.png</td><td>1</td><td>ReduceBtn</td></row>
 		<row><td>sel.png170</td><td>Files4</td><td>Sel.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\AdjustDlg\SnapSaveAsBtn\Sel.png</td><td>1</td><td>SnapSaveAsBtn</td></row>
@@ -900,41 +883,32 @@
 		<row><td>topleft.png6</td><td>Files4</td><td>topleft.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\ComboboxCommon\List\topleft.png</td><td>1</td><td>List5</td></row>
 		<row><td>topright.png</td><td>Files1</td><td>topright.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RES_FILES1&gt;\Combobox\List\topright.png</td><td>1</td><td>List</td></row>
 		<row><td>topright.png6</td><td>Files4</td><td>topright.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\ComboboxCommon\List\topright.png</td><td>1</td><td>List5</td></row>
-		<row><td>uncheckdisable.png</td><td>Files70</td><td>UnCheckDisable.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SETUP FILES_FILES&gt;\res\checkums\UnCheckDisable.png</td><td>1</td><td/></row>
 		<row><td>uncheckdisable.png1</td><td>Files6</td><td>UnCheckDisable.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_CHECKMOON904K30_FILES1&gt;\UnCheckDisable.png</td><td>1</td><td/></row>
 		<row><td>uncheckdisable.png10</td><td>Files1</td><td>UnCheckDisable.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RES_FILES1&gt;\CheckMoon\UnCheckDisable.png</td><td>1</td><td>CheckMoon</td></row>
 		<row><td>uncheckdisable.png12</td><td>Files4</td><td>UnCheckDisable.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\Camera\checkbutton\UnCheckDisable.png</td><td>1</td><td>checkbutton2</td></row>
 		<row><td>uncheckdisable.png13</td><td>Files4</td><td>UnCheckDisable.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\Checkbtn\UnCheckDisable.png</td><td>1</td><td>Checkbtn</td></row>
 		<row><td>uncheckdisable.png14</td><td>Files4</td><td>UnCheckDisable.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\radiobutton\UnCheckDisable.png</td><td>1</td><td>radiobutton2</td></row>
-		<row><td>uncheckdisable.png6</td><td>Files69</td><td>UnCheckDisable.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SETUP FILES_FILES&gt;\res\checkcns\UnCheckDisable.png</td><td>1</td><td/></row>
 		<row><td>uncheckdisable.png7</td><td>Files4</td><td>UnCheckDisable.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\Camera\BtnCheckAuto\UnCheckDisable.png</td><td>1</td><td>BtnCheckAuto</td></row>
 		<row><td>uncheckdisable.png8</td><td>Files4</td><td>UnCheckDisable.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\Camera\BtnCheckManuel\UnCheckDisable.png</td><td>1</td><td>BtnCheckManuel</td></row>
-		<row><td>uncheckdisable.png9</td><td>Files5</td><td>UnCheckDisable.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_CHECKMOON_FILES&gt;\UnCheckDisable.png</td><td>1</td><td/></row>
-		<row><td>unchecknormal.png</td><td>Files71</td><td>UnCheckNormal.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SETUP FILES_FILES&gt;\res\checkums\UnCheckNormal.png</td><td>1</td><td/></row>
 		<row><td>unchecknormal.png1</td><td>Files6</td><td>UnCheckNormal.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_CHECKMOON904K30_FILES1&gt;\UnCheckNormal.png</td><td>1</td><td/></row>
 		<row><td>unchecknormal.png10</td><td>Files1</td><td>UnCheckNormal.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RES_FILES1&gt;\CheckMoon\UnCheckNormal.png</td><td>1</td><td>CheckMoon</td></row>
 		<row><td>unchecknormal.png12</td><td>Files4</td><td>UnCheckNormal.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\Camera\checkbutton\UnCheckNormal.png</td><td>1</td><td>checkbutton2</td></row>
 		<row><td>unchecknormal.png13</td><td>Files4</td><td>UnCheckNormal.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\Checkbtn\UnCheckNormal.png</td><td>1</td><td>Checkbtn</td></row>
 		<row><td>unchecknormal.png14</td><td>Files4</td><td>UnCheckNormal.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\radiobutton\UnCheckNormal.png</td><td>1</td><td>radiobutton2</td></row>
-		<row><td>unchecknormal.png5</td><td>Files69</td><td>UnCheckNormal.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SETUP FILES_FILES&gt;\res\checkcns\UnCheckNormal.png</td><td>1</td><td/></row>
 		<row><td>unchecknormal.png6</td><td>Files4</td><td>UnCheckNormal.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\Camera\BtnCheckAuto\UnCheckNormal.png</td><td>1</td><td>BtnCheckAuto</td></row>
 		<row><td>unchecknormal.png7</td><td>Files4</td><td>UnCheckNormal.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\Camera\BtnCheckManuel\UnCheckNormal.png</td><td>1</td><td>BtnCheckManuel</td></row>
-		<row><td>unchecknormal.png8</td><td>Files5</td><td>UnCheckNormal.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_CHECKMOON_FILES&gt;\UnCheckNormal.png</td><td>1</td><td/></row>
 		<row><td>uncheckover.png4</td><td>Files4</td><td>UnCheckOver.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\Camera\BtnCheckAuto\UnCheckOver.png</td><td>1</td><td>BtnCheckAuto</td></row>
 		<row><td>uncheckover.png5</td><td>Files4</td><td>UnCheckOver.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\Camera\BtnCheckManuel\UnCheckOver.png</td><td>1</td><td>BtnCheckManuel</td></row>
 		<row><td>uncheckover.png6</td><td>Files4</td><td>UnCheckOver.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\Camera\checkbutton\UnCheckOver.png</td><td>1</td><td>checkbutton2</td></row>
 		<row><td>uncheckover.png7</td><td>Files4</td><td>UnCheckOver.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\Checkbtn\UnCheckOver.png</td><td>1</td><td>Checkbtn</td></row>
 		<row><td>uncheckover.png8</td><td>Files4</td><td>UnCheckOver.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\radiobutton\UnCheckOver.png</td><td>1</td><td>radiobutton2</td></row>
-		<row><td>uncheckpress.png</td><td>Files71</td><td>UnCheckPress.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SETUP FILES_FILES&gt;\res\checkums\UnCheckPress.png</td><td>1</td><td/></row>
 		<row><td>uncheckpress.png1</td><td>Files6</td><td>UnCheckPress.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_CHECKMOON904K30_FILES1&gt;\UnCheckPress.png</td><td>1</td><td/></row>
 		<row><td>uncheckpress.png10</td><td>Files1</td><td>UnCheckPress.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RES_FILES1&gt;\CheckMoon\UnCheckPress.png</td><td>1</td><td>CheckMoon</td></row>
 		<row><td>uncheckpress.png12</td><td>Files4</td><td>UnCheckPress.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\Camera\checkbutton\UnCheckPress.png</td><td>1</td><td>checkbutton2</td></row>
 		<row><td>uncheckpress.png13</td><td>Files4</td><td>UnCheckPress.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\Checkbtn\UnCheckPress.png</td><td>1</td><td>Checkbtn</td></row>
 		<row><td>uncheckpress.png14</td><td>Files4</td><td>UnCheckPress.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\radiobutton\UnCheckPress.png</td><td>1</td><td>radiobutton2</td></row>
-		<row><td>uncheckpress.png5</td><td>Files69</td><td>UnCheckPress.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SETUP FILES_FILES&gt;\res\checkcns\UnCheckPress.png</td><td>1</td><td/></row>
 		<row><td>uncheckpress.png6</td><td>Files4</td><td>UnCheckPress.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\Camera\BtnCheckAuto\UnCheckPress.png</td><td>1</td><td>BtnCheckAuto</td></row>
 		<row><td>uncheckpress.png7</td><td>Files4</td><td>UnCheckPress.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\src\Camera\BtnCheckManuel\UnCheckPress.png</td><td>1</td><td>BtnCheckManuel</td></row>
-		<row><td>uncheckpress.png8</td><td>Files5</td><td>UnCheckPress.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_CHECKMOON_FILES&gt;\UnCheckPress.png</td><td>1</td><td/></row>
 		<row><td>warning.png</td><td>Files1</td><td>warning.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RES_FILES1&gt;\warning.png</td><td>1</td><td/></row>
 		<row><td>warning.xml2</td><td>Files4</td><td>warning.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_RESMOONTOOL_FILES1&gt;\layout\warning.xml</td><td>1</td><td>layout2</td></row>
 	</table>
@@ -977,15 +951,8 @@
 		<row><td>Files2</td><td/><td/><td>_7D4CCD3D_0593_49E6_B628_762110294A48_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files3</td><td/><td/><td>_E2639986_A5AA_4F63_91BD_A1A7F0B522F7_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files4</td><td/><td/><td>_0DC9788F_25E2_4B39_A3AF_9BF4C7FE6C90_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Files5</td><td/><td/><td>_89A567A1_495A_438F_9972_E4790094889D_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files6</td><td/><td/><td>_3F255902_3446_4FBD_8206_6B1C44DC12E7_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Files69</td><td/><td/><td>_4CFBA148_43FE_4EEF_B400_145C3CB89810_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files7</td><td/><td/><td>_F6A22EE4_C3E5_404B_B4B2_311EBDF14C3E_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Files70</td><td/><td/><td>_3EBAD864_B4A6_449F_A7B9_AF6FE8F3042A_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Files71</td><td/><td/><td>_5FB6C7D8_9DEB_4893_BB0E_678A4E01480D_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Files72</td><td/><td/><td>_2A951E9D_5E16_4F60_920D_CDB70B77382F_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Files73</td><td/><td/><td>_47ED6131_63C9_4A95_B706_99546E379958_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Files74</td><td/><td/><td>_153FD101_3C00_4D82_8CA0_2D22937007E8_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files8</td><td/><td/><td>_986A5229_9244_4470_A3FE_AF42C6DE0FD7_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files9</td><td/><td/><td>_A52CFC23_AB0E_40AF_8257_77B54DBB1C27_FILTER</td><td/><td/><td/><td/></row>
 	</table>
@@ -1324,32 +1291,22 @@
 		<row><td>ISProductFolder</td><td/><td/><td>1</td></row>
 		<row><td>ISProjectDataFolder</td><td/><td/><td>1</td></row>
 		<row><td>ISProjectFolder</td><td/><td/><td>1</td></row>
-		<row><td>PATH_TO_BACKUPCFG_FILES</td><td>..\setup files\resumstool\src\BackupCfg</td><td/><td>2</td></row>
 		<row><td>PATH_TO_BTNEXPORTPARAM_FILES</td><td>..\setup files\resmoontool\src\btnExportParam</td><td/><td>2</td></row>
 		<row><td>PATH_TO_BTNGAINPLUS_FILES</td><td>..\setup files\resmoontool\src\Camera\BtnGainPlus</td><td/><td>2</td></row>
 		<row><td>PATH_TO_BTNGAINSUB_FILES</td><td>..\setup files\resmoontool\src\Camera\BtnGainSub</td><td/><td>2</td></row>
 		<row><td>PATH_TO_BTNIMPORTPARAM_FILES</td><td>..\setup files\resmoontool\src\btnImportParam</td><td/><td>2</td></row>
 		<row><td>PATH_TO_BTNSAVEPARAM_FILES</td><td>..\setup files\resmoontool\src\btnSaveParam</td><td/><td>2</td></row>
 		<row><td>PATH_TO_BTNSYNC_FILES</td><td>..\setup files\resmoontool\src\Camera\btnSync</td><td/><td>2</td></row>
-		<row><td>PATH_TO_CAMERA_FILES</td><td>..\setup files\rescnstool\src\Camera</td><td/><td>2</td></row>
 		<row><td>PATH_TO_CHECKMOON904K30_FILES</td><td>..\setup files\res\CheckMoon904K30</td><td/><td>2</td></row>
 		<row><td>PATH_TO_CHECKMOON904K30_FILES1</td><td>..\setup files\res\CheckMoon904K30</td><td/><td>2</td></row>
 		<row><td>PATH_TO_CHECKMOON_FILES</td><td>..\setup files</td><td/><td>2</td></row>
-		<row><td>PATH_TO_LAYOUT_FILES</td><td>..\setup files\rescnstool\layout</td><td/><td>2</td></row>
-		<row><td>PATH_TO_LAYOUT_FILES2</td><td>..\setup files\resumstool\layout</td><td/><td>2</td></row>
-		<row><td>PATH_TO_MENU_FILES</td><td>..\setup files\resumstool\src\Menu</td><td/><td>2</td></row>
 		<row><td>PATH_TO_RELEASE_FILES</td><td>..\setup files</td><td/><td>2</td></row>
-		<row><td>PATH_TO_RESCNSTOOL_FILES</td><td>..\setup files\rescnstool</td><td/><td>2</td></row>
 		<row><td>PATH_TO_RESMOONTOOL_FILES</td><td>..\setup files\resmoontool</td><td/><td>2</td></row>
 		<row><td>PATH_TO_RESMOONTOOL_FILES1</td><td>..\setup files\resmoontool</td><td/><td>2</td></row>
-		<row><td>PATH_TO_RESUMSTOOL_FILES</td><td>..\setup files\resumstool</td><td/><td>2</td></row>
 		<row><td>PATH_TO_RES_FILES</td><td>..\setup files\res</td><td/><td>2</td></row>
 		<row><td>PATH_TO_RES_FILES1</td><td>..\setup files\res</td><td/><td>2</td></row>
 		<row><td>PATH_TO_RES_FILES2</td><td>..\setup files\res</td><td/><td>2</td></row>
 		<row><td>PATH_TO_SETUP FILES_FILES</td><td>..\setup files</td><td/><td>2</td></row>
-		<row><td>PATH_TO_SRC_FILES</td><td>..\setup files\rescnstool\src</td><td/><td>2</td></row>
-		<row><td>PATH_TO_SRC_FILES1</td><td>..\setup files\resumstool\src</td><td/><td>2</td></row>
-		<row><td>PATH_TO_TPTOOL_FILES</td><td>..\setup files</td><td/><td>2</td></row>
 		<row><td>ProgramFilesFolder</td><td/><td/><td>1</td></row>
 		<row><td>SystemFolder</td><td/><td/><td>1</td></row>
 		<row><td>WindowsFolder</td><td/><td/><td>1</td></row>
