@@ -1390,9 +1390,9 @@ bool CCameraCtrlLogic::OnSliderSaturatChanged( const IArgs& args )
 	UIFACTORYMGR_PTR->GetPropertyValue( valueCSliderCtrlPos, m_strSliderSaturat, m_pWndTree );
 	
     //moon904k30 饱和度调节范围为 60~200
-	SetSaturatValue( valueCSliderCtrlPos.nPos + 60 );
+	SetSaturatValue( 10*(valueCSliderCtrlPos.nPos + 6) );
 
-	u32 dwSaturat = valueCSliderCtrlPos.nPos + 60;
+	u32 dwSaturat = 10*(valueCSliderCtrlPos.nPos + 6);
 	if ( dwSaturat == m_dwSaturat )
 	{
 		return true;
@@ -1473,9 +1473,9 @@ bool CCameraCtrlLogic::OnSliderHueChanged( const IArgs& args )
 	Value_CSliderCtrlPos valueCSliderCtrlPos;
 	UIFACTORYMGR_PTR->GetPropertyValue( valueCSliderCtrlPos, m_strSliderHue, m_pWndTree );
 	
-	SetHueValue( valueCSliderCtrlPos.nPos );
+	SetHueValue( 2*valueCSliderCtrlPos.nPos );
 
-	u32 dwHue = valueCSliderCtrlPos.nPos;
+	u32 dwHue = 2*valueCSliderCtrlPos.nPos;
 
 	/*if ( dwBright == m_dwBright )
 	{
@@ -1833,8 +1833,8 @@ HRESULT CCameraCtrlLogic::OnCameraApertureInd( WPARAM wparam, LPARAM lparam )
 		return S_FALSE;
 	}
 	
-	EmTPAperture emAper;
-	MOONLIBDATAMGRPTR->GetCamAperture( emAper );
+	TIrisAutoManuMode tIrisMode;
+	MOONLIBDATAMGRPTR->GetCamAperture( tIrisMode );
 	BOOL bRet = static_cast<BOOL>(lparam);
 	
 	if ( bRet == FALSE )
@@ -2174,8 +2174,12 @@ bool CCameraCtrlLogic::OnKillFocusEdtSaturat( const IArgs& args )
 	String str;
 	UIFACTORYMGR_PTR->GetCaption( m_strEdtSaturat, str, m_pWndTree );
 	
-    SetSaturatValue( atoi(str.c_str()) );
-	SetSaturatCmd(str.c_str());
+    u32 dwEdtSaturat = atoi(str.c_str());
+    CString strEdtSaturat;
+    dwEdtSaturat = (dwEdtSaturat/10)*10;
+    strEdtSaturat.Format("%d", dwEdtSaturat);
+    SetSaturatValue( dwEdtSaturat );
+	SetSaturatCmd(strEdtSaturat);
 	
 	return true;
 }
@@ -2354,7 +2358,7 @@ bool CCameraCtrlLogic::OnEdtHueChange( const IArgs& args )
         return true;
     }
 
-    s32 nExpGainValue = atoi(valueWindowCaption.strCaption.c_str());
+    /*s32 nExpGainValue = atoi(valueWindowCaption.strCaption.c_str());
     if ( nExpGainValue > 14 )
     {
         strTemp.Format("%d", 14);
@@ -2377,7 +2381,7 @@ bool CCameraCtrlLogic::OnEdtHueChange( const IArgs& args )
     }
     else
     {
-    }
+    }*/
 	
 	if ( nChar == 0x0d )
 	{
@@ -2392,8 +2396,23 @@ bool CCameraCtrlLogic::OnKillFocusEdtHue( const IArgs& args )
 	String str;
 	UIFACTORYMGR_PTR->GetCaption( m_strEdtHue, str, m_pWndTree );
 	
-    SetHueValue( atoi(str.c_str())+14 );
-	SetHueCmd(str.c_str());
+    s32 nEdtHue = atoi(str.c_str())+14;
+    if (nEdtHue < 0)
+    {
+        nEdtHue = 0;
+    }
+    else if (nEdtHue > 28)
+    {
+        nEdtHue = 28;
+    }
+
+    //输入值必须为2的倍数，否则向下取整
+    nEdtHue = (nEdtHue/2)*2;
+
+    SetHueValue(nEdtHue);
+    CString strEdtHue;
+    strEdtHue.Format("%d", nEdtHue-14);
+	SetHueCmd(strEdtHue);
 	
 	return true;
 }
@@ -3650,7 +3669,7 @@ void CCameraCtrlLogic::SetSaturatValue( u32 dwSaturat )
     }
 
 	Value_CSliderCtrlPos valueCSliderCtrlPos;
-	valueCSliderCtrlPos.nPos = dwSaturat - 60;  //moon904k30 饱和度调节范围为 60~200
+	valueCSliderCtrlPos.nPos = (dwSaturat - 60)/10;  //moon904k30 饱和度调节范围为 60~200
 	UIFACTORYMGR_PTR->SetPropertyValue( valueCSliderCtrlPos, m_strSliderSaturat, m_pWndTree );
 	
 	CString strCaption;
@@ -3732,7 +3751,7 @@ void CCameraCtrlLogic::SetHueValue( u32 dwHue )
     }
 
     Value_CSliderCtrlPos valueCSliderCtrlPos;
-    valueCSliderCtrlPos.nPos = dwHue;
+    valueCSliderCtrlPos.nPos = dwHue/2;//输入值必须为2的倍数
     UIFACTORYMGR_PTR->SetPropertyValue( valueCSliderCtrlPos, m_strSliderHue, m_pWndTree );
     
     CString strCaption;

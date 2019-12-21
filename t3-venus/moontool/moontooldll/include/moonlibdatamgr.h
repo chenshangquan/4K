@@ -100,7 +100,7 @@ public:
 	* @return  
 	* @remarks 
 	*/	
-	u16 GetCamAperture(EmTPAperture &emAper) const;
+	u16 GetCamAperture(TIrisAutoManuMode &tIrisMode) const;
 
 	/** 
 	* 功能  	获取增益值

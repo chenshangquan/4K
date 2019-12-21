@@ -215,7 +215,7 @@ public:
 
 	virtual EmTPExpGain GetCamGain();
 
-	virtual EmTPAperture GetCamAperture();
+	virtual TIrisAutoManuMode GetCamAperture();
 
 	virtual EmTPMOOMMode GetCamMoonMode();
 

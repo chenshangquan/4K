@@ -157,7 +157,7 @@ public:
 	*/
 	virtual u16 CamApertureCmd( const EmTPAperture &emTPAperture ) = 0;
 
-	virtual EmTPAperture GetCamAperture() = 0;
+	virtual TIrisAutoManuMode GetCamAperture() = 0;
 
 	/** 
 	* 功能: 快门切换消息发送

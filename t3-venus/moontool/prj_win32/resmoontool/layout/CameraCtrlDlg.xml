@@ -1300,7 +1300,7 @@
             <Property Name="WindowSize" Value="x:196 y:13" />
             <Property Name="WindowVisible" Value="False" />
             <Property Name="Image" Value="Camera/slider" />
-            <Property Name="CSliderCtrlRange" Value="min:0 max:28" />
+            <Property Name="CSliderCtrlRange" Value="min:0 max:14" />
             <Property Name="CTransparentSliderWndStyle" Value="1" />
             <Event Type="SLIDER_CHANGED" Value="CCameraCtrlLogic::OnSliderHueChanged" />
             <Scheme Name="SchmCamNormal">
@@ -1416,7 +1416,7 @@
             <Property Name="WindowSize" Value="x:196 y:13" />
             <Property Name="WindowVisible" Value="True" />
             <Property Name="Image" Value="Camera/slider" />
-            <Property Name="CSliderCtrlRange" Value="min:0 max:140" />
+            <Property Name="CSliderCtrlRange" Value="min:0 max:14" />
             <Property Name="CTransparentSliderWndStyle" Value="1" />
             <Event Type="SLIDER_CHANGED" Value="CCameraCtrlLogic::OnSliderSaturatChanged" />
             <Scheme Name="SchmCamNormal">

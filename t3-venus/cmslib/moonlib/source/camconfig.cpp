@@ -294,10 +294,12 @@ tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_2500Spd, tTPMoonCamInfo.Shu
 tTPMoonCamInfo.ShutterMode.FiftyOrTwentyMode.Shutter_10000Spd);
             PrtRkcMsg( RK100_EVT_LOGIN_ACK, emEventTypeScoketRecv, "\n \
 <Focus:[Auto:%d,Manual:%d]>\n \
-<AutoExposureMode:%d>\n \
+<AutoExposureMode:%d,IrisBackCompFlag:%d,IrisOpt:[2.8:%d,3.1:%d,3.4:%d,3.7:%d,4.0:%d,4.5:%d]>\n \
 <D2NRMode:[On:%d,Off:%d],level:[%d,%d,%d,%d,%d]>\n \
 <D3NRMode:[On:%d,Off:%d],level:[%d,%d,%d,%d,%d]>",
-tTPMoonCamInfo.FocusMode.AutoModeFlag, tTPMoonCamInfo.FocusMode.ManualModeFlag, tTPMoonCamInfo.ExpMode.ExposAutoModeFlag,
+tTPMoonCamInfo.FocusMode.AutoModeFlag, tTPMoonCamInfo.FocusMode.ManualModeFlag, tTPMoonCamInfo.ExpMode.ExposAutoModeFlag, tTPMoonCamInfo.IrisMode.IrisBackCompFlag,
+tTPMoonCamInfo.IrisMode.optIrisF2_8Flag, tTPMoonCamInfo.IrisMode.optIrisF3_1Flag, tTPMoonCamInfo.IrisMode.optIrisF3_4Flag,
+tTPMoonCamInfo.IrisMode.optIrisF3_7Flag, tTPMoonCamInfo.IrisMode.optIrisF4_0Flag, tTPMoonCamInfo.IrisMode.optIrisF4_4Flag,
 tTPMoonCamInfo.CamD2NRMode.D2NROnFlag, tTPMoonCamInfo.CamD2NRMode.D2NROffFlag, tTPMoonCamInfo.CamD2NRMode.D2NR_level_1_Flag, tTPMoonCamInfo.CamD2NRMode.D2NR_level_2_Flag,
 tTPMoonCamInfo.CamD2NRMode.D2NR_level_3_Flag, tTPMoonCamInfo.CamD2NRMode.D2NR_level_4_Flag, tTPMoonCamInfo.CamD2NRMode.D2NR_level_5_Flag,
 tTPMoonCamInfo.CamD3NRMode.D3NROnFlag, tTPMoonCamInfo.CamD3NRMode.D3NROffFlag, tTPMoonCamInfo.CamD3NRMode.D3NR_level_1_Flag, tTPMoonCamInfo.CamD3NRMode.D3NR_level_2_Flag,
@@ -1369,11 +1371,31 @@ u16 CCamConfig::SetCamApertreCmd( const TIrisAutoManuMode& tIrisAutoManuMode )
     tRK100MsgHead.wMsgLen = htons(sizeof(TIrisAutoManuMode));
     CRkMessage rkmsg;//定义消息
     rkmsg.SetBody(&tRK100MsgHead, sizeof(TRK100MsgHead));//添加头内容
-    rkmsg.CatBody(&tIrisAutoManuMode, sizeof(TIrisAutoManuMode));//添加消息体
 
+    TIrisAutoManuMode tIrisMode = GetCamAperture();
+    if ( 1 == tIrisAutoManuMode.IrisManuFlag )
+    {
+        tIrisMode.IrisAutoFlag = 0;
+        tIrisMode.IrisManuFlag = 1;
+        tIrisMode.optIrisF2_8Flag = tIrisAutoManuMode.optIrisF2_8Flag;
+        tIrisMode.optIrisF3_1Flag = tIrisAutoManuMode.optIrisF3_1Flag;
+        tIrisMode.optIrisF3_4Flag = tIrisAutoManuMode.optIrisF3_4Flag;
+        tIrisMode.optIrisF3_7Flag = tIrisAutoManuMode.optIrisF3_7Flag;
+        tIrisMode.optIrisF4_0Flag = tIrisAutoManuMode.optIrisF4_0Flag;
+        tIrisMode.optIrisF4_4Flag = tIrisAutoManuMode.optIrisF4_4Flag;
+    }
+    else if ( 1 == tIrisAutoManuMode.IrisAutoFlag )
+    {
+        tIrisMode.IrisAutoFlag = 1;
+        tIrisMode.IrisManuFlag = 0;
+        tIrisMode.IrisBackCompFlag = tIrisAutoManuMode.IrisBackCompFlag;
+    }
+    
+    rkmsg.CatBody(&tIrisMode, sizeof(TIrisAutoManuMode));//添加消息体
+    
     PrtRkcMsg( RK100_EVT_SET_CAM_IRIS, emEventTypeScoketSend, "IsAuto:%d, IrisBackCompFlag:%d, IrisOpt:<2.8:%d,3.1:%d,3.4:%d,3.7:%d,4.0:%d,4.5:%d>",
-        tIrisAutoManuMode.IrisAutoFlag, tIrisAutoManuMode.IrisBackCompFlag, tIrisAutoManuMode.optIrisF2_8Flag, tIrisAutoManuMode.optIrisF3_1Flag,
-        tIrisAutoManuMode.optIrisF3_4Flag, tIrisAutoManuMode.optIrisF3_7Flag, tIrisAutoManuMode.optIrisF4_0Flag, tIrisAutoManuMode.optIrisF4_4Flag);
+        tIrisMode.IrisAutoFlag, tIrisMode.IrisBackCompFlag, tIrisMode.optIrisF2_8Flag, tIrisMode.optIrisF3_1Flag,
+        tIrisMode.optIrisF3_4Flag, tIrisMode.optIrisF3_7Flag, tIrisMode.optIrisF4_0Flag, tIrisMode.optIrisF4_4Flag);
 
     SOCKETWORK->SendDataPack(rkmsg);//消息发送
     return NOERROR;
@@ -1549,15 +1571,14 @@ u16 CCamConfig::CamApertureCmd( const EmTPAperture& emAperture )
     return NOERROR;
 }
 
-EmTPAperture CCamConfig::GetCamAperture()
+TIrisAutoManuMode CCamConfig::GetCamAperture()
 {
 	if (m_pTPMoonCamCfg == NULL)
 	{
 		SetCameraCfgPtr();
 	}
 	
-    EmTPAperture tt = em_Aperture_F2_8;
-	return tt;
+	return m_pTPMoonCamCfg->IrisMode;
 }
 
 void CCamConfig::OnCamApertureInd(const CMessage& cMsg)
@@ -4030,20 +4051,6 @@ void CCamConfig::AllCamCfgCmdSend()
             }
             DelaySendCmd(DELAY_SEND_CMD);
         }
-        //光圈模式设置
-        if (  m_atOldCamCfg[byIndex].IrisMode.IrisAutoFlag != ptCurCamInfo->IrisMode.IrisAutoFlag
-            || m_atOldCamCfg[byIndex].IrisMode.IrisBackCompFlag != ptCurCamInfo->IrisMode.IrisBackCompFlag
-            || m_atOldCamCfg[byIndex].IrisMode.optIrisF2_8Flag != ptCurCamInfo->IrisMode.optIrisF2_8Flag
-            || m_atOldCamCfg[byIndex].IrisMode.optIrisF3_1Flag != ptCurCamInfo->IrisMode.optIrisF3_1Flag
-            || m_atOldCamCfg[byIndex].IrisMode.optIrisF3_4Flag != ptCurCamInfo->IrisMode.optIrisF3_4Flag
-            || m_atOldCamCfg[byIndex].IrisMode.optIrisF3_7Flag != ptCurCamInfo->IrisMode.optIrisF3_7Flag
-            || m_atOldCamCfg[byIndex].IrisMode.optIrisF4_0Flag != ptCurCamInfo->IrisMode.optIrisF4_0Flag
-            || m_atOldCamCfg[byIndex].IrisMode.optIrisF4_4Flag != ptCurCamInfo->IrisMode.optIrisF4_4Flag)
-        {
-            SetCamApertreCmd( ptCurCamInfo->IrisMode );
-            DelaySendCmd(6*DELAY_SEND_CMD);  //响应时间较长
-        }
-        
         //白平衡设置
         if ( ptCurCamInfo->WBMode.CamWBAutoModeFlag
             != m_atOldCamCfg[byIndex].WBMode.CamWBAutoModeFlag )
@@ -4067,8 +4074,9 @@ void CCamConfig::AllCamCfgCmdSend()
             || ptCurCamInfo->CamImagParam.Gamma_opt_2_flag != m_atOldCamCfg[byIndex].CamImagParam.Gamma_opt_2_flag
             || ptCurCamInfo->CamImagParam.Gamma_opt_3_flag != m_atOldCamCfg[byIndex].CamImagParam.Gamma_opt_3_flag )
         {
+            DelaySendCmd(2*DELAY_SEND_CMD);  //确保前一参数设置已生效
             CamImageParaCmd( ptCurCamInfo->CamImagParam );
-            DelaySendCmd(6*DELAY_SEND_CMD);  //响应时间较长
+            DelaySendCmd(4*DELAY_SEND_CMD);  //响应时间较长
         }
         //2D降噪设置
         if ( ptCurCamInfo->CamD2NRMode.D2NROnFlag != m_atOldCamCfg[byIndex].CamD2NRMode.D2NROnFlag )
@@ -4155,6 +4163,20 @@ void CCamConfig::AllCamCfgCmdSend()
                     DelaySendCmd(2*DELAY_SEND_CMD);  //快门响应时间较长
                 }
             }
+        }
+        //光圈模式设置
+        if (  m_atOldCamCfg[byIndex].IrisMode.IrisAutoFlag != ptCurCamInfo->IrisMode.IrisAutoFlag
+            || m_atOldCamCfg[byIndex].IrisMode.IrisBackCompFlag != ptCurCamInfo->IrisMode.IrisBackCompFlag
+            || m_atOldCamCfg[byIndex].IrisMode.optIrisF2_8Flag != ptCurCamInfo->IrisMode.optIrisF2_8Flag
+            || m_atOldCamCfg[byIndex].IrisMode.optIrisF3_1Flag != ptCurCamInfo->IrisMode.optIrisF3_1Flag
+            || m_atOldCamCfg[byIndex].IrisMode.optIrisF3_4Flag != ptCurCamInfo->IrisMode.optIrisF3_4Flag
+            || m_atOldCamCfg[byIndex].IrisMode.optIrisF3_7Flag != ptCurCamInfo->IrisMode.optIrisF3_7Flag
+            || m_atOldCamCfg[byIndex].IrisMode.optIrisF4_0Flag != ptCurCamInfo->IrisMode.optIrisF4_0Flag
+            || m_atOldCamCfg[byIndex].IrisMode.optIrisF4_4Flag != ptCurCamInfo->IrisMode.optIrisF4_4Flag)
+        {
+            DelaySendCmd(2*DELAY_SEND_CMD);  //确保前一参数设置已生效
+            SetCamApertreCmd( ptCurCamInfo->IrisMode );
+            DelaySendCmd(2*DELAY_SEND_CMD);  //响应时间较长
         }
 
         // 导入参数最后完成消息推送

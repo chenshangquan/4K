@@ -125,9 +125,9 @@ u16 CMoonlibDataMgr::GetCamMoonMode( EmTPMOOMMode& emExpMode ) const
 	return NO_ERROR;
 }
 
-u16 CMoonlibDataMgr::GetCamAperture(EmTPAperture &emAper) const
+u16 CMoonlibDataMgr::GetCamAperture(TIrisAutoManuMode &tIrisMode) const
 {
-	emAper = MOONSESSION_MGR_PTR->GetCamConfigIF()->GetCamAperture();
+	tIrisMode = MOONSESSION_MGR_PTR->GetCamConfigIF()->GetCamAperture();
 	return NO_ERROR;
 }
 
